@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.48.4",
+    "mysql2": "^3.14.3",
+    "postgres": "^3.4.7",
+    "zod": "^4.0.15"
+  },
+  "scripts": {
+    "encrypt": "dotenvx encrypt",
+    "decrypt": "dotenvx decrypt",
+    "format": "bunx ultracite format",
+    "lint": "bunx ultracite lint"
+  },
+  "name": "reflect-erd",
+  "private": true,
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "@types/bun": "latest",
+    "@types/node": "^24.2.1",
+    "lefthook": "^1.12.2",
+    "ultracite": "5.1.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
