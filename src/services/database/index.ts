@@ -33,4 +33,10 @@ export class DatabaseService {
   async pullSchema(): Promise<TableSchema[]> {
     return await this.implementation.pullSchema();
   }
+
+  async pullSampleData(params: {
+    table: string;
+  }): Promise<Record<string, unknown>[]> {
+    return await this.implementation.pullSampleData(params);
+  }
 }

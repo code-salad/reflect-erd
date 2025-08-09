@@ -1,0 +1,96 @@
+@startuml
+title PostgreSQL Database Schema (Simplified)
+
+skinparam linetype ortho
+hide circle
+
+entity EmailAddress <<public>> {
+  + id : PK
+}
+
+entity PhoneNumber <<public>> {
+  + id : PK
+}
+
+entity Socials <<public>> {
+  + id : PK
+}
+
+entity Url <<public>> {
+  + id : PK
+  # webDomainId : FK
+}
+
+entity WebDomain <<public>> {
+  + id : PK
+}
+
+entity Webset <<public>> {
+  + id : PK
+  # createdByuserId : FK
+}
+
+entity WebsetRow <<public>> {
+  + id : PK
+  # websetId : FK
+}
+
+entity _EmailAddressToUrl <<public>> {
+  + A : PK
+  + B : PK
+}
+
+entity _PhoneNumberToUrl <<public>> {
+  + A : PK
+  + B : PK
+}
+
+entity _SocialsToUrl <<public>> {
+  + A : PK
+  + B : PK
+}
+
+entity _Urls <<public>> {
+  + A : PK
+  + B : PK
+}
+
+entity account <<public>> {
+  + id : PK
+  # userId : FK
+}
+
+entity apikey <<public>> {
+  + id : PK
+  # userId : FK
+}
+
+entity session <<public>> {
+  + id : PK
+  # userId : FK
+}
+
+entity user <<public>> {
+  + id : PK
+}
+
+entity verification <<public>> {
+  + id : PK
+}
+
+WebDomain ||--o{ Url
+user ||--o{ Webset
+Webset ||--o{ WebsetRow
+EmailAddress ||--o{ _EmailAddressToUrl
+Url ||--o{ _EmailAddressToUrl
+PhoneNumber ||--o{ _PhoneNumberToUrl
+Url ||--o{ _PhoneNumberToUrl
+Socials ||--o{ _SocialsToUrl
+Url ||--o{ _SocialsToUrl
+Url ||--o{ _Urls
+Url ||--o{ _Urls
+user ||--o{ account
+user ||--o{ apikey
+user ||--o{ session
+
+@enduml

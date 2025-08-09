@@ -219,11 +219,28 @@ export class PostgresDatabaseService extends DatabaseServiceImpl {
       });
 
       const results = await Promise.all(tablePromises);
-      await sql.end();
       return results;
-    } catch (error) {
+    } finally {
       await sql.end();
-      throw error;
+    }
+  }
+
+  async pullSampleData(params: {
+    table: string;
+  }): Promise<Record<string, unknown>[]> {
+    const sql = postgres(this.databaseUrl);
+    try {
+      const [schema, tableName] = params.table.includes('.')
+        ? params.table.split('.')
+        : ['public', params.table];
+
+      const result = await sql.unsafe<Record<string, unknown>[]>(
+        `SELECT * FROM "${schema}"."${tableName}" LIMIT 10`
+      );
+
+      return result;
+    } finally {
+      await sql.end();
     }
   }
 }

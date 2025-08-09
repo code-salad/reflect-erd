@@ -240,4 +240,35 @@ export class MySQLDatabaseService extends DatabaseServiceImpl {
       await connection.end();
     }
   }
+
+  async pullSampleData(params: {
+    table: string;
+  }): Promise<Record<string, unknown>[]> {
+    const connection = await mysql.createConnection(this.databaseUrl);
+
+    try {
+      const [schema, tableName] = params.table.includes('.')
+        ? params.table.split('.')
+        : [null, params.table];
+
+      let query: string;
+      let queryParams: string[];
+
+      if (schema) {
+        query = `SELECT * FROM \`${schema}\`.\`${tableName}\` LIMIT 10`;
+        queryParams = [];
+      } else {
+        query = `SELECT * FROM \`${tableName}\` LIMIT 10`;
+        queryParams = [];
+      }
+
+      const [rows] = await connection.execute<RowDataPacket[]>(
+        query,
+        queryParams
+      );
+      return rows as Record<string, unknown>[];
+    } finally {
+      await connection.end();
+    }
+  }
 }

@@ -8,4 +8,8 @@ export abstract class DatabaseServiceImpl {
   }
 
   abstract pullSchema(): Promise<TableSchema[]>;
+
+  abstract pullSampleData(params: {
+    table: string;
+  }): Promise<Record<string, unknown>[]>;
 }
