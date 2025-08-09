@@ -227,15 +227,19 @@ export class PostgresDatabaseService extends DatabaseServiceImpl {
 
   async pullSampleData(params: {
     table: string;
+    schema?: string;
   }): Promise<Record<string, unknown>[]> {
     const sql = postgres(this.databaseUrl);
     try {
-      const [schema, tableName] = params.table.includes('.')
-        ? params.table.split('.')
-        : ['public', params.table];
+      // Parse schema from URL parameters (e.g., ?schema=myschema or ?search_path=myschema)
+      const urlParts = new URL(this.databaseUrl);
+      const urlSchema = urlParts.searchParams.get('schema');
+
+      // Use explicit schema param or schema from URL or default to 'public'
+      const schemaToUse = params.schema || urlSchema || 'public';
 
       const result = await sql.unsafe<Record<string, unknown>[]>(
-        `SELECT * FROM "${schema}"."${tableName}" LIMIT 10`
+        `SELECT * FROM "${schemaToUse}"."${params.table}" LIMIT 10`
       );
 
       return result;

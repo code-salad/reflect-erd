@@ -1,1 +1,1276 @@
-[]
+[
+  {
+    "schema": "default",
+    "name": "categories",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "default",
+        "table": "categories",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "categories",
+        "name": "name",
+        "ordinalPosition": 2,
+        "dataType": "varchar",
+        "udtName": "varchar(100)",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "categories",
+        "name": "description",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "categories",
+        "name": "created_at",
+        "ordinalPosition": 4,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "categories",
+        "name": "updated_at",
+        "ordinalPosition": 5,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      }
+    ],
+    "primaryKey": {
+      "name": "PRIMARY",
+      "columns": ["id"]
+    },
+    "foreignKeys": [],
+    "indexes": [
+      {
+        "name": "PRIMARY",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "INDEX PRIMARY ON categories (id)"
+      }
+    ]
+  },
+  {
+    "schema": "default",
+    "name": "customers",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "email",
+        "ordinalPosition": 2,
+        "dataType": "varchar",
+        "udtName": "varchar(255)",
+        "maxLength": 255,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "first_name",
+        "ordinalPosition": 3,
+        "dataType": "varchar",
+        "udtName": "varchar(100)",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "last_name",
+        "ordinalPosition": 4,
+        "dataType": "varchar",
+        "udtName": "varchar(100)",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "phone",
+        "ordinalPosition": 5,
+        "dataType": "varchar",
+        "udtName": "varchar(20)",
+        "maxLength": 20,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "address",
+        "ordinalPosition": 6,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "city",
+        "ordinalPosition": 7,
+        "dataType": "varchar",
+        "udtName": "varchar(100)",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "country",
+        "ordinalPosition": 8,
+        "dataType": "varchar",
+        "udtName": "varchar(100)",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "postal_code",
+        "ordinalPosition": 9,
+        "dataType": "varchar",
+        "udtName": "varchar(20)",
+        "maxLength": 20,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "created_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "customers",
+        "name": "updated_at",
+        "ordinalPosition": 11,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      }
+    ],
+    "primaryKey": {
+      "name": "PRIMARY",
+      "columns": ["id"]
+    },
+    "foreignKeys": [],
+    "indexes": [
+      {
+        "name": "email",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "INDEX email ON customers (email)"
+      },
+      {
+        "name": "idx_email",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_email ON customers (email)"
+      },
+      {
+        "name": "PRIMARY",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "INDEX PRIMARY ON customers (id)"
+      }
+    ]
+  },
+  {
+    "schema": "default",
+    "name": "inventory_logs",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "default",
+        "table": "inventory_logs",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "inventory_logs",
+        "name": "product_id",
+        "ordinalPosition": 2,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "inventory_logs",
+        "name": "action",
+        "ordinalPosition": 3,
+        "dataType": "varchar",
+        "udtName": "varchar(50)",
+        "maxLength": 50,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "inventory_logs",
+        "name": "quantity_change",
+        "ordinalPosition": 4,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "inventory_logs",
+        "name": "new_quantity",
+        "ordinalPosition": 5,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "inventory_logs",
+        "name": "reason",
+        "ordinalPosition": 6,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "inventory_logs",
+        "name": "created_at",
+        "ordinalPosition": 7,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      }
+    ],
+    "primaryKey": {
+      "name": "PRIMARY",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "inventory_logs_ibfk_1",
+        "columns": ["product_id"],
+        "referencedSchema": "default",
+        "referencedTable": "products",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "SET NULL"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_product_action",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_product_action ON inventory_logs (product_id,action)"
+      },
+      {
+        "name": "PRIMARY",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "INDEX PRIMARY ON inventory_logs (id)"
+      }
+    ]
+  },
+  {
+    "schema": "default",
+    "name": "order_items",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "default",
+        "table": "order_items",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "order_items",
+        "name": "order_id",
+        "ordinalPosition": 2,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "order_items",
+        "name": "product_id",
+        "ordinalPosition": 3,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "order_items",
+        "name": "quantity",
+        "ordinalPosition": 4,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "order_items",
+        "name": "unit_price",
+        "ordinalPosition": 5,
+        "dataType": "decimal",
+        "udtName": "decimal(10,2)",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 2,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "order_items",
+        "name": "discount_percent",
+        "ordinalPosition": 6,
+        "dataType": "decimal",
+        "udtName": "decimal(5,2)",
+        "maxLength": null,
+        "numericPrecision": 5,
+        "numericScale": 2,
+        "isNullable": true,
+        "default": "0.00",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "order_items",
+        "name": "created_at",
+        "ordinalPosition": 7,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      }
+    ],
+    "primaryKey": {
+      "name": "PRIMARY",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "order_items_ibfk_1",
+        "columns": ["order_id"],
+        "referencedSchema": "default",
+        "referencedTable": "orders",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE"
+      },
+      {
+        "name": "order_items_ibfk_2",
+        "columns": ["product_id"],
+        "referencedSchema": "default",
+        "referencedTable": "products",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_order",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_order ON order_items (order_id)"
+      },
+      {
+        "name": "idx_product",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_product ON order_items (product_id)"
+      },
+      {
+        "name": "PRIMARY",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "INDEX PRIMARY ON order_items (id)"
+      },
+      {
+        "name": "unique_order_product",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "INDEX unique_order_product ON order_items (order_id,product_id)"
+      }
+    ]
+  },
+  {
+    "schema": "default",
+    "name": "orders",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "customer_id",
+        "ordinalPosition": 2,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "order_date",
+        "ordinalPosition": 3,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "status",
+        "ordinalPosition": 4,
+        "dataType": "varchar",
+        "udtName": "varchar(50)",
+        "maxLength": 50,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "pending",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "total_amount",
+        "ordinalPosition": 5,
+        "dataType": "decimal",
+        "udtName": "decimal(10,2)",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 2,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "shipping_address",
+        "ordinalPosition": 6,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "billing_address",
+        "ordinalPosition": 7,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "notes",
+        "ordinalPosition": 8,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "created_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "orders",
+        "name": "updated_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      }
+    ],
+    "primaryKey": {
+      "name": "PRIMARY",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "orders_ibfk_1",
+        "columns": ["customer_id"],
+        "referencedSchema": "default",
+        "referencedTable": "customers",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_customer",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_customer ON orders (customer_id)"
+      },
+      {
+        "name": "idx_order_date",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_order_date ON orders (order_date)"
+      },
+      {
+        "name": "idx_status",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_status ON orders (status)"
+      },
+      {
+        "name": "PRIMARY",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "INDEX PRIMARY ON orders (id)"
+      }
+    ]
+  },
+  {
+    "schema": "default",
+    "name": "page_views",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "default",
+        "table": "page_views",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "page_views",
+        "name": "page_url",
+        "ordinalPosition": 2,
+        "dataType": "varchar",
+        "udtName": "varchar(500)",
+        "maxLength": 500,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "page_views",
+        "name": "visitor_id",
+        "ordinalPosition": 3,
+        "dataType": "varchar",
+        "udtName": "varchar(100)",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "page_views",
+        "name": "session_id",
+        "ordinalPosition": 4,
+        "dataType": "varchar",
+        "udtName": "varchar(100)",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "page_views",
+        "name": "referrer",
+        "ordinalPosition": 5,
+        "dataType": "varchar",
+        "udtName": "varchar(500)",
+        "maxLength": 500,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "page_views",
+        "name": "user_agent",
+        "ordinalPosition": 6,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "page_views",
+        "name": "ip_address",
+        "ordinalPosition": 7,
+        "dataType": "varchar",
+        "udtName": "varchar(45)",
+        "maxLength": 45,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "page_views",
+        "name": "created_at",
+        "ordinalPosition": 8,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      }
+    ],
+    "primaryKey": {
+      "name": "PRIMARY",
+      "columns": ["id"]
+    },
+    "foreignKeys": [],
+    "indexes": [
+      {
+        "name": "idx_created",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_created ON page_views (created_at)"
+      },
+      {
+        "name": "idx_session",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_session ON page_views (session_id)"
+      },
+      {
+        "name": "idx_visitor",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_visitor ON page_views (visitor_id)"
+      },
+      {
+        "name": "PRIMARY",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "INDEX PRIMARY ON page_views (id)"
+      }
+    ]
+  },
+  {
+    "schema": "default",
+    "name": "product_reviews",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "product_id",
+        "ordinalPosition": 2,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "customer_id",
+        "ordinalPosition": 3,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "rating",
+        "ordinalPosition": 4,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "title",
+        "ordinalPosition": 5,
+        "dataType": "varchar",
+        "udtName": "varchar(255)",
+        "maxLength": 255,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "comment",
+        "ordinalPosition": 6,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "is_verified_purchase",
+        "ordinalPosition": 7,
+        "dataType": "tinyint",
+        "udtName": "tinyint(1)",
+        "maxLength": null,
+        "numericPrecision": 3,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": "0",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "helpful_count",
+        "ordinalPosition": 8,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": "0",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "product_reviews",
+        "name": "created_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      }
+    ],
+    "primaryKey": {
+      "name": "PRIMARY",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "product_reviews_ibfk_1",
+        "columns": ["product_id"],
+        "referencedSchema": "default",
+        "referencedTable": "products",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE"
+      },
+      {
+        "name": "product_reviews_ibfk_2",
+        "columns": ["customer_id"],
+        "referencedSchema": "default",
+        "referencedTable": "customers",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "customer_id",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX customer_id ON product_reviews (customer_id)"
+      },
+      {
+        "name": "idx_product_rating",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_product_rating ON product_reviews (product_id,rating)"
+      },
+      {
+        "name": "PRIMARY",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "INDEX PRIMARY ON product_reviews (id)"
+      }
+    ]
+  },
+  {
+    "schema": "default",
+    "name": "products",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "name",
+        "ordinalPosition": 2,
+        "dataType": "varchar",
+        "udtName": "varchar(255)",
+        "maxLength": 255,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "description",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": 65535,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "price",
+        "ordinalPosition": 4,
+        "dataType": "decimal",
+        "udtName": "decimal(10,2)",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 2,
+        "isNullable": false,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "stock_quantity",
+        "ordinalPosition": 5,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": "0",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "category_id",
+        "ordinalPosition": 6,
+        "dataType": "int",
+        "udtName": "int",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "sku",
+        "ordinalPosition": 7,
+        "dataType": "varchar",
+        "udtName": "varchar(100)",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "is_active",
+        "ordinalPosition": 8,
+        "dataType": "tinyint",
+        "udtName": "tinyint(1)",
+        "maxLength": null,
+        "numericPrecision": 3,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": "1",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "created_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      },
+      {
+        "schema": "default",
+        "table": "products",
+        "name": "updated_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": ""
+      }
+    ],
+    "primaryKey": {
+      "name": "PRIMARY",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "products_ibfk_1",
+        "columns": ["category_id"],
+        "referencedSchema": "default",
+        "referencedTable": "categories",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "SET NULL"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_active",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_active ON products (is_active)"
+      },
+      {
+        "name": "idx_category",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_category ON products (category_id)"
+      },
+      {
+        "name": "idx_sku",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "INDEX idx_sku ON products (sku)"
+      },
+      {
+        "name": "PRIMARY",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "INDEX PRIMARY ON products (id)"
+      },
+      {
+        "name": "sku",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "INDEX sku ON products (sku)"
+      }
+    ]
+  }
+]

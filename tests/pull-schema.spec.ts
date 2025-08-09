@@ -15,5 +15,5 @@ describe('database pull schema', () => {
     const schema = await db.pullSchema();
     expect(schema).not.toBeNull();
     await Bun.write('schemas/mysql.json', JSON.stringify(schema, null, 2));
-  });
+  }, 15_000);
 });

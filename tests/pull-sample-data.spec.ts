@@ -126,6 +126,10 @@ describe('database pull sample data', () => {
 
     const results = await Promise.all(sampleDataPromises);
 
+    await Bun.write(
+      'schemas/postgres-sample-data.json',
+      JSON.stringify(results, null, 2)
+    );
     // Check all results
     for (const { sampleData } of results) {
       expect(sampleData).toBeInstanceOf(Array);

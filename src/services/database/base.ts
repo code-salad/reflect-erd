@@ -11,5 +11,6 @@ export abstract class DatabaseServiceImpl {
 
   abstract pullSampleData(params: {
     table: string;
+    schema?: string;
   }): Promise<Record<string, unknown>[]>;
 }

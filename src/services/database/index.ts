@@ -36,6 +36,7 @@ export class DatabaseService {
 
   async pullSampleData(params: {
     table: string;
+    schema?: string;
   }): Promise<Record<string, unknown>[]> {
     return await this.implementation.pullSampleData(params);
   }

@@ -243,22 +243,26 @@ export class MySQLDatabaseService extends DatabaseServiceImpl {
 
   async pullSampleData(params: {
     table: string;
+    schema?: string;
   }): Promise<Record<string, unknown>[]> {
     const connection = await mysql.createConnection(this.databaseUrl);
 
     try {
-      const [schema, tableName] = params.table.includes('.')
-        ? params.table.split('.')
-        : [null, params.table];
+      // Parse default database name from URL
+      const urlParts = new URL(this.databaseUrl);
+      const defaultSchema = urlParts.pathname.slice(1); // Remove leading /
+
+      // Use explicit schema param or default schema from URL
+      const schemaToUse = params.schema || defaultSchema || null;
 
       let query: string;
       let queryParams: string[];
 
-      if (schema) {
-        query = `SELECT * FROM \`${schema}\`.\`${tableName}\` LIMIT 10`;
+      if (schemaToUse) {
+        query = `SELECT * FROM \`${schemaToUse}\`.\`${params.table}\` LIMIT 10`;
         queryParams = [];
       } else {
-        query = `SELECT * FROM \`${tableName}\` LIMIT 10`;
+        query = `SELECT * FROM \`${params.table}\` LIMIT 10`;
         queryParams = [];
       }
 

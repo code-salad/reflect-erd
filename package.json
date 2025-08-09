@@ -9,7 +9,10 @@
     "encrypt": "dotenvx encrypt",
     "decrypt": "dotenvx decrypt",
     "format": "bunx ultracite format",
-    "lint": "bunx ultracite lint"
+    "lint": "bunx ultracite lint",
+    "seed": "bun run seeds/setup.ts",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
   },
   "name": "reflect-erd",
   "private": true,

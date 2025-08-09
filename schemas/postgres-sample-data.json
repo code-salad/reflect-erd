@@ -1,0 +1,2855 @@
+[
+  {
+    "table": {
+      "schema": "public",
+      "name": "EmailAddress",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "EmailAddress",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "EmailAddress",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "EmailAddress",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "EmailAddress",
+          "name": "email",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "EmailAddress_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "EmailAddress_email_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX \"EmailAddress_email_key\" ON public.\"EmailAddress\" USING btree (email)"
+        },
+        {
+          "name": "EmailAddress_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"EmailAddress_pkey\" ON public.\"EmailAddress\" USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "cmdq4y8mh00pougm5jq10vtvx",
+        "createdAt": "2025-07-30T15:43:37.002Z",
+        "updatedAt": "2025-07-30T15:43:37.002Z",
+        "email": "team@kairosconsulting.io"
+      },
+      {
+        "id": "cmdq4y8mh00ppugm57gz9nisi",
+        "createdAt": "2025-07-30T15:43:37.002Z",
+        "updatedAt": "2025-07-30T15:43:37.002Z",
+        "email": "harvardx-news@harvard.edu"
+      },
+      {
+        "id": "cmdq4y8sk00uaugm5ihqq8o8o",
+        "createdAt": "2025-07-30T15:43:37.220Z",
+        "updatedAt": "2025-07-30T15:43:37.220Z",
+        "email": "hylpub@fas.harvard.edu"
+      },
+      {
+        "id": "cmdq4y8sk00ubugm5h20yirb8",
+        "createdAt": "2025-07-30T15:43:37.220Z",
+        "updatedAt": "2025-07-30T15:43:37.220Z",
+        "email": "axwang@fas.harvard.edu"
+      },
+      {
+        "id": "cmdq4y8ta00x5ugm5w7foau61",
+        "createdAt": "2025-07-30T15:43:37.247Z",
+        "updatedAt": "2025-07-30T15:43:37.247Z",
+        "email": "archives_reference@harvard.edu"
+      },
+      {
+        "id": "cmdq4y8tb00x6ugm5cu7tpvtb",
+        "createdAt": "2025-07-30T15:43:37.247Z",
+        "updatedAt": "2025-07-30T15:43:37.247Z",
+        "email": "hannah_hack@harvard.edu"
+      },
+      {
+        "id": "cmdq4y8tb00yaugm5kg7uya37",
+        "createdAt": "2025-07-30T15:43:37.247Z",
+        "updatedAt": "2025-07-30T15:43:37.247Z",
+        "email": "muslib@fas.harvard.edu"
+      },
+      {
+        "id": "cmdq4y8tb00ycugm5bvku68vl",
+        "createdAt": "2025-07-30T15:43:37.247Z",
+        "updatedAt": "2025-07-30T15:43:37.247Z",
+        "email": "obrien2@fas.harvard.edu"
+      },
+      {
+        "id": "cmdq4y8uc012lugm5963sx1g1",
+        "createdAt": "2025-07-30T15:43:37.284Z",
+        "updatedAt": "2025-07-30T15:43:37.284Z",
+        "email": "cablib@fas.harvard.edu"
+      },
+      {
+        "id": "cmdq4y8v50168ugm5fvd4isjr",
+        "createdAt": "2025-07-30T15:43:37.314Z",
+        "updatedAt": "2025-07-30T15:43:37.314Z",
+        "email": "kate_grant@fas.harvard.edu"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "PhoneNumber",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "PhoneNumber",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "PhoneNumber",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "PhoneNumber",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "PhoneNumber",
+          "name": "phoneNumber",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "PhoneNumber_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "PhoneNumber_phoneNumber_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX \"PhoneNumber_phoneNumber_key\" ON public.\"PhoneNumber\" USING btree (\"phoneNumber\")"
+        },
+        {
+          "name": "PhoneNumber_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"PhoneNumber_pkey\" ON public.\"PhoneNumber\" USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "cmdq4y8sk00ucugm5ca71tn9l",
+        "createdAt": "2025-07-30T15:43:37.220Z",
+        "updatedAt": "2025-07-30T15:43:37.220Z",
+        "phoneNumber": "6174952756"
+      },
+      {
+        "id": "cmdq4y8tb00yhugm56ki9v7ph",
+        "createdAt": "2025-07-30T15:43:37.247Z",
+        "updatedAt": "2025-07-30T15:43:37.247Z",
+        "phoneNumber": "6174952794"
+      },
+      {
+        "id": "cmdq4y8uc012mugm51j98zofp",
+        "createdAt": "2025-07-30T15:43:37.284Z",
+        "updatedAt": "2025-07-30T15:43:37.284Z",
+        "phoneNumber": "6174955355"
+      },
+      {
+        "id": "cmdq4y8v50169ugm5ckg6er0w",
+        "createdAt": "2025-07-30T15:43:37.314Z",
+        "updatedAt": "2025-07-30T15:43:37.314Z",
+        "phoneNumber": "6174952194"
+      },
+      {
+        "id": "cmdq4y8ut014hugm5amz7vw68",
+        "createdAt": "2025-07-30T15:43:37.301Z",
+        "updatedAt": "2025-07-30T15:43:37.301Z",
+        "phoneNumber": "6174952452"
+      },
+      {
+        "id": "cmdq4y8xe01e7ugm5d6tus5di",
+        "createdAt": "2025-07-30T15:43:37.395Z",
+        "updatedAt": "2025-07-30T15:43:37.395Z",
+        "phoneNumber": "6174952253"
+      },
+      {
+        "id": "cmdq4y8yp01g1ugm5e05ikmjk",
+        "createdAt": "2025-07-30T15:43:37.442Z",
+        "updatedAt": "2025-07-30T15:43:37.442Z",
+        "phoneNumber": "6174955315"
+      },
+      {
+        "id": "cmdq4y8yp01g2ugm5gfisum3z",
+        "createdAt": "2025-07-30T15:43:37.442Z",
+        "updatedAt": "2025-07-30T15:43:37.442Z",
+        "phoneNumber": "6174952928"
+      },
+      {
+        "id": "cmdq4yd9001jlugm59w3ibvok",
+        "createdAt": "2025-07-30T15:43:42.996Z",
+        "updatedAt": "2025-07-30T15:43:42.996Z",
+        "phoneNumber": "6174952454"
+      },
+      {
+        "id": "cmdq4ydgw01mbugm5yg5s6cg4",
+        "createdAt": "2025-07-30T15:43:43.280Z",
+        "updatedAt": "2025-07-30T15:43:43.280Z",
+        "phoneNumber": "6174952413"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "Socials",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "Socials",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Socials",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Socials",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Socials",
+          "name": "type",
+          "ordinalPosition": 4,
+          "dataType": "USER-DEFINED",
+          "udtName": "SocialType",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Socials",
+          "name": "link",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "Socials_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "Socials_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"Socials_pkey\" ON public.\"Socials\" USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "Url",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "Url",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Url",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Url",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Url",
+          "name": "url",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Url",
+          "name": "markdownContent",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Url",
+          "name": "title",
+          "ordinalPosition": 6,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Url",
+          "name": "description",
+          "ordinalPosition": 7,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Url",
+          "name": "webDomainId",
+          "ordinalPosition": 8,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "Url_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "Url_webDomainId_fkey",
+          "columns": ["webDomainId"],
+          "referencedSchema": "public",
+          "referencedTable": "WebDomain",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "Url_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"Url_pkey\" ON public.\"Url\" USING btree (id)"
+        },
+        {
+          "name": "Url_url_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX \"Url_url_key\" ON public.\"Url\" USING btree (url)"
+        },
+        {
+          "name": "Url_webDomainId_createdAt_idx",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"Url_webDomainId_createdAt_idx\" ON public.\"Url\" USING btree (\"webDomainId\", \"createdAt\" DESC)"
+        },
+        {
+          "name": "Url_webDomainId_idx",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"Url_webDomainId_idx\" ON public.\"Url\" USING btree (\"webDomainId\")"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "cmdq5r21i0j3hugm582jmnrwb",
+        "createdAt": "2025-07-30T16:06:01.495Z",
+        "updatedAt": "2025-07-30T16:06:01.495Z",
+        "url": "r.search.yahoo.com/_ylt=AwrO6TTVQopoBwIA9NJXNyoA/RV=2/RE=1755101141/RO=10/RU=https%3a%2f%2fwww.yahoo.com/RK=2/RS=GydxjYSfa2wBxngXTrOQHY75fNo-",
+        "markdownContent": null,
+        "title": null,
+        "description": null,
+        "webDomainId": null
+      },
+      {
+        "id": "cmdq7ih08001pug189om75ta5",
+        "createdAt": "2025-07-30T16:55:20.216Z",
+        "updatedAt": "2025-07-30T16:55:20.216Z",
+        "url": "eu.libi.com",
+        "markdownContent": null,
+        "title": null,
+        "description": null,
+        "webDomainId": null
+      },
+      {
+        "id": "cme1o3b6q00hyqf0kimxfyd2w",
+        "createdAt": "2025-08-07T17:24:54.242Z",
+        "updatedAt": "2025-08-07T17:24:54.242Z",
+        "url": "openrouter.com",
+        "markdownContent": null,
+        "title": "",
+        "description": "",
+        "webDomainId": "cme1o3b6100hxqf0k3xnr4v4s"
+      },
+      {
+        "id": "cme1o3iup00i0qf0k9d259lfv",
+        "createdAt": "2025-08-07T17:25:04.175Z",
+        "updatedAt": "2025-08-07T17:25:04.175Z",
+        "url": "posthog.com/%22/%22",
+        "markdownContent": null,
+        "title": null,
+        "description": null,
+        "webDomainId": null
+      },
+      {
+        "id": "cme1o3iup00i1qf0kmca9ujdh",
+        "createdAt": "2025-08-07T17:25:04.175Z",
+        "updatedAt": "2025-08-07T17:25:04.175Z",
+        "url": "posthog.com/%22/why/%22",
+        "markdownContent": null,
+        "title": null,
+        "description": null,
+        "webDomainId": null
+      },
+      {
+        "id": "cme1o3iup00i2qf0kje1lctna",
+        "createdAt": "2025-08-07T17:25:04.175Z",
+        "updatedAt": "2025-08-07T17:25:04.175Z",
+        "url": "posthog.com/%22/products/%22",
+        "markdownContent": null,
+        "title": null,
+        "description": null,
+        "webDomainId": null
+      },
+      {
+        "id": "cme1o3iup00i3qf0ka6aqnzks",
+        "createdAt": "2025-08-07T17:25:04.175Z",
+        "updatedAt": "2025-08-07T17:25:04.175Z",
+        "url": "posthog.com/%22/pricing/%22",
+        "markdownContent": null,
+        "title": null,
+        "description": null,
+        "webDomainId": null
+      },
+      {
+        "id": "cme1o3iup00i4qf0kimg8dw2g",
+        "createdAt": "2025-08-07T17:25:04.175Z",
+        "updatedAt": "2025-08-07T17:25:04.175Z",
+        "url": "posthog.com/%22/docs/%22",
+        "markdownContent": null,
+        "title": null,
+        "description": null,
+        "webDomainId": null
+      },
+      {
+        "id": "cmdq4k6ke000zugm5g2a9y0zl",
+        "createdAt": "2025-07-30T15:32:41.150Z",
+        "updatedAt": "2025-08-03T09:32:53.374Z",
+        "url": "health.yahoo.com/wellness/mental-health",
+        "markdownContent": null,
+        "title": "Mental Health Resources",
+        "description": "",
+        "webDomainId": "cmdq4k6kd0000ugm5vwgoqgab"
+      },
+      {
+        "id": "cmdq4k6ke0006ugm5guvyoa5a",
+        "createdAt": "2025-07-30T15:32:41.150Z",
+        "updatedAt": "2025-08-07T11:55:21.436Z",
+        "url": "tech.yahoo.com",
+        "markdownContent": null,
+        "title": "Yahoo Tech | Technology News, Updates, Reviews & Stories",
+        "description": "",
+        "webDomainId": "cmdq4k6kd0000ugm5vwgoqgab"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "WebDomain",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "WebDomain",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebDomain",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebDomain",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebDomain",
+          "name": "domain",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebDomain",
+          "name": "companyName",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebDomain",
+          "name": "companyDescription",
+          "ordinalPosition": 6,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebDomain",
+          "name": "location",
+          "ordinalPosition": 8,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebDomain",
+          "name": "logoUrl",
+          "ordinalPosition": 12,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "WebDomain_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "WebDomain_domain_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX \"WebDomain_domain_key\" ON public.\"WebDomain\" USING btree (domain)"
+        },
+        {
+          "name": "WebDomain_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"WebDomain_pkey\" ON public.\"WebDomain\" USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "cmdq4k6kd0000ugm5vwgoqgab",
+        "createdAt": "2025-07-30T15:32:41.150Z",
+        "updatedAt": "2025-07-30T15:32:41.150Z",
+        "domain": "yahoo.com",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmdq4nkhx00agugm54rj5yzcr",
+        "createdAt": "2025-07-30T15:35:19.173Z",
+        "updatedAt": "2025-07-30T15:35:19.173Z",
+        "domain": "harvard.edu",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmdq5a3z6085uugm58b2mvsd9",
+        "createdAt": "2025-07-30T15:52:50.851Z",
+        "updatedAt": "2025-07-30T15:52:50.851Z",
+        "domain": "rinda.ai",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmdq5acvq088nugm5kokal7lk",
+        "createdAt": "2025-07-30T15:53:02.390Z",
+        "updatedAt": "2025-07-30T15:53:02.390Z",
+        "domain": "grinda.ai",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmds6a7732j2wugn5c7c5wf6u",
+        "createdAt": "2025-08-01T01:56:26.991Z",
+        "updatedAt": "2025-08-01T01:56:26.991Z",
+        "domain": "duri.com",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmdq5egez08aqugm57pofgtm4",
+        "createdAt": "2025-07-30T15:56:13.596Z",
+        "updatedAt": "2025-07-30T15:56:13.596Z",
+        "domain": "github.com",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmdq5tn670khmugm5rqe7az4r",
+        "createdAt": "2025-07-30T16:08:02.192Z",
+        "updatedAt": "2025-07-30T16:08:02.192Z",
+        "domain": "openai.com",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmdq5venl0lwbugm5clhucx0v",
+        "createdAt": "2025-07-30T16:09:24.466Z",
+        "updatedAt": "2025-07-30T16:09:24.466Z",
+        "domain": "anthropic.com",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmdq6vxu70nspugm5oqt38rzz",
+        "createdAt": "2025-07-30T16:37:48.944Z",
+        "updatedAt": "2025-07-30T16:37:48.944Z",
+        "domain": "lavera.com",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      },
+      {
+        "id": "cmdq742tp0sktugm5hv81dmgu",
+        "createdAt": "2025-07-30T16:44:08.654Z",
+        "updatedAt": "2025-07-30T16:44:08.654Z",
+        "domain": "welovemelanine.com",
+        "companyName": null,
+        "companyDescription": null,
+        "location": null,
+        "logoUrl": null
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "Webset",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "searchQuery",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "validationCriterias",
+          "ordinalPosition": 5,
+          "dataType": "ARRAY",
+          "udtName": "_text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "enrichmentCriterias",
+          "ordinalPosition": 6,
+          "dataType": "ARRAY",
+          "udtName": "_text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "targetCount",
+          "ordinalPosition": 7,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "createdByuserId",
+          "ordinalPosition": 8,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Webset",
+          "name": "name",
+          "ordinalPosition": 9,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "Webset_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "Webset_createdByuserId_fkey",
+          "columns": ["createdByuserId"],
+          "referencedSchema": "public",
+          "referencedTable": "user",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "NO ACTION"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "Webset_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"Webset_pkey\" ON public.\"Webset\" USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "WebsetRow",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "WebsetRow",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebsetRow",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebsetRow",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebsetRow",
+          "name": "validationData",
+          "ordinalPosition": 5,
+          "dataType": "ARRAY",
+          "udtName": "_ValidationStatus",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebsetRow",
+          "name": "enrichmentData",
+          "ordinalPosition": 6,
+          "dataType": "ARRAY",
+          "udtName": "_text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebsetRow",
+          "name": "websetId",
+          "ordinalPosition": 7,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "WebsetRow",
+          "name": "originalData",
+          "ordinalPosition": 8,
+          "dataType": "jsonb",
+          "udtName": "jsonb",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "WebsetRow_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "WebsetRow_websetId_fkey",
+          "columns": ["websetId"],
+          "referencedSchema": "public",
+          "referencedTable": "Webset",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "WebsetRow_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"WebsetRow_pkey\" ON public.\"WebsetRow\" USING btree (id)"
+        },
+        {
+          "name": "WebsetRow_websetId_idx",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"WebsetRow_websetId_idx\" ON public.\"WebsetRow\" USING btree (\"websetId\")"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "_EmailAddressToUrl",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "_EmailAddressToUrl",
+          "name": "A",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_EmailAddressToUrl",
+          "name": "B",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "_EmailAddressToUrl_AB_pkey",
+        "columns": ["A", "B"]
+      },
+      "foreignKeys": [
+        {
+          "name": "_EmailAddressToUrl_A_fkey",
+          "columns": ["A"],
+          "referencedSchema": "public",
+          "referencedTable": "EmailAddress",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "_EmailAddressToUrl_B_fkey",
+          "columns": ["B"],
+          "referencedSchema": "public",
+          "referencedTable": "Url",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "_EmailAddressToUrl_AB_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"_EmailAddressToUrl_AB_pkey\" ON public.\"_EmailAddressToUrl\" USING btree (\"A\", \"B\")"
+        },
+        {
+          "name": "_EmailAddressToUrl_B_index",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"_EmailAddressToUrl_B_index\" ON public.\"_EmailAddressToUrl\" USING btree (\"B\")"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "A": "cmdq4y8mh00pougm5jq10vtvx",
+        "B": "cmdq4nkhx00aougm56skhhlb1"
+      },
+      {
+        "A": "cmdq4y8mh00ppugm57gz9nisi",
+        "B": "cmdq4nkhx00aougm56skhhlb1"
+      },
+      {
+        "A": "cmdq4y8ta00x5ugm5w7foau61",
+        "B": "cmdq4nkhx00bnugm5objjoxak"
+      },
+      {
+        "A": "cmdq4y8tb00x6ugm5cu7tpvtb",
+        "B": "cmdq4nkhx00bnugm5objjoxak"
+      },
+      {
+        "A": "cmdq4y8yp01g0ugm5duyu5f2m",
+        "B": "cmdq4nkhx00avugm5stg6bqpl"
+      },
+      {
+        "A": "cmdq4y8v50168ugm5fvd4isjr",
+        "B": "cmdq4nkhx00btugm571ywcj4r"
+      },
+      {
+        "A": "cmdq4y8xe01e5ugm516rqmqij",
+        "B": "cmdq4nkhx00bvugm5fbs0mknx"
+      },
+      {
+        "A": "cmdq4y8xe01e6ugm5efumb3wb",
+        "B": "cmdq4nkhx00bvugm5fbs0mknx"
+      },
+      {
+        "A": "cmdq4yd9001jjugm5pgs5zts2",
+        "B": "cmdq4nkhx00bxugm5jgp2xhfp"
+      },
+      {
+        "A": "cmdq4yd9001jkugm50yav248k",
+        "B": "cmdq4nkhx00bxugm5jgp2xhfp"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "_PhoneNumberToUrl",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "_PhoneNumberToUrl",
+          "name": "A",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_PhoneNumberToUrl",
+          "name": "B",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "_PhoneNumberToUrl_AB_pkey",
+        "columns": ["A", "B"]
+      },
+      "foreignKeys": [
+        {
+          "name": "_PhoneNumberToUrl_A_fkey",
+          "columns": ["A"],
+          "referencedSchema": "public",
+          "referencedTable": "PhoneNumber",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "_PhoneNumberToUrl_B_fkey",
+          "columns": ["B"],
+          "referencedSchema": "public",
+          "referencedTable": "Url",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "_PhoneNumberToUrl_AB_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"_PhoneNumberToUrl_AB_pkey\" ON public.\"_PhoneNumberToUrl\" USING btree (\"A\", \"B\")"
+        },
+        {
+          "name": "_PhoneNumberToUrl_B_index",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"_PhoneNumberToUrl_B_index\" ON public.\"_PhoneNumberToUrl\" USING btree (\"B\")"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "A": "cmdq4y8yp01g1ugm5e05ikmjk",
+        "B": "cmdq4nkhx00avugm5stg6bqpl"
+      },
+      {
+        "A": "cmdq4y8yp01g2ugm5gfisum3z",
+        "B": "cmdq4nkhx00avugm5stg6bqpl"
+      },
+      {
+        "A": "cmdq4y8v50169ugm5ckg6er0w",
+        "B": "cmdq4nkhx00btugm571ywcj4r"
+      },
+      {
+        "A": "cmdq4y8xe01e7ugm5d6tus5di",
+        "B": "cmdq4nkhx00bvugm5fbs0mknx"
+      },
+      {
+        "A": "cmdq4yd9001jlugm59w3ibvok",
+        "B": "cmdq4nkhx00bxugm5jgp2xhfp"
+      },
+      {
+        "A": "cmdq4y8ut014hugm5amz7vw68",
+        "B": "cmdq4nkhx00brugm50wrp5cwv"
+      },
+      {
+        "A": "cmdq4yxh9023jugm56oddd2t5",
+        "B": "cmdq4nkhy00dvugm5ol3142s0"
+      },
+      {
+        "A": "cmdq4yxh9023kugm51emaex6c",
+        "B": "cmdq4nkhy00dvugm5ol3142s0"
+      },
+      {
+        "A": "cmdq4y8uc012mugm51j98zofp",
+        "B": "cmdq4nkhx00bbugm5ds5p6hny"
+      },
+      {
+        "A": "cmdq4yz8z026yugm5alzxy6ts",
+        "B": "cmdq4nkhy00ejugm5pz2t0exm"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "_SocialsToUrl",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "_SocialsToUrl",
+          "name": "A",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_SocialsToUrl",
+          "name": "B",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "_SocialsToUrl_AB_pkey",
+        "columns": ["A", "B"]
+      },
+      "foreignKeys": [
+        {
+          "name": "_SocialsToUrl_A_fkey",
+          "columns": ["A"],
+          "referencedSchema": "public",
+          "referencedTable": "Socials",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "_SocialsToUrl_B_fkey",
+          "columns": ["B"],
+          "referencedSchema": "public",
+          "referencedTable": "Url",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "_SocialsToUrl_AB_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"_SocialsToUrl_AB_pkey\" ON public.\"_SocialsToUrl\" USING btree (\"A\", \"B\")"
+        },
+        {
+          "name": "_SocialsToUrl_B_index",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"_SocialsToUrl_B_index\" ON public.\"_SocialsToUrl\" USING btree (\"B\")"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "_Urls",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "_Urls",
+          "name": "A",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_Urls",
+          "name": "B",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "_Urls_AB_pkey",
+        "columns": ["A", "B"]
+      },
+      "foreignKeys": [
+        {
+          "name": "_Urls_A_fkey",
+          "columns": ["A"],
+          "referencedSchema": "public",
+          "referencedTable": "Url",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "_Urls_B_fkey",
+          "columns": ["B"],
+          "referencedSchema": "public",
+          "referencedTable": "Url",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "_Urls_AB_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"_Urls_AB_pkey\" ON public.\"_Urls\" USING btree (\"A\", \"B\")"
+        },
+        {
+          "name": "_Urls_B_index",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"_Urls_B_index\" ON public.\"_Urls\" USING btree (\"B\")"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0001ugm5bzk6tp75"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0002ugm5rvbkgo7d"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0003ugm53zn21va5"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0004ugm5gs04en14"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0005ugm5sgrxjeq5"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0006ugm5guvyoa5a"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0007ugm5rv4ot8gv"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0008ugm5knw0d1zo"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke0009ugm56n3nxo41"
+      },
+      {
+        "A": "cmdq4k8ib00afugm5ccn2ze34",
+        "B": "cmdq4k6ke000augm5k8sza8fc"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "_prisma_migrations",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "_prisma_migrations",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 36,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_prisma_migrations",
+          "name": "checksum",
+          "ordinalPosition": 2,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 64,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_prisma_migrations",
+          "name": "finished_at",
+          "ordinalPosition": 3,
+          "dataType": "timestamp with time zone",
+          "udtName": "timestamptz",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_prisma_migrations",
+          "name": "migration_name",
+          "ordinalPosition": 4,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 255,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_prisma_migrations",
+          "name": "logs",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_prisma_migrations",
+          "name": "rolled_back_at",
+          "ordinalPosition": 6,
+          "dataType": "timestamp with time zone",
+          "udtName": "timestamptz",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_prisma_migrations",
+          "name": "started_at",
+          "ordinalPosition": 7,
+          "dataType": "timestamp with time zone",
+          "udtName": "timestamptz",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "now()",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_prisma_migrations",
+          "name": "applied_steps_count",
+          "ordinalPosition": 8,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "0",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "_prisma_migrations_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "_prisma_migrations_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX _prisma_migrations_pkey ON public._prisma_migrations USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "8bb40c2e-ff1d-4017-bafc-08bb48b3a4e7",
+        "checksum": "b8a09b09f34db0e653e540f68c41e6676ccbabd9aa81d10e7dbe3a4f09fce12e",
+        "finished_at": "2025-07-30T15:30:57.744Z",
+        "migration_name": "20250719164039_init",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:30:56.527Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "0680e4ba-9864-46c0-874b-e954bc115071",
+        "checksum": "c7a25b5643de723081ef7f08c0f552e8479e003dbcd7e8fdde1db65b973c886d",
+        "finished_at": "2025-07-30T15:30:59.297Z",
+        "migration_name": "20250720072918_connect_domain_to_url",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:30:58.183Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "d2be6719-4564-4e0a-b064-5ef37e15e8f6",
+        "checksum": "54be200c14be7c4251cd489e643b1d67f07899a0c1c002e427f7399b1c8aca35",
+        "finished_at": "2025-07-30T15:31:00.879Z",
+        "migration_name": "20250720100113_referer_url",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:30:59.741Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "2e5ff05e-1134-4496-9ef3-f329caf894d6",
+        "checksum": "67c4915d49987b8584318022edc997b7c9a6ad5d0f7c3d0127afc87f1c295d4a",
+        "finished_at": "2025-07-30T15:31:02.444Z",
+        "migration_name": "20250720100435_add_last_visited_at_field_on_url",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:31:01.323Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "3a844b56-6c4a-4b73-ad43-6d64482aaab1",
+        "checksum": "405a5c037ca32655d46a83e44545511f55fc0034eafc87185ece519e014e4c7a",
+        "finished_at": "2025-07-30T15:31:04.001Z",
+        "migration_name": "20250720100900_remove_last_updated_at_field_on_url_table",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:31:02.890Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "c71e24ec-8070-4695-af3d-607ad57dc199",
+        "checksum": "50f2cad4c80d267b316ed2ccfc998be1f916c350790e9bc96f8e091ac5bbd055",
+        "finished_at": "2025-07-30T15:31:05.579Z",
+        "migration_name": "20250725125941_add_phone_number_table",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:31:04.441Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "b8937776-ee9d-4d01-8d46-4cba3442999e",
+        "checksum": "3e0325c73f7af4020b5d25ac6e5f75a9cab753c3ce7e886fd9b4d1666de01188",
+        "finished_at": "2025-07-30T15:31:07.146Z",
+        "migration_name": "20250726123834_add_web_domain_id_index",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:31:06.028Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "f6739386-58d2-4095-9f13-435663323d65",
+        "checksum": "defcb430329e2b648e5b6c8effd26bf2197a5993b070c682fcd825b6539e51ee",
+        "finished_at": "2025-07-30T15:31:08.708Z",
+        "migration_name": "20250728083334_add_name_on_webset_make_search_query_optional",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:31:07.592Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "eec8ddc3-0da7-4c4f-8c6e-a31d94140baa",
+        "checksum": "9b252ca66761071d1f5fca0dd6d3198ce89c041722802b5d6de17e8882842359",
+        "finished_at": "2025-07-30T15:31:10.266Z",
+        "migration_name": "20250728083555_make_webset_target_count_optional",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:31:09.155Z",
+        "applied_steps_count": 1
+      },
+      {
+        "id": "63d8e247-13cf-4217-a8c3-b89bb2b8d9b2",
+        "checksum": "d428ca93939dacde3460f946bf23b0fbacb2e7f3e8551e2a473ede8ed3c5d08e",
+        "finished_at": "2025-07-30T15:31:11.831Z",
+        "migration_name": "20250728090837_original_data_in_websetrow_as_json",
+        "logs": null,
+        "rolled_back_at": null,
+        "started_at": "2025-07-30T15:31:10.715Z",
+        "applied_steps_count": 1
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "account",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "accountId",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "providerId",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "userId",
+          "ordinalPosition": 6,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "accessToken",
+          "ordinalPosition": 7,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "refreshToken",
+          "ordinalPosition": 8,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "idToken",
+          "ordinalPosition": 9,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "accessTokenExpiresAt",
+          "ordinalPosition": 10,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "refreshTokenExpiresAt",
+          "ordinalPosition": 11,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "scope",
+          "ordinalPosition": 12,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "account",
+          "name": "password",
+          "ordinalPosition": 13,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "account_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "account_userId_fkey",
+          "columns": ["userId"],
+          "referencedSchema": "public",
+          "referencedTable": "user",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "account_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX account_pkey ON public.account USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "wdVFul4vQIZvKxuo9XPxACcgw1YbMTOV",
+        "createdAt": "2025-08-07T09:30:35.533Z",
+        "updatedAt": "2025-08-07T15:48:29.198Z",
+        "accountId": "100869632292512488262",
+        "providerId": "google",
+        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw",
+        "accessToken": "ya29.A0AS3H6NwUzmWVnasrGOniIbtEZojPNdPOZI6mwbxQdEGeMilPAHJuXLMDBLnUU_nMXQpTBNjPrHLol4CwghFIWFtlf7W3YFU3KnCZh0M_4d2S82pDwM2nr7mWNy2ZVMCeivXZ6pAa0Pah0LYK81rRO9SjoF88TYwgugI4Lli3rBbPewtQmOwW89kHMvjinYekrxpiEM0PaCgYKAaISARcSFQHGX2MiW0a7aujHmNxY4yYwuiRueQ0207",
+        "refreshToken": null,
+        "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJhNjNiNDM2ODM2YTkzOWI3OTViNDEyMmQzZjRkMGQyMjVkMWM3MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4ODU0MjI4OTMyMTUtaTR1M292NHZwanVta3NpMXNybjJiY2pxaHViajQ5aGQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI4ODU0MjI4OTMyMTUtaTR1M292NHZwanVta3NpMXNybjJiY2pxaHViajQ5aGQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDA4Njk2MzIyOTI1MTI0ODgyNjIiLCJlbWFpbCI6InZpa3l3ODlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJUcUNnTWNGa1VvZHNwSTNZRHBTcnlRIiwibmFtZSI6IlZpa3kgVyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NKM3VPRG5YcFRlMjZqZE50OHVQQTJKeDF4TlM1ZnVTOFh2OFpXQzVwU0pJVGRNUHBTSD1zOTYtYyIsImdpdmVuX25hbWUiOiJWaWt5IiwiZmFtaWx5X25hbWUiOiJXIiwiaWF0IjoxNzU0NTgxNzA5LCJleHAiOjE3NTQ1ODUzMDl9.vgj1llsoF_HRE7howMQIL2Q0uthiQJjKkhwy0cxFT3bklTEnT0qSda-M_e41lT6GMTL41Wol6toPcIDwsiVxnc6oVxbn68hxCZ-BJEvQrV4CoBOZLtt12EocjOgBzUPLNqwQgxr2277AwvzQxLC_X-twXNXAFknF6tE8NQ4syI46kpfF7lrmzxtMFjNNEXKTzvq0qvFfYrg1IFskhtuJ8wIZ_5YJliM9EjEKIWxPBy0gXLRGHmvPLpz4qxYP5ASD6ZKP5VrTkfJZRXVAnepH_FpJvV7IywSg2USERMnRF1VAcmdh-RYvVSqg2us0M5Sj17ex0mtGgIM8zhCyoQ2qpQ",
+        "accessTokenExpiresAt": "2025-08-07T16:48:27.169Z",
+        "refreshTokenExpiresAt": null,
+        "scope": "https://www.googleapis.com/auth/userinfo.email,openid,https://www.googleapis.com/auth/userinfo.profile",
+        "password": null
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "apikey",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "name",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "start",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "prefix",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "key",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "userId",
+          "ordinalPosition": 6,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "refillInterval",
+          "ordinalPosition": 7,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "refillAmount",
+          "ordinalPosition": 8,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "lastRefillAt",
+          "ordinalPosition": 9,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "enabled",
+          "ordinalPosition": 10,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "rateLimitEnabled",
+          "ordinalPosition": 11,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "rateLimitTimeWindow",
+          "ordinalPosition": 12,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "rateLimitMax",
+          "ordinalPosition": 13,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "requestCount",
+          "ordinalPosition": 14,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "remaining",
+          "ordinalPosition": 15,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "lastRequest",
+          "ordinalPosition": 16,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "expiresAt",
+          "ordinalPosition": 17,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "createdAt",
+          "ordinalPosition": 18,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "updatedAt",
+          "ordinalPosition": 19,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "permissions",
+          "ordinalPosition": 20,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "apikey",
+          "name": "metadata",
+          "ordinalPosition": 21,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "apikey_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "apikey_userId_fkey",
+          "columns": ["userId"],
+          "referencedSchema": "public",
+          "referencedTable": "user",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "apikey_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX apikey_pkey ON public.apikey USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "session",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "session",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "session",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "session",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "session",
+          "name": "expiresAt",
+          "ordinalPosition": 4,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "session",
+          "name": "token",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "session",
+          "name": "ipAddress",
+          "ordinalPosition": 6,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "session",
+          "name": "userAgent",
+          "ordinalPosition": 7,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "session",
+          "name": "userId",
+          "ordinalPosition": 8,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "session_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "session_userId_fkey",
+          "columns": ["userId"],
+          "referencedSchema": "public",
+          "referencedTable": "user",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "session_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX session_pkey ON public.session USING btree (id)"
+        },
+        {
+          "name": "session_token_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX session_token_key ON public.session USING btree (token)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "fdu7sQrXCZ1DKY4VjWgCVZRPozs2LuuX",
+        "createdAt": "2025-08-07T09:30:35.968Z",
+        "updatedAt": "2025-08-07T09:30:35.968Z",
+        "expiresAt": "2025-08-14T09:30:35.968Z",
+        "token": "tJkTZkmymTNthtWBDqopC7eAXlF8zCiU",
+        "ipAddress": "",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw"
+      },
+      {
+        "id": "6aQSNL1OZsuisBeCasK0f7DvWIeAilaI",
+        "createdAt": "2025-08-07T09:46:55.663Z",
+        "updatedAt": "2025-08-07T09:46:55.663Z",
+        "expiresAt": "2025-08-14T09:46:55.663Z",
+        "token": "oJ4ZT0HUfQQw9pT74bdYmWTN1MUpaP3x",
+        "ipAddress": "",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw"
+      },
+      {
+        "id": "RFpyJrZs7oGCnMlXRBkJglTDJ3YZ8x0P",
+        "createdAt": "2025-08-07T15:46:22.049Z",
+        "updatedAt": "2025-08-07T15:46:22.049Z",
+        "expiresAt": "2025-08-14T15:46:22.049Z",
+        "token": "zMGRwnLQObKKDCMIqGI4I02c6FJ3RI1e",
+        "ipAddress": "",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw"
+      },
+      {
+        "id": "ZDgsnd300VQPsswDo2cWfRe2COp36cul",
+        "createdAt": "2025-08-07T15:48:29.206Z",
+        "updatedAt": "2025-08-07T15:48:29.206Z",
+        "expiresAt": "2025-08-14T15:48:29.206Z",
+        "token": "o6krObaRPFkI5WSQMC8M2epR0vfjRmJP",
+        "ipAddress": "122.52.83.33",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "user",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "user",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "user",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "user",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "user",
+          "name": "name",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "user",
+          "name": "email",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "user",
+          "name": "emailVerified",
+          "ordinalPosition": 6,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "user",
+          "name": "image",
+          "ordinalPosition": 7,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "user_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "user_email_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX user_email_key ON public.\"user\" USING btree (email)"
+        },
+        {
+          "name": "user_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX user_pkey ON public.\"user\" USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw",
+        "createdAt": "2025-08-07T09:30:35.106Z",
+        "updatedAt": "2025-08-07T09:30:35.106Z",
+        "name": "Viky W",
+        "email": "vikyw89@gmail.com",
+        "emailVerified": true,
+        "image": "https://lh3.googleusercontent.com/a/ACg8ocJ3uODnXpTe26jdNt8uPA2Jx1xNS5fuS8Xv8ZWC5pSJITdMPpSH=s96-c"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "verification",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "verification",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "verification",
+          "name": "createdAt",
+          "ordinalPosition": 2,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "verification",
+          "name": "updatedAt",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "verification",
+          "name": "identifier",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "verification",
+          "name": "value",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "verification",
+          "name": "expiresAt",
+          "ordinalPosition": 6,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "verification_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "verification_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX verification_pkey ON public.verification USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "lASrK56rSxcpMTvrDEJ3JYKzVxx63I5H",
+        "createdAt": "2025-08-07T15:46:55.030Z",
+        "updatedAt": "2025-08-07T15:46:55.031Z",
+        "identifier": "15f8D7Y0jz2vLumFAhzeaWjz_2Gena8u",
+        "value": "{\"callbackURL\":\"/dashboard\",\"codeVerifier\":\"oVZjZf0HYLZMN30xJLhwtwFs6aFzsIOi7b904uK6rOnNOt07-Q11VjpFTJM3V4m7UsiUYLnVTjnOXl-fOvxxm1qZicfJYtLie7yaNIGaI84S43N4VrNHkL2OXETm9RK3\",\"expiresAt\":1754582215025}",
+        "expiresAt": "2025-08-07T15:56:55.026Z"
+      }
+    ]
+  }
+]

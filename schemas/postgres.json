@@ -1,12 +1,12 @@
 [
   {
     "schema": "public",
-    "name": "EmailAddress",
+    "name": "ApiKey",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "EmailAddress",
+        "table": "ApiKey",
         "name": "id",
         "ordinalPosition": 1,
         "dataType": "text",
@@ -20,7 +20,7 @@
       },
       {
         "schema": "public",
-        "table": "EmailAddress",
+        "table": "ApiKey",
         "name": "createdAt",
         "ordinalPosition": 2,
         "dataType": "timestamp without time zone",
@@ -34,7 +34,7 @@
       },
       {
         "schema": "public",
-        "table": "EmailAddress",
+        "table": "ApiKey",
         "name": "updatedAt",
         "ordinalPosition": 3,
         "dataType": "timestamp without time zone",
@@ -48,262 +48,8 @@
       },
       {
         "schema": "public",
-        "table": "EmailAddress",
-        "name": "email",
-        "ordinalPosition": 4,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      }
-    ],
-    "primaryKey": {
-      "name": "EmailAddress_pkey",
-      "columns": ["id"]
-    },
-    "foreignKeys": [],
-    "indexes": [
-      {
-        "name": "EmailAddress_email_key",
-        "isUnique": true,
-        "isPrimary": false,
-        "definition": "CREATE UNIQUE INDEX \"EmailAddress_email_key\" ON public.\"EmailAddress\" USING btree (email)"
-      },
-      {
-        "name": "EmailAddress_pkey",
-        "isUnique": true,
-        "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"EmailAddress_pkey\" ON public.\"EmailAddress\" USING btree (id)"
-      }
-    ]
-  },
-  {
-    "schema": "public",
-    "name": "PhoneNumber",
-    "comment": null,
-    "columns": [
-      {
-        "schema": "public",
-        "table": "PhoneNumber",
-        "name": "id",
-        "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "PhoneNumber",
-        "name": "createdAt",
-        "ordinalPosition": 2,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": "CURRENT_TIMESTAMP",
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "PhoneNumber",
-        "name": "updatedAt",
-        "ordinalPosition": 3,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "PhoneNumber",
-        "name": "phoneNumber",
-        "ordinalPosition": 4,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      }
-    ],
-    "primaryKey": {
-      "name": "PhoneNumber_pkey",
-      "columns": ["id"]
-    },
-    "foreignKeys": [],
-    "indexes": [
-      {
-        "name": "PhoneNumber_phoneNumber_key",
-        "isUnique": true,
-        "isPrimary": false,
-        "definition": "CREATE UNIQUE INDEX \"PhoneNumber_phoneNumber_key\" ON public.\"PhoneNumber\" USING btree (\"phoneNumber\")"
-      },
-      {
-        "name": "PhoneNumber_pkey",
-        "isUnique": true,
-        "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"PhoneNumber_pkey\" ON public.\"PhoneNumber\" USING btree (id)"
-      }
-    ]
-  },
-  {
-    "schema": "public",
-    "name": "Socials",
-    "comment": null,
-    "columns": [
-      {
-        "schema": "public",
-        "table": "Socials",
-        "name": "id",
-        "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Socials",
-        "name": "createdAt",
-        "ordinalPosition": 2,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": "CURRENT_TIMESTAMP",
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Socials",
-        "name": "updatedAt",
-        "ordinalPosition": 3,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Socials",
-        "name": "type",
-        "ordinalPosition": 4,
-        "dataType": "USER-DEFINED",
-        "udtName": "SocialType",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Socials",
-        "name": "link",
-        "ordinalPosition": 5,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      }
-    ],
-    "primaryKey": {
-      "name": "Socials_pkey",
-      "columns": ["id"]
-    },
-    "foreignKeys": [],
-    "indexes": [
-      {
-        "name": "Socials_pkey",
-        "isUnique": true,
-        "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"Socials_pkey\" ON public.\"Socials\" USING btree (id)"
-      }
-    ]
-  },
-  {
-    "schema": "public",
-    "name": "Url",
-    "comment": null,
-    "columns": [
-      {
-        "schema": "public",
-        "table": "Url",
-        "name": "id",
-        "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Url",
-        "name": "createdAt",
-        "ordinalPosition": 2,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": "CURRENT_TIMESTAMP",
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Url",
-        "name": "updatedAt",
-        "ordinalPosition": 3,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Url",
-        "name": "url",
+        "table": "ApiKey",
+        "name": "key",
         "ordinalPosition": 4,
         "dataType": "text",
         "udtName": "text",
@@ -316,8 +62,8 @@
       },
       {
         "schema": "public",
-        "table": "Url",
-        "name": "markdownContent",
+        "table": "ApiKey",
+        "name": "userId",
         "ordinalPosition": 5,
         "dataType": "text",
         "udtName": "text",
@@ -327,60 +73,18 @@
         "isNullable": true,
         "default": null,
         "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Url",
-        "name": "title",
-        "ordinalPosition": 6,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Url",
-        "name": "description",
-        "ordinalPosition": 7,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Url",
-        "name": "webDomainId",
-        "ordinalPosition": 8,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
       }
     ],
     "primaryKey": {
-      "name": "Url_pkey",
+      "name": "ApiKey_pkey",
       "columns": ["id"]
     },
     "foreignKeys": [
       {
-        "name": "Url_webDomainId_fkey",
-        "columns": ["webDomainId"],
+        "name": "ApiKey_userId_fkey",
+        "columns": ["userId"],
         "referencedSchema": "public",
-        "referencedTable": "WebDomain",
+        "referencedTable": "kabu_users",
         "referencedColumns": ["id"],
         "onUpdate": "CASCADE",
         "onDelete": "CASCADE"
@@ -388,39 +92,39 @@
     ],
     "indexes": [
       {
-        "name": "Url_pkey",
+        "name": "ApiKey_key_idx",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "CREATE INDEX \"ApiKey_key_idx\" ON public.\"ApiKey\" USING btree (key)"
+      },
+      {
+        "name": "ApiKey_key_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX \"ApiKey_key_key\" ON public.\"ApiKey\" USING btree (key)"
+      },
+      {
+        "name": "ApiKey_pkey",
         "isUnique": true,
         "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"Url_pkey\" ON public.\"Url\" USING btree (id)"
+        "definition": "CREATE UNIQUE INDEX \"ApiKey_pkey\" ON public.\"ApiKey\" USING btree (id)"
       },
       {
-        "name": "Url_url_key",
-        "isUnique": true,
-        "isPrimary": false,
-        "definition": "CREATE UNIQUE INDEX \"Url_url_key\" ON public.\"Url\" USING btree (url)"
-      },
-      {
-        "name": "Url_webDomainId_createdAt_idx",
+        "name": "ApiKey_userId_idx",
         "isUnique": false,
         "isPrimary": false,
-        "definition": "CREATE INDEX \"Url_webDomainId_createdAt_idx\" ON public.\"Url\" USING btree (\"webDomainId\", \"createdAt\" DESC)"
-      },
-      {
-        "name": "Url_webDomainId_idx",
-        "isUnique": false,
-        "isPrimary": false,
-        "definition": "CREATE INDEX \"Url_webDomainId_idx\" ON public.\"Url\" USING btree (\"webDomainId\")"
+        "definition": "CREATE INDEX \"ApiKey_userId_idx\" ON public.\"ApiKey\" USING btree (\"userId\")"
       }
     ]
   },
   {
     "schema": "public",
-    "name": "WebDomain",
+    "name": "NewsArticleItem",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "WebDomain",
+        "table": "NewsArticleItem",
         "name": "id",
         "ordinalPosition": 1,
         "dataType": "text",
@@ -434,7 +138,7 @@
       },
       {
         "schema": "public",
-        "table": "WebDomain",
+        "table": "NewsArticleItem",
         "name": "createdAt",
         "ordinalPosition": 2,
         "dataType": "timestamp without time zone",
@@ -448,7 +152,7 @@
       },
       {
         "schema": "public",
-        "table": "WebDomain",
+        "table": "NewsArticleItem",
         "name": "updatedAt",
         "ordinalPosition": 3,
         "dataType": "timestamp without time zone",
@@ -462,8 +166,8 @@
       },
       {
         "schema": "public",
-        "table": "WebDomain",
-        "name": "domain",
+        "table": "NewsArticleItem",
+        "name": "content",
         "ordinalPosition": 4,
         "dataType": "text",
         "udtName": "text",
@@ -476,51 +180,23 @@
       },
       {
         "schema": "public",
-        "table": "WebDomain",
-        "name": "companyName",
+        "table": "NewsArticleItem",
+        "name": "stockCode",
         "ordinalPosition": 5,
         "dataType": "text",
         "udtName": "text",
         "maxLength": null,
         "numericPrecision": null,
         "numericScale": null,
-        "isNullable": true,
+        "isNullable": false,
         "default": null,
         "comment": null
       },
       {
         "schema": "public",
-        "table": "WebDomain",
-        "name": "companyDescription",
+        "table": "NewsArticleItem",
+        "name": "newsArticleId",
         "ordinalPosition": 6,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "WebDomain",
-        "name": "location",
-        "ordinalPosition": 8,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "WebDomain",
-        "name": "logoUrl",
-        "ordinalPosition": 12,
         "dataType": "text",
         "udtName": "text",
         "maxLength": null,
@@ -532,189 +208,46 @@
       }
     ],
     "primaryKey": {
-      "name": "WebDomain_pkey",
-      "columns": ["id"]
-    },
-    "foreignKeys": [],
-    "indexes": [
-      {
-        "name": "WebDomain_domain_key",
-        "isUnique": true,
-        "isPrimary": false,
-        "definition": "CREATE UNIQUE INDEX \"WebDomain_domain_key\" ON public.\"WebDomain\" USING btree (domain)"
-      },
-      {
-        "name": "WebDomain_pkey",
-        "isUnique": true,
-        "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"WebDomain_pkey\" ON public.\"WebDomain\" USING btree (id)"
-      }
-    ]
-  },
-  {
-    "schema": "public",
-    "name": "Webset",
-    "comment": null,
-    "columns": [
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "id",
-        "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "createdAt",
-        "ordinalPosition": 2,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": "CURRENT_TIMESTAMP",
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "updatedAt",
-        "ordinalPosition": 3,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "searchQuery",
-        "ordinalPosition": 4,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "validationCriterias",
-        "ordinalPosition": 5,
-        "dataType": "ARRAY",
-        "udtName": "_text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "enrichmentCriterias",
-        "ordinalPosition": 6,
-        "dataType": "ARRAY",
-        "udtName": "_text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "targetCount",
-        "ordinalPosition": 7,
-        "dataType": "integer",
-        "udtName": "int4",
-        "maxLength": null,
-        "numericPrecision": 32,
-        "numericScale": 0,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "createdByuserId",
-        "ordinalPosition": 8,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "Webset",
-        "name": "name",
-        "ordinalPosition": 9,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      }
-    ],
-    "primaryKey": {
-      "name": "Webset_pkey",
+      "name": "NewsArticleItem_pkey",
       "columns": ["id"]
     },
     "foreignKeys": [
       {
-        "name": "Webset_createdByuserId_fkey",
-        "columns": ["createdByuserId"],
+        "name": "NewsArticleItem_newsArticleId_fkey",
+        "columns": ["newsArticleId"],
         "referencedSchema": "public",
-        "referencedTable": "user",
+        "referencedTable": "kabu_news_articles",
         "referencedColumns": ["id"],
         "onUpdate": "CASCADE",
         "onDelete": "NO ACTION"
+      },
+      {
+        "name": "NewsArticleItem_stockCode_fkey",
+        "columns": ["stockCode"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_stocks",
+        "referencedColumns": ["code"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
       }
     ],
     "indexes": [
       {
-        "name": "Webset_pkey",
+        "name": "NewsArticleItem_pkey",
         "isUnique": true,
         "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"Webset_pkey\" ON public.\"Webset\" USING btree (id)"
+        "definition": "CREATE UNIQUE INDEX \"NewsArticleItem_pkey\" ON public.\"NewsArticleItem\" USING btree (id)"
       }
     ]
   },
   {
     "schema": "public",
-    "name": "WebsetRow",
+    "name": "Ticker",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "WebsetRow",
+        "table": "Ticker",
         "name": "id",
         "ordinalPosition": 1,
         "dataType": "text",
@@ -728,7 +261,7 @@
       },
       {
         "schema": "public",
-        "table": "WebsetRow",
+        "table": "Ticker",
         "name": "createdAt",
         "ordinalPosition": 2,
         "dataType": "timestamp without time zone",
@@ -742,7 +275,7 @@
       },
       {
         "schema": "public",
-        "table": "WebsetRow",
+        "table": "Ticker",
         "name": "updatedAt",
         "ordinalPosition": 3,
         "dataType": "timestamp without time zone",
@@ -756,37 +289,37 @@
       },
       {
         "schema": "public",
-        "table": "WebsetRow",
-        "name": "validationData",
+        "table": "Ticker",
+        "name": "code",
+        "ordinalPosition": 4,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "Ticker",
+        "name": "name",
         "ordinalPosition": 5,
-        "dataType": "ARRAY",
-        "udtName": "_ValidationStatus",
+        "dataType": "text",
+        "udtName": "text",
         "maxLength": null,
         "numericPrecision": null,
         "numericScale": null,
-        "isNullable": true,
+        "isNullable": false,
         "default": null,
         "comment": null
       },
       {
         "schema": "public",
-        "table": "WebsetRow",
-        "name": "enrichmentData",
+        "table": "Ticker",
+        "name": "exchange",
         "ordinalPosition": 6,
-        "dataType": "ARRAY",
-        "udtName": "_text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "WebsetRow",
-        "name": "websetId",
-        "ordinalPosition": 7,
         "dataType": "text",
         "udtName": "text",
         "maxLength": null,
@@ -795,60 +328,36 @@
         "isNullable": true,
         "default": null,
         "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "WebsetRow",
-        "name": "originalData",
-        "ordinalPosition": 8,
-        "dataType": "jsonb",
-        "udtName": "jsonb",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
       }
     ],
     "primaryKey": {
-      "name": "WebsetRow_pkey",
+      "name": "Ticker_pkey",
       "columns": ["id"]
     },
-    "foreignKeys": [
-      {
-        "name": "WebsetRow_websetId_fkey",
-        "columns": ["websetId"],
-        "referencedSchema": "public",
-        "referencedTable": "Webset",
-        "referencedColumns": ["id"],
-        "onUpdate": "CASCADE",
-        "onDelete": "CASCADE"
-      }
-    ],
+    "foreignKeys": [],
     "indexes": [
       {
-        "name": "WebsetRow_pkey",
+        "name": "Ticker_code_key",
         "isUnique": true,
-        "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"WebsetRow_pkey\" ON public.\"WebsetRow\" USING btree (id)"
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX \"Ticker_code_key\" ON public.\"Ticker\" USING btree (code)"
       },
       {
-        "name": "WebsetRow_websetId_idx",
-        "isUnique": false,
-        "isPrimary": false,
-        "definition": "CREATE INDEX \"WebsetRow_websetId_idx\" ON public.\"WebsetRow\" USING btree (\"websetId\")"
+        "name": "Ticker_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX \"Ticker_pkey\" ON public.\"Ticker\" USING btree (id)"
       }
     ]
   },
   {
     "schema": "public",
-    "name": "_EmailAddressToUrl",
+    "name": "_IdeaCardToTicker",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "_EmailAddressToUrl",
+        "table": "_IdeaCardToTicker",
         "name": "A",
         "ordinalPosition": 1,
         "dataType": "text",
@@ -862,7 +371,7 @@
       },
       {
         "schema": "public",
-        "table": "_EmailAddressToUrl",
+        "table": "_IdeaCardToTicker",
         "name": "B",
         "ordinalPosition": 2,
         "dataType": "text",
@@ -876,24 +385,24 @@
       }
     ],
     "primaryKey": {
-      "name": "_EmailAddressToUrl_AB_pkey",
+      "name": "_IdeaCardToTicker_AB_pkey",
       "columns": ["A", "B"]
     },
     "foreignKeys": [
       {
-        "name": "_EmailAddressToUrl_A_fkey",
+        "name": "_IdeaCardToTicker_A_fkey",
         "columns": ["A"],
         "referencedSchema": "public",
-        "referencedTable": "EmailAddress",
+        "referencedTable": "kabu_idea_cards",
         "referencedColumns": ["id"],
         "onUpdate": "CASCADE",
         "onDelete": "CASCADE"
       },
       {
-        "name": "_EmailAddressToUrl_B_fkey",
+        "name": "_IdeaCardToTicker_B_fkey",
         "columns": ["B"],
         "referencedSchema": "public",
-        "referencedTable": "Url",
+        "referencedTable": "Ticker",
         "referencedColumns": ["id"],
         "onUpdate": "CASCADE",
         "onDelete": "CASCADE"
@@ -901,27 +410,27 @@
     ],
     "indexes": [
       {
-        "name": "_EmailAddressToUrl_AB_pkey",
+        "name": "_IdeaCardToTicker_AB_pkey",
         "isUnique": true,
         "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"_EmailAddressToUrl_AB_pkey\" ON public.\"_EmailAddressToUrl\" USING btree (\"A\", \"B\")"
+        "definition": "CREATE UNIQUE INDEX \"_IdeaCardToTicker_AB_pkey\" ON public.\"_IdeaCardToTicker\" USING btree (\"A\", \"B\")"
       },
       {
-        "name": "_EmailAddressToUrl_B_index",
+        "name": "_IdeaCardToTicker_B_index",
         "isUnique": false,
         "isPrimary": false,
-        "definition": "CREATE INDEX \"_EmailAddressToUrl_B_index\" ON public.\"_EmailAddressToUrl\" USING btree (\"B\")"
+        "definition": "CREATE INDEX \"_IdeaCardToTicker_B_index\" ON public.\"_IdeaCardToTicker\" USING btree (\"B\")"
       }
     ]
   },
   {
     "schema": "public",
-    "name": "_PhoneNumberToUrl",
+    "name": "_NewsArticleToStock",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "_PhoneNumberToUrl",
+        "table": "_NewsArticleToStock",
         "name": "A",
         "ordinalPosition": 1,
         "dataType": "text",
@@ -935,7 +444,7 @@
       },
       {
         "schema": "public",
-        "table": "_PhoneNumberToUrl",
+        "table": "_NewsArticleToStock",
         "name": "B",
         "ordinalPosition": 2,
         "dataType": "text",
@@ -949,52 +458,52 @@
       }
     ],
     "primaryKey": {
-      "name": "_PhoneNumberToUrl_AB_pkey",
+      "name": "_NewsArticleToStock_AB_pkey",
       "columns": ["A", "B"]
     },
     "foreignKeys": [
       {
-        "name": "_PhoneNumberToUrl_A_fkey",
+        "name": "_NewsArticleToStock_A_fkey",
         "columns": ["A"],
         "referencedSchema": "public",
-        "referencedTable": "PhoneNumber",
+        "referencedTable": "kabu_news_articles",
         "referencedColumns": ["id"],
         "onUpdate": "CASCADE",
         "onDelete": "CASCADE"
       },
       {
-        "name": "_PhoneNumberToUrl_B_fkey",
+        "name": "_NewsArticleToStock_B_fkey",
         "columns": ["B"],
         "referencedSchema": "public",
-        "referencedTable": "Url",
-        "referencedColumns": ["id"],
+        "referencedTable": "kabu_stocks",
+        "referencedColumns": ["code"],
         "onUpdate": "CASCADE",
         "onDelete": "CASCADE"
       }
     ],
     "indexes": [
       {
-        "name": "_PhoneNumberToUrl_AB_pkey",
+        "name": "_NewsArticleToStock_AB_pkey",
         "isUnique": true,
         "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"_PhoneNumberToUrl_AB_pkey\" ON public.\"_PhoneNumberToUrl\" USING btree (\"A\", \"B\")"
+        "definition": "CREATE UNIQUE INDEX \"_NewsArticleToStock_AB_pkey\" ON public.\"_NewsArticleToStock\" USING btree (\"A\", \"B\")"
       },
       {
-        "name": "_PhoneNumberToUrl_B_index",
+        "name": "_NewsArticleToStock_B_index",
         "isUnique": false,
         "isPrimary": false,
-        "definition": "CREATE INDEX \"_PhoneNumberToUrl_B_index\" ON public.\"_PhoneNumberToUrl\" USING btree (\"B\")"
+        "definition": "CREATE INDEX \"_NewsArticleToStock_B_index\" ON public.\"_NewsArticleToStock\" USING btree (\"B\")"
       }
     ]
   },
   {
     "schema": "public",
-    "name": "_SocialsToUrl",
+    "name": "_NewsArticleToTicker",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "_SocialsToUrl",
+        "table": "_NewsArticleToTicker",
         "name": "A",
         "ordinalPosition": 1,
         "dataType": "text",
@@ -1008,7 +517,7 @@
       },
       {
         "schema": "public",
-        "table": "_SocialsToUrl",
+        "table": "_NewsArticleToTicker",
         "name": "B",
         "ordinalPosition": 2,
         "dataType": "text",
@@ -1022,24 +531,24 @@
       }
     ],
     "primaryKey": {
-      "name": "_SocialsToUrl_AB_pkey",
+      "name": "_NewsArticleToTicker_AB_pkey",
       "columns": ["A", "B"]
     },
     "foreignKeys": [
       {
-        "name": "_SocialsToUrl_A_fkey",
+        "name": "_NewsArticleToTicker_A_fkey",
         "columns": ["A"],
         "referencedSchema": "public",
-        "referencedTable": "Socials",
+        "referencedTable": "kabu_news_articles",
         "referencedColumns": ["id"],
         "onUpdate": "CASCADE",
         "onDelete": "CASCADE"
       },
       {
-        "name": "_SocialsToUrl_B_fkey",
+        "name": "_NewsArticleToTicker_B_fkey",
         "columns": ["B"],
         "referencedSchema": "public",
-        "referencedTable": "Url",
+        "referencedTable": "Ticker",
         "referencedColumns": ["id"],
         "onUpdate": "CASCADE",
         "onDelete": "CASCADE"
@@ -1047,89 +556,16 @@
     ],
     "indexes": [
       {
-        "name": "_SocialsToUrl_AB_pkey",
+        "name": "_NewsArticleToTicker_AB_pkey",
         "isUnique": true,
         "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"_SocialsToUrl_AB_pkey\" ON public.\"_SocialsToUrl\" USING btree (\"A\", \"B\")"
+        "definition": "CREATE UNIQUE INDEX \"_NewsArticleToTicker_AB_pkey\" ON public.\"_NewsArticleToTicker\" USING btree (\"A\", \"B\")"
       },
       {
-        "name": "_SocialsToUrl_B_index",
+        "name": "_NewsArticleToTicker_B_index",
         "isUnique": false,
         "isPrimary": false,
-        "definition": "CREATE INDEX \"_SocialsToUrl_B_index\" ON public.\"_SocialsToUrl\" USING btree (\"B\")"
-      }
-    ]
-  },
-  {
-    "schema": "public",
-    "name": "_Urls",
-    "comment": null,
-    "columns": [
-      {
-        "schema": "public",
-        "table": "_Urls",
-        "name": "A",
-        "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "_Urls",
-        "name": "B",
-        "ordinalPosition": 2,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      }
-    ],
-    "primaryKey": {
-      "name": "_Urls_AB_pkey",
-      "columns": ["A", "B"]
-    },
-    "foreignKeys": [
-      {
-        "name": "_Urls_A_fkey",
-        "columns": ["A"],
-        "referencedSchema": "public",
-        "referencedTable": "Url",
-        "referencedColumns": ["id"],
-        "onUpdate": "CASCADE",
-        "onDelete": "CASCADE"
-      },
-      {
-        "name": "_Urls_B_fkey",
-        "columns": ["B"],
-        "referencedSchema": "public",
-        "referencedTable": "Url",
-        "referencedColumns": ["id"],
-        "onUpdate": "CASCADE",
-        "onDelete": "CASCADE"
-      }
-    ],
-    "indexes": [
-      {
-        "name": "_Urls_AB_pkey",
-        "isUnique": true,
-        "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX \"_Urls_AB_pkey\" ON public.\"_Urls\" USING btree (\"A\", \"B\")"
-      },
-      {
-        "name": "_Urls_B_index",
-        "isUnique": false,
-        "isPrimary": false,
-        "definition": "CREATE INDEX \"_Urls_B_index\" ON public.\"_Urls\" USING btree (\"B\")"
+        "definition": "CREATE INDEX \"_NewsArticleToTicker_B_index\" ON public.\"_NewsArticleToTicker\" USING btree (\"B\")"
       }
     ]
   },
@@ -1267,253 +703,41 @@
   },
   {
     "schema": "public",
-    "name": "account",
+    "name": "categories",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "account",
+        "table": "categories",
         "name": "id",
         "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
+        "dataType": "integer",
+        "udtName": "int4",
         "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
         "isNullable": false,
-        "default": null,
+        "default": "nextval('categories_id_seq'::regclass)",
         "comment": null
       },
       {
         "schema": "public",
-        "table": "account",
-        "name": "createdAt",
-        "ordinalPosition": 2,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": "CURRENT_TIMESTAMP",
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "updatedAt",
-        "ordinalPosition": 3,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "accountId",
-        "ordinalPosition": 4,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "providerId",
-        "ordinalPosition": 5,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "userId",
-        "ordinalPosition": 6,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "accessToken",
-        "ordinalPosition": 7,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "refreshToken",
-        "ordinalPosition": 8,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "idToken",
-        "ordinalPosition": 9,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "accessTokenExpiresAt",
-        "ordinalPosition": 10,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "refreshTokenExpiresAt",
-        "ordinalPosition": 11,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "scope",
-        "ordinalPosition": 12,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "account",
-        "name": "password",
-        "ordinalPosition": 13,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      }
-    ],
-    "primaryKey": {
-      "name": "account_pkey",
-      "columns": ["id"]
-    },
-    "foreignKeys": [
-      {
-        "name": "account_userId_fkey",
-        "columns": ["userId"],
-        "referencedSchema": "public",
-        "referencedTable": "user",
-        "referencedColumns": ["id"],
-        "onUpdate": "CASCADE",
-        "onDelete": "CASCADE"
-      }
-    ],
-    "indexes": [
-      {
-        "name": "account_pkey",
-        "isUnique": true,
-        "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX account_pkey ON public.account USING btree (id)"
-      }
-    ]
-  },
-  {
-    "schema": "public",
-    "name": "apikey",
-    "comment": null,
-    "columns": [
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "id",
-        "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
+        "table": "categories",
         "name": "name",
         "ordinalPosition": 2,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 100,
         "numericPrecision": null,
         "numericScale": null,
-        "isNullable": true,
+        "isNullable": false,
         "default": null,
         "comment": null
       },
       {
         "schema": "public",
-        "table": "apikey",
-        "name": "start",
+        "table": "categories",
+        "name": "description",
         "ordinalPosition": 3,
         "dataType": "text",
         "udtName": "text",
@@ -1526,523 +750,127 @@
       },
       {
         "schema": "public",
-        "table": "apikey",
-        "name": "prefix",
+        "table": "categories",
+        "name": "created_at",
         "ordinalPosition": 4,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "key",
-        "ordinalPosition": 5,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "userId",
-        "ordinalPosition": 6,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "refillInterval",
-        "ordinalPosition": 7,
-        "dataType": "integer",
-        "udtName": "int4",
-        "maxLength": null,
-        "numericPrecision": 32,
-        "numericScale": 0,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "refillAmount",
-        "ordinalPosition": 8,
-        "dataType": "integer",
-        "udtName": "int4",
-        "maxLength": null,
-        "numericPrecision": 32,
-        "numericScale": 0,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "lastRefillAt",
-        "ordinalPosition": 9,
         "dataType": "timestamp without time zone",
         "udtName": "timestamp",
         "maxLength": null,
         "numericPrecision": null,
         "numericScale": null,
         "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "enabled",
-        "ordinalPosition": 10,
-        "dataType": "boolean",
-        "udtName": "bool",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "rateLimitEnabled",
-        "ordinalPosition": 11,
-        "dataType": "boolean",
-        "udtName": "bool",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "rateLimitTimeWindow",
-        "ordinalPosition": 12,
-        "dataType": "integer",
-        "udtName": "int4",
-        "maxLength": null,
-        "numericPrecision": 32,
-        "numericScale": 0,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "rateLimitMax",
-        "ordinalPosition": 13,
-        "dataType": "integer",
-        "udtName": "int4",
-        "maxLength": null,
-        "numericPrecision": 32,
-        "numericScale": 0,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "requestCount",
-        "ordinalPosition": 14,
-        "dataType": "integer",
-        "udtName": "int4",
-        "maxLength": null,
-        "numericPrecision": 32,
-        "numericScale": 0,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "remaining",
-        "ordinalPosition": 15,
-        "dataType": "integer",
-        "udtName": "int4",
-        "maxLength": null,
-        "numericPrecision": 32,
-        "numericScale": 0,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "lastRequest",
-        "ordinalPosition": 16,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "expiresAt",
-        "ordinalPosition": 17,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "createdAt",
-        "ordinalPosition": 18,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "updatedAt",
-        "ordinalPosition": 19,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "permissions",
-        "ordinalPosition": 20,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "apikey",
-        "name": "metadata",
-        "ordinalPosition": 21,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      }
-    ],
-    "primaryKey": {
-      "name": "apikey_pkey",
-      "columns": ["id"]
-    },
-    "foreignKeys": [
-      {
-        "name": "apikey_userId_fkey",
-        "columns": ["userId"],
-        "referencedSchema": "public",
-        "referencedTable": "user",
-        "referencedColumns": ["id"],
-        "onUpdate": "CASCADE",
-        "onDelete": "CASCADE"
-      }
-    ],
-    "indexes": [
-      {
-        "name": "apikey_pkey",
-        "isUnique": true,
-        "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX apikey_pkey ON public.apikey USING btree (id)"
-      }
-    ]
-  },
-  {
-    "schema": "public",
-    "name": "session",
-    "comment": null,
-    "columns": [
-      {
-        "schema": "public",
-        "table": "session",
-        "name": "id",
-        "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "session",
-        "name": "createdAt",
-        "ordinalPosition": 2,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
         "default": "CURRENT_TIMESTAMP",
         "comment": null
       },
       {
         "schema": "public",
-        "table": "session",
-        "name": "updatedAt",
-        "ordinalPosition": 3,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "session",
-        "name": "expiresAt",
-        "ordinalPosition": 4,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "session",
-        "name": "token",
+        "table": "categories",
+        "name": "updated_at",
         "ordinalPosition": 5,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "session",
-        "name": "ipAddress",
-        "ordinalPosition": 6,
-        "dataType": "text",
-        "udtName": "text",
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
         "maxLength": null,
         "numericPrecision": null,
         "numericScale": null,
         "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "session",
-        "name": "userAgent",
-        "ordinalPosition": 7,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": true,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "session",
-        "name": "userId",
-        "ordinalPosition": 8,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
+        "default": "CURRENT_TIMESTAMP",
         "comment": null
       }
     ],
     "primaryKey": {
-      "name": "session_pkey",
+      "name": "categories_pkey",
       "columns": ["id"]
     },
-    "foreignKeys": [
-      {
-        "name": "session_userId_fkey",
-        "columns": ["userId"],
-        "referencedSchema": "public",
-        "referencedTable": "user",
-        "referencedColumns": ["id"],
-        "onUpdate": "CASCADE",
-        "onDelete": "CASCADE"
-      }
-    ],
+    "foreignKeys": [],
     "indexes": [
       {
-        "name": "session_pkey",
+        "name": "categories_pkey",
         "isUnique": true,
         "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX session_pkey ON public.session USING btree (id)"
-      },
-      {
-        "name": "session_token_key",
-        "isUnique": true,
-        "isPrimary": false,
-        "definition": "CREATE UNIQUE INDEX session_token_key ON public.session USING btree (token)"
+        "definition": "CREATE UNIQUE INDEX categories_pkey ON public.categories USING btree (id)"
       }
     ]
   },
   {
     "schema": "public",
-    "name": "user",
+    "name": "customers",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "user",
+        "table": "customers",
         "name": "id",
         "ordinalPosition": 1,
-        "dataType": "text",
-        "udtName": "text",
+        "dataType": "integer",
+        "udtName": "int4",
         "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
         "isNullable": false,
-        "default": null,
+        "default": "nextval('customers_id_seq'::regclass)",
         "comment": null
       },
       {
         "schema": "public",
-        "table": "user",
-        "name": "createdAt",
-        "ordinalPosition": 2,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": "CURRENT_TIMESTAMP",
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "user",
-        "name": "updatedAt",
-        "ordinalPosition": 3,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "user",
-        "name": "name",
-        "ordinalPosition": 4,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "user",
+        "table": "customers",
         "name": "email",
+        "ordinalPosition": 2,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 255,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "customers",
+        "name": "first_name",
+        "ordinalPosition": 3,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "customers",
+        "name": "last_name",
+        "ordinalPosition": 4,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "customers",
+        "name": "phone",
         "ordinalPosition": 5,
-        "dataType": "text",
-        "udtName": "text",
-        "maxLength": null,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 20,
         "numericPrecision": null,
         "numericScale": null,
-        "isNullable": false,
+        "isNullable": true,
         "default": null,
         "comment": null
       },
       {
         "schema": "public",
-        "table": "user",
-        "name": "emailVerified",
+        "table": "customers",
+        "name": "address",
         "ordinalPosition": 6,
-        "dataType": "boolean",
-        "udtName": "bool",
-        "maxLength": null,
-        "numericPrecision": null,
-        "numericScale": null,
-        "isNullable": false,
-        "default": null,
-        "comment": null
-      },
-      {
-        "schema": "public",
-        "table": "user",
-        "name": "image",
-        "ordinalPosition": 7,
         "dataType": "text",
         "udtName": "text",
         "maxLength": null,
@@ -2051,36 +879,106 @@
         "isNullable": true,
         "default": null,
         "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "customers",
+        "name": "city",
+        "ordinalPosition": 7,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "customers",
+        "name": "country",
+        "ordinalPosition": 8,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "customers",
+        "name": "postal_code",
+        "ordinalPosition": 9,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 20,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "customers",
+        "name": "created_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "customers",
+        "name": "updated_at",
+        "ordinalPosition": 11,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
       }
     ],
     "primaryKey": {
-      "name": "user_pkey",
+      "name": "customers_pkey",
       "columns": ["id"]
     },
     "foreignKeys": [],
     "indexes": [
       {
-        "name": "user_email_key",
+        "name": "customers_email_key",
         "isUnique": true,
         "isPrimary": false,
-        "definition": "CREATE UNIQUE INDEX user_email_key ON public.\"user\" USING btree (email)"
+        "definition": "CREATE UNIQUE INDEX customers_email_key ON public.customers USING btree (email)"
       },
       {
-        "name": "user_pkey",
+        "name": "customers_pkey",
         "isUnique": true,
         "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX user_pkey ON public.\"user\" USING btree (id)"
+        "definition": "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (id)"
       }
     ]
   },
   {
     "schema": "public",
-    "name": "verification",
+    "name": "kabu_chat_followups",
     "comment": null,
     "columns": [
       {
         "schema": "public",
-        "table": "verification",
+        "table": "kabu_chat_followups",
         "name": "id",
         "ordinalPosition": 1,
         "dataType": "text",
@@ -2094,36 +992,136 @@
       },
       {
         "schema": "public",
-        "table": "verification",
-        "name": "createdAt",
+        "table": "kabu_chat_followups",
+        "name": "message_id",
         "ordinalPosition": 2,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
+        "dataType": "text",
+        "udtName": "text",
         "maxLength": null,
         "numericPrecision": null,
         "numericScale": null,
-        "isNullable": true,
+        "isNullable": false,
         "default": null,
         "comment": null
       },
       {
         "schema": "public",
-        "table": "verification",
-        "name": "updatedAt",
+        "table": "kabu_chat_followups",
+        "name": "followup_text",
         "ordinalPosition": 3,
-        "dataType": "timestamp without time zone",
-        "udtName": "timestamp",
+        "dataType": "text",
+        "udtName": "text",
         "maxLength": null,
         "numericPrecision": null,
         "numericScale": null,
-        "isNullable": true,
+        "isNullable": false,
         "default": null,
         "comment": null
       },
       {
         "schema": "public",
-        "table": "verification",
-        "name": "identifier",
+        "table": "kabu_chat_followups",
+        "name": "sort_order",
+        "ordinalPosition": 4,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_followups",
+        "name": "created_at",
+        "ordinalPosition": 5,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_chat_followups_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_chat_followups_message_id_fkey",
+        "columns": ["message_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_chat_messages",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_chat_followups_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_chat_followups_pkey ON public.kabu_chat_followups USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_chat_messages",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_chat_messages",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_messages",
+        "name": "session_id",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_messages",
+        "name": "user_id",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_messages",
+        "name": "message",
         "ordinalPosition": 4,
         "dataType": "text",
         "udtName": "text",
@@ -2136,8 +1134,8 @@
       },
       {
         "schema": "public",
-        "table": "verification",
-        "name": "value",
+        "table": "kabu_chat_messages",
+        "name": "role",
         "ordinalPosition": 5,
         "dataType": "text",
         "udtName": "text",
@@ -2150,9 +1148,705 @@
       },
       {
         "schema": "public",
-        "table": "verification",
-        "name": "expiresAt",
+        "table": "kabu_chat_messages",
+        "name": "created_at",
         "ordinalPosition": 6,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_chat_messages_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_chat_messages_session_id_fkey",
+        "columns": ["session_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_chat_sessions",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      },
+      {
+        "name": "kabu_chat_messages_user_id_fkey",
+        "columns": ["user_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_users",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_chat_messages_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_chat_messages_pkey ON public.kabu_chat_messages USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_chat_sessions",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_chat_sessions",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_sessions",
+        "name": "user_id",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_sessions",
+        "name": "title",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_sessions",
+        "name": "created_at",
+        "ordinalPosition": 4,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_sessions",
+        "name": "updated_at",
+        "ordinalPosition": 5,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_sessions",
+        "name": "is_active",
+        "ordinalPosition": 6,
+        "dataType": "boolean",
+        "udtName": "bool",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "true",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_chat_sessions_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_chat_sessions_user_id_fkey",
+        "columns": ["user_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_users",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_chat_sessions_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_chat_sessions_pkey ON public.kabu_chat_sessions USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_chat_stock_references",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_chat_stock_references",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_stock_references",
+        "name": "message_id",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_stock_references",
+        "name": "stock_code",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_chat_stock_references",
+        "name": "created_at",
+        "ordinalPosition": 4,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_chat_stock_references_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_chat_stock_references_message_id_fkey",
+        "columns": ["message_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_chat_messages",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      },
+      {
+        "name": "kabu_chat_stock_references_stock_code_fkey",
+        "columns": ["stock_code"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_stocks",
+        "referencedColumns": ["code"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_chat_stock_references_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_chat_stock_references_pkey ON public.kabu_chat_stock_references USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_idea_cards",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "stock_code",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "idea_text",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "summary",
+        "ordinalPosition": 4,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "persona",
+        "ordinalPosition": 5,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "'meister'::text",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "generation_date",
+        "ordinalPosition": 6,
+        "dataType": "date",
+        "udtName": "date",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "sort_order",
+        "ordinalPosition": 7,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "related_news_count",
+        "ordinalPosition": 8,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": "0",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "created_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "updated_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_cards",
+        "name": "newsArticleId",
+        "ordinalPosition": 11,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_idea_cards_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_idea_cards_newsArticleId_fkey",
+        "columns": ["newsArticleId"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_news_articles",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "NO ACTION"
+      },
+      {
+        "name": "kabu_idea_cards_stock_code_fkey",
+        "columns": ["stock_code"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_stocks",
+        "referencedColumns": ["code"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_idea_cards_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_idea_cards_pkey ON public.kabu_idea_cards USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_idea_news",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_idea_news",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_news",
+        "name": "idea_id",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_news",
+        "name": "news_id",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_idea_news",
+        "name": "created_at",
+        "ordinalPosition": 4,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_idea_news_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_idea_news_idea_id_fkey",
+        "columns": ["idea_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_idea_cards",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      },
+      {
+        "name": "kabu_idea_news_news_id_fkey",
+        "columns": ["news_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_news_articles",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_idea_news_idea_id_news_id_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX kabu_idea_news_idea_id_news_id_key ON public.kabu_idea_news USING btree (idea_id, news_id)"
+      },
+      {
+        "name": "kabu_idea_news_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_idea_news_pkey ON public.kabu_idea_news USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_news_articles",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "status",
+        "ordinalPosition": 2,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "creation_time",
+        "ordinalPosition": 3,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "revision_time",
+        "ordinalPosition": 4,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "news_type",
+        "ordinalPosition": 5,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "providers",
+        "ordinalPosition": 6,
+        "dataType": "jsonb",
+        "udtName": "jsonb",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "topics",
+        "ordinalPosition": 7,
+        "dataType": "jsonb",
+        "udtName": "jsonb",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "headline",
+        "ordinalPosition": 8,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "story",
+        "ordinalPosition": 9,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "created_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_news_articles",
+        "name": "updated_at",
+        "ordinalPosition": 11,
         "dataType": "timestamp without time zone",
         "udtName": "timestamp",
         "maxLength": null,
@@ -2164,16 +1858,1543 @@
       }
     ],
     "primaryKey": {
-      "name": "verification_pkey",
+      "name": "kabu_news_articles_pkey",
       "columns": ["id"]
     },
     "foreignKeys": [],
     "indexes": [
       {
-        "name": "verification_pkey",
+        "name": "kabu_news_articles_pkey",
         "isUnique": true,
         "isPrimary": true,
-        "definition": "CREATE UNIQUE INDEX verification_pkey ON public.verification USING btree (id)"
+        "definition": "CREATE UNIQUE INDEX kabu_news_articles_pkey ON public.kabu_news_articles USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_refresh_tokens",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_refresh_tokens",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_refresh_tokens",
+        "name": "token",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_refresh_tokens",
+        "name": "user_id",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_refresh_tokens",
+        "name": "expires_at",
+        "ordinalPosition": 4,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_refresh_tokens",
+        "name": "created_at",
+        "ordinalPosition": 5,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_refresh_tokens",
+        "name": "revoked",
+        "ordinalPosition": 6,
+        "dataType": "boolean",
+        "udtName": "bool",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "false",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_refresh_tokens_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_refresh_tokens_user_id_fkey",
+        "columns": ["user_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_users",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_refresh_tokens_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_refresh_tokens_pkey ON public.kabu_refresh_tokens USING btree (id)"
+      },
+      {
+        "name": "kabu_refresh_tokens_token_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX kabu_refresh_tokens_token_key ON public.kabu_refresh_tokens USING btree (token)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_stocks",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_stocks",
+        "name": "code",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_stocks",
+        "name": "name",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_stocks",
+        "name": "exchange",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_stocks",
+        "name": "sector",
+        "ordinalPosition": 4,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_stocks",
+        "name": "industry",
+        "ordinalPosition": 5,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_stocks",
+        "name": "created_at",
+        "ordinalPosition": 6,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_stocks",
+        "name": "updated_at",
+        "ordinalPosition": 7,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_stocks_pkey",
+      "columns": ["code"]
+    },
+    "foreignKeys": [],
+    "indexes": [
+      {
+        "name": "kabu_stocks_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_stocks_pkey ON public.kabu_stocks USING btree (code)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_subscription_plans",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "name",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "description",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "price",
+        "ordinalPosition": 4,
+        "dataType": "numeric",
+        "udtName": "numeric",
+        "maxLength": null,
+        "numericPrecision": 65,
+        "numericScale": 30,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "currency",
+        "ordinalPosition": 5,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "'JPY'::text",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "interval",
+        "ordinalPosition": 6,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "features",
+        "ordinalPosition": 7,
+        "dataType": "jsonb",
+        "udtName": "jsonb",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "is_active",
+        "ordinalPosition": 8,
+        "dataType": "boolean",
+        "udtName": "bool",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "true",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "created_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_subscription_plans",
+        "name": "updated_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_subscription_plans_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [],
+    "indexes": [
+      {
+        "name": "kabu_subscription_plans_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_subscription_plans_pkey ON public.kabu_subscription_plans USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_user_idea_interactions",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "user_id",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "idea_id",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "viewed",
+        "ordinalPosition": 4,
+        "dataType": "boolean",
+        "udtName": "bool",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "false",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "liked",
+        "ordinalPosition": 5,
+        "dataType": "boolean",
+        "udtName": "bool",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "false",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "view_date",
+        "ordinalPosition": 6,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "like_date",
+        "ordinalPosition": 7,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "created_at",
+        "ordinalPosition": 8,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_idea_interactions",
+        "name": "updated_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_user_idea_interactions_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_user_idea_interactions_idea_id_fkey",
+        "columns": ["idea_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_idea_cards",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      },
+      {
+        "name": "kabu_user_idea_interactions_user_id_fkey",
+        "columns": ["user_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_users",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_user_idea_interactions_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_user_idea_interactions_pkey ON public.kabu_user_idea_interactions USING btree (id)"
+      },
+      {
+        "name": "kabu_user_idea_interactions_user_id_idea_id_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX kabu_user_idea_interactions_user_id_idea_id_key ON public.kabu_user_idea_interactions USING btree (user_id, idea_id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_user_subscriptions",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "user_id",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "plan_id",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "status",
+        "ordinalPosition": 4,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "start_date",
+        "ordinalPosition": 5,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "end_date",
+        "ordinalPosition": 6,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "auto_renew",
+        "ordinalPosition": 7,
+        "dataType": "boolean",
+        "udtName": "bool",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "true",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "payment_method_id",
+        "ordinalPosition": 8,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "created_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_user_subscriptions",
+        "name": "updated_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_user_subscriptions_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "kabu_user_subscriptions_plan_id_fkey",
+        "columns": ["plan_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_subscription_plans",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "RESTRICT"
+      },
+      {
+        "name": "kabu_user_subscriptions_user_id_fkey",
+        "columns": ["user_id"],
+        "referencedSchema": "public",
+        "referencedTable": "kabu_users",
+        "referencedColumns": ["id"],
+        "onUpdate": "CASCADE",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "kabu_user_subscriptions_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_user_subscriptions_pkey ON public.kabu_user_subscriptions USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "kabu_users",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "email",
+        "ordinalPosition": 2,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "password_hash",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "full_name",
+        "ordinalPosition": 4,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "created_at",
+        "ordinalPosition": 5,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "updated_at",
+        "ordinalPosition": 6,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "last_login",
+        "ordinalPosition": 7,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "is_active",
+        "ordinalPosition": 8,
+        "dataType": "boolean",
+        "udtName": "bool",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "true",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "role",
+        "ordinalPosition": 9,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "'user'::text",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "kabu_users",
+        "name": "lastApiCardSyncedAt",
+        "ordinalPosition": 10,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "kabu_users_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [],
+    "indexes": [
+      {
+        "name": "kabu_users_email_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX kabu_users_email_key ON public.kabu_users USING btree (email)"
+      },
+      {
+        "name": "kabu_users_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX kabu_users_pkey ON public.kabu_users USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "order_items",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "order_items",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": "nextval('order_items_id_seq'::regclass)",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "order_items",
+        "name": "order_id",
+        "ordinalPosition": 2,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "order_items",
+        "name": "product_id",
+        "ordinalPosition": 3,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "order_items",
+        "name": "quantity",
+        "ordinalPosition": 4,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "order_items",
+        "name": "unit_price",
+        "ordinalPosition": 5,
+        "dataType": "numeric",
+        "udtName": "numeric",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 2,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "order_items",
+        "name": "discount_percent",
+        "ordinalPosition": 6,
+        "dataType": "numeric",
+        "udtName": "numeric",
+        "maxLength": null,
+        "numericPrecision": 5,
+        "numericScale": 2,
+        "isNullable": true,
+        "default": "0",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "order_items",
+        "name": "created_at",
+        "ordinalPosition": 7,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "order_items_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "order_items_order_id_fkey",
+        "columns": ["order_id"],
+        "referencedSchema": "public",
+        "referencedTable": "orders",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE"
+      },
+      {
+        "name": "order_items_product_id_fkey",
+        "columns": ["product_id"],
+        "referencedSchema": "public",
+        "referencedTable": "products",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_order_items_order",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "CREATE INDEX idx_order_items_order ON public.order_items USING btree (order_id)"
+      },
+      {
+        "name": "idx_order_items_product",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "CREATE INDEX idx_order_items_product ON public.order_items USING btree (product_id)"
+      },
+      {
+        "name": "order_items_order_id_product_id_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX order_items_order_id_product_id_key ON public.order_items USING btree (order_id, product_id)"
+      },
+      {
+        "name": "order_items_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX order_items_pkey ON public.order_items USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "orders",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": "nextval('orders_id_seq'::regclass)",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "customer_id",
+        "ordinalPosition": 2,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "order_date",
+        "ordinalPosition": 3,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "status",
+        "ordinalPosition": 4,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 50,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": "'pending'::character varying",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "total_amount",
+        "ordinalPosition": 5,
+        "dataType": "numeric",
+        "udtName": "numeric",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 2,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "shipping_address",
+        "ordinalPosition": 6,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "billing_address",
+        "ordinalPosition": 7,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "notes",
+        "ordinalPosition": 8,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "created_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "orders",
+        "name": "updated_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "orders_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "orders_customer_id_fkey",
+        "columns": ["customer_id"],
+        "referencedSchema": "public",
+        "referencedTable": "customers",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_orders_customer",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "CREATE INDEX idx_orders_customer ON public.orders USING btree (customer_id)"
+      },
+      {
+        "name": "idx_orders_status",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "CREATE INDEX idx_orders_status ON public.orders USING btree (status)"
+      },
+      {
+        "name": "orders_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX orders_pkey ON public.orders USING btree (id)"
+      }
+    ]
+  },
+  {
+    "schema": "public",
+    "name": "products",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": "nextval('products_id_seq'::regclass)",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "name",
+        "ordinalPosition": 2,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 255,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "description",
+        "ordinalPosition": 3,
+        "dataType": "text",
+        "udtName": "text",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "price",
+        "ordinalPosition": 4,
+        "dataType": "numeric",
+        "udtName": "numeric",
+        "maxLength": null,
+        "numericPrecision": 10,
+        "numericScale": 2,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "stock_quantity",
+        "ordinalPosition": 5,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": "0",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "category_id",
+        "ordinalPosition": 6,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "sku",
+        "ordinalPosition": 7,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 100,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "is_active",
+        "ordinalPosition": 8,
+        "dataType": "boolean",
+        "udtName": "bool",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "true",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "created_at",
+        "ordinalPosition": 9,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      },
+      {
+        "schema": "public",
+        "table": "products",
+        "name": "updated_at",
+        "ordinalPosition": 10,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "products_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [
+      {
+        "name": "products_category_id_fkey",
+        "columns": ["category_id"],
+        "referencedSchema": "public",
+        "referencedTable": "categories",
+        "referencedColumns": ["id"],
+        "onUpdate": "NO ACTION",
+        "onDelete": "SET NULL"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_products_active",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "CREATE INDEX idx_products_active ON public.products USING btree (is_active)"
+      },
+      {
+        "name": "idx_products_category",
+        "isUnique": false,
+        "isPrimary": false,
+        "definition": "CREATE INDEX idx_products_category ON public.products USING btree (category_id)"
+      },
+      {
+        "name": "products_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX products_pkey ON public.products USING btree (id)"
+      },
+      {
+        "name": "products_sku_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX products_sku_key ON public.products USING btree (sku)"
+      }
+    ]
+  },
+  {
+    "schema": "test_schema",
+    "name": "users",
+    "comment": null,
+    "columns": [
+      {
+        "schema": "test_schema",
+        "table": "users",
+        "name": "id",
+        "ordinalPosition": 1,
+        "dataType": "integer",
+        "udtName": "int4",
+        "maxLength": null,
+        "numericPrecision": 32,
+        "numericScale": 0,
+        "isNullable": false,
+        "default": "nextval('test_schema.users_id_seq'::regclass)",
+        "comment": null
+      },
+      {
+        "schema": "test_schema",
+        "table": "users",
+        "name": "username",
+        "ordinalPosition": 2,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 50,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "test_schema",
+        "table": "users",
+        "name": "email",
+        "ordinalPosition": 3,
+        "dataType": "character varying",
+        "udtName": "varchar",
+        "maxLength": 255,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": false,
+        "default": null,
+        "comment": null
+      },
+      {
+        "schema": "test_schema",
+        "table": "users",
+        "name": "created_at",
+        "ordinalPosition": 4,
+        "dataType": "timestamp without time zone",
+        "udtName": "timestamp",
+        "maxLength": null,
+        "numericPrecision": null,
+        "numericScale": null,
+        "isNullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "comment": null
+      }
+    ],
+    "primaryKey": {
+      "name": "users_pkey",
+      "columns": ["id"]
+    },
+    "foreignKeys": [],
+    "indexes": [
+      {
+        "name": "users_email_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX users_email_key ON test_schema.users USING btree (email)"
+      },
+      {
+        "name": "users_pkey",
+        "isUnique": true,
+        "isPrimary": true,
+        "definition": "CREATE UNIQUE INDEX users_pkey ON test_schema.users USING btree (id)"
+      },
+      {
+        "name": "users_username_key",
+        "isUnique": true,
+        "isPrimary": false,
+        "definition": "CREATE UNIQUE INDEX users_username_key ON test_schema.users USING btree (username)"
       }
     ]
   }
