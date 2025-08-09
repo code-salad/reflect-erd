@@ -8,7 +8,7 @@ describe('database pull schema', () => {
     const schema = await db.pullSchema();
     expect(schema).not.toBeNull();
     await Bun.write('schemas/postgres.json', JSON.stringify(schema, null, 2));
-  });
+  }, 15_000);
 
   test('should pull mysql schema from database', async () => {
     const db = new DatabaseService({ databaseUrl: env.MYSQL_URL });

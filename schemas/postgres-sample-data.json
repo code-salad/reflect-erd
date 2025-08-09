@@ -2,12 +2,12 @@
   {
     "table": {
       "schema": "public",
-      "name": "EmailAddress",
+      "name": "ApiKey",
       "comment": null,
       "columns": [
         {
           "schema": "public",
-          "table": "EmailAddress",
+          "table": "ApiKey",
           "name": "id",
           "ordinalPosition": 1,
           "dataType": "text",
@@ -21,7 +21,7 @@
         },
         {
           "schema": "public",
-          "table": "EmailAddress",
+          "table": "ApiKey",
           "name": "createdAt",
           "ordinalPosition": 2,
           "dataType": "timestamp without time zone",
@@ -35,7 +35,7 @@
         },
         {
           "schema": "public",
-          "table": "EmailAddress",
+          "table": "ApiKey",
           "name": "updatedAt",
           "ordinalPosition": 3,
           "dataType": "timestamp without time zone",
@@ -49,393 +49,8 @@
         },
         {
           "schema": "public",
-          "table": "EmailAddress",
-          "name": "email",
-          "ordinalPosition": 4,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "EmailAddress_pkey",
-        "columns": ["id"]
-      },
-      "foreignKeys": [],
-      "indexes": [
-        {
-          "name": "EmailAddress_email_key",
-          "isUnique": true,
-          "isPrimary": false,
-          "definition": "CREATE UNIQUE INDEX \"EmailAddress_email_key\" ON public.\"EmailAddress\" USING btree (email)"
-        },
-        {
-          "name": "EmailAddress_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"EmailAddress_pkey\" ON public.\"EmailAddress\" USING btree (id)"
-        }
-      ]
-    },
-    "sampleData": [
-      {
-        "id": "cmdq4y8mh00pougm5jq10vtvx",
-        "createdAt": "2025-07-30T15:43:37.002Z",
-        "updatedAt": "2025-07-30T15:43:37.002Z",
-        "email": "team@kairosconsulting.io"
-      },
-      {
-        "id": "cmdq4y8mh00ppugm57gz9nisi",
-        "createdAt": "2025-07-30T15:43:37.002Z",
-        "updatedAt": "2025-07-30T15:43:37.002Z",
-        "email": "harvardx-news@harvard.edu"
-      },
-      {
-        "id": "cmdq4y8sk00uaugm5ihqq8o8o",
-        "createdAt": "2025-07-30T15:43:37.220Z",
-        "updatedAt": "2025-07-30T15:43:37.220Z",
-        "email": "hylpub@fas.harvard.edu"
-      },
-      {
-        "id": "cmdq4y8sk00ubugm5h20yirb8",
-        "createdAt": "2025-07-30T15:43:37.220Z",
-        "updatedAt": "2025-07-30T15:43:37.220Z",
-        "email": "axwang@fas.harvard.edu"
-      },
-      {
-        "id": "cmdq4y8ta00x5ugm5w7foau61",
-        "createdAt": "2025-07-30T15:43:37.247Z",
-        "updatedAt": "2025-07-30T15:43:37.247Z",
-        "email": "archives_reference@harvard.edu"
-      },
-      {
-        "id": "cmdq4y8tb00x6ugm5cu7tpvtb",
-        "createdAt": "2025-07-30T15:43:37.247Z",
-        "updatedAt": "2025-07-30T15:43:37.247Z",
-        "email": "hannah_hack@harvard.edu"
-      },
-      {
-        "id": "cmdq4y8tb00yaugm5kg7uya37",
-        "createdAt": "2025-07-30T15:43:37.247Z",
-        "updatedAt": "2025-07-30T15:43:37.247Z",
-        "email": "muslib@fas.harvard.edu"
-      },
-      {
-        "id": "cmdq4y8tb00ycugm5bvku68vl",
-        "createdAt": "2025-07-30T15:43:37.247Z",
-        "updatedAt": "2025-07-30T15:43:37.247Z",
-        "email": "obrien2@fas.harvard.edu"
-      },
-      {
-        "id": "cmdq4y8uc012lugm5963sx1g1",
-        "createdAt": "2025-07-30T15:43:37.284Z",
-        "updatedAt": "2025-07-30T15:43:37.284Z",
-        "email": "cablib@fas.harvard.edu"
-      },
-      {
-        "id": "cmdq4y8v50168ugm5fvd4isjr",
-        "createdAt": "2025-07-30T15:43:37.314Z",
-        "updatedAt": "2025-07-30T15:43:37.314Z",
-        "email": "kate_grant@fas.harvard.edu"
-      }
-    ]
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "PhoneNumber",
-      "comment": null,
-      "columns": [
-        {
-          "schema": "public",
-          "table": "PhoneNumber",
-          "name": "id",
-          "ordinalPosition": 1,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "PhoneNumber",
-          "name": "createdAt",
-          "ordinalPosition": 2,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": "CURRENT_TIMESTAMP",
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "PhoneNumber",
-          "name": "updatedAt",
-          "ordinalPosition": 3,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "PhoneNumber",
-          "name": "phoneNumber",
-          "ordinalPosition": 4,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "PhoneNumber_pkey",
-        "columns": ["id"]
-      },
-      "foreignKeys": [],
-      "indexes": [
-        {
-          "name": "PhoneNumber_phoneNumber_key",
-          "isUnique": true,
-          "isPrimary": false,
-          "definition": "CREATE UNIQUE INDEX \"PhoneNumber_phoneNumber_key\" ON public.\"PhoneNumber\" USING btree (\"phoneNumber\")"
-        },
-        {
-          "name": "PhoneNumber_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"PhoneNumber_pkey\" ON public.\"PhoneNumber\" USING btree (id)"
-        }
-      ]
-    },
-    "sampleData": [
-      {
-        "id": "cmdq4y8sk00ucugm5ca71tn9l",
-        "createdAt": "2025-07-30T15:43:37.220Z",
-        "updatedAt": "2025-07-30T15:43:37.220Z",
-        "phoneNumber": "6174952756"
-      },
-      {
-        "id": "cmdq4y8tb00yhugm56ki9v7ph",
-        "createdAt": "2025-07-30T15:43:37.247Z",
-        "updatedAt": "2025-07-30T15:43:37.247Z",
-        "phoneNumber": "6174952794"
-      },
-      {
-        "id": "cmdq4y8uc012mugm51j98zofp",
-        "createdAt": "2025-07-30T15:43:37.284Z",
-        "updatedAt": "2025-07-30T15:43:37.284Z",
-        "phoneNumber": "6174955355"
-      },
-      {
-        "id": "cmdq4y8v50169ugm5ckg6er0w",
-        "createdAt": "2025-07-30T15:43:37.314Z",
-        "updatedAt": "2025-07-30T15:43:37.314Z",
-        "phoneNumber": "6174952194"
-      },
-      {
-        "id": "cmdq4y8ut014hugm5amz7vw68",
-        "createdAt": "2025-07-30T15:43:37.301Z",
-        "updatedAt": "2025-07-30T15:43:37.301Z",
-        "phoneNumber": "6174952452"
-      },
-      {
-        "id": "cmdq4y8xe01e7ugm5d6tus5di",
-        "createdAt": "2025-07-30T15:43:37.395Z",
-        "updatedAt": "2025-07-30T15:43:37.395Z",
-        "phoneNumber": "6174952253"
-      },
-      {
-        "id": "cmdq4y8yp01g1ugm5e05ikmjk",
-        "createdAt": "2025-07-30T15:43:37.442Z",
-        "updatedAt": "2025-07-30T15:43:37.442Z",
-        "phoneNumber": "6174955315"
-      },
-      {
-        "id": "cmdq4y8yp01g2ugm5gfisum3z",
-        "createdAt": "2025-07-30T15:43:37.442Z",
-        "updatedAt": "2025-07-30T15:43:37.442Z",
-        "phoneNumber": "6174952928"
-      },
-      {
-        "id": "cmdq4yd9001jlugm59w3ibvok",
-        "createdAt": "2025-07-30T15:43:42.996Z",
-        "updatedAt": "2025-07-30T15:43:42.996Z",
-        "phoneNumber": "6174952454"
-      },
-      {
-        "id": "cmdq4ydgw01mbugm5yg5s6cg4",
-        "createdAt": "2025-07-30T15:43:43.280Z",
-        "updatedAt": "2025-07-30T15:43:43.280Z",
-        "phoneNumber": "6174952413"
-      }
-    ]
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "Socials",
-      "comment": null,
-      "columns": [
-        {
-          "schema": "public",
-          "table": "Socials",
-          "name": "id",
-          "ordinalPosition": 1,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Socials",
-          "name": "createdAt",
-          "ordinalPosition": 2,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": "CURRENT_TIMESTAMP",
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Socials",
-          "name": "updatedAt",
-          "ordinalPosition": 3,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Socials",
-          "name": "type",
-          "ordinalPosition": 4,
-          "dataType": "USER-DEFINED",
-          "udtName": "SocialType",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Socials",
-          "name": "link",
-          "ordinalPosition": 5,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "Socials_pkey",
-        "columns": ["id"]
-      },
-      "foreignKeys": [],
-      "indexes": [
-        {
-          "name": "Socials_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"Socials_pkey\" ON public.\"Socials\" USING btree (id)"
-        }
-      ]
-    },
-    "sampleData": []
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "Url",
-      "comment": null,
-      "columns": [
-        {
-          "schema": "public",
-          "table": "Url",
-          "name": "id",
-          "ordinalPosition": 1,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Url",
-          "name": "createdAt",
-          "ordinalPosition": 2,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": "CURRENT_TIMESTAMP",
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Url",
-          "name": "updatedAt",
-          "ordinalPosition": 3,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Url",
-          "name": "url",
+          "table": "ApiKey",
+          "name": "key",
           "ordinalPosition": 4,
           "dataType": "text",
           "udtName": "text",
@@ -448,8 +63,8 @@
         },
         {
           "schema": "public",
-          "table": "Url",
-          "name": "markdownContent",
+          "table": "ApiKey",
+          "name": "userId",
           "ordinalPosition": 5,
           "dataType": "text",
           "udtName": "text",
@@ -459,60 +74,18 @@
           "isNullable": true,
           "default": null,
           "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Url",
-          "name": "title",
-          "ordinalPosition": 6,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Url",
-          "name": "description",
-          "ordinalPosition": 7,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Url",
-          "name": "webDomainId",
-          "ordinalPosition": 8,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
         }
       ],
       "primaryKey": {
-        "name": "Url_pkey",
+        "name": "ApiKey_pkey",
         "columns": ["id"]
       },
       "foreignKeys": [
         {
-          "name": "Url_webDomainId_fkey",
-          "columns": ["webDomainId"],
+          "name": "ApiKey_userId_fkey",
+          "columns": ["userId"],
           "referencedSchema": "public",
-          "referencedTable": "WebDomain",
+          "referencedTable": "kabu_users",
           "referencedColumns": ["id"],
           "onUpdate": "CASCADE",
           "onDelete": "CASCADE"
@@ -520,143 +93,50 @@
       ],
       "indexes": [
         {
-          "name": "Url_pkey",
+          "name": "ApiKey_key_idx",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"ApiKey_key_idx\" ON public.\"ApiKey\" USING btree (key)"
+        },
+        {
+          "name": "ApiKey_key_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX \"ApiKey_key_key\" ON public.\"ApiKey\" USING btree (key)"
+        },
+        {
+          "name": "ApiKey_pkey",
           "isUnique": true,
           "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"Url_pkey\" ON public.\"Url\" USING btree (id)"
+          "definition": "CREATE UNIQUE INDEX \"ApiKey_pkey\" ON public.\"ApiKey\" USING btree (id)"
         },
         {
-          "name": "Url_url_key",
-          "isUnique": true,
-          "isPrimary": false,
-          "definition": "CREATE UNIQUE INDEX \"Url_url_key\" ON public.\"Url\" USING btree (url)"
-        },
-        {
-          "name": "Url_webDomainId_createdAt_idx",
+          "name": "ApiKey_userId_idx",
           "isUnique": false,
           "isPrimary": false,
-          "definition": "CREATE INDEX \"Url_webDomainId_createdAt_idx\" ON public.\"Url\" USING btree (\"webDomainId\", \"createdAt\" DESC)"
-        },
-        {
-          "name": "Url_webDomainId_idx",
-          "isUnique": false,
-          "isPrimary": false,
-          "definition": "CREATE INDEX \"Url_webDomainId_idx\" ON public.\"Url\" USING btree (\"webDomainId\")"
+          "definition": "CREATE INDEX \"ApiKey_userId_idx\" ON public.\"ApiKey\" USING btree (\"userId\")"
         }
       ]
     },
     "sampleData": [
       {
-        "id": "cmdq5r21i0j3hugm582jmnrwb",
-        "createdAt": "2025-07-30T16:06:01.495Z",
-        "updatedAt": "2025-07-30T16:06:01.495Z",
-        "url": "r.search.yahoo.com/_ylt=AwrO6TTVQopoBwIA9NJXNyoA/RV=2/RE=1755101141/RO=10/RU=https%3a%2f%2fwww.yahoo.com/RK=2/RS=GydxjYSfa2wBxngXTrOQHY75fNo-",
-        "markdownContent": null,
-        "title": null,
-        "description": null,
-        "webDomainId": null
-      },
-      {
-        "id": "cmdq7ih08001pug189om75ta5",
-        "createdAt": "2025-07-30T16:55:20.216Z",
-        "updatedAt": "2025-07-30T16:55:20.216Z",
-        "url": "eu.libi.com",
-        "markdownContent": null,
-        "title": null,
-        "description": null,
-        "webDomainId": null
-      },
-      {
-        "id": "cme1o3b6q00hyqf0kimxfyd2w",
-        "createdAt": "2025-08-07T17:24:54.242Z",
-        "updatedAt": "2025-08-07T17:24:54.242Z",
-        "url": "openrouter.com",
-        "markdownContent": null,
-        "title": "",
-        "description": "",
-        "webDomainId": "cme1o3b6100hxqf0k3xnr4v4s"
-      },
-      {
-        "id": "cme1o3iup00i0qf0k9d259lfv",
-        "createdAt": "2025-08-07T17:25:04.175Z",
-        "updatedAt": "2025-08-07T17:25:04.175Z",
-        "url": "posthog.com/%22/%22",
-        "markdownContent": null,
-        "title": null,
-        "description": null,
-        "webDomainId": null
-      },
-      {
-        "id": "cme1o3iup00i1qf0kmca9ujdh",
-        "createdAt": "2025-08-07T17:25:04.175Z",
-        "updatedAt": "2025-08-07T17:25:04.175Z",
-        "url": "posthog.com/%22/why/%22",
-        "markdownContent": null,
-        "title": null,
-        "description": null,
-        "webDomainId": null
-      },
-      {
-        "id": "cme1o3iup00i2qf0kje1lctna",
-        "createdAt": "2025-08-07T17:25:04.175Z",
-        "updatedAt": "2025-08-07T17:25:04.175Z",
-        "url": "posthog.com/%22/products/%22",
-        "markdownContent": null,
-        "title": null,
-        "description": null,
-        "webDomainId": null
-      },
-      {
-        "id": "cme1o3iup00i3qf0ka6aqnzks",
-        "createdAt": "2025-08-07T17:25:04.175Z",
-        "updatedAt": "2025-08-07T17:25:04.175Z",
-        "url": "posthog.com/%22/pricing/%22",
-        "markdownContent": null,
-        "title": null,
-        "description": null,
-        "webDomainId": null
-      },
-      {
-        "id": "cme1o3iup00i4qf0kimg8dw2g",
-        "createdAt": "2025-08-07T17:25:04.175Z",
-        "updatedAt": "2025-08-07T17:25:04.175Z",
-        "url": "posthog.com/%22/docs/%22",
-        "markdownContent": null,
-        "title": null,
-        "description": null,
-        "webDomainId": null
-      },
-      {
-        "id": "cmdq4k6ke000zugm5g2a9y0zl",
-        "createdAt": "2025-07-30T15:32:41.150Z",
-        "updatedAt": "2025-08-03T09:32:53.374Z",
-        "url": "health.yahoo.com/wellness/mental-health",
-        "markdownContent": null,
-        "title": "Mental Health Resources",
-        "description": "",
-        "webDomainId": "cmdq4k6kd0000ugm5vwgoqgab"
-      },
-      {
-        "id": "cmdq4k6ke0006ugm5guvyoa5a",
-        "createdAt": "2025-07-30T15:32:41.150Z",
-        "updatedAt": "2025-08-07T11:55:21.436Z",
-        "url": "tech.yahoo.com",
-        "markdownContent": null,
-        "title": "Yahoo Tech | Technology News, Updates, Reviews & Stories",
-        "description": "",
-        "webDomainId": "cmdq4k6kd0000ugm5vwgoqgab"
+        "id": "22748ee7-4834-4f9c-baa1-a27a4e51c3e6",
+        "createdAt": "2025-08-04T13:38:24.042Z",
+        "updatedAt": "2025-08-04T13:38:07.431Z",
+        "key": "asd",
+        "userId": "ef9ec5da-7228-44da-abe2-74eba95aa5f9"
       }
     ]
   },
   {
     "table": {
       "schema": "public",
-      "name": "WebDomain",
+      "name": "NewsArticleItem",
       "comment": null,
       "columns": [
         {
           "schema": "public",
-          "table": "WebDomain",
+          "table": "NewsArticleItem",
           "name": "id",
           "ordinalPosition": 1,
           "dataType": "text",
@@ -670,7 +150,7 @@
         },
         {
           "schema": "public",
-          "table": "WebDomain",
+          "table": "NewsArticleItem",
           "name": "createdAt",
           "ordinalPosition": 2,
           "dataType": "timestamp without time zone",
@@ -684,7 +164,7 @@
         },
         {
           "schema": "public",
-          "table": "WebDomain",
+          "table": "NewsArticleItem",
           "name": "updatedAt",
           "ordinalPosition": 3,
           "dataType": "timestamp without time zone",
@@ -698,8 +178,8 @@
         },
         {
           "schema": "public",
-          "table": "WebDomain",
-          "name": "domain",
+          "table": "NewsArticleItem",
+          "name": "content",
           "ordinalPosition": 4,
           "dataType": "text",
           "udtName": "text",
@@ -712,51 +192,23 @@
         },
         {
           "schema": "public",
-          "table": "WebDomain",
-          "name": "companyName",
+          "table": "NewsArticleItem",
+          "name": "stockCode",
           "ordinalPosition": 5,
           "dataType": "text",
           "udtName": "text",
           "maxLength": null,
           "numericPrecision": null,
           "numericScale": null,
-          "isNullable": true,
+          "isNullable": false,
           "default": null,
           "comment": null
         },
         {
           "schema": "public",
-          "table": "WebDomain",
-          "name": "companyDescription",
+          "table": "NewsArticleItem",
+          "name": "newsArticleId",
           "ordinalPosition": 6,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "WebDomain",
-          "name": "location",
-          "ordinalPosition": 8,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "WebDomain",
-          "name": "logoUrl",
-          "ordinalPosition": 12,
           "dataType": "text",
           "udtName": "text",
           "maxLength": null,
@@ -768,282 +220,35 @@
         }
       ],
       "primaryKey": {
-        "name": "WebDomain_pkey",
-        "columns": ["id"]
-      },
-      "foreignKeys": [],
-      "indexes": [
-        {
-          "name": "WebDomain_domain_key",
-          "isUnique": true,
-          "isPrimary": false,
-          "definition": "CREATE UNIQUE INDEX \"WebDomain_domain_key\" ON public.\"WebDomain\" USING btree (domain)"
-        },
-        {
-          "name": "WebDomain_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"WebDomain_pkey\" ON public.\"WebDomain\" USING btree (id)"
-        }
-      ]
-    },
-    "sampleData": [
-      {
-        "id": "cmdq4k6kd0000ugm5vwgoqgab",
-        "createdAt": "2025-07-30T15:32:41.150Z",
-        "updatedAt": "2025-07-30T15:32:41.150Z",
-        "domain": "yahoo.com",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmdq4nkhx00agugm54rj5yzcr",
-        "createdAt": "2025-07-30T15:35:19.173Z",
-        "updatedAt": "2025-07-30T15:35:19.173Z",
-        "domain": "harvard.edu",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmdq5a3z6085uugm58b2mvsd9",
-        "createdAt": "2025-07-30T15:52:50.851Z",
-        "updatedAt": "2025-07-30T15:52:50.851Z",
-        "domain": "rinda.ai",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmdq5acvq088nugm5kokal7lk",
-        "createdAt": "2025-07-30T15:53:02.390Z",
-        "updatedAt": "2025-07-30T15:53:02.390Z",
-        "domain": "grinda.ai",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmds6a7732j2wugn5c7c5wf6u",
-        "createdAt": "2025-08-01T01:56:26.991Z",
-        "updatedAt": "2025-08-01T01:56:26.991Z",
-        "domain": "duri.com",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmdq5egez08aqugm57pofgtm4",
-        "createdAt": "2025-07-30T15:56:13.596Z",
-        "updatedAt": "2025-07-30T15:56:13.596Z",
-        "domain": "github.com",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmdq5tn670khmugm5rqe7az4r",
-        "createdAt": "2025-07-30T16:08:02.192Z",
-        "updatedAt": "2025-07-30T16:08:02.192Z",
-        "domain": "openai.com",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmdq5venl0lwbugm5clhucx0v",
-        "createdAt": "2025-07-30T16:09:24.466Z",
-        "updatedAt": "2025-07-30T16:09:24.466Z",
-        "domain": "anthropic.com",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmdq6vxu70nspugm5oqt38rzz",
-        "createdAt": "2025-07-30T16:37:48.944Z",
-        "updatedAt": "2025-07-30T16:37:48.944Z",
-        "domain": "lavera.com",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      },
-      {
-        "id": "cmdq742tp0sktugm5hv81dmgu",
-        "createdAt": "2025-07-30T16:44:08.654Z",
-        "updatedAt": "2025-07-30T16:44:08.654Z",
-        "domain": "welovemelanine.com",
-        "companyName": null,
-        "companyDescription": null,
-        "location": null,
-        "logoUrl": null
-      }
-    ]
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "Webset",
-      "comment": null,
-      "columns": [
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "id",
-          "ordinalPosition": 1,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "createdAt",
-          "ordinalPosition": 2,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": "CURRENT_TIMESTAMP",
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "updatedAt",
-          "ordinalPosition": 3,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "searchQuery",
-          "ordinalPosition": 4,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "validationCriterias",
-          "ordinalPosition": 5,
-          "dataType": "ARRAY",
-          "udtName": "_text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "enrichmentCriterias",
-          "ordinalPosition": 6,
-          "dataType": "ARRAY",
-          "udtName": "_text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "targetCount",
-          "ordinalPosition": 7,
-          "dataType": "integer",
-          "udtName": "int4",
-          "maxLength": null,
-          "numericPrecision": 32,
-          "numericScale": 0,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "createdByuserId",
-          "ordinalPosition": 8,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "Webset",
-          "name": "name",
-          "ordinalPosition": 9,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "Webset_pkey",
+        "name": "NewsArticleItem_pkey",
         "columns": ["id"]
       },
       "foreignKeys": [
         {
-          "name": "Webset_createdByuserId_fkey",
-          "columns": ["createdByuserId"],
+          "name": "NewsArticleItem_newsArticleId_fkey",
+          "columns": ["newsArticleId"],
           "referencedSchema": "public",
-          "referencedTable": "user",
+          "referencedTable": "kabu_news_articles",
           "referencedColumns": ["id"],
           "onUpdate": "CASCADE",
           "onDelete": "NO ACTION"
+        },
+        {
+          "name": "NewsArticleItem_stockCode_fkey",
+          "columns": ["stockCode"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_stocks",
+          "referencedColumns": ["code"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
         }
       ],
       "indexes": [
         {
-          "name": "Webset_pkey",
+          "name": "NewsArticleItem_pkey",
           "isUnique": true,
           "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"Webset_pkey\" ON public.\"Webset\" USING btree (id)"
+          "definition": "CREATE UNIQUE INDEX \"NewsArticleItem_pkey\" ON public.\"NewsArticleItem\" USING btree (id)"
         }
       ]
     },
@@ -1052,12 +257,12 @@
   {
     "table": {
       "schema": "public",
-      "name": "WebsetRow",
+      "name": "Ticker",
       "comment": null,
       "columns": [
         {
           "schema": "public",
-          "table": "WebsetRow",
+          "table": "Ticker",
           "name": "id",
           "ordinalPosition": 1,
           "dataType": "text",
@@ -1071,7 +276,7 @@
         },
         {
           "schema": "public",
-          "table": "WebsetRow",
+          "table": "Ticker",
           "name": "createdAt",
           "ordinalPosition": 2,
           "dataType": "timestamp without time zone",
@@ -1085,7 +290,7 @@
         },
         {
           "schema": "public",
-          "table": "WebsetRow",
+          "table": "Ticker",
           "name": "updatedAt",
           "ordinalPosition": 3,
           "dataType": "timestamp without time zone",
@@ -1099,37 +304,37 @@
         },
         {
           "schema": "public",
-          "table": "WebsetRow",
-          "name": "validationData",
+          "table": "Ticker",
+          "name": "code",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "Ticker",
+          "name": "name",
           "ordinalPosition": 5,
-          "dataType": "ARRAY",
-          "udtName": "_ValidationStatus",
+          "dataType": "text",
+          "udtName": "text",
           "maxLength": null,
           "numericPrecision": null,
           "numericScale": null,
-          "isNullable": true,
+          "isNullable": false,
           "default": null,
           "comment": null
         },
         {
           "schema": "public",
-          "table": "WebsetRow",
-          "name": "enrichmentData",
+          "table": "Ticker",
+          "name": "exchange",
           "ordinalPosition": 6,
-          "dataType": "ARRAY",
-          "udtName": "_text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "WebsetRow",
-          "name": "websetId",
-          "ordinalPosition": 7,
           "dataType": "text",
           "udtName": "text",
           "maxLength": null,
@@ -1138,32 +343,165 @@
           "isNullable": true,
           "default": null,
           "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "WebsetRow",
-          "name": "originalData",
-          "ordinalPosition": 8,
-          "dataType": "jsonb",
-          "udtName": "jsonb",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
         }
       ],
       "primaryKey": {
-        "name": "WebsetRow_pkey",
+        "name": "Ticker_pkey",
         "columns": ["id"]
       },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "Ticker_code_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX \"Ticker_code_key\" ON public.\"Ticker\" USING btree (code)"
+        },
+        {
+          "name": "Ticker_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"Ticker_pkey\" ON public.\"Ticker\" USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "cmdx5h0290000ug6nhajzoao7",
+        "createdAt": "2025-08-04T13:32:35.602Z",
+        "updatedAt": "2025-08-04T13:32:35.602Z",
+        "code": "2220",
+        "name": "2220",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h0ku0001ug6nvmct6evk",
+        "createdAt": "2025-08-04T13:32:36.270Z",
+        "updatedAt": "2025-08-04T13:32:36.270Z",
+        "code": "2317",
+        "name": "2317",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h0xa0002ug6n73cf8ds6",
+        "createdAt": "2025-08-04T13:32:36.718Z",
+        "updatedAt": "2025-08-04T13:32:36.718Z",
+        "code": "3137",
+        "name": "3137",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h19l0003ug6ncojr5ob1",
+        "createdAt": "2025-08-04T13:32:37.162Z",
+        "updatedAt": "2025-08-04T13:32:37.162Z",
+        "code": "3341",
+        "name": "3341",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h1m80004ug6n9hosbkbb",
+        "createdAt": "2025-08-04T13:32:37.616Z",
+        "updatedAt": "2025-08-04T13:32:37.616Z",
+        "code": "3496",
+        "name": "3496",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h1yo0005ug6nyxvtu6qy",
+        "createdAt": "2025-08-04T13:32:38.065Z",
+        "updatedAt": "2025-08-04T13:32:38.065Z",
+        "code": "4685",
+        "name": "4685",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h2be0006ug6n3ab2bgdu",
+        "createdAt": "2025-08-04T13:32:38.523Z",
+        "updatedAt": "2025-08-04T13:32:38.523Z",
+        "code": "5333",
+        "name": "5333",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h2nq0007ug6nj63g79uq",
+        "createdAt": "2025-08-04T13:32:38.967Z",
+        "updatedAt": "2025-08-04T13:32:38.967Z",
+        "code": "5729",
+        "name": "5729",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h3040008ug6npc2tmtt0",
+        "createdAt": "2025-08-04T13:32:39.412Z",
+        "updatedAt": "2025-08-04T13:32:39.412Z",
+        "code": "6222",
+        "name": "6222",
+        "exchange": null
+      },
+      {
+        "id": "cmdx5h3380009ug6nnsmnszcb",
+        "createdAt": "2025-08-04T13:32:39.525Z",
+        "updatedAt": "2025-08-04T13:32:39.525Z",
+        "code": "1514",
+        "name": "1514",
+        "exchange": null
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "_IdeaCardToTicker",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "_IdeaCardToTicker",
+          "name": "A",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_IdeaCardToTicker",
+          "name": "B",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "_IdeaCardToTicker_AB_pkey",
+        "columns": ["A", "B"]
+      },
       "foreignKeys": [
         {
-          "name": "WebsetRow_websetId_fkey",
-          "columns": ["websetId"],
+          "name": "_IdeaCardToTicker_A_fkey",
+          "columns": ["A"],
           "referencedSchema": "public",
-          "referencedTable": "Webset",
+          "referencedTable": "kabu_idea_cards",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "_IdeaCardToTicker_B_fkey",
+          "columns": ["B"],
+          "referencedSchema": "public",
+          "referencedTable": "Ticker",
           "referencedColumns": ["id"],
           "onUpdate": "CASCADE",
           "onDelete": "CASCADE"
@@ -1171,16 +509,133 @@
       ],
       "indexes": [
         {
-          "name": "WebsetRow_pkey",
+          "name": "_IdeaCardToTicker_AB_pkey",
           "isUnique": true,
           "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"WebsetRow_pkey\" ON public.\"WebsetRow\" USING btree (id)"
+          "definition": "CREATE UNIQUE INDEX \"_IdeaCardToTicker_AB_pkey\" ON public.\"_IdeaCardToTicker\" USING btree (\"A\", \"B\")"
         },
         {
-          "name": "WebsetRow_websetId_idx",
+          "name": "_IdeaCardToTicker_B_index",
           "isUnique": false,
           "isPrimary": false,
-          "definition": "CREATE INDEX \"WebsetRow_websetId_idx\" ON public.\"WebsetRow\" USING btree (\"websetId\")"
+          "definition": "CREATE INDEX \"_IdeaCardToTicker_B_index\" ON public.\"_IdeaCardToTicker\" USING btree (\"B\")"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "A": "515613b3-e873-49bb-8006-c6e35b0cfc74",
+        "B": "cmdx5h4dq000gug6njdj8a7ey"
+      },
+      {
+        "A": "cebe6924-e778-4a62-97a2-c5ea3373be71",
+        "B": "cmdx5h52i000kug6n1ja44lmf"
+      },
+      {
+        "A": "3ee3135a-9dc2-4989-b6b1-0afef72b17c4",
+        "B": "cmdx5h0xa0002ug6n73cf8ds6"
+      },
+      {
+        "A": "8316ca66-ddf8-433f-a388-3e9ffff2ab37",
+        "B": "cmdx5h0ku0001ug6nvmct6evk"
+      },
+      {
+        "A": "7779e329-87f5-4924-be32-4357a24e6abb",
+        "B": "cmdx5h2nq0007ug6nj63g79uq"
+      },
+      {
+        "A": "fda055c5-2c85-46f2-acbb-bfa8ec031329",
+        "B": "cmdx5h41b000eug6nb8xyvi4b"
+      },
+      {
+        "A": "63592036-1fc8-472e-ad18-35efbffd5eaa",
+        "B": "cmdx5h0290000ug6nhajzoao7"
+      },
+      {
+        "A": "ed32839a-b819-4491-aa13-ded8a82798e1",
+        "B": "cmdx5h19l0003ug6ncojr5ob1"
+      },
+      {
+        "A": "cade9984-dfdc-4388-bf72-049ff1a89fbc",
+        "B": "cmdx5h1m80004ug6n9hosbkbb"
+      },
+      {
+        "A": "8eb22573-a7ba-4093-9421-54e8cd834ee3",
+        "B": "cmdx5h1yo0005ug6nyxvtu6qy"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "_NewsArticleToStock",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "_NewsArticleToStock",
+          "name": "A",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "_NewsArticleToStock",
+          "name": "B",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "_NewsArticleToStock_AB_pkey",
+        "columns": ["A", "B"]
+      },
+      "foreignKeys": [
+        {
+          "name": "_NewsArticleToStock_A_fkey",
+          "columns": ["A"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_news_articles",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "_NewsArticleToStock_B_fkey",
+          "columns": ["B"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_stocks",
+          "referencedColumns": ["code"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "_NewsArticleToStock_AB_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX \"_NewsArticleToStock_AB_pkey\" ON public.\"_NewsArticleToStock\" USING btree (\"A\", \"B\")"
+        },
+        {
+          "name": "_NewsArticleToStock_B_index",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX \"_NewsArticleToStock_B_index\" ON public.\"_NewsArticleToStock\" USING btree (\"B\")"
         }
       ]
     },
@@ -1189,12 +644,12 @@
   {
     "table": {
       "schema": "public",
-      "name": "_EmailAddressToUrl",
+      "name": "_NewsArticleToTicker",
       "comment": null,
       "columns": [
         {
           "schema": "public",
-          "table": "_EmailAddressToUrl",
+          "table": "_NewsArticleToTicker",
           "name": "A",
           "ordinalPosition": 1,
           "dataType": "text",
@@ -1208,7 +663,7 @@
         },
         {
           "schema": "public",
-          "table": "_EmailAddressToUrl",
+          "table": "_NewsArticleToTicker",
           "name": "B",
           "ordinalPosition": 2,
           "dataType": "text",
@@ -1222,24 +677,24 @@
         }
       ],
       "primaryKey": {
-        "name": "_EmailAddressToUrl_AB_pkey",
+        "name": "_NewsArticleToTicker_AB_pkey",
         "columns": ["A", "B"]
       },
       "foreignKeys": [
         {
-          "name": "_EmailAddressToUrl_A_fkey",
+          "name": "_NewsArticleToTicker_A_fkey",
           "columns": ["A"],
           "referencedSchema": "public",
-          "referencedTable": "EmailAddress",
+          "referencedTable": "kabu_news_articles",
           "referencedColumns": ["id"],
           "onUpdate": "CASCADE",
           "onDelete": "CASCADE"
         },
         {
-          "name": "_EmailAddressToUrl_B_fkey",
+          "name": "_NewsArticleToTicker_B_fkey",
           "columns": ["B"],
           "referencedSchema": "public",
-          "referencedTable": "Url",
+          "referencedTable": "Ticker",
           "referencedColumns": ["id"],
           "onUpdate": "CASCADE",
           "onDelete": "CASCADE"
@@ -1247,369 +702,59 @@
       ],
       "indexes": [
         {
-          "name": "_EmailAddressToUrl_AB_pkey",
+          "name": "_NewsArticleToTicker_AB_pkey",
           "isUnique": true,
           "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"_EmailAddressToUrl_AB_pkey\" ON public.\"_EmailAddressToUrl\" USING btree (\"A\", \"B\")"
+          "definition": "CREATE UNIQUE INDEX \"_NewsArticleToTicker_AB_pkey\" ON public.\"_NewsArticleToTicker\" USING btree (\"A\", \"B\")"
         },
         {
-          "name": "_EmailAddressToUrl_B_index",
+          "name": "_NewsArticleToTicker_B_index",
           "isUnique": false,
           "isPrimary": false,
-          "definition": "CREATE INDEX \"_EmailAddressToUrl_B_index\" ON public.\"_EmailAddressToUrl\" USING btree (\"B\")"
+          "definition": "CREATE INDEX \"_NewsArticleToTicker_B_index\" ON public.\"_NewsArticleToTicker\" USING btree (\"B\")"
         }
       ]
     },
     "sampleData": [
       {
-        "A": "cmdq4y8mh00pougm5jq10vtvx",
-        "B": "cmdq4nkhx00aougm56skhhlb1"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h0290000ug6nhajzoao7"
       },
       {
-        "A": "cmdq4y8mh00ppugm57gz9nisi",
-        "B": "cmdq4nkhx00aougm56skhhlb1"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h0ku0001ug6nvmct6evk"
       },
       {
-        "A": "cmdq4y8ta00x5ugm5w7foau61",
-        "B": "cmdq4nkhx00bnugm5objjoxak"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h0xa0002ug6n73cf8ds6"
       },
       {
-        "A": "cmdq4y8tb00x6ugm5cu7tpvtb",
-        "B": "cmdq4nkhx00bnugm5objjoxak"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h19l0003ug6ncojr5ob1"
       },
       {
-        "A": "cmdq4y8yp01g0ugm5duyu5f2m",
-        "B": "cmdq4nkhx00avugm5stg6bqpl"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h1m80004ug6n9hosbkbb"
       },
       {
-        "A": "cmdq4y8v50168ugm5fvd4isjr",
-        "B": "cmdq4nkhx00btugm571ywcj4r"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h1yo0005ug6nyxvtu6qy"
       },
       {
-        "A": "cmdq4y8xe01e5ugm516rqmqij",
-        "B": "cmdq4nkhx00bvugm5fbs0mknx"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h2be0006ug6n3ab2bgdu"
       },
       {
-        "A": "cmdq4y8xe01e6ugm5efumb3wb",
-        "B": "cmdq4nkhx00bvugm5fbs0mknx"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h2nq0007ug6nj63g79uq"
       },
       {
-        "A": "cmdq4yd9001jjugm5pgs5zts2",
-        "B": "cmdq4nkhx00bxugm5jgp2xhfp"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h3040008ug6npc2tmtt0"
       },
       {
-        "A": "cmdq4yd9001jkugm50yav248k",
-        "B": "cmdq4nkhx00bxugm5jgp2xhfp"
-      }
-    ]
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "_PhoneNumberToUrl",
-      "comment": null,
-      "columns": [
-        {
-          "schema": "public",
-          "table": "_PhoneNumberToUrl",
-          "name": "A",
-          "ordinalPosition": 1,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "_PhoneNumberToUrl",
-          "name": "B",
-          "ordinalPosition": 2,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "_PhoneNumberToUrl_AB_pkey",
-        "columns": ["A", "B"]
-      },
-      "foreignKeys": [
-        {
-          "name": "_PhoneNumberToUrl_A_fkey",
-          "columns": ["A"],
-          "referencedSchema": "public",
-          "referencedTable": "PhoneNumber",
-          "referencedColumns": ["id"],
-          "onUpdate": "CASCADE",
-          "onDelete": "CASCADE"
-        },
-        {
-          "name": "_PhoneNumberToUrl_B_fkey",
-          "columns": ["B"],
-          "referencedSchema": "public",
-          "referencedTable": "Url",
-          "referencedColumns": ["id"],
-          "onUpdate": "CASCADE",
-          "onDelete": "CASCADE"
-        }
-      ],
-      "indexes": [
-        {
-          "name": "_PhoneNumberToUrl_AB_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"_PhoneNumberToUrl_AB_pkey\" ON public.\"_PhoneNumberToUrl\" USING btree (\"A\", \"B\")"
-        },
-        {
-          "name": "_PhoneNumberToUrl_B_index",
-          "isUnique": false,
-          "isPrimary": false,
-          "definition": "CREATE INDEX \"_PhoneNumberToUrl_B_index\" ON public.\"_PhoneNumberToUrl\" USING btree (\"B\")"
-        }
-      ]
-    },
-    "sampleData": [
-      {
-        "A": "cmdq4y8yp01g1ugm5e05ikmjk",
-        "B": "cmdq4nkhx00avugm5stg6bqpl"
-      },
-      {
-        "A": "cmdq4y8yp01g2ugm5gfisum3z",
-        "B": "cmdq4nkhx00avugm5stg6bqpl"
-      },
-      {
-        "A": "cmdq4y8v50169ugm5ckg6er0w",
-        "B": "cmdq4nkhx00btugm571ywcj4r"
-      },
-      {
-        "A": "cmdq4y8xe01e7ugm5d6tus5di",
-        "B": "cmdq4nkhx00bvugm5fbs0mknx"
-      },
-      {
-        "A": "cmdq4yd9001jlugm59w3ibvok",
-        "B": "cmdq4nkhx00bxugm5jgp2xhfp"
-      },
-      {
-        "A": "cmdq4y8ut014hugm5amz7vw68",
-        "B": "cmdq4nkhx00brugm50wrp5cwv"
-      },
-      {
-        "A": "cmdq4yxh9023jugm56oddd2t5",
-        "B": "cmdq4nkhy00dvugm5ol3142s0"
-      },
-      {
-        "A": "cmdq4yxh9023kugm51emaex6c",
-        "B": "cmdq4nkhy00dvugm5ol3142s0"
-      },
-      {
-        "A": "cmdq4y8uc012mugm51j98zofp",
-        "B": "cmdq4nkhx00bbugm5ds5p6hny"
-      },
-      {
-        "A": "cmdq4yz8z026yugm5alzxy6ts",
-        "B": "cmdq4nkhy00ejugm5pz2t0exm"
-      }
-    ]
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "_SocialsToUrl",
-      "comment": null,
-      "columns": [
-        {
-          "schema": "public",
-          "table": "_SocialsToUrl",
-          "name": "A",
-          "ordinalPosition": 1,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "_SocialsToUrl",
-          "name": "B",
-          "ordinalPosition": 2,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "_SocialsToUrl_AB_pkey",
-        "columns": ["A", "B"]
-      },
-      "foreignKeys": [
-        {
-          "name": "_SocialsToUrl_A_fkey",
-          "columns": ["A"],
-          "referencedSchema": "public",
-          "referencedTable": "Socials",
-          "referencedColumns": ["id"],
-          "onUpdate": "CASCADE",
-          "onDelete": "CASCADE"
-        },
-        {
-          "name": "_SocialsToUrl_B_fkey",
-          "columns": ["B"],
-          "referencedSchema": "public",
-          "referencedTable": "Url",
-          "referencedColumns": ["id"],
-          "onUpdate": "CASCADE",
-          "onDelete": "CASCADE"
-        }
-      ],
-      "indexes": [
-        {
-          "name": "_SocialsToUrl_AB_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"_SocialsToUrl_AB_pkey\" ON public.\"_SocialsToUrl\" USING btree (\"A\", \"B\")"
-        },
-        {
-          "name": "_SocialsToUrl_B_index",
-          "isUnique": false,
-          "isPrimary": false,
-          "definition": "CREATE INDEX \"_SocialsToUrl_B_index\" ON public.\"_SocialsToUrl\" USING btree (\"B\")"
-        }
-      ]
-    },
-    "sampleData": []
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "_Urls",
-      "comment": null,
-      "columns": [
-        {
-          "schema": "public",
-          "table": "_Urls",
-          "name": "A",
-          "ordinalPosition": 1,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "_Urls",
-          "name": "B",
-          "ordinalPosition": 2,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "_Urls_AB_pkey",
-        "columns": ["A", "B"]
-      },
-      "foreignKeys": [
-        {
-          "name": "_Urls_A_fkey",
-          "columns": ["A"],
-          "referencedSchema": "public",
-          "referencedTable": "Url",
-          "referencedColumns": ["id"],
-          "onUpdate": "CASCADE",
-          "onDelete": "CASCADE"
-        },
-        {
-          "name": "_Urls_B_fkey",
-          "columns": ["B"],
-          "referencedSchema": "public",
-          "referencedTable": "Url",
-          "referencedColumns": ["id"],
-          "onUpdate": "CASCADE",
-          "onDelete": "CASCADE"
-        }
-      ],
-      "indexes": [
-        {
-          "name": "_Urls_AB_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX \"_Urls_AB_pkey\" ON public.\"_Urls\" USING btree (\"A\", \"B\")"
-        },
-        {
-          "name": "_Urls_B_index",
-          "isUnique": false,
-          "isPrimary": false,
-          "definition": "CREATE INDEX \"_Urls_B_index\" ON public.\"_Urls\" USING btree (\"B\")"
-        }
-      ]
-    },
-    "sampleData": [
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0001ugm5bzk6tp75"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0002ugm5rvbkgo7d"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0003ugm53zn21va5"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0004ugm5gs04en14"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0005ugm5sgrxjeq5"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0006ugm5guvyoa5a"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0007ugm5rv4ot8gv"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0008ugm5knw0d1zo"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke0009ugm56n3nxo41"
-      },
-      {
-        "A": "cmdq4k8ib00afugm5ccn2ze34",
-        "B": "cmdq4k6ke000augm5k8sza8fc"
+        "A": "n202508040002.dat",
+        "B": "cmdx5h3cg000aug6noi2mt5ku"
       }
     ]
   },
@@ -1748,103 +893,73 @@
     },
     "sampleData": [
       {
-        "id": "8bb40c2e-ff1d-4017-bafc-08bb48b3a4e7",
-        "checksum": "b8a09b09f34db0e653e540f68c41e6676ccbabd9aa81d10e7dbe3a4f09fce12e",
-        "finished_at": "2025-07-30T15:30:57.744Z",
-        "migration_name": "20250719164039_init",
+        "id": "234db680-a835-425a-8be6-6a8d492bd0e2",
+        "checksum": "6675c731d10ec16dfdf1752458eb147d6f4045e269621e8748846fba34442b6a",
+        "finished_at": "2025-08-04T13:31:08.058Z",
+        "migration_name": "20250714152401_refactor_and_new_news_article_item_table",
         "logs": null,
         "rolled_back_at": null,
-        "started_at": "2025-07-30T15:30:56.527Z",
+        "started_at": "2025-08-04T13:31:06.443Z",
         "applied_steps_count": 1
       },
       {
-        "id": "0680e4ba-9864-46c0-874b-e954bc115071",
-        "checksum": "c7a25b5643de723081ef7f08c0f552e8479e003dbcd7e8fdde1db65b973c886d",
-        "finished_at": "2025-07-30T15:30:59.297Z",
-        "migration_name": "20250720072918_connect_domain_to_url",
+        "id": "f79ace01-3ab5-44c7-99a5-2b26fad7fe8c",
+        "checksum": "1ed0a0d5a176b9c3668fc33662f19522a3815db6dbdae7daa25564a6d97667e1",
+        "finished_at": "2025-08-04T13:31:09.630Z",
+        "migration_name": "20250801074404_re_sync_migration",
         "logs": null,
         "rolled_back_at": null,
-        "started_at": "2025-07-30T15:30:58.183Z",
+        "started_at": "2025-08-04T13:31:08.502Z",
         "applied_steps_count": 1
       },
       {
-        "id": "d2be6719-4564-4e0a-b064-5ef37e15e8f6",
-        "checksum": "54be200c14be7c4251cd489e643b1d67f07899a0c1c002e427f7399b1c8aca35",
-        "finished_at": "2025-07-30T15:31:00.879Z",
-        "migration_name": "20250720100113_referer_url",
+        "id": "119cdd60-abee-4694-8f6c-da8d98161b05",
+        "checksum": "186c4d492aa1d14dfdbca07bd86ed971f76d0b3dd65f20b143da3abcbf647c4c",
+        "finished_at": "2025-08-04T13:31:11.197Z",
+        "migration_name": "20250801075032_remove_apiclientsync_table_add_last_api_card_synced_at_field_on_user",
         "logs": null,
         "rolled_back_at": null,
-        "started_at": "2025-07-30T15:30:59.741Z",
+        "started_at": "2025-08-04T13:31:10.075Z",
         "applied_steps_count": 1
       },
       {
-        "id": "2e5ff05e-1134-4496-9ef3-f329caf894d6",
-        "checksum": "67c4915d49987b8584318022edc997b7c9a6ad5d0f7c3d0127afc87f1c295d4a",
-        "finished_at": "2025-07-30T15:31:02.444Z",
-        "migration_name": "20250720100435_add_last_visited_at_field_on_url",
+        "id": "19eae1a8-4fc9-48c1-85ac-a07690c93a18",
+        "checksum": "7d73764d0d6cdd494d4b5db31266dc4966e4300fbe28d439054c60277767147c",
+        "finished_at": "2025-08-04T13:31:12.771Z",
+        "migration_name": "20250804082638_add_api_key_table",
         "logs": null,
         "rolled_back_at": null,
-        "started_at": "2025-07-30T15:31:01.323Z",
+        "started_at": "2025-08-04T13:31:11.643Z",
         "applied_steps_count": 1
       },
       {
-        "id": "3a844b56-6c4a-4b73-ad43-6d64482aaab1",
-        "checksum": "405a5c037ca32655d46a83e44545511f55fc0034eafc87185ece519e014e4c7a",
-        "finished_at": "2025-07-30T15:31:04.001Z",
-        "migration_name": "20250720100900_remove_last_updated_at_field_on_url_table",
+        "id": "e2d8847d-a802-40dd-9ddb-e6bb901e33c1",
+        "checksum": "172fcd3e29e79f6e2324f0234b655df480df6d0329471b419ae1ec82dff431ba",
+        "finished_at": "2025-08-04T13:31:14.334Z",
+        "migration_name": "20250804083505_directly_connect_idea_card_to_news_article",
         "logs": null,
         "rolled_back_at": null,
-        "started_at": "2025-07-30T15:31:02.890Z",
+        "started_at": "2025-08-04T13:31:13.214Z",
         "applied_steps_count": 1
       },
       {
-        "id": "c71e24ec-8070-4695-af3d-607ad57dc199",
-        "checksum": "50f2cad4c80d267b316ed2ccfc998be1f916c350790e9bc96f8e091ac5bbd055",
-        "finished_at": "2025-07-30T15:31:05.579Z",
-        "migration_name": "20250725125941_add_phone_number_table",
+        "id": "e3d044a1-2e26-4a7e-bc09-0294c92e8bd1",
+        "checksum": "6b6a39a119252167875d9b5caa6da05e4944a1a9e5072cc359a962d76918adb6",
+        "finished_at": "2025-08-04T13:31:15.924Z",
+        "migration_name": "20250804122804_ticker",
         "logs": null,
         "rolled_back_at": null,
-        "started_at": "2025-07-30T15:31:04.441Z",
+        "started_at": "2025-08-04T13:31:14.782Z",
         "applied_steps_count": 1
       },
       {
-        "id": "b8937776-ee9d-4d01-8d46-4cba3442999e",
-        "checksum": "3e0325c73f7af4020b5d25ac6e5f75a9cab753c3ce7e886fd9b4d1666de01188",
-        "finished_at": "2025-07-30T15:31:07.146Z",
-        "migration_name": "20250726123834_add_web_domain_id_index",
+        "id": "ee8b9a5f-567d-4745-8758-8a94950c3b7c",
+        "checksum": "26045ab1f383e44dc23da9efd9d16d74ff33f0e831bbfe0b4879323fc511bec8",
+        "finished_at": "2025-08-04T13:31:17.522Z",
+        "migration_name": "20250804130541_associated_tickersndefinedndefined",
         "logs": null,
         "rolled_back_at": null,
-        "started_at": "2025-07-30T15:31:06.028Z",
-        "applied_steps_count": 1
-      },
-      {
-        "id": "f6739386-58d2-4095-9f13-435663323d65",
-        "checksum": "defcb430329e2b648e5b6c8effd26bf2197a5993b070c682fcd825b6539e51ee",
-        "finished_at": "2025-07-30T15:31:08.708Z",
-        "migration_name": "20250728083334_add_name_on_webset_make_search_query_optional",
-        "logs": null,
-        "rolled_back_at": null,
-        "started_at": "2025-07-30T15:31:07.592Z",
-        "applied_steps_count": 1
-      },
-      {
-        "id": "eec8ddc3-0da7-4c4f-8c6e-a31d94140baa",
-        "checksum": "9b252ca66761071d1f5fca0dd6d3198ce89c041722802b5d6de17e8882842359",
-        "finished_at": "2025-07-30T15:31:10.266Z",
-        "migration_name": "20250728083555_make_webset_target_count_optional",
-        "logs": null,
-        "rolled_back_at": null,
-        "started_at": "2025-07-30T15:31:09.155Z",
-        "applied_steps_count": 1
-      },
-      {
-        "id": "63d8e247-13cf-4217-a8c3-b89bb2b8d9b2",
-        "checksum": "d428ca93939dacde3460f946bf23b0fbacb2e7f3e8551e2a473ede8ed3c5d08e",
-        "finished_at": "2025-07-30T15:31:11.831Z",
-        "migration_name": "20250728090837_original_data_in_websetrow_as_json",
-        "logs": null,
-        "rolled_back_at": null,
-        "started_at": "2025-07-30T15:31:10.715Z",
+        "started_at": "2025-08-04T13:31:16.366Z",
         "applied_steps_count": 1
       }
     ]
@@ -1852,12 +967,390 @@
   {
     "table": {
       "schema": "public",
-      "name": "account",
+      "name": "categories",
       "comment": null,
       "columns": [
         {
           "schema": "public",
-          "table": "account",
+          "table": "categories",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "nextval('categories_id_seq'::regclass)",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "categories",
+          "name": "name",
+          "ordinalPosition": 2,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 100,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "categories",
+          "name": "description",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "categories",
+          "name": "created_at",
+          "ordinalPosition": 4,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "categories",
+          "name": "updated_at",
+          "ordinalPosition": 5,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "categories_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "categories_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX categories_pkey ON public.categories USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": 1,
+        "name": "Electronics",
+        "description": "Electronic devices and accessories",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 2,
+        "name": "Books",
+        "description": "Physical and digital books",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 3,
+        "name": "Clothing",
+        "description": "Men and women apparel",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 4,
+        "name": "Home & Garden",
+        "description": "Home improvement and gardening supplies",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 5,
+        "name": "Sports",
+        "description": "Sports equipment and accessories",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "customers",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "nextval('customers_id_seq'::regclass)",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "email",
+          "ordinalPosition": 2,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 255,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "first_name",
+          "ordinalPosition": 3,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 100,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "last_name",
+          "ordinalPosition": 4,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 100,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "phone",
+          "ordinalPosition": 5,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 20,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "address",
+          "ordinalPosition": 6,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "city",
+          "ordinalPosition": 7,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 100,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "country",
+          "ordinalPosition": 8,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 100,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "postal_code",
+          "ordinalPosition": 9,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 20,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "created_at",
+          "ordinalPosition": 10,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "customers",
+          "name": "updated_at",
+          "ordinalPosition": 11,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "customers_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "customers_email_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX customers_email_key ON public.customers USING btree (email)"
+        },
+        {
+          "name": "customers_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": 1,
+        "email": "john.doe@example.com",
+        "first_name": "John",
+        "last_name": "Doe",
+        "phone": "+1234567890",
+        "address": "123 Main St",
+        "city": "New York",
+        "country": "USA",
+        "postal_code": "10001",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 2,
+        "email": "jane.smith@example.com",
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "phone": "+1234567891",
+        "address": "456 Oak Ave",
+        "city": "Los Angeles",
+        "country": "USA",
+        "postal_code": "90001",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 3,
+        "email": "bob.johnson@example.com",
+        "first_name": "Bob",
+        "last_name": "Johnson",
+        "phone": "+1234567892",
+        "address": "789 Pine Rd",
+        "city": "Chicago",
+        "country": "USA",
+        "postal_code": "60601",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 4,
+        "email": "alice.williams@example.com",
+        "first_name": "Alice",
+        "last_name": "Williams",
+        "phone": "+1234567893",
+        "address": "321 Elm St",
+        "city": "Houston",
+        "country": "USA",
+        "postal_code": "77001",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 5,
+        "email": "charlie.brown@example.com",
+        "first_name": "Charlie",
+        "last_name": "Brown",
+        "phone": "+1234567894",
+        "address": "654 Maple Dr",
+        "city": "Phoenix",
+        "country": "USA",
+        "postal_code": "85001",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_chat_followups",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_chat_followups",
           "name": "id",
           "ordinalPosition": 1,
           "dataType": "text",
@@ -1871,9 +1364,51 @@
         },
         {
           "schema": "public",
-          "table": "account",
-          "name": "createdAt",
+          "table": "kabu_chat_followups",
+          "name": "message_id",
           "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_followups",
+          "name": "followup_text",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_followups",
+          "name": "sort_order",
+          "ordinalPosition": 4,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_followups",
+          "name": "created_at",
+          "ordinalPosition": 5,
           "dataType": "timestamp without time zone",
           "udtName": "timestamp",
           "maxLength": null,
@@ -1882,172 +1417,18 @@
           "isNullable": false,
           "default": "CURRENT_TIMESTAMP",
           "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "updatedAt",
-          "ordinalPosition": 3,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "accountId",
-          "ordinalPosition": 4,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "providerId",
-          "ordinalPosition": 5,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "userId",
-          "ordinalPosition": 6,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "accessToken",
-          "ordinalPosition": 7,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "refreshToken",
-          "ordinalPosition": 8,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "idToken",
-          "ordinalPosition": 9,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "accessTokenExpiresAt",
-          "ordinalPosition": 10,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "refreshTokenExpiresAt",
-          "ordinalPosition": 11,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "scope",
-          "ordinalPosition": 12,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "account",
-          "name": "password",
-          "ordinalPosition": 13,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
         }
       ],
       "primaryKey": {
-        "name": "account_pkey",
+        "name": "kabu_chat_followups_pkey",
         "columns": ["id"]
       },
       "foreignKeys": [
         {
-          "name": "account_userId_fkey",
-          "columns": ["userId"],
+          "name": "kabu_chat_followups_message_id_fkey",
+          "columns": ["message_id"],
           "referencedSchema": "public",
-          "referencedTable": "user",
+          "referencedTable": "kabu_chat_messages",
           "referencedColumns": ["id"],
           "onUpdate": "CASCADE",
           "onDelete": "CASCADE"
@@ -2055,353 +1436,10 @@
       ],
       "indexes": [
         {
-          "name": "account_pkey",
+          "name": "kabu_chat_followups_pkey",
           "isUnique": true,
           "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX account_pkey ON public.account USING btree (id)"
-        }
-      ]
-    },
-    "sampleData": [
-      {
-        "id": "wdVFul4vQIZvKxuo9XPxACcgw1YbMTOV",
-        "createdAt": "2025-08-07T09:30:35.533Z",
-        "updatedAt": "2025-08-07T15:48:29.198Z",
-        "accountId": "100869632292512488262",
-        "providerId": "google",
-        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw",
-        "accessToken": "ya29.A0AS3H6NwUzmWVnasrGOniIbtEZojPNdPOZI6mwbxQdEGeMilPAHJuXLMDBLnUU_nMXQpTBNjPrHLol4CwghFIWFtlf7W3YFU3KnCZh0M_4d2S82pDwM2nr7mWNy2ZVMCeivXZ6pAa0Pah0LYK81rRO9SjoF88TYwgugI4Lli3rBbPewtQmOwW89kHMvjinYekrxpiEM0PaCgYKAaISARcSFQHGX2MiW0a7aujHmNxY4yYwuiRueQ0207",
-        "refreshToken": null,
-        "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJhNjNiNDM2ODM2YTkzOWI3OTViNDEyMmQzZjRkMGQyMjVkMWM3MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4ODU0MjI4OTMyMTUtaTR1M292NHZwanVta3NpMXNybjJiY2pxaHViajQ5aGQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI4ODU0MjI4OTMyMTUtaTR1M292NHZwanVta3NpMXNybjJiY2pxaHViajQ5aGQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDA4Njk2MzIyOTI1MTI0ODgyNjIiLCJlbWFpbCI6InZpa3l3ODlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJUcUNnTWNGa1VvZHNwSTNZRHBTcnlRIiwibmFtZSI6IlZpa3kgVyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NKM3VPRG5YcFRlMjZqZE50OHVQQTJKeDF4TlM1ZnVTOFh2OFpXQzVwU0pJVGRNUHBTSD1zOTYtYyIsImdpdmVuX25hbWUiOiJWaWt5IiwiZmFtaWx5X25hbWUiOiJXIiwiaWF0IjoxNzU0NTgxNzA5LCJleHAiOjE3NTQ1ODUzMDl9.vgj1llsoF_HRE7howMQIL2Q0uthiQJjKkhwy0cxFT3bklTEnT0qSda-M_e41lT6GMTL41Wol6toPcIDwsiVxnc6oVxbn68hxCZ-BJEvQrV4CoBOZLtt12EocjOgBzUPLNqwQgxr2277AwvzQxLC_X-twXNXAFknF6tE8NQ4syI46kpfF7lrmzxtMFjNNEXKTzvq0qvFfYrg1IFskhtuJ8wIZ_5YJliM9EjEKIWxPBy0gXLRGHmvPLpz4qxYP5ASD6ZKP5VrTkfJZRXVAnepH_FpJvV7IywSg2USERMnRF1VAcmdh-RYvVSqg2us0M5Sj17ex0mtGgIM8zhCyoQ2qpQ",
-        "accessTokenExpiresAt": "2025-08-07T16:48:27.169Z",
-        "refreshTokenExpiresAt": null,
-        "scope": "https://www.googleapis.com/auth/userinfo.email,openid,https://www.googleapis.com/auth/userinfo.profile",
-        "password": null
-      }
-    ]
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "apikey",
-      "comment": null,
-      "columns": [
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "id",
-          "ordinalPosition": 1,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "name",
-          "ordinalPosition": 2,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "start",
-          "ordinalPosition": 3,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "prefix",
-          "ordinalPosition": 4,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "key",
-          "ordinalPosition": 5,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "userId",
-          "ordinalPosition": 6,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "refillInterval",
-          "ordinalPosition": 7,
-          "dataType": "integer",
-          "udtName": "int4",
-          "maxLength": null,
-          "numericPrecision": 32,
-          "numericScale": 0,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "refillAmount",
-          "ordinalPosition": 8,
-          "dataType": "integer",
-          "udtName": "int4",
-          "maxLength": null,
-          "numericPrecision": 32,
-          "numericScale": 0,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "lastRefillAt",
-          "ordinalPosition": 9,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "enabled",
-          "ordinalPosition": 10,
-          "dataType": "boolean",
-          "udtName": "bool",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "rateLimitEnabled",
-          "ordinalPosition": 11,
-          "dataType": "boolean",
-          "udtName": "bool",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "rateLimitTimeWindow",
-          "ordinalPosition": 12,
-          "dataType": "integer",
-          "udtName": "int4",
-          "maxLength": null,
-          "numericPrecision": 32,
-          "numericScale": 0,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "rateLimitMax",
-          "ordinalPosition": 13,
-          "dataType": "integer",
-          "udtName": "int4",
-          "maxLength": null,
-          "numericPrecision": 32,
-          "numericScale": 0,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "requestCount",
-          "ordinalPosition": 14,
-          "dataType": "integer",
-          "udtName": "int4",
-          "maxLength": null,
-          "numericPrecision": 32,
-          "numericScale": 0,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "remaining",
-          "ordinalPosition": 15,
-          "dataType": "integer",
-          "udtName": "int4",
-          "maxLength": null,
-          "numericPrecision": 32,
-          "numericScale": 0,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "lastRequest",
-          "ordinalPosition": 16,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "expiresAt",
-          "ordinalPosition": 17,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "createdAt",
-          "ordinalPosition": 18,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "updatedAt",
-          "ordinalPosition": 19,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "permissions",
-          "ordinalPosition": 20,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "apikey",
-          "name": "metadata",
-          "ordinalPosition": 21,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "apikey_pkey",
-        "columns": ["id"]
-      },
-      "foreignKeys": [
-        {
-          "name": "apikey_userId_fkey",
-          "columns": ["userId"],
-          "referencedSchema": "public",
-          "referencedTable": "user",
-          "referencedColumns": ["id"],
-          "onUpdate": "CASCADE",
-          "onDelete": "CASCADE"
-        }
-      ],
-      "indexes": [
-        {
-          "name": "apikey_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX apikey_pkey ON public.apikey USING btree (id)"
+          "definition": "CREATE UNIQUE INDEX kabu_chat_followups_pkey ON public.kabu_chat_followups USING btree (id)"
         }
       ]
     },
@@ -2410,12 +1448,12 @@
   {
     "table": {
       "schema": "public",
-      "name": "session",
+      "name": "kabu_chat_messages",
       "comment": null,
       "columns": [
         {
           "schema": "public",
-          "table": "session",
+          "table": "kabu_chat_messages",
           "name": "id",
           "ordinalPosition": 1,
           "dataType": "text",
@@ -2429,25 +1467,25 @@
         },
         {
           "schema": "public",
-          "table": "session",
-          "name": "createdAt",
+          "table": "kabu_chat_messages",
+          "name": "session_id",
           "ordinalPosition": 2,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
+          "dataType": "text",
+          "udtName": "text",
           "maxLength": null,
           "numericPrecision": null,
           "numericScale": null,
           "isNullable": false,
-          "default": "CURRENT_TIMESTAMP",
+          "default": null,
           "comment": null
         },
         {
           "schema": "public",
-          "table": "session",
-          "name": "updatedAt",
+          "table": "kabu_chat_messages",
+          "name": "user_id",
           "ordinalPosition": 3,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
+          "dataType": "text",
+          "udtName": "text",
           "maxLength": null,
           "numericPrecision": null,
           "numericScale": null,
@@ -2457,11 +1495,11 @@
         },
         {
           "schema": "public",
-          "table": "session",
-          "name": "expiresAt",
+          "table": "kabu_chat_messages",
+          "name": "message",
           "ordinalPosition": 4,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
+          "dataType": "text",
+          "udtName": "text",
           "maxLength": null,
           "numericPrecision": null,
           "numericScale": null,
@@ -2471,8 +1509,8 @@
         },
         {
           "schema": "public",
-          "table": "session",
-          "name": "token",
+          "table": "kabu_chat_messages",
+          "name": "role",
           "ordinalPosition": 5,
           "dataType": "text",
           "udtName": "text",
@@ -2485,9 +1523,93 @@
         },
         {
           "schema": "public",
-          "table": "session",
-          "name": "ipAddress",
+          "table": "kabu_chat_messages",
+          "name": "created_at",
           "ordinalPosition": 6,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_chat_messages_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "kabu_chat_messages_session_id_fkey",
+          "columns": ["session_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_chat_sessions",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "kabu_chat_messages_user_id_fkey",
+          "columns": ["user_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_users",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "kabu_chat_messages_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_chat_messages_pkey ON public.kabu_chat_messages USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_chat_sessions",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_chat_sessions",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_sessions",
+          "name": "user_id",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_sessions",
+          "name": "title",
+          "ordinalPosition": 3,
           "dataType": "text",
           "udtName": "text",
           "maxLength": null,
@@ -2499,9 +1621,669 @@
         },
         {
           "schema": "public",
-          "table": "session",
-          "name": "userAgent",
+          "table": "kabu_chat_sessions",
+          "name": "created_at",
+          "ordinalPosition": 4,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_sessions",
+          "name": "updated_at",
+          "ordinalPosition": 5,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_sessions",
+          "name": "is_active",
+          "ordinalPosition": 6,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "true",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_chat_sessions_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "kabu_chat_sessions_user_id_fkey",
+          "columns": ["user_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_users",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "kabu_chat_sessions_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_chat_sessions_pkey ON public.kabu_chat_sessions USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_chat_stock_references",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_chat_stock_references",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_stock_references",
+          "name": "message_id",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_stock_references",
+          "name": "stock_code",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_chat_stock_references",
+          "name": "created_at",
+          "ordinalPosition": 4,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_chat_stock_references_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "kabu_chat_stock_references_message_id_fkey",
+          "columns": ["message_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_chat_messages",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "kabu_chat_stock_references_stock_code_fkey",
+          "columns": ["stock_code"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_stocks",
+          "referencedColumns": ["code"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "kabu_chat_stock_references_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_chat_stock_references_pkey ON public.kabu_chat_stock_references USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_idea_cards",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "stock_code",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "idea_text",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "summary",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "persona",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "'meister'::text",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "generation_date",
+          "ordinalPosition": 6,
+          "dataType": "date",
+          "udtName": "date",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "sort_order",
           "ordinalPosition": 7,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "related_news_count",
+          "ordinalPosition": 8,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "0",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "created_at",
+          "ordinalPosition": 9,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "updated_at",
+          "ordinalPosition": 10,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_cards",
+          "name": "newsArticleId",
+          "ordinalPosition": 11,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_idea_cards_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "kabu_idea_cards_newsArticleId_fkey",
+          "columns": ["newsArticleId"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_news_articles",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "NO ACTION"
+        },
+        {
+          "name": "kabu_idea_cards_stock_code_fkey",
+          "columns": ["stock_code"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_stocks",
+          "referencedColumns": ["code"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "kabu_idea_cards_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_idea_cards_pkey ON public.kabu_idea_cards USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": "515613b3-e873-49bb-8006-c6e35b0cfc74",
+        "stock_code": null,
+        "idea_text": "コンヴァノ<6574>が26年3月期業績を売上2.2倍・純利益12.7倍へ上方修正！LG化学とPMDA提携で医療事業加速、AIデータセンター参入の成長期待一方、株価変動リスクも留意。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "cebe6924-e778-4a62-97a2-c5ea3373be71",
+        "stock_code": null,
+        "idea_text": "ユーラシア旅行社<9376>がDOE最低10％目標＆期末配当24円に17円増額！年間31円に19円増配、ROE10％目標設定で高配当魅力。ただし旅行市況変動リスクに注意。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "3ee3135a-9dc2-4989-b6b1-0afef72b17c4",
+        "stock_code": null,
+        "idea_text": "ファンデリー<3137>がQ1で黒字転換＆上半期計画超過！MFDとCID事業で利益率改善進展。通期据え置きの慎重姿勢がリスク、回復継続性に注目。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "8316ca66-ddf8-433f-a388-3e9ffff2ab37",
+        "stock_code": null,
+        "idea_text": "システナ<2317>が通期売上・営業利益を上方修正、Q1増益も達成！生成AI活用やPMO案件拡大で高付加価値シフト推進。競争激化リスクも留意。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "7779e329-87f5-4924-be32-4357a24e6abb",
+        "stock_code": null,
+        "idea_text": "日本精鉱<5729>がQ1経常利益7.2倍・進捗率86％の驚異的進捗！アンチモン高騰恩恵を享受中だが、地金相場変動リスクに注意。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "fda055c5-2c85-46f2-acbb-bfa8ec031329",
+        "stock_code": null,
+        "idea_text": "富士電機<6504>が通期経常利益を減益→増益予想に転換、Q1は売上4.9％増。プラント・システム需要増＋原価低減効果が追い風も、為替変動リスクあり。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "63592036-1fc8-472e-ad18-35efbffd5eaa",
+        "stock_code": null,
+        "idea_text": "亀田製菓<2220>が第2四半期営業益を18.8％増に上方修正！国内米菓の収益改善や買い込み需要好調、長期保存食も伸長。ただし原料価格・関税リスクに注意。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "ed32839a-b819-4491-aa13-ded8a82798e1",
+        "stock_code": null,
+        "idea_text": "日本調剤<3341>がアドバンテッジPによるTOB（1株3,927円）を発表、TOB成立で完全子会社化の見通し。株価上振れ期待とTOB不成立リスクに留意。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "cade9984-dfdc-4388-bf72-049ff1a89fbc",
+        "stock_code": null,
+        "idea_text": "アズーム<3496>が通期最終利益を37％増に上方修正＆株式分割実施！駐車場受託台数が想定比で大幅増、需給好転の追い風と過熱感リスク。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      },
+      {
+        "id": "8eb22573-a7ba-4093-9421-54e8cd834ee3",
+        "stock_code": null,
+        "idea_text": "菱友システム<4685>がQ1売上20％増・営業益31％増！三菱重工と連携し防衛関連・生成AI案件拡大。政策依存リスクに要注意。",
+        "summary": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "persona": "meister",
+        "generation_date": "2025-08-04T00:00:00.000Z",
+        "sort_order": 1,
+        "related_news_count": 0,
+        "created_at": "2025-08-04T13:33:40.991Z",
+        "updated_at": "2025-08-04T13:33:41.441Z",
+        "newsArticleId": "n202508040002.dat"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_idea_news",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_idea_news",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_news",
+          "name": "idea_id",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_news",
+          "name": "news_id",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_idea_news",
+          "name": "created_at",
+          "ordinalPosition": 4,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_idea_news_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "kabu_idea_news_idea_id_fkey",
+          "columns": ["idea_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_idea_cards",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "kabu_idea_news_news_id_fkey",
+          "columns": ["news_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_news_articles",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "kabu_idea_news_idea_id_news_id_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX kabu_idea_news_idea_id_news_id_key ON public.kabu_idea_news USING btree (idea_id, news_id)"
+        },
+        {
+          "name": "kabu_idea_news_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_idea_news_pkey ON public.kabu_idea_news USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_news_articles",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_news_articles",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_news_articles",
+          "name": "status",
+          "ordinalPosition": 2,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_news_articles",
+          "name": "creation_time",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_news_articles",
+          "name": "revision_time",
+          "ordinalPosition": 4,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_news_articles",
+          "name": "news_type",
+          "ordinalPosition": 5,
           "dataType": "text",
           "udtName": "text",
           "maxLength": null,
@@ -2513,8 +2295,36 @@
         },
         {
           "schema": "public",
-          "table": "session",
-          "name": "userId",
+          "table": "kabu_news_articles",
+          "name": "providers",
+          "ordinalPosition": 6,
+          "dataType": "jsonb",
+          "udtName": "jsonb",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_news_articles",
+          "name": "topics",
+          "ordinalPosition": 7,
+          "dataType": "jsonb",
+          "udtName": "jsonb",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_news_articles",
+          "name": "headline",
           "ordinalPosition": 8,
           "dataType": "text",
           "udtName": "text",
@@ -2524,106 +2334,26 @@
           "isNullable": false,
           "default": null,
           "comment": null
-        }
-      ],
-      "primaryKey": {
-        "name": "session_pkey",
-        "columns": ["id"]
-      },
-      "foreignKeys": [
-        {
-          "name": "session_userId_fkey",
-          "columns": ["userId"],
-          "referencedSchema": "public",
-          "referencedTable": "user",
-          "referencedColumns": ["id"],
-          "onUpdate": "CASCADE",
-          "onDelete": "CASCADE"
-        }
-      ],
-      "indexes": [
-        {
-          "name": "session_pkey",
-          "isUnique": true,
-          "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX session_pkey ON public.session USING btree (id)"
         },
         {
-          "name": "session_token_key",
-          "isUnique": true,
-          "isPrimary": false,
-          "definition": "CREATE UNIQUE INDEX session_token_key ON public.session USING btree (token)"
-        }
-      ]
-    },
-    "sampleData": [
-      {
-        "id": "fdu7sQrXCZ1DKY4VjWgCVZRPozs2LuuX",
-        "createdAt": "2025-08-07T09:30:35.968Z",
-        "updatedAt": "2025-08-07T09:30:35.968Z",
-        "expiresAt": "2025-08-14T09:30:35.968Z",
-        "token": "tJkTZkmymTNthtWBDqopC7eAXlF8zCiU",
-        "ipAddress": "",
-        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
-        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw"
-      },
-      {
-        "id": "6aQSNL1OZsuisBeCasK0f7DvWIeAilaI",
-        "createdAt": "2025-08-07T09:46:55.663Z",
-        "updatedAt": "2025-08-07T09:46:55.663Z",
-        "expiresAt": "2025-08-14T09:46:55.663Z",
-        "token": "oJ4ZT0HUfQQw9pT74bdYmWTN1MUpaP3x",
-        "ipAddress": "",
-        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
-        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw"
-      },
-      {
-        "id": "RFpyJrZs7oGCnMlXRBkJglTDJ3YZ8x0P",
-        "createdAt": "2025-08-07T15:46:22.049Z",
-        "updatedAt": "2025-08-07T15:46:22.049Z",
-        "expiresAt": "2025-08-14T15:46:22.049Z",
-        "token": "zMGRwnLQObKKDCMIqGI4I02c6FJ3RI1e",
-        "ipAddress": "",
-        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
-        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw"
-      },
-      {
-        "id": "ZDgsnd300VQPsswDo2cWfRe2COp36cul",
-        "createdAt": "2025-08-07T15:48:29.206Z",
-        "updatedAt": "2025-08-07T15:48:29.206Z",
-        "expiresAt": "2025-08-14T15:48:29.206Z",
-        "token": "o6krObaRPFkI5WSQMC8M2epR0vfjRmJP",
-        "ipAddress": "122.52.83.33",
-        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
-        "userId": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw"
-      }
-    ]
-  },
-  {
-    "table": {
-      "schema": "public",
-      "name": "user",
-      "comment": null,
-      "columns": [
-        {
           "schema": "public",
-          "table": "user",
-          "name": "id",
-          "ordinalPosition": 1,
+          "table": "kabu_news_articles",
+          "name": "story",
+          "ordinalPosition": 9,
           "dataType": "text",
           "udtName": "text",
           "maxLength": null,
           "numericPrecision": null,
           "numericScale": null,
-          "isNullable": false,
+          "isNullable": true,
           "default": null,
           "comment": null
         },
         {
           "schema": "public",
-          "table": "user",
-          "name": "createdAt",
-          "ordinalPosition": 2,
+          "table": "kabu_news_articles",
+          "name": "created_at",
+          "ordinalPosition": 10,
           "dataType": "timestamp without time zone",
           "udtName": "timestamp",
           "maxLength": null,
@@ -2635,9 +2365,9 @@
         },
         {
           "schema": "public",
-          "table": "user",
-          "name": "updatedAt",
-          "ordinalPosition": 3,
+          "table": "kabu_news_articles",
+          "name": "updated_at",
+          "ordinalPosition": 11,
           "dataType": "timestamp without time zone",
           "udtName": "timestamp",
           "maxLength": null,
@@ -2646,105 +2376,99 @@
           "isNullable": false,
           "default": null,
           "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "user",
-          "name": "name",
-          "ordinalPosition": 4,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "user",
-          "name": "email",
-          "ordinalPosition": 5,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "user",
-          "name": "emailVerified",
-          "ordinalPosition": 6,
-          "dataType": "boolean",
-          "udtName": "bool",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": false,
-          "default": null,
-          "comment": null
-        },
-        {
-          "schema": "public",
-          "table": "user",
-          "name": "image",
-          "ordinalPosition": 7,
-          "dataType": "text",
-          "udtName": "text",
-          "maxLength": null,
-          "numericPrecision": null,
-          "numericScale": null,
-          "isNullable": true,
-          "default": null,
-          "comment": null
         }
       ],
       "primaryKey": {
-        "name": "user_pkey",
+        "name": "kabu_news_articles_pkey",
         "columns": ["id"]
       },
       "foreignKeys": [],
       "indexes": [
         {
-          "name": "user_email_key",
-          "isUnique": true,
-          "isPrimary": false,
-          "definition": "CREATE UNIQUE INDEX user_email_key ON public.\"user\" USING btree (email)"
-        },
-        {
-          "name": "user_pkey",
+          "name": "kabu_news_articles_pkey",
           "isUnique": true,
           "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX user_pkey ON public.\"user\" USING btree (id)"
+          "definition": "CREATE UNIQUE INDEX kabu_news_articles_pkey ON public.kabu_news_articles USING btree (id)"
         }
       ]
     },
     "sampleData": [
       {
-        "id": "ElZB8U0Vd3pzL6scjsV7nbeX3h101Tbw",
-        "createdAt": "2025-08-07T09:30:35.106Z",
-        "updatedAt": "2025-08-07T09:30:35.106Z",
-        "name": "Viky W",
-        "email": "vikyw89@gmail.com",
-        "emailVerified": true,
-        "image": "https://lh3.googleusercontent.com/a/ACg8ocJ3uODnXpTe26jdNt8uPA2Jx1xNS5fuS8Xv8ZWC5pSJITdMPpSH=s96-c"
+        "id": "n202508040002.dat",
+        "status": 1,
+        "creation_time": "2025-08-03T20:20:00.000Z",
+        "revision_time": "2025-08-03T20:20:00.000Z",
+        "news_type": "JP",
+        "providers": ["kabutan.jp"],
+        "topics": ["REMARKABLE_NEWS"],
+        "headline": "前週末1日に「買われた株！」総ザライ (1)　―本日につながる期待株は？―",
+        "story": "\n■コンヴァノ <6574> 　1,344円　(+300円、+28.7％) ストップ高\n\n　コンヴァノ <6574> [東証Ｇ]がストップ高。7月31日の取引終了後、26年3月期の連結業績予想について、売上高を70億円から71億6000万円（前期比2.2倍）へ、営業利益を10億円から15億2000万円（同11.3倍）へ、純利益を6億5400万円から9億9400万円（同12.7倍）へ上方修正したことが好感された。事業ポートフォリオの質的転換が進展し、高付加価値・高マージン事業の比重が想定以上に高まったことが要因としており、コンサルティング事業における高単価契約の獲得進捗や、独占輸入代理権を取得済みの高単価医療用ヒアルロン酸製剤、脂肪溶解注射製剤の取扱数の急増などが寄与する。同時に子会社シンクスヘルスケアが、韓国の大手総合化学メーカーであるＬＧ化学（ソウル市）と、医療用ヒアルロン酸製剤などに関するPMDA（医薬品医療機器総合機構）承認取得に向けた業務提携契約を締結すると発表した。医療用ヒアルロン酸製剤の日本におけるPMDAでの製造販売承認取得に向け、ＬＧ化学から包括的かつ専門的な支援を受ける体制を確立することで、承認取得プロセスの加速と承認後の迅速な上市を目指す。更に、子会社Ｃｏｎｖａｎｏ　ｃｏｎｓｕｌｔｉｎｇが新たにAIデータセンター事業を開始すると発表。AI特化型データセンターの運営と、他社が新設するAIデータセンターに対する運営コンサルティングという2本柱のビジネスモデルを構築する。\n\n■ユーラシア <9376> 　614円　(+100円、+19.5％) ストップ高\n\n　ユーラシア旅行社 <9376> [東証Ｓ]がストップ高。同社は7月31日の取引終了後、25年9月期第3四半期累計（24年10月-25年6月）の連結決算発表にあわせ、株主資本配当率（DOE）を最低10％とする新たな目標を設定したと公表。これに伴い、25年9月期の期末配当予想を従来の7円から24円に17円増額修正した。年間配当予想は31円（前期比19円増配）となる。高配当利回りに着目した買いが集まったようだ。29年9月期にROE（自己資本利益率）を10％以上となる目標も掲げた。第3四半期累計の売上高は前年同期比5.3％増の34億2900万円、営業利益は同72.3％増の5200万円だった。\n\n■ファンデリー <3137> 　513円　(+80円、+18.5％) ストップ高\n\n　ファンデリー <3137> [東証Ｇ]がストップ高。同社は7月31日取引終了後、26年3月期第1四半期（4-6月）の単独決算を発表。営業損益は400万円の黒字（前年同期は4800万円の赤字）となり、上半期計画（700万円の赤字）を超過した。売上高は前年同期比6.5％増の6億2200万円で着地。MFD（メディカル・フード・デリバリー）事業で売り上げ回復と利益率の改善が進んだほか、CID（クッキング・イミディエイトリー・デリバリー）事業の生産効率が向上したことなどが寄与した。なお、上半期及び通期の業績予想については従来計画を据え置いている。\n\n■システナ <2317> 　476円　(+73円、+18.1％)\n\n　東証プライムの上昇率トップ。システナ <2317> [東証Ｐ]が3日続急騰。7月31日の取引終了後、26年3月期の連結業績予想について、売上高を891億円から896億円（前期比7.2％増）へ、営業利益を127億円から135億円（同11.9％増）へ、純利益を88億5000万円から94億円（同10.8％増）へ上方修正したことが好感された。ソフトウェア開発ビジネスにおける生成AIの活用や企業のDX推進支援、高度なプロジェクト管理能力が求められるPMO（プロジェクトマネジメントオフィス）案件などの付加価値の高いビジネスの拡大を推進し、成長事業へ経営資源をシフトしたことで契約単価が上昇したことなどが寄与する。なお、同時に発表した第1四半期（4-6月）決算は、売上高225億5300万円（前年同期比14.2％増）、営業利益35億1600万円（同33.0％増）、純利益25億8900万円（同42.5％増）となった。\n\n■日精鉱 <5729> 　7,440円　(+1,000円、+15.5％) ストップ高\n\n　日本精鉱 <5729> [東証Ｓ]がストップ高。同社は1日午後1時、26年3月期第1四半期（4-6月）の連結決算を発表。売上高は前年同期比2.2倍の107億9300万円、経常利益は同7.2倍の28億3900万円となった。大幅な増収増益となったほか、経常利益の通期計画に対する進捗率は第1四半期ながら86％に上り、これらを好感した買いが入ったようだ。同社は三酸化アンチモンを主力とする。アンチモン事業では、中国などからのOEM調達が困難となるなかで製造業全般の生産がやや軟調に推移し、販売数量は減少した。一方で、原材料のアンチモン地金の国際相場は中国での鉱石不足や環境監査の影響による地金生産の減少と、太陽光パネル向けの需要拡大を背景とする需給のひっ迫化、中国当局による輸出規制などを背景に高騰。前四半期との比較では相場の上昇幅は緩やかになったものの、日本精鉱にとっては販売価格の上昇効果をもたらし、収益を大きく押し上げる要因となった。\n\n■富士電機 <6504> 　8,652円　(+1,075円、+14.2％)\n\n　東証プライムの上昇率2位。富士電機 <6504> [東証Ｐ]が急反騰。同社は7月31日の取引終了後、26年3月期第1四半期（4-6月期）の連結決算にあわせて、26年3月期通期業績予想の上方修正を発表した。売上高を1兆1400億円から1兆1550億円（前期比2.8％増）に、経常利益を1165億円から1225億円（同3.2％増）に引き上げた。経常利益は減益予想から一転増益を計画する形となり、好感されたようだ。4-6月期は売上高が前年同期比4.9％増の2479億1600万円、経常利益は同5.1％減の173億2400万円だった。プラント、システムの両事業の需要増加に加え、製品販売価格の値上げや原価低減の推進などが奏功し、営業利益段階では増益につなげた。\n\n■亀田製菓 <2220> 　4,565円　(+520円、+12.9％)\n\n　東証プライムの上昇率3位。亀田製菓 <2220> [東証Ｐ]が急反騰。同社は1日午後1時30分ごろ、26年3月期第2四半期累計（4-9月）の連結業績予想を修正。営業利益の見通しは従来の15億円から21億円（前年同期比18.8％増）に引き上げた。売上高予想も645億円から650億円（同33.9％増）に上方修正。国内米菓事業の収益性改善に向けた取り組みの成果や価格改定前の買い込み需要に加え、食品事業における長期保存食の需要が好調に推移したことなどを背景に、第1四半期業績が好調だったことを踏まえて第2四半期予想を見直したという。なお、通期業績予想については原料米価格の動向や米国の追加関税への対応など先行きが不透明なことから従来見通しを据え置いている。\n\n■日本調剤 <3341> 　3,915円　(+400円、+11.4％)\n\n　東証プライムの上昇率4位。日本調剤 <3341> [東証Ｐ]が急反騰。7月31日の取引終了後、投資ファンドのアドバンテッジパートナーズ（東京都港区）が日本調剤の完全子会社化を目的にTOB（株式公開買い付け）を実施すると発表した。日本調剤の株価はTOB価格の1株3927円にサヤ寄せをする動きとなった。買付予定数の下限は1407万8200株（所有割合46.95％）で、上限は設定しない。買付期間は8月1日から9月16日を予定している。TOBが成立した場合、所定の手続きを経て、日本調剤株は上場廃止となる見通し。日本調剤は賛同の意見を表明し、株主に応募を推奨した。ファンド傘下で事業の競争力強化を図る。東京証券取引所は同社株を7月31日付で監理銘柄（確認中）に指定している。\n\n■アズーム <3496> 　9,400円　(+920円、+10.9％)\n\n　東証プライムの上昇率5位。アズーム <3496> [東証Ｐ]が3日続急騰。同社は遊休不動産活用ビジネスを展開している。具体的には月極駐車場のサブリースを主力に月極駐車場の紹介サイトなどを手掛けるニッチなビジネスモデルだが、業績は目を見張る高成長路線をまい進中だ。足もとで駐車場はフル稼働に近い状況が続いており、トップライン及び利益を押し上げている。そうしたなか、7月31日取引終了後に25年9月期の通期業績予想の修正を発表しており、最終利益は従来予想の16億1900万円から17億7000万円（前期比37％増）に増額された。新規駐車場受託台数が期初計画を大幅に上回るペースで推移しており、会社側の想定から上振れる見込み。更に9月末現在の株主を対象に1株を2株にする株式分割を実施することも併せて発表しており、これが投資マネーの攻勢を誘う格好となった。\n\n■菱友システム <4685> 　7,490円　(+730円、+10.8％)\n\n　菱友システムズ <4685> [東証Ｓ]が3日続急騰。カイ気配スタートで280円高の7040円で寄り付いた後、全般リスクオフ相場に流され値を消す場面もあったが、押し目を買い直され切り返した。製造業を中心にITソリューションを提供しており、筆頭株主で主要顧客でもある三菱重工業 <7011> [東証Ｐ]を通じて防衛関連分野で活躍機会を高めている。同社が7月31日に開示した25年4-6月期決算は売上高が前年同期比20％増の101億5500万円、営業利益が同31％増の8億7800万円と大幅増収増益を達成した。生成AI関連市場の拡大を背景に収益機会が高まっており、システム開発や解析・設計関連などを中心に需要獲得が進んだ。また、同日に9月末現在の株主を対象に1株を2株にする株式分割を実施することも併せて発表している。\n\n■ナブテスコ <6268> 　3,103円　(+302.5円、+10.8％)\n\n　東証プライムの上昇率6位。ナブテスコ <6268> [東証Ｐ]が3日ぶり急反騰。7月31日の取引終了後、25年12月期の連結業績予想について、売上高を3360億円から3440億円（前期比6.4％増）へ、営業利益を187億円から223億円（同50.8％増）へ、純利益を131億円から146億円（同44.3％増）へ上方修正したことが好感された。上期において、自動ドア事業で国内の建物用ドア及びプラットホームドアの需要や、精密減速機事業における中国向けの産業用ロボットの需要が堅調に推移。また、鉄道車両用機器事業、舶用機器事業の需要が増加していることや、円安による為替効果などが売上高・利益を押し上げる。なお、6月中間期決算は、売上高1656億1600万円（前年同期比8.6％増）、営業利益106億500万円（同65.0％増）、純利益65億1300万円（同54.9％増）だった。また、上限を400万株（自己株式を除く発行済み株数の3.32％）、または100億円とする自社株買いを実施するとあわせて発表しており、これも好材料視された。取得期間は8月1日から12月30日まで、取得した自社株はすべて消却する。同時に、油圧機器事業を会社分割により新会社に集約させたうえで、同新会社の株式の70％をイタリアのカマー・インダストリーズ社に譲渡すると発表した。同事業は中国ローカルの油圧機器メーカーの台頭や建設機械メーカーの内製化により厳しい競争環境が続いており、カマー社とパートナーとなることで、相互補完的な販売網を活用した新たな市場機会の獲得や製品ラインアップの補完による提案力の強化を図るのが狙いとしている。\n\n■コナミＧ <9766> 　22,580円　(+2,060円、+10.0％)\n\n　東証プライムの上昇率7位。コナミグループ <9766> [東証Ｐ]が続急騰。同社は7月31日の取引終了後、26年3月期第1四半期（4-6月）の連結決算を発表した。売上高が前年同期比7.7％増の969億6400万円、最終利益が同3.5％増の198億3400万円となった。最終利益の通期計画（750億円）に対する進捗率は26.4％と順調で、評価されたようだ。ゲームを展開する主力のデジタルエンタテインメント事業では「eFootball」が引き続き好調に推移し、2ケタの増収増益となった。カジノ関連機器を手掛けるゲーミング＆システム事業は米国の関税措置を受けた出荷計画の見直しによる影響が出て減収・営業赤字となったが、全体では最終増益を確保した。なお同社は8月1日、「桃太郎電鉄」シリーズの最新作「桃太郎電鉄2 ～あなたの町も きっとある～」を、「Nintendo Switch2（ニンテンドースイッチ・ツー）」などに向けて11月13日に発売すると発表している。\n\n■スペース <9622> 　1,309円　(+110円、+9.2％)\n\n　東証プライムの上昇率8位。スペース <9622> [東証Ｐ]が3日続急伸。7月31日の取引終了後、25年12月期の連結業績予想について、売上高を618億円から655億円（前期比2.0％増）へ、営業利益を35億8000万円から41億円（同18.4％増）へ、純利益を25億6000万円から28億円（同10.0％増）へ上方修正し、あわせて期末配当予想を27円から33円へ引き上げ年間配当予想を60円（前期54円）としたことが好感された。顧客企業の投資意欲の高まりによる新装・改装需要が堅調に推移し、各種専門店分野や飲食店分野が伸長したことが要因としている。\n\n■テレ東ＨＤ <9413> 　3,975円　(+290円、+7.9％)\n\n　東証プライムの上昇率10位。テレビ東京ホールディングス <9413> [東証Ｐ]が3日続急伸。同社は7月31日の取引終了後、26年3月期第1四半期（4-6月）の連結決算発表にあわせて、通期業績予想を上方修正した。売上高を1570億円から1590億円（前期比2.0％増）、営業利益を80億円から90億円（同15.5％増）に引き上げており、業況を評価した買いが集まった。放送事業では企業によるCM出稿が堅調に推移しており、アニメ事業は「NARUTO」や「BORUTO」といった有力IPの海外におけるゲーム化、商品化による権利収入が伸びているという。配信事業も新作ドラマの広告付き無料動画配信や国内配信権販売が好調であり、当初想定を上回る収益となっていると指摘。第2四半期（7-9月）以降の業績見通しを踏まえ通期の予想を修正した。4-6月期の売上高は前年同期比10.5％増の395億3600万円、営業利益は同2.9倍の32億7100万円となった。\n\n■島精機 <6222> 　1,146円　(+82円、+7.7％)\n\n　島精機製作所 <6222> [東証Ｐ]が続急伸。7月31日の取引終了後に発表した第1四半期（4-6月）連結決算が、売上高105億1900万円（前年同期比30.5％増）、営業利益3億700万円（前年同期4億9300万円の赤字）、最終利益9億700万円（同3億8000万円の赤字）となり、各利益の黒字転換を好感した買いが入った。主力の横編機事業で、昨年7月に大規模な反政府デモにより生産活動が停滞していたバングラデシュが回復傾向に向かっているほか、中国市場で香港系大手顧客による設備更新需要が堅調に推移していることが売り上げ増に貢献。また、イタリア市場において、主に高級ブランド及びそのサプライヤーを中心に景気回復の兆候が見られることも販売台数の増加につながった。また、工場操業度の向上やコスト管理の厳格化なども寄与した。なお、26年3月期通期業績予想は、売上高445億円（前期比36.8％増）、営業利益15億円（前期119億1400万円の赤字）、最終利益20億円（同142億7500万円の赤字）の従来見通しを据え置いている。\n\n■ガイシ <5333> 　2,055.5円　(+138.5円、+7.2％)\n\n　日本ガイシ <5333> [東証Ｐ]が3日続急伸。7月31日の取引終了後に発表した第1四半期（4-6月）連結決算が、売上高1664億5800万円（前年同期比9.1％増）、営業利益237億8100万円（同34.7％増）、純利益178億9900万円（同63.2％増）と大幅増益で着地したことが好感された。自動車関連製品は概ね横ばいだったものの、産業プロセス事業が工事案件の売り上げを計上したほか、デジタルソサエティ事業でAI用途の半導体需要の好調を背景に半導体製造装置用製品の出荷が増加したことが貢献。また、エネルギー＆インダストリー事業のエナジーストレージで国内蓄電所向けにNAS電池を販売し、同事業の損益が改善したことも寄与した。なお、26年3月期通期業績予想は、売上高6300億円（前期比1.7％増）、営業利益750億円（同7.7％減）、純利益550億円（同0.1％増）の従来見通しを据え置いている。同時に、上限を800万株（自己株式を除く発行済み株数の2.73％）、または150億円とする自社株買いを実施すると発表しており、これも好材料視された。取得期間は8月1日から12月23日までで、取得した自社株はすべて消却する。\n\n■マックス <6454> 　5,410円　(+350円、+6.9％)\n\n　マックス <6454> [東証Ｐ]が続急伸。7月31日の取引終了後、26年3月期の連結業績予想について、売上高を941億円から952億円（前期比3.7％増）へ、営業利益を147億円から157億円（同8.5％増）へ、純利益を113億円から118億円（同5.1％増）へ上方修正したことが好感された。同時に発表した第1四半期（4-6月）決算が好調に推移したことが要因としている。その第1四半期決算は、売上高242億4000万円（前年同期比7.3％増）、営業利益48億9400万円（同22.7％増）、純利益35億9500万円（同7.6％増）となり、第1四半期として過去最高を更新した。新製品の拡販効果もあって、鉄筋結束機「ツインタイア」を含むコンクリート構造物向け工具の売上高が伸長するなどインダストリアル機器部門が牽引役となった。また、上限を100万株（自己株式を除く発行済み株数の2.18％）、または55億円とする自社株買いを実施するとあわせて発表しており、これも好材料視された。取得期間は8月1日から12月31日までで、うち42万8500株を21億6800万円で、8月1日朝の東京証券取引所の自己株式立会外買付取引（ToSTNeT-3）による買い付けで取得した。\n\n※1日の上昇率が大きかった銘柄を株価変動要因となった材料とともに抜粋。\n\n株探ニュース\n",
+        "created_at": "2025-08-04T13:32:43.676Z",
+        "updated_at": "2025-08-04T13:32:43.676Z"
+      },
+      {
+        "id": "n202508040003.dat",
+        "status": 1,
+        "creation_time": "2025-08-03T20:30:00.000Z",
+        "revision_time": "2025-08-03T20:30:00.000Z",
+        "news_type": "JP",
+        "providers": ["kabutan.jp"],
+        "topics": ["REMARKABLE_NEWS"],
+        "headline": "前週末1日に「買われた株！」総ザライ (2)　―本日につながる期待株は？―",
+        "story": "\n■ＪＴ <2914> 　4,585円　(+267円、+6.2％)\n\n　日本たばこ産業 <2914> [東証Ｐ]が3日続急伸。7月31日取引終了後、25年12月期連結業績予想について売上高を3兆2730億円から3兆3440億円（前期比6.2％増）へ、営業利益を6710億円から7390億円（同2.3倍）へ上方修正すると発表。あわせて配当予想を194円から208円（前期194円）へ増額しており、好感した買いが入った。足もとの状況を織り込んだ。同時に発表した1-6月期決算は売上高が1兆7345億円（前年同期比10.5％増）、営業利益が4798億7100万円（同10.9％増）だった。たばこ事業の好調とM＆A効果が寄与。塩野義製薬 <4507> [東証Ｐ]への医薬事業譲渡に伴う減損損失の計上などがあったものの、これを吸収する形となった。\n\n■ヤマタネ <9305> 　2,742円　(+155円、+6.0％)\n\n　ヤマタネ <9305> [東証Ｐ]が4日続急伸。同社は1日午後1時20分、26年3月期第1四半期（4-6月）の連結決算にあわせ、通期業績予想の上方修正を発表。売上高は従来予想の870億5000万円から888億7000万円（前期比9.8％増）、経常利益は35億4000万円から53億円（同45.2％増）に引き上げた。経常利益の予想が減益から一転して増益となり、材料視した買いが集まった。4-6月期はコメ卸売販売業において需給の逼迫に伴う販売単価の上昇が想定以上に継続するなか、価格転嫁を進めたことや、海外引っ越しを中心に国際物流事業が好調に推移したことなどにより、売上高及び各利益が計画を大きく上回った。第2四半期も堅調な推移が見込まれることから、中間期及び通期の業績予想を上方修正した。なお、第3四半期以降はおおむね計画通り推移するとみている。4-6月期の売上高は221億3100万円（前年同期比18.6％増）、経常利益は21億6100万円（同3.6倍）だった。\n\n■日テレＨＤ <9404> 　3,484円　(+193円、+5.9％)\n\n　日本テレビホールディングス <9404> [東証Ｐ]が4日続急伸。同社は7月31日取引終了後、26年3月期第1四半期（4-6月）の連結決算を発表。営業利益は前年同期比52.8％増の174億7500万円となり、通期計画の550億円に対する進捗率は31.8％となった。売上高は同8.1％増の1146億4900万円で着地。スポット収入やデジタル広告収入が好調だったほか、子会社のコンテンツ制作収入や興行収入が伸びたことなどが寄与した。なお、通期業績予想については従来計画を据え置いている。\n\n■住石ＨＤ <1514> 　662円　(+36円、+5.8％)\n\n　住石ホールディングス <1514> [東証Ｓ]が急反発。同社は7月31日の取引終了後、26年3月期第1四半期（4-6月）の連結決算を発表した。営業損益は2100万円の黒字（前年同期は7200万円の赤字）に転換しており、好感した買いが進んだ。最終損益は600万円の赤字（同9200万円の赤字）と赤字幅を縮小した。主力の石炭事業は市況が弱含むなか、販売の前倒しや新規拡販などにより増収増益となった。\n\n■阪急阪神 <9042> 　4,160円　(+224円、+5.7％)\n\n　阪急阪神ホールディングス <9042> [東証Ｐ]が3日続急伸。同社は7月31日取引終了後、26年3月期通期の連結業績予想を修正。営業利益の見通しは従来の1164億円から1224億円（前期比10.4％増）に引き上げた。営業収益予想も1兆1900億円から1兆2000億円（同8.4％増）に上方修正。阪急線及び阪神線の旅客数や自動車事業の運送収入が当初の想定を上回って推移しているほか、ホテル事業の宿泊部門の好調、プロ野球関連の興行収入やグッズ販売の伸長などが主な要因だとしている。\n\n■インフォＭＴ <2492> 　440円　(+21円、+5.0％)\n\n　インフォマート <2492> [東証Ｐ]が急伸。同社は7月31日大引け後(15:30)に決算を発表、25年12月期第2四半期累計(1-6月)の連結経常利益は前年同期比4.6倍の14.1億円に急拡大し、通期計画の22.8億円に対する進捗率は61.9％に達し、5年平均の57.2％も上回ったことで好感されたようだ。\n\n■アルファＰ <9467> 　1,491円　(+71円、+5.0％)\n\n　アルファポリス <9467> [東証Ｇ]が続急伸。7月31日の取引終了後、アニメ制作会社のＷＨＩＴＥ　ＦＯＸ（東京都杉並区）の全株式を同日付で取得し子会社化したと発表しており、これを好感した買いが入った。ＷＨＩＴＥ　ＦＯＸは「Re：ゼロから始める異世界生活」などのヒット作品を手掛けるアニメ制作スタジオ。今回の子会社化によりアルファPは、グループ内で映像制作を行う体制が構築され、保有するIPを高度な制作技術で映像化することが可能になり、IPのアニメ化の加速により、中期重点戦略である「アニメビジネスの拡大」の実現に寄与すると期待されている。取得価額は非開示。なお、26年3月期業績への影響は精査中としている。\n\n■三菱電 <6503> 　3,496円　(+154円、+4.6％)\n\n　三菱電機 <6503> [東証Ｐ]が大幅高で3日続伸。一時10.6％高の3696円まで値を飛ばす場面があった。同社が7月31日取引終了後に発表した26年3月期第1四半期（25年4-6月）決算は営業利益が前年同期比91％増の1119億7200万円と急拡大した。ファクトリーオートメーション（FA）関連部門が好調で収益押し上げに貢献した。インフラ関連ではデータセンター向け無停電電源装置（UPS）など社会システムも堅調だった。好調な業績を評価する買いを引き寄せており、株価はマドを開けて買われる展開となっている。\n\n■持田薬 <4534> 　3,230円　(+135円、+4.4％)\n\n　持田製薬 <4534> [東証Ｐ]が大幅続伸。1日午後2時ごろに発表した第1四半期（4-6月）連結決算が、売上高266億3100万円（前年同期比4.8％増）、営業利益25億7200万円（同17.5％増）、純利益18億9400万円（同21.8％増）と2ケタ増益となったことが好感された。主力の医薬品関連事業は、薬価改定や昨年10月に導入された長期収載品（先発医薬品）の選定療養の影響を受けたものの、潰瘍性大腸炎治療剤「リアルダ」、慢性便秘症治療剤「グーフィス」「モビコール」、肺動脈性肺高血圧症・間質性肺疾患に伴う肺高血圧症治療剤「トレプロスト」、痛風・高尿酸血症治療剤「ユリス」、及び潰瘍性大腸炎・クローン病治療剤「オンボー」などの新薬が牽引役となり伸長。同事業の売上高増加に伴う売上総利益の増加が利益を押し上げた。なお、26年3月期通期業績予想は、売上高1105億円（前期比5.1％増）、営業利益70億円（同13.9％減）、純利益54億円（同5.0％減）の従来見通しを据え置いている。\n\n■コニカミノル <4902> 　511.6円　(+20.7円、+4.2％)\n\n　コニカミノルタ <4902> [東証Ｐ]が大幅続伸。7月31日取引終了後に4-6月期連結決算を発表し、売上高は2512億400万円（前年同期比8.2％減）、営業損益は100億6200万円の黒字（前年同期18億2000万円の赤字）に転換して着地した。為替レートが対前年同期比で円高になったことや事業の選択と集中を行った影響で減収に。一方、損益面では構造改革による販管費減や利益率の改善が寄与した。なお、米相互関税について会社側では価格対応や製品構成、販売地域などの最適化と経費の追加削減などにより、第1四半期において影響は軽微だったとしている。\n\n■ＪＲ東日本 <9020> 　3,344円　(+126円、+3.9％)\n\n　東日本旅客鉄道 <9020> [東証Ｐ]が大幅高で3日続伸。同社は1日、昨年12月6日に申請した運賃改定について、国土交通大臣に認可されたと発表。収益押し上げ効果を期待した買いを誘ったようだ。改定率は合計7.1％。定期外は7.8％で、通勤定期は12.0％、通学定期は4.9％となる。来年3月に実施する予定という。\n\n■シーイーシー <9692> 　2,325円　(+86円、+3.8％)\n\n　シーイーシー <9692> [東証Ｐ]が大幅続伸。5日移動平均線を足場に大陽線を形成し上値指向を鮮明としている。独立系のシステムインテグレーターで業績は順調に拡大路線を進み、26年1月期で4期連続の増収増益を見込んでいる。データセンター事業は2000年から展開するなど業界でも先駆者的なポジションにある。今年2月からは、メガクラウドに直接接続でき災害にも強い「ハイブリッドクラウドセンター」と利便性の高い都市型データセンターである「東京第三データセンター」を順次開設している。生成AI市場の拡大でデータセンター関連株全般に投資マネーが食指を動かしており、同社株にも波状的な資金が流入しここにきてジリ高歩調を続けている。指標面ではPERなどから割高感に乏しいほか、株式需給面では信用買い残が枯れた状態で上値が軽い。\n\n■北海電 <9509> 　938.1円　(+31.2円、+3.4％)\n\n　北海道電力 <9509> [東証Ｐ]が大幅反発。同社は7月31日の取引終了後、26年3月期第1四半期（4-6月）の連結決算を発表。売上高が前年同期比微減の2024億9700万円、経常利益が同25.6％増の416億5800万円、最終利益が同1.5％減の307億7500万円だった。最終利益は通期計画（260億円）を超過した。 決算内容を評価した買いが集まったようだ。4-6月期の売上高は他社販売電力量が増えた一方、小売販売電力量が減って横ばい。燃料価格などの低下に伴う燃料費等調整制度の期ずれ差益の拡大や水力発電量の増加に伴う燃料費の減少などが経常利益を押し上げた。一方、最終利益は核燃料売却益の減少が響き減益での着地となった。 北海電はあわせて通期業績予想の修正を発表。売上高を前期比4.3％減の8630億円（従来予想は8980億円）に引き下げた一方、各利益は据え置いた。卸電力市場価格の低下に伴う他社販売電力料の減少による影響を織り込んだ。\n\n■太陽ＨＤ <4626> 　6,840円　(+210円、+3.2％)\n\n　太陽ホールディングス <4626> [東証Ｐ]が大幅高で3日続伸。1日正午ごろに26年3月期連結業績予想について、売上高を1234億円から1257億円（前期比5.6％増）へ、営業利益を233億円から247億円（同11.9％増）へ引き上げたことが好感された。リジッド基板用部材の中国向け製品の需要が想定を上回ったことで、第1四半期のエレクトロニクス事業の業績が計画を上回ったことが要因。なお、第1四半期に特別損失として計上したコーポレートアクション費用の発生が第2四半期以降も見込まれることを考慮し、最終利益は160億円（同48.4％増）の従来見通しを据え置いている。同時に発表した第1四半期（4-6月）決算は、売上高331億7900万円（前年同期比7.5％増）、営業利益70億5500万円（同11.0％増）、純利益46億3600万円（同0.7％増）だった。エレクトロニクス事業で、リジッド基板やPKG基板用部材の販売数量が増加したほか、医薬事業の製造受託事業で顧客からの受託数量が拡大したことが牽引した。\n\n■ジョイ本田 <3191> 　2,146円　(+58円、+2.8％)\n\n　ジョイフル本田 <3191> [東証Ｐ]が5日続伸。同社は1日午後3時、25年6月期の単独決算発表にあわせ、配当方針の変更を発表。これまではDOE（株主資本配当率）2.5％を目安としていたが、「4.0％以上」に見直した。これに伴い、26年6月期の年間配当予想を前期比20円増配の84円に設定しており、好感されたようだ。26年6月期の売上高は前期比3.1％増の1330億円、最終利益は同5.7％減の78億5000万円を見込む。同社は中期経営計画も公表。28年6月期の売上高を1500億-1600億円、ROE（自己資本利益率）を8.0％以上とする目標を掲げた。このほか、ホームセンター事業の本田（茨城県土浦市）の子会社化も発表している。\n\n※1日の上昇率が大きかった銘柄を株価変動要因となった材料とともに抜粋。\n\n株探ニュース\n",
+        "created_at": "2025-08-04T13:32:46.799Z",
+        "updated_at": "2025-08-04T13:32:46.799Z"
+      },
+      {
+        "id": "n202508040004.dat",
+        "status": 1,
+        "creation_time": "2025-08-03T20:40:00.000Z",
+        "revision_time": "2025-08-03T20:40:01.000Z",
+        "news_type": "JP",
+        "providers": ["kabutan.jp"],
+        "topics": ["REMARKABLE_NEWS"],
+        "headline": "本日の【信用規制・解除】銘柄 (1日大引け後 発表分)",
+        "story": "\n○フロンテオ <2158> [東証Ｇ]\n東証と日証金が4日売買分から信用取引に関する臨時措置を実施する。東証は委託保証金率を現行の30％以上→50％以上(うち現金を20％以上)に、日証金も同様に貸借取引自己取引分などの増担保金徴収率を現行の30％→50％(うち現金を20％)とする。\n\n[2025年8月4日]\n\n株探ニュース\n",
+        "created_at": "2025-08-04T13:33:35.095Z",
+        "updated_at": "2025-08-04T13:33:35.095Z"
+      },
+      {
+        "id": "n202508040005.dat",
+        "status": 1,
+        "creation_time": "2025-08-03T20:50:00.000Z",
+        "revision_time": "2025-08-03T20:50:01.000Z",
+        "news_type": "JP",
+        "providers": ["kabutan.jp"],
+        "topics": ["REMARKABLE_NEWS"],
+        "headline": "本日注視すべき【増資・売り出し】銘柄　(1日大引け後 発表分)",
+        "story": "\n○ジェリビンズ <3070> [東証Ｇ]\n須田忠雄氏他10先を割当先とする3115万7400株の第三者割当増資を実施する。発行価格は95円。\n\n[2025年8月4日]\n\n株探ニュース\n",
+        "created_at": "2025-08-04T13:34:35.325Z",
+        "updated_at": "2025-08-04T13:34:35.325Z"
+      },
+      {
+        "id": "n202508040006.dat",
+        "status": 1,
+        "creation_time": "2025-08-03T20:55:00.000Z",
+        "revision_time": "2025-08-03T20:55:01.000Z",
+        "news_type": "JP",
+        "providers": ["kabutan.jp"],
+        "topics": ["REMARKABLE_NEWS"],
+        "headline": "本日注目の【株式分割】銘柄　(1日大引け後 発表分)",
+        "story": "\n●日本製鉄 <5401> [東証Ｐ]\n9月30日現在の株主を対象に1→5の株式分割を実施。最低投資金額は現在の5分の1に低下する。\n\n●アルゴグラフ <7595> [東証Ｐ]\n9月30日現在の株主を対象に1→4の株式分割を実施。最低投資金額は現在の4分の1に低下する。\n\n［2025年8月4日］\n\n株探ニュース\n",
+        "created_at": "2025-08-04T13:35:35.791Z",
+        "updated_at": "2025-08-04T13:35:35.791Z"
       }
     ]
   },
   {
     "table": {
       "schema": "public",
-      "name": "verification",
+      "name": "kabu_refresh_tokens",
       "comment": null,
       "columns": [
         {
           "schema": "public",
-          "table": "verification",
+          "table": "kabu_refresh_tokens",
           "name": "id",
           "ordinalPosition": 1,
           "dataType": "text",
@@ -2758,23 +2482,472 @@
         },
         {
           "schema": "public",
-          "table": "verification",
-          "name": "createdAt",
+          "table": "kabu_refresh_tokens",
+          "name": "token",
           "ordinalPosition": 2,
-          "dataType": "timestamp without time zone",
-          "udtName": "timestamp",
+          "dataType": "text",
+          "udtName": "text",
           "maxLength": null,
           "numericPrecision": null,
           "numericScale": null,
-          "isNullable": true,
+          "isNullable": false,
           "default": null,
           "comment": null
         },
         {
           "schema": "public",
-          "table": "verification",
-          "name": "updatedAt",
+          "table": "kabu_refresh_tokens",
+          "name": "user_id",
           "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_refresh_tokens",
+          "name": "expires_at",
+          "ordinalPosition": 4,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_refresh_tokens",
+          "name": "created_at",
+          "ordinalPosition": 5,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_refresh_tokens",
+          "name": "revoked",
+          "ordinalPosition": 6,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "false",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_refresh_tokens_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "kabu_refresh_tokens_user_id_fkey",
+          "columns": ["user_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_users",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "kabu_refresh_tokens_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_refresh_tokens_pkey ON public.kabu_refresh_tokens USING btree (id)"
+        },
+        {
+          "name": "kabu_refresh_tokens_token_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX kabu_refresh_tokens_token_key ON public.kabu_refresh_tokens USING btree (token)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_stocks",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_stocks",
+          "name": "code",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_stocks",
+          "name": "name",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_stocks",
+          "name": "exchange",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_stocks",
+          "name": "sector",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_stocks",
+          "name": "industry",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_stocks",
+          "name": "created_at",
+          "ordinalPosition": 6,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_stocks",
+          "name": "updated_at",
+          "ordinalPosition": 7,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_stocks_pkey",
+        "columns": ["code"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "kabu_stocks_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_stocks_pkey ON public.kabu_stocks USING btree (code)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_subscription_plans",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "name",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "description",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "price",
+          "ordinalPosition": 4,
+          "dataType": "numeric",
+          "udtName": "numeric",
+          "maxLength": null,
+          "numericPrecision": 65,
+          "numericScale": 30,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "currency",
+          "ordinalPosition": 5,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "'JPY'::text",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "interval",
+          "ordinalPosition": 6,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "features",
+          "ordinalPosition": 7,
+          "dataType": "jsonb",
+          "udtName": "jsonb",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "is_active",
+          "ordinalPosition": 8,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "true",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "created_at",
+          "ordinalPosition": 9,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_subscription_plans",
+          "name": "updated_at",
+          "ordinalPosition": 10,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_subscription_plans_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "kabu_subscription_plans_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_subscription_plans_pkey ON public.kabu_subscription_plans USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_user_idea_interactions",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_user_idea_interactions",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_idea_interactions",
+          "name": "user_id",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_idea_interactions",
+          "name": "idea_id",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_idea_interactions",
+          "name": "viewed",
+          "ordinalPosition": 4,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "false",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_idea_interactions",
+          "name": "liked",
+          "ordinalPosition": 5,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "false",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_idea_interactions",
+          "name": "view_date",
+          "ordinalPosition": 6,
           "dataType": "timestamp without time zone",
           "udtName": "timestamp",
           "maxLength": null,
@@ -2786,8 +2959,140 @@
         },
         {
           "schema": "public",
-          "table": "verification",
-          "name": "identifier",
+          "table": "kabu_user_idea_interactions",
+          "name": "like_date",
+          "ordinalPosition": 7,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_idea_interactions",
+          "name": "created_at",
+          "ordinalPosition": 8,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_idea_interactions",
+          "name": "updated_at",
+          "ordinalPosition": 9,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_user_idea_interactions_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "kabu_user_idea_interactions_idea_id_fkey",
+          "columns": ["idea_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_idea_cards",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "kabu_user_idea_interactions_user_id_fkey",
+          "columns": ["user_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_users",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "kabu_user_idea_interactions_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_user_idea_interactions_pkey ON public.kabu_user_idea_interactions USING btree (id)"
+        },
+        {
+          "name": "kabu_user_idea_interactions_user_id_idea_id_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX kabu_user_idea_interactions_user_id_idea_id_key ON public.kabu_user_idea_interactions USING btree (user_id, idea_id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_user_subscriptions",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_user_subscriptions",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_subscriptions",
+          "name": "user_id",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_subscriptions",
+          "name": "plan_id",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_subscriptions",
+          "name": "status",
           "ordinalPosition": 4,
           "dataType": "text",
           "udtName": "text",
@@ -2800,11 +3105,11 @@
         },
         {
           "schema": "public",
-          "table": "verification",
-          "name": "value",
+          "table": "kabu_user_subscriptions",
+          "name": "start_date",
           "ordinalPosition": 5,
-          "dataType": "text",
-          "udtName": "text",
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
           "maxLength": null,
           "numericPrecision": null,
           "numericScale": null,
@@ -2814,9 +3119,65 @@
         },
         {
           "schema": "public",
-          "table": "verification",
-          "name": "expiresAt",
+          "table": "kabu_user_subscriptions",
+          "name": "end_date",
           "ordinalPosition": 6,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_subscriptions",
+          "name": "auto_renew",
+          "ordinalPosition": 7,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "true",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_subscriptions",
+          "name": "payment_method_id",
+          "ordinalPosition": 8,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_subscriptions",
+          "name": "created_at",
+          "ordinalPosition": 9,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_user_subscriptions",
+          "name": "updated_at",
+          "ordinalPosition": 10,
           "dataType": "timestamp without time zone",
           "udtName": "timestamp",
           "maxLength": null,
@@ -2828,27 +3189,1136 @@
         }
       ],
       "primaryKey": {
-        "name": "verification_pkey",
+        "name": "kabu_user_subscriptions_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "kabu_user_subscriptions_plan_id_fkey",
+          "columns": ["plan_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_subscription_plans",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "RESTRICT"
+        },
+        {
+          "name": "kabu_user_subscriptions_user_id_fkey",
+          "columns": ["user_id"],
+          "referencedSchema": "public",
+          "referencedTable": "kabu_users",
+          "referencedColumns": ["id"],
+          "onUpdate": "CASCADE",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "kabu_user_subscriptions_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX kabu_user_subscriptions_pkey ON public.kabu_user_subscriptions USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": []
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "kabu_users",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "email",
+          "ordinalPosition": 2,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "password_hash",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "full_name",
+          "ordinalPosition": 4,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "created_at",
+          "ordinalPosition": 5,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "updated_at",
+          "ordinalPosition": 6,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "last_login",
+          "ordinalPosition": 7,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "is_active",
+          "ordinalPosition": 8,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "true",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "role",
+          "ordinalPosition": 9,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "'user'::text",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "kabu_users",
+          "name": "lastApiCardSyncedAt",
+          "ordinalPosition": 10,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "kabu_users_pkey",
         "columns": ["id"]
       },
       "foreignKeys": [],
       "indexes": [
         {
-          "name": "verification_pkey",
+          "name": "kabu_users_email_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX kabu_users_email_key ON public.kabu_users USING btree (email)"
+        },
+        {
+          "name": "kabu_users_pkey",
           "isUnique": true,
           "isPrimary": true,
-          "definition": "CREATE UNIQUE INDEX verification_pkey ON public.verification USING btree (id)"
+          "definition": "CREATE UNIQUE INDEX kabu_users_pkey ON public.kabu_users USING btree (id)"
         }
       ]
     },
     "sampleData": [
       {
-        "id": "lASrK56rSxcpMTvrDEJ3JYKzVxx63I5H",
-        "createdAt": "2025-08-07T15:46:55.030Z",
-        "updatedAt": "2025-08-07T15:46:55.031Z",
-        "identifier": "15f8D7Y0jz2vLumFAhzeaWjz_2Gena8u",
-        "value": "{\"callbackURL\":\"/dashboard\",\"codeVerifier\":\"oVZjZf0HYLZMN30xJLhwtwFs6aFzsIOi7b904uK6rOnNOt07-Q11VjpFTJM3V4m7UsiUYLnVTjnOXl-fOvxxm1qZicfJYtLie7yaNIGaI84S43N4VrNHkL2OXETm9RK3\",\"expiresAt\":1754582215025}",
-        "expiresAt": "2025-08-07T15:56:55.026Z"
+        "id": "ef9ec5da-7228-44da-abe2-74eba95aa5f9",
+        "email": "a@test.com",
+        "password_hash": "dsadsadsadsad",
+        "full_name": null,
+        "created_at": "2025-08-04T13:37:29.076Z",
+        "updated_at": "2025-08-04T14:42:45.987Z",
+        "last_login": null,
+        "is_active": true,
+        "role": "user",
+        "lastApiCardSyncedAt": "2025-08-04T14:42:45.286Z"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "order_items",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "order_items",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "nextval('order_items_id_seq'::regclass)",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "order_items",
+          "name": "order_id",
+          "ordinalPosition": 2,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "order_items",
+          "name": "product_id",
+          "ordinalPosition": 3,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "order_items",
+          "name": "quantity",
+          "ordinalPosition": 4,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "order_items",
+          "name": "unit_price",
+          "ordinalPosition": 5,
+          "dataType": "numeric",
+          "udtName": "numeric",
+          "maxLength": null,
+          "numericPrecision": 10,
+          "numericScale": 2,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "order_items",
+          "name": "discount_percent",
+          "ordinalPosition": 6,
+          "dataType": "numeric",
+          "udtName": "numeric",
+          "maxLength": null,
+          "numericPrecision": 5,
+          "numericScale": 2,
+          "isNullable": true,
+          "default": "0",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "order_items",
+          "name": "created_at",
+          "ordinalPosition": 7,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "order_items_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "order_items_order_id_fkey",
+          "columns": ["order_id"],
+          "referencedSchema": "public",
+          "referencedTable": "orders",
+          "referencedColumns": ["id"],
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE"
+        },
+        {
+          "name": "order_items_product_id_fkey",
+          "columns": ["product_id"],
+          "referencedSchema": "public",
+          "referencedTable": "products",
+          "referencedColumns": ["id"],
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "idx_order_items_order",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX idx_order_items_order ON public.order_items USING btree (order_id)"
+        },
+        {
+          "name": "idx_order_items_product",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX idx_order_items_product ON public.order_items USING btree (product_id)"
+        },
+        {
+          "name": "order_items_order_id_product_id_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX order_items_order_id_product_id_key ON public.order_items USING btree (order_id, product_id)"
+        },
+        {
+          "name": "order_items_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX order_items_pkey ON public.order_items USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": 1,
+        "order_id": 1,
+        "product_id": 1,
+        "quantity": 1,
+        "unit_price": "1299.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 2,
+        "order_id": 1,
+        "product_id": 2,
+        "quantity": 1,
+        "unit_price": "29.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 3,
+        "order_id": 2,
+        "product_id": 3,
+        "quantity": 2,
+        "unit_price": "19.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 4,
+        "order_id": 2,
+        "product_id": 4,
+        "quantity": 1,
+        "unit_price": "49.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 5,
+        "order_id": 3,
+        "product_id": 9,
+        "quantity": 1,
+        "unit_price": "89.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 6,
+        "order_id": 3,
+        "product_id": 10,
+        "quantity": 1,
+        "unit_price": "79.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 7,
+        "order_id": 4,
+        "product_id": 6,
+        "quantity": 1,
+        "unit_price": "59.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 8,
+        "order_id": 5,
+        "product_id": 5,
+        "quantity": 2,
+        "unit_price": "24.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 9,
+        "order_id": 5,
+        "product_id": 7,
+        "quantity": 1,
+        "unit_price": "34.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 10,
+        "order_id": 5,
+        "product_id": 4,
+        "quantity": 1,
+        "unit_price": "49.99",
+        "discount_percent": "0.00",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "orders",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "nextval('orders_id_seq'::regclass)",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "customer_id",
+          "ordinalPosition": 2,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "order_date",
+          "ordinalPosition": 3,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "status",
+          "ordinalPosition": 4,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 50,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": "'pending'::character varying",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "total_amount",
+          "ordinalPosition": 5,
+          "dataType": "numeric",
+          "udtName": "numeric",
+          "maxLength": null,
+          "numericPrecision": 10,
+          "numericScale": 2,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "shipping_address",
+          "ordinalPosition": 6,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "billing_address",
+          "ordinalPosition": 7,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "notes",
+          "ordinalPosition": 8,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "created_at",
+          "ordinalPosition": 9,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "orders",
+          "name": "updated_at",
+          "ordinalPosition": 10,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "orders_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "orders_customer_id_fkey",
+          "columns": ["customer_id"],
+          "referencedSchema": "public",
+          "referencedTable": "customers",
+          "referencedColumns": ["id"],
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "idx_orders_customer",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX idx_orders_customer ON public.orders USING btree (customer_id)"
+        },
+        {
+          "name": "idx_orders_status",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX idx_orders_status ON public.orders USING btree (status)"
+        },
+        {
+          "name": "orders_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX orders_pkey ON public.orders USING btree (id)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": 1,
+        "customer_id": 1,
+        "order_date": "2025-08-09T16:47:34.403Z",
+        "status": "completed",
+        "total_amount": "1329.98",
+        "shipping_address": "123 Main St, New York, USA 10001",
+        "billing_address": "123 Main St, New York, USA 10001",
+        "notes": "Please deliver to front door",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 2,
+        "customer_id": 2,
+        "order_date": "2025-08-09T16:47:34.403Z",
+        "status": "processing",
+        "total_amount": "89.97",
+        "shipping_address": "456 Oak Ave, Los Angeles, USA 90001",
+        "billing_address": "456 Oak Ave, Los Angeles, USA 90001",
+        "notes": null,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 3,
+        "customer_id": 3,
+        "order_date": "2025-08-09T16:47:34.403Z",
+        "status": "pending",
+        "total_amount": "169.97",
+        "shipping_address": "789 Pine Rd, Chicago, USA 60601",
+        "billing_address": "789 Pine Rd, Chicago, USA 60601",
+        "notes": "Gift wrapping requested",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 4,
+        "customer_id": 1,
+        "order_date": "2025-08-09T16:47:34.403Z",
+        "status": "completed",
+        "total_amount": "59.99",
+        "shipping_address": "123 Main St, New York, USA 10001",
+        "billing_address": "123 Main St, New York, USA 10001",
+        "notes": null,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 5,
+        "customer_id": 4,
+        "order_date": "2025-08-09T16:47:34.403Z",
+        "status": "shipped",
+        "total_amount": "134.97",
+        "shipping_address": "321 Elm St, Houston, USA 77001",
+        "billing_address": "321 Elm St, Houston, USA 77001",
+        "notes": "Express delivery",
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "public",
+      "name": "products",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "nextval('products_id_seq'::regclass)",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "name",
+          "ordinalPosition": 2,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 255,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "description",
+          "ordinalPosition": 3,
+          "dataType": "text",
+          "udtName": "text",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "price",
+          "ordinalPosition": 4,
+          "dataType": "numeric",
+          "udtName": "numeric",
+          "maxLength": null,
+          "numericPrecision": 10,
+          "numericScale": 2,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "stock_quantity",
+          "ordinalPosition": 5,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "0",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "category_id",
+          "ordinalPosition": 6,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "sku",
+          "ordinalPosition": 7,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 100,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "is_active",
+          "ordinalPosition": 8,
+          "dataType": "boolean",
+          "udtName": "bool",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "true",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "created_at",
+          "ordinalPosition": 9,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        },
+        {
+          "schema": "public",
+          "table": "products",
+          "name": "updated_at",
+          "ordinalPosition": 10,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "products_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [
+        {
+          "name": "products_category_id_fkey",
+          "columns": ["category_id"],
+          "referencedSchema": "public",
+          "referencedTable": "categories",
+          "referencedColumns": ["id"],
+          "onUpdate": "NO ACTION",
+          "onDelete": "SET NULL"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "idx_products_active",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX idx_products_active ON public.products USING btree (is_active)"
+        },
+        {
+          "name": "idx_products_category",
+          "isUnique": false,
+          "isPrimary": false,
+          "definition": "CREATE INDEX idx_products_category ON public.products USING btree (category_id)"
+        },
+        {
+          "name": "products_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX products_pkey ON public.products USING btree (id)"
+        },
+        {
+          "name": "products_sku_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX products_sku_key ON public.products USING btree (sku)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": 1,
+        "name": "Laptop Pro 15",
+        "description": "High-performance laptop with 15-inch display",
+        "price": "1299.99",
+        "stock_quantity": 50,
+        "category_id": 1,
+        "sku": "LPRO15-001",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 2,
+        "name": "Wireless Mouse",
+        "description": "Ergonomic wireless mouse with long battery life",
+        "price": "29.99",
+        "stock_quantity": 200,
+        "category_id": 1,
+        "sku": "WM-002",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 3,
+        "name": "The Great Novel",
+        "description": "Bestselling fiction book",
+        "price": "19.99",
+        "stock_quantity": 100,
+        "category_id": 2,
+        "sku": "BOOK-001",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 4,
+        "name": "Programming Guide",
+        "description": "Complete guide to modern programming",
+        "price": "49.99",
+        "stock_quantity": 75,
+        "category_id": 2,
+        "sku": "BOOK-002",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 5,
+        "name": "Cotton T-Shirt",
+        "description": "Comfortable cotton t-shirt",
+        "price": "24.99",
+        "stock_quantity": 150,
+        "category_id": 3,
+        "sku": "SHIRT-001",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 6,
+        "name": "Denim Jeans",
+        "description": "Classic denim jeans",
+        "price": "59.99",
+        "stock_quantity": 100,
+        "category_id": 3,
+        "sku": "JEANS-001",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 7,
+        "name": "Garden Shovel",
+        "description": "Durable garden shovel",
+        "price": "34.99",
+        "stock_quantity": 50,
+        "category_id": 4,
+        "sku": "TOOL-001",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 8,
+        "name": "Plant Seeds Pack",
+        "description": "Variety pack of vegetable seeds",
+        "price": "9.99",
+        "stock_quantity": 200,
+        "category_id": 4,
+        "sku": "SEEDS-001",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 9,
+        "name": "Tennis Racket",
+        "description": "Professional tennis racket",
+        "price": "89.99",
+        "stock_quantity": 30,
+        "category_id": 5,
+        "sku": "SPORT-001",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 10,
+        "name": "Running Shoes",
+        "description": "Comfortable running shoes",
+        "price": "79.99",
+        "stock_quantity": 80,
+        "category_id": 5,
+        "sku": "SHOES-001",
+        "is_active": true,
+        "created_at": "2025-08-09T16:47:34.403Z",
+        "updated_at": "2025-08-09T16:47:34.403Z"
+      }
+    ]
+  },
+  {
+    "table": {
+      "schema": "test_schema",
+      "name": "users",
+      "comment": null,
+      "columns": [
+        {
+          "schema": "test_schema",
+          "table": "users",
+          "name": "id",
+          "ordinalPosition": 1,
+          "dataType": "integer",
+          "udtName": "int4",
+          "maxLength": null,
+          "numericPrecision": 32,
+          "numericScale": 0,
+          "isNullable": false,
+          "default": "nextval('test_schema.users_id_seq'::regclass)",
+          "comment": null
+        },
+        {
+          "schema": "test_schema",
+          "table": "users",
+          "name": "username",
+          "ordinalPosition": 2,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 50,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "test_schema",
+          "table": "users",
+          "name": "email",
+          "ordinalPosition": 3,
+          "dataType": "character varying",
+          "udtName": "varchar",
+          "maxLength": 255,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": false,
+          "default": null,
+          "comment": null
+        },
+        {
+          "schema": "test_schema",
+          "table": "users",
+          "name": "created_at",
+          "ordinalPosition": 4,
+          "dataType": "timestamp without time zone",
+          "udtName": "timestamp",
+          "maxLength": null,
+          "numericPrecision": null,
+          "numericScale": null,
+          "isNullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "comment": null
+        }
+      ],
+      "primaryKey": {
+        "name": "users_pkey",
+        "columns": ["id"]
+      },
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "users_email_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX users_email_key ON test_schema.users USING btree (email)"
+        },
+        {
+          "name": "users_pkey",
+          "isUnique": true,
+          "isPrimary": true,
+          "definition": "CREATE UNIQUE INDEX users_pkey ON test_schema.users USING btree (id)"
+        },
+        {
+          "name": "users_username_key",
+          "isUnique": true,
+          "isPrimary": false,
+          "definition": "CREATE UNIQUE INDEX users_username_key ON test_schema.users USING btree (username)"
+        }
+      ]
+    },
+    "sampleData": [
+      {
+        "id": 1,
+        "username": "testuser1",
+        "email": "test1@example.com",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 2,
+        "username": "testuser2",
+        "email": "test2@example.com",
+        "created_at": "2025-08-09T16:47:34.403Z"
+      },
+      {
+        "id": 3,
+        "username": "testuser3",
+        "email": "test3@example.com",
+        "created_at": "2025-08-09T16:47:34.403Z"
       }
     ]
   }

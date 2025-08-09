@@ -16,12 +16,11 @@ describe('database pull sample data', () => {
     if (!firstTable) {
       throw new Error('No tables found in schema');
     }
-    const tableFullName =
-      firstTable.schema === 'public'
-        ? firstTable.name
-        : `${firstTable.schema}.${firstTable.name}`;
 
-    const sampleData = await db.pullSampleData({ table: tableFullName });
+    const sampleData = await db.pullSampleData({
+      table: firstTable.name,
+      schema: firstTable.schema,
+    });
     expect(sampleData).toBeInstanceOf(Array);
     expect(sampleData.length).toBeLessThanOrEqual(10);
 
@@ -53,9 +52,11 @@ describe('database pull sample data', () => {
     if (!firstTable) {
       throw new Error('No tables found in schema');
     }
-    const tableFullName = `${firstTable.schema}.${firstTable.name}`;
 
-    const sampleData = await db.pullSampleData({ table: tableFullName });
+    const sampleData = await db.pullSampleData({
+      table: firstTable.name,
+      schema: firstTable.schema,
+    });
     expect(sampleData).toBeInstanceOf(Array);
     expect(sampleData.length).toBeLessThanOrEqual(10);
 
@@ -82,7 +83,7 @@ describe('database pull sample data', () => {
     const publicTable = schema.find((t) => t.schema === 'public');
 
     if (publicTable) {
-      // Test without schema prefix (should default to public)
+      // Test without explicit schema (should default to public)
       const sampleData = await db.pullSampleData({ table: publicTable.name });
       expect(sampleData).toBeInstanceOf(Array);
       expect(sampleData.length).toBeLessThanOrEqual(10);
@@ -98,7 +99,7 @@ describe('database pull sample data', () => {
     if (schema.length > 0) {
       const firstTable = schema[0];
       if (firstTable) {
-        // Test without schema prefix
+        // Test without explicit schema (should use default)
         const sampleData = await db.pullSampleData({ table: firstTable.name });
         expect(sampleData).toBeInstanceOf(Array);
         expect(sampleData.length).toBeLessThanOrEqual(10);
@@ -115,12 +116,10 @@ describe('database pull sample data', () => {
 
     // Pull sample data from all tables in parallel
     const sampleDataPromises = schema.map(async (table) => {
-      const tableFullName =
-        table.schema === 'public'
-          ? table.name
-          : `${table.schema}.${table.name}`;
-
-      const sampleData = await db.pullSampleData({ table: tableFullName });
+      const sampleData = await db.pullSampleData({
+        table: table.name,
+        schema: table.schema,
+      });
       return { table, sampleData };
     });
 
@@ -147,13 +146,18 @@ describe('database pull sample data', () => {
 
     // Pull sample data from all tables in parallel
     const sampleDataPromises = schema.map(async (table) => {
-      const tableFullName = `${table.schema}.${table.name}`;
-      const sampleData = await db.pullSampleData({ table: tableFullName });
+      const sampleData = await db.pullSampleData({
+        table: table.name,
+        schema: table.schema,
+      });
       return { table, sampleData };
     });
 
     const results = await Promise.all(sampleDataPromises);
-
+    await Bun.write(
+      'schemas/mysql-sample-data.json',
+      JSON.stringify(results, null, 2)
+    );
     // Check all results
     for (const { sampleData } of results) {
       expect(sampleData).toBeInstanceOf(Array);
