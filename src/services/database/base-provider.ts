@@ -1,6 +1,6 @@
 import type { TableSchema } from './types';
 
-export abstract class DatabaseServiceImpl {
+export abstract class Provider {
   protected databaseUrl: string;
 
   constructor(options: { databaseUrl: string }) {

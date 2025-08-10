@@ -1,5 +1,6 @@
-import type { DatabaseServiceImpl } from './base';
+import type { Provider } from './base-provider';
 import { MySQLDatabaseService } from './mysql';
+import { generatePlantumlSchema } from './plantuml-generator';
 import { PostgresDatabaseService } from './postgres';
 import type { TableSchema } from './types';
 
@@ -14,15 +15,16 @@ export type {
 
 // Main DatabaseService class that automatically detects database type
 export class DatabaseService {
-  private implementation: DatabaseServiceImpl;
+  private provider: Provider;
 
   constructor(options: { databaseUrl: string }) {
     const url = options.databaseUrl.toLowerCase();
 
+    // auto detect provider
     if (url.startsWith('postgresql://') || url.startsWith('postgres://')) {
-      this.implementation = new PostgresDatabaseService(options);
+      this.provider = new PostgresDatabaseService(options);
     } else if (url.startsWith('mysql://') || url.startsWith('mysql2://')) {
-      this.implementation = new MySQLDatabaseService(options);
+      this.provider = new MySQLDatabaseService(options);
     } else {
       throw new Error(
         `Unsupported database URL: ${options.databaseUrl}. Supported: postgresql://, postgres://, mysql://, mysql2://`
@@ -31,13 +33,20 @@ export class DatabaseService {
   }
 
   async pullSchema(): Promise<TableSchema[]> {
-    return await this.implementation.pullSchema();
+    return await this.provider.pullSchema();
   }
 
   async pullSampleData(params: {
     table: string;
     schema?: string;
   }): Promise<Record<string, unknown>[]> {
-    return await this.implementation.pullSampleData(params);
+    return await this.provider.pullSampleData(params);
+  }
+
+  generatePlantumlSchema(schema: TableSchema[]): {
+    full: string;
+    simplified: string;
+  } {
+    return generatePlantumlSchema(schema);
   }
 }

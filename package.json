@@ -15,7 +15,13 @@
     "test:watch": "bun test --watch"
   },
   "name": "reflect-erd",
-  "private": true,
+  "version": "0.1.0",
+  "description": "A TypeScript library for extracting database schemas and sample data from PostgreSQL and MySQL databases",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "src/**/*.ts"
+  ],
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
     "@types/bun": "latest",

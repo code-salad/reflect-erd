@@ -1,5 +1,5 @@
 import postgres from 'postgres';
-import { DatabaseServiceImpl } from './base';
+import { Provider } from './base-provider';
 import type {
   ColumnSchema,
   ForeignKey,
@@ -8,7 +8,7 @@ import type {
   TableSchema,
 } from './types';
 
-export class PostgresDatabaseService extends DatabaseServiceImpl {
+export class PostgresDatabaseService extends Provider {
   async pullSchema(): Promise<TableSchema[]> {
     const sql = postgres(this.databaseUrl);
     try {

@@ -126,7 +126,7 @@ describe('database pull sample data', () => {
     const results = await Promise.all(sampleDataPromises);
 
     await Bun.write(
-      'schemas/postgres-sample-data.json',
+      '.data/postgres-sample-data.json',
       JSON.stringify(results, null, 2)
     );
     // Check all results
@@ -155,7 +155,7 @@ describe('database pull sample data', () => {
 
     const results = await Promise.all(sampleDataPromises);
     await Bun.write(
-      'schemas/mysql-sample-data.json',
+      '.data/mysql-sample-data.json',
       JSON.stringify(results, null, 2)
     );
     // Check all results

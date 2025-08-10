@@ -1,5 +1,5 @@
 import mysql, { type RowDataPacket } from 'mysql2/promise';
-import { DatabaseServiceImpl } from './base';
+import { Provider } from './base-provider';
 import type {
   ColumnSchema,
   ForeignKey,
@@ -52,7 +52,7 @@ interface MySQLIndexRow extends RowDataPacket {
   index_def: string;
 }
 
-export class MySQLDatabaseService extends DatabaseServiceImpl {
+export class MySQLDatabaseService extends Provider {
   async pullSchema(): Promise<TableSchema[]> {
     const connection = await mysql.createConnection(this.databaseUrl);
 

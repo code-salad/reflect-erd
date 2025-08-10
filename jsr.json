@@ -1,0 +1,33 @@
+{
+  "name": "@reflect/erd",
+  "version": "0.1.0",
+  "exports": "./src/index.ts",
+  "description": "A TypeScript library for extracting database schemas and sample data from PostgreSQL and MySQL databases",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/reflect-erd"
+  },
+  "keywords": ["database", "schema", "erd", "postgres", "mysql", "typescript"],
+  "include": ["src/**/*.ts", "README.md", "LICENSE"],
+  "exclude": [
+    "tests/**/*",
+    "seeds/**/*",
+    "schemas/**/*",
+    "*.sql",
+    "*.puml",
+    ".env",
+    ".vscode/**/*",
+    ".windsurf/**/*",
+    ".claude/**/*",
+    "env.ts",
+    "generate-plantuml.ts",
+    "biome.jsonc",
+    "bunfig.toml",
+    "lefthook.yml",
+    "bun.lock",
+    "tsconfig.json",
+    "package.json",
+    "schema.json"
+  ]
+}
