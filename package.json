@@ -12,7 +12,8 @@
     "lint": "bunx ultracite lint",
     "seed": "bun run seeds/setup.ts",
     "test": "bun test",
-    "test:watch": "bun test --watch"
+    "test:watch": "bun test --watch",
+    "test:docker": "bun run run-tests-with-docker.ts"
   },
   "name": "reflect-erd",
   "version": "0.1.0",

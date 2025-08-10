@@ -78,6 +78,7 @@ describe('generatePlantumlSchema', () => {
         primaryKey: null,
         foreignKeys: [],
         indexes: [],
+        comment: null,
       },
     ];
 
