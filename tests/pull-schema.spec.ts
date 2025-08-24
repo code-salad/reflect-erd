@@ -4,15 +4,15 @@ import { DatabaseService } from '../src/services/database';
 
 describe('database pull schema', () => {
   test('should pull postgres schema from database', async () => {
-    const db = new DatabaseService({ databaseUrl: env.POSTGRES_URL });
-    const schema = await db.pullSchema();
+    const db = DatabaseService.fromUrl(env.POSTGRES_URL);
+    const schema = await db.getAllSchemas();
     expect(schema).not.toBeNull();
     await Bun.write('schemas/postgres.json', JSON.stringify(schema, null, 2));
   }, 15_000);
 
   test('should pull mysql schema from database', async () => {
-    const db = new DatabaseService({ databaseUrl: env.MYSQL_URL });
-    const schema = await db.pullSchema();
+    const db = DatabaseService.fromUrl(env.MYSQL_URL);
+    const schema = await db.getAllSchemas();
     expect(schema).not.toBeNull();
     await Bun.write('schemas/mysql.json', JSON.stringify(schema, null, 2));
   }, 15_000);

@@ -1,12 +1,19 @@
 pre-commit:
   parallel: true
   commands:
+    encrypt:
+      run: bun run encrypt
     format:
       run: bun run format
+      stage_fixed: true
+    lint:
+      run: bun run lint
       stage_fixed: true
 
 pre-push:
   parallel: true
   commands:
+    encrypt:
+      run: bun run encrypt
     lint:
       run: bun run lint

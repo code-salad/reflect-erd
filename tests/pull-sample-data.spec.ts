@@ -4,10 +4,10 @@ import { DatabaseService } from '../src/services/database';
 
 describe('database pull sample data', () => {
   test('should pull sample data from postgres table', async () => {
-    const db = new DatabaseService({ databaseUrl: env.POSTGRES_URL });
+    const db = DatabaseService.fromUrl(env.POSTGRES_URL);
 
     // First get schema to find a table to test with
-    const schema = await db.pullSchema();
+    const schema = await db.getAllSchemas();
     expect(schema).not.toBeNull();
     expect(schema.length).toBeGreaterThan(0);
 
@@ -17,7 +17,7 @@ describe('database pull sample data', () => {
       throw new Error('No tables found in schema');
     }
 
-    const sampleData = await db.pullSampleData({
+    const sampleData = await db.getSampleData({
       table: firstTable.name,
       schema: firstTable.schema,
     });
@@ -40,10 +40,10 @@ describe('database pull sample data', () => {
   }, 15_000);
 
   test('should pull sample data from mysql table', async () => {
-    const db = new DatabaseService({ databaseUrl: env.MYSQL_URL });
+    const db = DatabaseService.fromUrl(env.MYSQL_URL);
 
     // First get schema to find a table to test with
-    const schema = await db.pullSchema();
+    const schema = await db.getAllSchemas();
     expect(schema).not.toBeNull();
     expect(schema.length).toBeGreaterThan(0);
 
@@ -53,7 +53,7 @@ describe('database pull sample data', () => {
       throw new Error('No tables found in schema');
     }
 
-    const sampleData = await db.pullSampleData({
+    const sampleData = await db.getSampleData({
       table: firstTable.name,
       schema: firstTable.schema,
     });
@@ -76,31 +76,31 @@ describe('database pull sample data', () => {
   }, 15_000);
 
   test('should handle postgres table without schema prefix', async () => {
-    const db = new DatabaseService({ databaseUrl: env.POSTGRES_URL });
+    const db = DatabaseService.fromUrl(env.POSTGRES_URL);
 
     // Get schema to find a public schema table
-    const schema = await db.pullSchema();
+    const schema = await db.getAllSchemas();
     const publicTable = schema.find((t) => t.schema === 'public');
 
     if (publicTable) {
       // Test without explicit schema (should default to public)
-      const sampleData = await db.pullSampleData({ table: publicTable.name });
+      const sampleData = await db.getSampleData({ table: publicTable.name });
       expect(sampleData).toBeInstanceOf(Array);
       expect(sampleData.length).toBeLessThanOrEqual(10);
     }
   }, 15_000);
 
   test('should handle mysql table without schema prefix', async () => {
-    const db = new DatabaseService({ databaseUrl: env.MYSQL_URL });
+    const db = DatabaseService.fromUrl(env.MYSQL_URL);
 
     // Get schema to find any table
-    const schema = await db.pullSchema();
+    const schema = await db.getAllSchemas();
 
     if (schema.length > 0) {
       const firstTable = schema[0];
       if (firstTable) {
         // Test without explicit schema (should use default)
-        const sampleData = await db.pullSampleData({ table: firstTable.name });
+        const sampleData = await db.getSampleData({ table: firstTable.name });
         expect(sampleData).toBeInstanceOf(Array);
         expect(sampleData.length).toBeLessThanOrEqual(10);
       }
@@ -108,15 +108,15 @@ describe('database pull sample data', () => {
   }, 15_000);
 
   test('should return empty array for empty postgres table', async () => {
-    const db = new DatabaseService({ databaseUrl: env.POSTGRES_URL });
+    const db = DatabaseService.fromUrl(env.POSTGRES_URL);
 
     // This test assumes there might be an empty table
     // If all tables have data, this test will pass anyway
-    const schema = await db.pullSchema();
+    const schema = await db.getAllSchemas();
 
     // Pull sample data from all tables in parallel
     const sampleDataPromises = schema.map(async (table) => {
-      const sampleData = await db.pullSampleData({
+      const sampleData = await db.getSampleData({
         table: table.name,
         schema: table.schema,
       });
@@ -126,7 +126,7 @@ describe('database pull sample data', () => {
     const results = await Promise.all(sampleDataPromises);
 
     await Bun.write(
-      'schemas/postgres-sample-data.json',
+      '.data/postgres-sample-data.json',
       JSON.stringify(results, null, 2)
     );
     // Check all results
@@ -138,15 +138,15 @@ describe('database pull sample data', () => {
   }, 15_000);
 
   test('should return empty array for empty mysql table', async () => {
-    const db = new DatabaseService({ databaseUrl: env.MYSQL_URL });
+    const db = DatabaseService.fromUrl(env.MYSQL_URL);
 
     // This test assumes there might be an empty table
     // If all tables have data, this test will pass anyway
-    const schema = await db.pullSchema();
+    const schema = await db.getAllSchemas();
 
     // Pull sample data from all tables in parallel
     const sampleDataPromises = schema.map(async (table) => {
-      const sampleData = await db.pullSampleData({
+      const sampleData = await db.getSampleData({
         table: table.name,
         schema: table.schema,
       });
@@ -155,7 +155,7 @@ describe('database pull sample data', () => {
 
     const results = await Promise.all(sampleDataPromises);
     await Bun.write(
-      'schemas/mysql-sample-data.json',
+      '.data/mysql-sample-data.json',
       JSON.stringify(results, null, 2)
     );
     // Check all results

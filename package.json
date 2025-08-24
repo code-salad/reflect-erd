@@ -1,9 +1,20 @@
 {
-  "dependencies": {
-    "@dotenvx/dotenvx": "^1.48.4",
-    "mysql2": "^3.14.3",
-    "postgres": "^3.4.7",
-    "zod": "^4.0.15"
+  "name": "vsequel",
+  "version": "0.1.0",
+  "description": "A CLI tool for extracting database schemas and generating ERD diagrams from PostgreSQL and MySQL databases",
+  "keywords": [
+    "erd",
+    "database",
+    "schema",
+    "plantuml",
+    "postgresql",
+    "mysql",
+    "cli"
+  ],
+  "homepage": "https://github.com/reflect/erd#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reflect/erd.git"
   },
   "scripts": {
     "encrypt": "dotenvx encrypt",
@@ -12,14 +23,34 @@
     "lint": "bunx ultracite lint",
     "seed": "bun run seeds/setup.ts",
     "test": "bun test",
-    "test:watch": "bun test --watch"
+    "test:watch": "bun test --watch",
+    "test:docker": "docker compose -f tests/docker-compose.yml up -d --wait && bun run seeds/setup.ts && bun test docker-integration.spec.ts && docker compose -f tests/docker-compose.yml down"
   },
-  "name": "reflect-erd",
-  "private": true,
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.48.4",
+    "mysql2": "^3.14.3",
+    "postgres": "^3.4.7",
+    "react": "^19.1.1",
+    "zod": "^4.0.15"
+  },
+  "license": "MIT",
+  "author": "Reflect",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "bin": {
+    "vsequel": "src/cli/index.ts"
+  },
+  "files": [
+    "src/**/*.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
     "@types/bun": "latest",
     "@types/node": "^24.2.1",
+    "@types/react": "^19.1.11",
     "lefthook": "^1.12.2",
     "ultracite": "5.1.2"
   },

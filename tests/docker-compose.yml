@@ -1,0 +1,53 @@
+services:
+  # MySQL Connection URL: mysql://dbuser:dbpassword@localhost:3306/reflect_erd
+  # Root Connection URL: mysql://root:rootpassword@localhost:3306/reflect_erd
+  mysql:
+    image: mysql:8.0
+    container_name: vsequel-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: reflect_erd
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - vsequel-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+
+  # PostgreSQL Connection URL: postgresql://dbuser:dbpassword@localhost:5432/reflect_erd
+  postgres:
+    image: postgres:16-alpine
+    container_name: vsequel-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpassword
+      POSTGRES_DB: reflect_erd
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - vsequel-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dbuser -d reflect_erd"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
+    driver: local
+  postgres_data:
+    driver: local
+
+networks:
+  vsequel-network:
+    driver: bridge

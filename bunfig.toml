@@ -1,2 +1,1 @@
-[test]
-preload = ["./tests/setup.ts"]
+# Global setup for tests is defined in package.json test script

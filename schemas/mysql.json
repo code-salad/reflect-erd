@@ -1,11 +1,11 @@
 [
   {
-    "schema": "default",
+    "schema": "reflect_erd",
     "name": "categories",
     "comment": null,
     "columns": [
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "categories",
         "name": "id",
         "ordinalPosition": 1,
@@ -19,7 +19,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "categories",
         "name": "name",
         "ordinalPosition": 2,
@@ -33,7 +33,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "categories",
         "name": "description",
         "ordinalPosition": 3,
@@ -47,7 +47,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "categories",
         "name": "created_at",
         "ordinalPosition": 4,
@@ -61,7 +61,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "categories",
         "name": "updated_at",
         "ordinalPosition": 5,
@@ -90,12 +90,12 @@
     ]
   },
   {
-    "schema": "default",
+    "schema": "reflect_erd",
     "name": "customers",
     "comment": null,
     "columns": [
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "id",
         "ordinalPosition": 1,
@@ -109,7 +109,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "email",
         "ordinalPosition": 2,
@@ -123,7 +123,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "first_name",
         "ordinalPosition": 3,
@@ -137,7 +137,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "last_name",
         "ordinalPosition": 4,
@@ -151,7 +151,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "phone",
         "ordinalPosition": 5,
@@ -165,7 +165,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "address",
         "ordinalPosition": 6,
@@ -179,7 +179,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "city",
         "ordinalPosition": 7,
@@ -193,7 +193,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "country",
         "ordinalPosition": 8,
@@ -207,7 +207,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "postal_code",
         "ordinalPosition": 9,
@@ -221,7 +221,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "created_at",
         "ordinalPosition": 10,
@@ -235,7 +235,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "customers",
         "name": "updated_at",
         "ordinalPosition": 11,
@@ -276,12 +276,12 @@
     ]
   },
   {
-    "schema": "default",
+    "schema": "reflect_erd",
     "name": "inventory_logs",
     "comment": null,
     "columns": [
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "inventory_logs",
         "name": "id",
         "ordinalPosition": 1,
@@ -295,7 +295,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "inventory_logs",
         "name": "product_id",
         "ordinalPosition": 2,
@@ -309,7 +309,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "inventory_logs",
         "name": "action",
         "ordinalPosition": 3,
@@ -323,7 +323,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "inventory_logs",
         "name": "quantity_change",
         "ordinalPosition": 4,
@@ -337,7 +337,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "inventory_logs",
         "name": "new_quantity",
         "ordinalPosition": 5,
@@ -351,7 +351,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "inventory_logs",
         "name": "reason",
         "ordinalPosition": 6,
@@ -365,7 +365,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "inventory_logs",
         "name": "created_at",
         "ordinalPosition": 7,
@@ -387,7 +387,7 @@
       {
         "name": "inventory_logs_ibfk_1",
         "columns": ["product_id"],
-        "referencedSchema": "default",
+        "referencedSchema": "reflect_erd",
         "referencedTable": "products",
         "referencedColumns": ["id"],
         "onUpdate": "NO ACTION",
@@ -410,12 +410,12 @@
     ]
   },
   {
-    "schema": "default",
+    "schema": "reflect_erd",
     "name": "order_items",
     "comment": null,
     "columns": [
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "order_items",
         "name": "id",
         "ordinalPosition": 1,
@@ -429,7 +429,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "order_items",
         "name": "order_id",
         "ordinalPosition": 2,
@@ -443,7 +443,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "order_items",
         "name": "product_id",
         "ordinalPosition": 3,
@@ -457,7 +457,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "order_items",
         "name": "quantity",
         "ordinalPosition": 4,
@@ -471,7 +471,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "order_items",
         "name": "unit_price",
         "ordinalPosition": 5,
@@ -485,7 +485,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "order_items",
         "name": "discount_percent",
         "ordinalPosition": 6,
@@ -499,7 +499,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "order_items",
         "name": "created_at",
         "ordinalPosition": 7,
@@ -521,7 +521,7 @@
       {
         "name": "order_items_ibfk_1",
         "columns": ["order_id"],
-        "referencedSchema": "default",
+        "referencedSchema": "reflect_erd",
         "referencedTable": "orders",
         "referencedColumns": ["id"],
         "onUpdate": "NO ACTION",
@@ -530,7 +530,7 @@
       {
         "name": "order_items_ibfk_2",
         "columns": ["product_id"],
-        "referencedSchema": "default",
+        "referencedSchema": "reflect_erd",
         "referencedTable": "products",
         "referencedColumns": ["id"],
         "onUpdate": "NO ACTION",
@@ -565,12 +565,12 @@
     ]
   },
   {
-    "schema": "default",
+    "schema": "reflect_erd",
     "name": "orders",
     "comment": null,
     "columns": [
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "id",
         "ordinalPosition": 1,
@@ -584,7 +584,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "customer_id",
         "ordinalPosition": 2,
@@ -598,7 +598,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "order_date",
         "ordinalPosition": 3,
@@ -612,7 +612,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "status",
         "ordinalPosition": 4,
@@ -626,7 +626,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "total_amount",
         "ordinalPosition": 5,
@@ -640,7 +640,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "shipping_address",
         "ordinalPosition": 6,
@@ -654,7 +654,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "billing_address",
         "ordinalPosition": 7,
@@ -668,7 +668,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "notes",
         "ordinalPosition": 8,
@@ -682,7 +682,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "created_at",
         "ordinalPosition": 9,
@@ -696,7 +696,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "orders",
         "name": "updated_at",
         "ordinalPosition": 10,
@@ -718,7 +718,7 @@
       {
         "name": "orders_ibfk_1",
         "columns": ["customer_id"],
-        "referencedSchema": "default",
+        "referencedSchema": "reflect_erd",
         "referencedTable": "customers",
         "referencedColumns": ["id"],
         "onUpdate": "NO ACTION",
@@ -753,12 +753,12 @@
     ]
   },
   {
-    "schema": "default",
+    "schema": "reflect_erd",
     "name": "page_views",
     "comment": null,
     "columns": [
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "page_views",
         "name": "id",
         "ordinalPosition": 1,
@@ -772,7 +772,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "page_views",
         "name": "page_url",
         "ordinalPosition": 2,
@@ -786,7 +786,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "page_views",
         "name": "visitor_id",
         "ordinalPosition": 3,
@@ -800,7 +800,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "page_views",
         "name": "session_id",
         "ordinalPosition": 4,
@@ -814,7 +814,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "page_views",
         "name": "referrer",
         "ordinalPosition": 5,
@@ -828,7 +828,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "page_views",
         "name": "user_agent",
         "ordinalPosition": 6,
@@ -842,7 +842,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "page_views",
         "name": "ip_address",
         "ordinalPosition": 7,
@@ -856,7 +856,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "page_views",
         "name": "created_at",
         "ordinalPosition": 8,
@@ -903,12 +903,12 @@
     ]
   },
   {
-    "schema": "default",
+    "schema": "reflect_erd",
     "name": "product_reviews",
     "comment": null,
     "columns": [
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "id",
         "ordinalPosition": 1,
@@ -922,7 +922,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "product_id",
         "ordinalPosition": 2,
@@ -936,7 +936,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "customer_id",
         "ordinalPosition": 3,
@@ -950,7 +950,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "rating",
         "ordinalPosition": 4,
@@ -964,7 +964,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "title",
         "ordinalPosition": 5,
@@ -978,7 +978,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "comment",
         "ordinalPosition": 6,
@@ -992,7 +992,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "is_verified_purchase",
         "ordinalPosition": 7,
@@ -1006,7 +1006,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "helpful_count",
         "ordinalPosition": 8,
@@ -1020,7 +1020,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "product_reviews",
         "name": "created_at",
         "ordinalPosition": 9,
@@ -1042,7 +1042,7 @@
       {
         "name": "product_reviews_ibfk_1",
         "columns": ["product_id"],
-        "referencedSchema": "default",
+        "referencedSchema": "reflect_erd",
         "referencedTable": "products",
         "referencedColumns": ["id"],
         "onUpdate": "NO ACTION",
@@ -1051,7 +1051,7 @@
       {
         "name": "product_reviews_ibfk_2",
         "columns": ["customer_id"],
-        "referencedSchema": "default",
+        "referencedSchema": "reflect_erd",
         "referencedTable": "customers",
         "referencedColumns": ["id"],
         "onUpdate": "NO ACTION",
@@ -1080,12 +1080,12 @@
     ]
   },
   {
-    "schema": "default",
+    "schema": "reflect_erd",
     "name": "products",
     "comment": null,
     "columns": [
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "id",
         "ordinalPosition": 1,
@@ -1099,7 +1099,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "name",
         "ordinalPosition": 2,
@@ -1113,7 +1113,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "description",
         "ordinalPosition": 3,
@@ -1127,7 +1127,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "price",
         "ordinalPosition": 4,
@@ -1141,7 +1141,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "stock_quantity",
         "ordinalPosition": 5,
@@ -1155,7 +1155,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "category_id",
         "ordinalPosition": 6,
@@ -1169,7 +1169,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "sku",
         "ordinalPosition": 7,
@@ -1183,7 +1183,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "is_active",
         "ordinalPosition": 8,
@@ -1197,7 +1197,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "created_at",
         "ordinalPosition": 9,
@@ -1211,7 +1211,7 @@
         "comment": ""
       },
       {
-        "schema": "default",
+        "schema": "reflect_erd",
         "table": "products",
         "name": "updated_at",
         "ordinalPosition": 10,
@@ -1233,7 +1233,7 @@
       {
         "name": "products_ibfk_1",
         "columns": ["category_id"],
-        "referencedSchema": "default",
+        "referencedSchema": "reflect_erd",
         "referencedTable": "categories",
         "referencedColumns": ["id"],
         "onUpdate": "NO ACTION",
