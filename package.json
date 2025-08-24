@@ -26,13 +26,6 @@
     "test:watch": "bun test --watch",
     "test:docker": "docker compose -f tests/docker-compose.yml up -d --wait && bun run seeds/setup.ts && bun test docker-integration.spec.ts && docker compose -f tests/docker-compose.yml down"
   },
-  "dependencies": {
-    "@dotenvx/dotenvx": "^1.48.4",
-    "mysql2": "^3.14.3",
-    "postgres": "^3.4.7",
-    "react": "^19.1.1",
-    "zod": "^4.0.15"
-  },
   "license": "MIT",
   "author": "Reflect",
   "main": "./src/index.ts",
@@ -46,7 +39,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "mysql2": "^3.14.3",
+    "postgres": "^3.4.7"
+  },
   "devDependencies": {
+    "zod": "^4.0.15",
+    "@dotenvx/dotenvx": "^1.48.4",
     "@biomejs/biome": "2.1.2",
     "@types/bun": "latest",
     "@types/node": "^24.2.1",
