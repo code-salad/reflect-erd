@@ -118,7 +118,7 @@ export class DatabaseService {
   }: {
     tables: TableReference[];
   }): Promise<{
-    joinPath: JoinPath[];
+    joinPath: JoinPath;
     sql: string;
   } | null> => {
     return await this.provider.getTableJoins({ tables });

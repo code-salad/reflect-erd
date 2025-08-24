@@ -86,7 +86,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.tables.length).toBe(2);
@@ -110,7 +110,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.tables.length).toBeGreaterThan(2); // Should include order_items
@@ -131,7 +131,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.inputTablesCount).toBe(3);
@@ -147,7 +147,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.tables.length).toBe(1);
@@ -277,7 +277,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.tables.length).toBe(2);
@@ -301,7 +301,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.tables.length).toBeGreaterThan(2); // Should include order_items
@@ -323,7 +323,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.inputTablesCount).toBe(4);
@@ -340,7 +340,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.relations.length).toBe(1);
@@ -364,7 +364,7 @@ describe('docker integration tests', () => {
       ];
 
       const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath[0];
+      const path = result?.joinPath;
 
       expect(path).not.toBeNull();
       expect(path?.tables.length).toBe(1);
@@ -385,7 +385,7 @@ describe('docker integration tests', () => {
       // If these tables aren't connected through FKs, should return null
       // or find a very long path through multiple intermediate tables
       if (result) {
-        const path = result.joinPath[0];
+        const path = result.joinPath;
         expect(path?.relations.length).toBeGreaterThan(2); // Long path
       } else {
         expect(result).toBeNull(); // No connection

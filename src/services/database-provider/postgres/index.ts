@@ -681,7 +681,7 @@ export class PostgresProvider implements DatabaseProvider {
       return `${selectClause}\n${fromClause}`;
     }
 
-    return `${selectClause}\n${fromClause}\n${joinStatements.join('\n')}`;
+    return `${selectClause}\n${fromClause}\n${joinStatements.join('\n')};`;
   };
 
   getTableJoins = async ({
@@ -689,7 +689,7 @@ export class PostgresProvider implements DatabaseProvider {
   }: {
     tables: TableReference[];
   }): Promise<{
-    joinPath: JoinPath[];
+    joinPath: JoinPath;
     sql: string;
   } | null> => {
     const joinPath = await this.findShortestJoinPath({ tables });
@@ -706,7 +706,7 @@ export class PostgresProvider implements DatabaseProvider {
     );
 
     return {
-      joinPath: [joinPath],
+      joinPath,
       sql: this.generateJoinSQL({ joinPath, tableSchemas }),
     };
   };
