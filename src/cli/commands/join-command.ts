@@ -39,7 +39,7 @@ export const joinCommand = async ({
       console.log(result.sql);
     } else {
       // JSON output
-      console.log(JSON.stringify(result.joinPath[0], null, 2));
+      console.log(JSON.stringify(result.joinPath, null, 2));
     }
   } catch (error) {
     console.error('Error:', (error as Error).message);

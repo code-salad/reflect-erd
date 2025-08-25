@@ -11,16 +11,17 @@ export const sampleCommand = async ({
   db,
   table,
   schema,
-  limit = 10,
+  limit,
 }: SampleCommandOptions): Promise<void> => {
   try {
     const databaseService = DatabaseService.fromUrl(db);
-    const sampleData = await databaseService.getSampleData({ table, schema });
+    const sampleData = await databaseService.getSampleData({
+      table,
+      schema,
+      limit,
+    });
 
-    // Apply limit
-    const limitedData = sampleData.slice(0, limit);
-
-    console.log(JSON.stringify(limitedData, null, 2));
+    console.log(JSON.stringify(sampleData, null, 2));
   } catch (error) {
     console.error('Error:', (error as Error).message);
     process.exit(1);

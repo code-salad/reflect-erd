@@ -230,7 +230,18 @@ vsequel info --db postgresql://localhost/mydb
 #### Join Options
 
 - `--tables <list>` - Comma-separated list of tables (required)
-- `-o, --output <type>` - Output format: `sql` (default - generates complete SELECT query), `json` (returns join path details)
+- `--output <type>` - Output format: `sql` (default - generates complete SELECT query), `json` (returns join path details)
+
+#### Sample Options
+
+- `--table <name>` - Table name (required)
+- `--schema <name>` - Schema name (optional)
+- `--limit <number>` - Maximum number of rows to return (default: 10)
+
+#### Context Options
+
+- `--table <name>` - Table name (required)
+- `--schema <name>` - Schema name (optional)
 
 ### Examples
 
@@ -556,14 +567,16 @@ npm run format
 
 ## Changelog
 
-### Recent Features
+### Version 0.1.2
 
 - **Complete SQL Generation**: Generate ready-to-use SELECT queries with all columns and proper JOINs
 - **Join Path Finding**: Automatically discover how to join multiple tables
 - **Database-Specific Syntax**: Proper identifier quoting for PostgreSQL and MySQL
 - **Explicit Column Selection**: All columns from joined tables are explicitly listed
-- **Subcommands**: Modular CLI with specialized commands for different tasks
+- **Command-based CLI**: Modular CLI with specialized commands for different tasks
 - **Better Performance**: Parallel data fetching with `getTableContext`
+- **Sample Data Limits**: Control the number of sample rows returned
+- **TypeScript Support**: Full TypeScript types for all exports
 
 ## License
 

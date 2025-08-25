@@ -34,6 +34,7 @@ export interface DatabaseProvider {
   getSampleData(params: {
     table: string;
     schema?: string;
+    limit?: number;
   }): Promise<Record<string, unknown>[]>;
   getTableJoins(params: { tables: TableReference[] }): Promise<{
     joinPath: JoinPath;

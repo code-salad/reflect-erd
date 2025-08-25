@@ -303,6 +303,7 @@ export class MySQLProvider implements DatabaseProvider {
   async getSampleData(params: {
     table: string;
     schema?: string;
+    limit?: number;
   }): Promise<Record<string, unknown>[]> {
     const connection = await mysql.createConnection(this.databaseUrl);
 
@@ -313,15 +314,16 @@ export class MySQLProvider implements DatabaseProvider {
 
       // Use explicit schema param or default schema from URL
       const schemaToUse = params.schema || defaultSchema || null;
+      const limitToUse = params.limit ?? 10;
 
       let query: string;
       let queryParams: string[];
 
       if (schemaToUse) {
-        query = `SELECT * FROM \`${schemaToUse}\`.\`${params.table}\` LIMIT 10`;
+        query = `SELECT * FROM \`${schemaToUse}\`.\`${params.table}\` LIMIT ${limitToUse}`;
         queryParams = [];
       } else {
-        query = `SELECT * FROM \`${params.table}\` LIMIT 10`;
+        query = `SELECT * FROM \`${params.table}\` LIMIT ${limitToUse}`;
         queryParams = [];
       }
 

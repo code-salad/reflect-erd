@@ -277,6 +277,7 @@ export class PostgresProvider implements DatabaseProvider {
   async getSampleData(params: {
     table: string;
     schema?: string;
+    limit?: number;
   }): Promise<Record<string, unknown>[]> {
     const sql = postgres(this.databaseUrl);
     try {
@@ -286,9 +287,10 @@ export class PostgresProvider implements DatabaseProvider {
 
       // Use explicit schema param or schema from URL or default to 'public'
       const schemaToUse = params.schema || urlSchema || 'public';
+      const limitToUse = params.limit ?? 10;
 
       const result = await sql.unsafe<Record<string, unknown>[]>(
-        `SELECT * FROM "${schemaToUse}"."${params.table}" LIMIT 10`
+        `SELECT * FROM "${schemaToUse}"."${params.table}" LIMIT ${limitToUse}`
       );
 
       return result;

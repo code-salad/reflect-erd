@@ -73,11 +73,13 @@ export class DatabaseService {
   getSampleData = async ({
     table,
     schema,
+    limit,
   }: {
     table: string;
     schema?: string;
+    limit?: number;
   }): Promise<Record<string, unknown>[]> => {
-    return await this.provider.getSampleData({ table, schema });
+    return await this.provider.getSampleData({ table, schema, limit });
   };
 
   generatePlantumlSchema = ({
