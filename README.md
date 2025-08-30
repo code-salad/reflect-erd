@@ -34,7 +34,7 @@ A CLI tool and TypeScript library for extracting database schemas and generating
 
 ```bash
 # Generate an ERD diagram
-npx vsequel --db postgresql://localhost/mydb > erd.puml
+npx vsequel schema --db postgresql://localhost/mydb > erd.puml
 
 # List all tables
 npx vsequel list --db postgresql://localhost/mydb
@@ -54,10 +54,7 @@ You can use this tool directly without installation:
 
 ```bash
 # Using npx (recommended)
-npx vsequel --db <database-url>
-
-# Using npx
-npx vsequel --db <database-url>
+npx vsequel schema --db <database-url>
 ```
 
 Or install it globally:
@@ -118,7 +115,7 @@ Extract the complete database schema:
 
 ```bash
 # Default output (full PlantUML)
-vsequel --db postgresql://localhost/mydb
+vsequel schema --db postgresql://localhost/mydb
 
 # Or explicitly use schema subcommand
 vsequel schema --db postgresql://localhost/mydb

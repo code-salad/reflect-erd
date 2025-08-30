@@ -4,14 +4,14 @@ export type {
   IndexSchema,
   PrimaryKey,
   TableSchema,
-} from './services/database/index.ts';
+} from './services/database/index';
 export {
   DatabaseService,
   DatabaseService as ReflectErd,
-} from './services/database/index.ts';
+} from './services/database/index';
 export type {
   JoinPath,
   JoinRelation,
   TableReference,
-} from './services/database-provider/types.ts';
-export { generatePlantumlSchema } from './services/plantuml/generator.ts';
+} from './services/database-provider/types';
+export { generatePlantumlSchema } from './services/plantuml/generator';
