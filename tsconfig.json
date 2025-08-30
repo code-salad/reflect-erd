@@ -5,7 +5,8 @@
     "outDir": "./dist",
     "lib": ["ES2022"],
     "target": "ES2022",
-    "sourceMap": true,
-    "alwaysStrict": true
+    "alwaysStrict": true,
+    "declaration": true,
+    "declarationMap": true
   }
 }
