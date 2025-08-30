@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'bun:test';
+import { describe, expect, test } from 'vitest';
 import { env } from '../env';
 import { DatabaseService } from '../src/services/database/index';
 

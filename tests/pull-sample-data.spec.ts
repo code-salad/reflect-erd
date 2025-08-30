@@ -1,4 +1,5 @@
-import { describe, expect, test } from 'bun:test';
+import { writeFile } from 'node:fs/promises';
+import { describe, expect, test } from 'vitest';
 import { env } from '../env';
 import { DatabaseService } from '../src/services/database';
 
@@ -125,7 +126,7 @@ describe('database pull sample data', () => {
 
     const results = await Promise.all(sampleDataPromises);
 
-    await Bun.write(
+    await writeFile(
       '.data/postgres-sample-data.json',
       JSON.stringify(results, null, 2)
     );
@@ -154,7 +155,7 @@ describe('database pull sample data', () => {
     });
 
     const results = await Promise.all(sampleDataPromises);
-    await Bun.write(
+    await writeFile(
       '.data/mysql-sample-data.json',
       JSON.stringify(results, null, 2)
     );

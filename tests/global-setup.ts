@@ -1,4 +1,7 @@
-import { $ } from 'bun';
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const $ = promisify(exec);
 
 // Database connection details matching db-compose.yml
 const POSTGRES_USER = 'dbuser';
@@ -15,7 +18,9 @@ export const TEST_MYSQL_URL = `mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@localhost
 async function stopDockerCompose() {
   console.log('🧹 Stopping docker compose if running...');
   try {
-    await $`docker compose -f tests/docker-compose.yml down 2>/dev/null || true`.quiet();
+    await $(
+      'docker compose -f tests/docker-compose.yml down 2>/dev/null || true'
+    );
     console.log('  ✅ Stopped docker compose');
   } catch {
     // Ignore errors if not running
@@ -25,14 +30,16 @@ async function stopDockerCompose() {
 async function startDockerCompose() {
   console.log('🚀 Starting databases with docker compose...');
 
-  await $`docker compose -f tests/docker-compose.yml up -d`.quiet();
+  await $('docker compose -f tests/docker-compose.yml up -d');
 
   // Wait for PostgreSQL to be ready
   console.log('  ⏳ Waiting for PostgreSQL to be ready...');
   for (let i = 0; i < 30; i++) {
     try {
       // biome-ignore lint/nursery/noAwaitInLoop: Polling for container readiness
-      await $`docker exec vsequel-postgres pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}`.quiet();
+      await $(
+        `docker exec vsequel-postgres pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}`
+      );
       console.log('  ✅ PostgreSQL is ready');
       break;
     } catch {
@@ -45,7 +52,9 @@ async function startDockerCompose() {
   for (let i = 0; i < 30; i++) {
     try {
       // biome-ignore lint/nursery/noAwaitInLoop: Polling for container readiness
-      await $`docker exec vsequel-mysql mysqladmin ping -h 127.0.0.1 -u ${MYSQL_USER} -p${MYSQL_PASSWORD}`.quiet();
+      await $(
+        `docker exec vsequel-mysql mysqladmin ping -h 127.0.0.1 -u ${MYSQL_USER} -p${MYSQL_PASSWORD}`
+      );
       console.log('  ✅ MySQL is ready');
       break;
     } catch {
@@ -60,13 +69,13 @@ async function startDockerCompose() {
 
   // Run the seed script to initialize test data
   console.log('  🌱 Running seed script...');
-  await $`bun run seeds/setup.ts`.quiet();
+  await $('npm run seed');
   console.log('  ✅ Databases seeded');
 }
 
 // seedDatabases function removed - we now use the seed script in startDockerCompose
 
-// Global setup function that Bun will call before all tests
+// Global setup function that the test runner will call before all tests
 export default async function globalSetup() {
   console.log(`\n${'='.repeat(60)}`);
   console.log('🚀 GLOBAL TEST SETUP - Starting Docker Compose');
@@ -97,7 +106,7 @@ export default async function globalSetup() {
 
       try {
         console.log('🛑 Stopping docker compose...');
-        await $`docker compose -f tests/docker-compose.yml down`.quiet();
+        await $('docker compose -f tests/docker-compose.yml down');
         console.log('  ✅ Docker compose stopped');
 
         console.log(`\n${'='.repeat(60)}`);
@@ -118,7 +127,7 @@ export default async function globalSetup() {
 }
 
 // Allow running this file directly for testing
-if (import.meta.main) {
+if (process.argv[1] === new URL(import.meta.url).pathname) {
   const teardown = await globalSetup();
   console.log('\n⏸️  Press Ctrl+C to stop and cleanup containers...\n');
 

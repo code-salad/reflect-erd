@@ -1,7 +1,45 @@
-import { describe, expect, test } from 'bun:test';
-import { $ } from 'bun';
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
+import { describe, expect, test } from 'vitest';
 import type { TableSchema } from '../src/services/database/types';
 import { TEST_POSTGRES_URL } from './global-setup';
+
+const execAsync = promisify(exec);
+
+// Helper to simulate Bun's $ behavior
+const $ = (command: string) => {
+  const executeCommand = async () => {
+    try {
+      const result = await execAsync(command);
+      return {
+        exitCode: 0,
+        stdout: Buffer.from(result.stdout),
+        stderr: Buffer.from(result.stderr),
+      };
+    } catch (error: unknown) {
+      const execError = error as {
+        code?: number;
+        stdout?: string;
+        stderr?: string;
+        message?: string;
+      };
+      return {
+        exitCode: execError.code || 1,
+        stdout: Buffer.from(execError.stdout || ''),
+        stderr: Buffer.from(execError.stderr || execError.message || ''),
+      };
+    }
+  };
+
+  return {
+    quiet() {
+      return this;
+    },
+    nothrow() {
+      return executeCommand();
+    },
+  };
+};
 
 // Top-level regex patterns for performance
 const PLANTUML_RELATIONSHIP_PATTERN = /\w+\s+\|\|--o\{|\w+\s+\|\|--o\{/;
@@ -14,7 +52,7 @@ const cliPath = './src/cli/index.ts';
 
 describe('CLI tests', () => {
   test('should show help when --help flag is provided', async () => {
-    const result = await $`bun ${cliPath} --help`.quiet().nothrow();
+    const result = await $(`npx tsx ${cliPath} --help`).quiet().nothrow();
 
     expect(result.exitCode).toBe(0);
     // When no subcommand is provided, --help shows main help
@@ -28,7 +66,7 @@ describe('CLI tests', () => {
   });
 
   test('should show help when no command is provided', async () => {
-    const result = await $`bun ${cliPath}`.quiet().nothrow();
+    const result = await $(`npx tsx ${cliPath}`).quiet().nothrow();
 
     expect(result.exitCode).toBe(1);
     expect(result.stderr.toString()).toContain('Command is required');
@@ -38,10 +76,11 @@ describe('CLI tests', () => {
   });
 
   test('should validate output format', async () => {
-    const result =
-      await $`bun ${cliPath} schema --db ${postgresUrl} --output invalid`
-        .quiet()
-        .nothrow();
+    const result = await $(
+      `npx tsx ${cliPath} schema --db ${postgresUrl} --output invalid`
+    )
+      .quiet()
+      .nothrow();
 
     expect(result.exitCode).toBe(1);
     expect(result.stderr.toString()).toContain(
@@ -50,10 +89,11 @@ describe('CLI tests', () => {
   });
 
   test('should output JSON format', async () => {
-    const result =
-      await $`bun ${cliPath} schema --db ${postgresUrl} --output json`
-        .quiet()
-        .nothrow();
+    const result = await $(
+      `npx tsx ${cliPath} schema --db ${postgresUrl} --output json`
+    )
+      .quiet()
+      .nothrow();
 
     expect(result.exitCode).toBe(0);
 
@@ -78,10 +118,11 @@ describe('CLI tests', () => {
   }, 15_000);
 
   test('should output simple PlantUML format', async () => {
-    const result =
-      await $`bun ${cliPath} schema --db ${postgresUrl} --output plantuml`
-        .quiet()
-        .nothrow();
+    const result = await $(
+      `npx tsx ${cliPath} schema --db ${postgresUrl} --output plantuml`
+    )
+      .quiet()
+      .nothrow();
 
     expect(result.exitCode).toBe(0);
 
@@ -100,10 +141,11 @@ describe('CLI tests', () => {
   }, 15_000);
 
   test('should output full PlantUML format (default)', async () => {
-    const result =
-      await $`bun ${cliPath} schema --db ${postgresUrl} --output full-plantuml`
-        .quiet()
-        .nothrow();
+    const result = await $(
+      `npx tsx ${cliPath} schema --db ${postgresUrl} --output full-plantuml`
+    )
+      .quiet()
+      .nothrow();
 
     expect(result.exitCode).toBe(0);
 
@@ -127,13 +169,16 @@ describe('CLI tests', () => {
   }, 15_000);
 
   test('should use full-plantuml as default output format', async () => {
-    const resultDefault = await $`bun ${cliPath} schema --db ${postgresUrl}`
+    const resultDefault = await $(
+      `npx tsx ${cliPath} schema --db ${postgresUrl}`
+    )
       .quiet()
       .nothrow();
-    const resultFull =
-      await $`bun ${cliPath} schema --db ${postgresUrl} --output full-plantuml`
-        .quiet()
-        .nothrow();
+    const resultFull = await $(
+      `npx tsx ${cliPath} schema --db ${postgresUrl} --output full-plantuml`
+    )
+      .quiet()
+      .nothrow();
 
     expect(resultDefault.exitCode).toBe(0);
     expect(resultFull.exitCode).toBe(0);
@@ -144,7 +189,9 @@ describe('CLI tests', () => {
 
   test('should handle database connection errors gracefully', async () => {
     const badUrl = 'postgresql://baduser:badpass@localhost:54321/nonexistent';
-    const result = await $`bun ${cliPath} schema --db ${badUrl} --output json`
+    const result = await $(
+      `npx tsx ${cliPath} schema --db ${badUrl} --output json`
+    )
       .quiet()
       .nothrow();
 
@@ -153,10 +200,11 @@ describe('CLI tests', () => {
   }, 10_000);
 
   test('should report success message to stderr', async () => {
-    const result =
-      await $`bun ${cliPath} schema --db ${postgresUrl} --output json`
-        .quiet()
-        .nothrow();
+    const result = await $(
+      `npx tsx ${cliPath} schema --db ${postgresUrl} --output json`
+    )
+      .quiet()
+      .nothrow();
 
     expect(result.exitCode).toBe(0);
     expect(result.stderr.toString()).toContain('Extracting database schema...');

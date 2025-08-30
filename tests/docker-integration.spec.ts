@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'bun:test';
+import { describe, expect, test } from 'vitest';
 import { DatabaseService } from '../src/services/database';
 import type { TableReference } from '../src/services/database-provider/types';
 import { TEST_MYSQL_URL, TEST_POSTGRES_URL } from './global-setup';

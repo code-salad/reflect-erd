@@ -19,12 +19,12 @@
   "scripts": {
     "encrypt": "dotenvx encrypt",
     "decrypt": "dotenvx decrypt",
-    "format": "bunx ultracite format",
-    "lint": "bunx ultracite lint",
-    "seed": "bun run seeds/setup.ts",
-    "test": "bun test",
-    "test:watch": "bun test --watch",
-    "test:docker": "docker compose -f tests/docker-compose.yml up -d --wait && bun run seeds/setup.ts && bun test docker-integration.spec.ts && docker compose -f tests/docker-compose.yml down"
+    "format": "npx ultracite format",
+    "lint": "npx ultracite lint",
+    "seed": "npx tsx seeds/setup.ts",
+    "test": "vitest",
+    "test:watch": "npx test --watch",
+    "test:docker": "docker compose -f tests/docker-compose.yml up -d --wait && npx tsx seeds/setup.ts && npm run vitest ./tests/docker-integration.spec.ts && docker compose -f tests/docker-compose.yml down"
   },
   "license": "MIT",
   "author": "Reflect",
@@ -44,14 +44,16 @@
     "postgres": "^3.4.7"
   },
   "devDependencies": {
-    "zod": "^4.0.15",
-    "@dotenvx/dotenvx": "^1.48.4",
     "@biomejs/biome": "2.1.2",
+    "@dotenvx/dotenvx": "^1.48.4",
     "@types/bun": "latest",
     "@types/node": "^24.2.1",
     "@types/react": "^19.1.11",
     "lefthook": "^1.12.2",
-    "ultracite": "5.1.2"
+    "tsx": "^4.20.5",
+    "ultracite": "5.1.2",
+    "vitest": "^3.2.4",
+    "zod": "^3.24.1"
   },
   "peerDependencies": {
     "typescript": "^5.9.2"
