@@ -51,6 +51,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
     "@dotenvx/dotenvx": "^1.48.4",
+    "@tsconfig/recommended": "^1.0.10",
     "@types/node": "^24.2.1",
     "lefthook": "^1.12.2",
     "tsx": "^4.20.5",

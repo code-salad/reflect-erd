@@ -1,28 +1,11 @@
 {
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "include": ["src/**/*"],
   "compilerOptions": {
-    "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "moduleResolution": "Node",
-    "allowImportingTsExtensions": false,
-    "verbatimModuleSyntax": false,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
     "outDir": "./dist",
-    "noEmit": false,
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false,
-    "strictNullChecks": true
-  },
-  "include": ["src/**/*"]
+    "lib": ["ES2022"],
+    "target": "ES2022",
+    "sourceMap": true,
+    "alwaysStrict": true
+  }
 }
