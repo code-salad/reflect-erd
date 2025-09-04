@@ -129,7 +129,7 @@ async function setup() {
 
 // Run setup if this file is executed directly
 if (import.meta.main) {
-  setup();
+  await setup();
 }
 
 export { setup, seedPostgres, seedMySQL };
