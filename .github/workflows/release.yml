@@ -1,22 +1,23 @@
-# This workflow publishes a NodeJS package to npm when a release is created
-# It also deploys the "latest" and tag development Docker image to Docker Hub
+# This workflow runs tests and publishes releases automatically on pushes to alpha
+# It uses semantic-release for automated versioning and publishing
 
-name: Publish to NPM
+name: CI/CD Pipeline
 
 on:
   release:
     types: [published]
+  push:
+    branches: [alpha]
 
 jobs:
   run-tests:
     name: Run Tests
-    if: github.event.release.target_commitish == 'alpha'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.release.tag_name }}
+          fetch-depth: 0
       - name: Use NodeJS v20.15.0
         uses: actions/setup-node@v3
         with:
@@ -37,26 +38,32 @@ jobs:
       - name: Run End-to-End Tests  
         run: npm run test:ee
 
-  publish-npm:
-    name: Publish to NPM Registry
-    if: github.event.release.target_commitish == 'alpha'
+  release:
+    name: Semantic Release
     runs-on: ubuntu-latest
     needs: run-tests
+    if: github.ref == 'refs/heads/alpha'
     permissions:
-      contents: read
+      contents: write
       id-token: write
+      issues: write
+      pull-requests: write
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.release.tag_name }}
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 20.15.0
           registry-url: https://registry.npmjs.org/
-      - run: npm run build && npm publish --provenance --access public
+      - name: Install dependencies
+        run: npm install
+      - name: Run semantic-release
+        run: npx semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 #   docker-build-push-tag:
 #     name: Push Tagged Image
