@@ -11,9 +11,6 @@
     "mysql",
     "cli"
   ],
-  "maintainers": [
-    "vikyw89<vikyw89@gmail.com>"
-  ],
   "homepage": "https://github.com/code-salad/vsequel#readme",
   "repository": {
     "type": "git",
@@ -27,12 +24,12 @@
     "seed": "npx tsx seeds/setup.ts",
     "build": "rm -rf dist && npx tsc",
     "prepublishOnly": "npm run build",
-    "test": "npx tsx --test tests/**/*.spec.ts",
+    "test": "npx tsx --test $(find tests -name '*.spec.ts')",
     "test:ee": "docker compose -f tests/docker-compose.yml up -d --wait && npm run seed && npm test && docker compose -f tests/docker-compose.yml down",
     "test:docker": "docker compose -f tests/docker-compose.yml up -d --wait && npx tsx seeds/setup.ts && npx tsx --test tests/docker-integration.spec.ts && docker compose -f tests/docker-compose.yml down"
   },
   "license": "MIT",
-  "author": "Reflect",
+  "author": "vikyw89@gmail.com",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
