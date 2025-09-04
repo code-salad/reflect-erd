@@ -245,7 +245,7 @@ vsequel info --db postgresql://localhost/mydb
 #### Generate complete ERD diagram
 
 ```bash
-npx @reflect/erd --db postgresql://localhost/mydb > diagram.puml
+npx vsequel schema --db postgresql://localhost/mydb > diagram.puml
 plantuml diagram.puml  # Generate PNG/SVG
 ```
 
@@ -253,13 +253,13 @@ plantuml diagram.puml  # Generate PNG/SVG
 
 ```bash
 # List all tables
-npx @reflect/erd list --db postgresql://localhost/mydb
+npx vsequel list --db postgresql://localhost/mydb
 
 # Get details for specific table
-npx @reflect/erd table --db postgresql://localhost/mydb --table users
+npx vsequel table --db postgresql://localhost/mydb --table users
 
 # Get sample data
-npx @reflect/erd sample --db postgresql://localhost/mydb --table users
+npx vsequel sample --db postgresql://localhost/mydb --table users
 ```
 
 #### Generate SQL joins for reporting
@@ -286,8 +286,8 @@ npx vsequel join --db postgresql://localhost/mydb \
 
 ```bash
 # List tables and get schema for each
-npx @reflect/erd list --db $DB_URL | \
-  xargs -I {} npx @reflect/erd table --db $DB_URL --table {}
+npx vsequel list --db $DB_URL | \
+  xargs -I {} npx vsequel table --db $DB_URL --table {}
 ```
 
 ## Library Usage
@@ -395,7 +395,6 @@ Two PlantUML formats are available:
 
 - PostgreSQL (9.5+)
 - MySQL (5.7+)
-- MariaDB (10.2+)
 
 ### Connection URL Format
 
@@ -533,7 +532,7 @@ npm install
 
 ```bash
 # Run tests with Docker databases
-npm run test:docker
+npm run test:ee
 
 # Run all tests
 npm test

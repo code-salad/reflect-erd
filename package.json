@@ -11,10 +11,13 @@
     "mysql",
     "cli"
   ],
-  "homepage": "https://github.com/reflect/erd#readme",
+  "maintainers": [
+    "vikyw89<vikyw89@gmail.com>"
+  ],
+  "homepage": "https://github.com/code-salad/vsequel#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reflect/erd.git"
+    "url": "git+https://github.com/code-salad/vsequel.git"
   },
   "scripts": {
     "encrypt": "dotenvx encrypt",
@@ -24,9 +27,9 @@
     "seed": "npx tsx seeds/setup.ts",
     "build": "rm -rf dist && npx tsc",
     "prepublishOnly": "npm run build",
-    "test": "vitest",
-    "test:watch": "npx test --watch",
-    "test:docker": "docker compose -f tests/docker-compose.yml up -d --wait && npx tsx seeds/setup.ts && npm run vitest ./tests/docker-integration.spec.ts && docker compose -f tests/docker-compose.yml down"
+    "test": "npx tsx --test tests/**/*.spec.ts",
+    "test:ee": "docker compose -f tests/docker-compose.yml up -d --wait && npm run seed && npm test && docker compose -f tests/docker-compose.yml down",
+    "test:docker": "docker compose -f tests/docker-compose.yml up -d --wait && npx tsx seeds/setup.ts && npx tsx --test tests/docker-integration.spec.ts && docker compose -f tests/docker-compose.yml down"
   },
   "license": "MIT",
   "author": "Reflect",
@@ -56,7 +59,6 @@
     "lefthook": "^1.12.2",
     "tsx": "^4.20.5",
     "ultracite": "5.1.2",
-    "vitest": "^3.2.4",
     "zod": "^3.24.1"
   },
   "peerDependencies": {

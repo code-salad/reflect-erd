@@ -1,4 +1,5 @@
-import { describe, expect, test } from 'vitest';
+import { strict as assert } from 'node:assert/strict';
+import { describe, test } from 'node:test';
 import { DatabaseService } from '../src/services/database';
 import type { TableReference } from '../src/services/database-provider/types';
 import { TEST_MYSQL_URL, TEST_POSTGRES_URL } from './global-setup';
@@ -10,101 +11,147 @@ const MYSQL_DB = 'reflect_erd';
 
 describe('docker integration tests', () => {
   describe('PostgreSQL tests', () => {
-    test('should connect and pull schema from PostgreSQL', async () => {
-      const db = DatabaseService.fromUrl(postgresUrl);
+    test(
+      'should connect and pull schema from PostgreSQL',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(postgresUrl);
 
-      const schema = await db.getAllSchemas();
-      expect(schema).not.toBeNull();
-      expect(schema.length).toBeGreaterThan(0);
+        const schema = await db.getAllSchemas();
+        assert.ok(schema);
+        assert.ok(schema.length > 0);
 
-      // Verify expected tables exist
-      const tableNames = schema.map((t) => t.name);
-      expect(tableNames).toContain('categories');
-      expect(tableNames).toContain('customers');
-      expect(tableNames).toContain('products');
-      expect(tableNames).toContain('orders');
-      expect(tableNames).toContain('order_items');
-    }, 15_000);
-
-    test('should pull sample data from PostgreSQL table', async () => {
-      const db = DatabaseService.fromUrl(postgresUrl);
-
-      const sampleData = await db.getSampleData({
-        table: 'products',
-        schema: 'public',
-      });
-
-      expect(sampleData).toBeInstanceOf(Array);
-      expect(sampleData.length).toBeGreaterThan(0);
-      expect(sampleData.length).toBeLessThanOrEqual(10);
-
-      // Verify data structure
-      if (sampleData[0]) {
-        expect(sampleData[0]).toHaveProperty('id');
-        expect(sampleData[0]).toHaveProperty('name');
-        expect(sampleData[0]).toHaveProperty('price');
+        // Verify expected tables exist
+        const tableNames = schema.map((t) => t.name);
+        assert.ok(tableNames.includes('categories'));
+        assert.ok(tableNames.includes('customers'));
+        assert.ok(tableNames.includes('products'));
+        assert.ok(tableNames.includes('orders'));
+        assert.ok(tableNames.includes('order_items'));
       }
-    }, 15_000);
+    );
 
-    // biome-ignore lint/suspicious/noSkippedTests: Views not implemented in seed data yet
-    test.skip('should handle PostgreSQL views', async () => {
-      const db = DatabaseService.fromUrl(postgresUrl);
+    test(
+      'should pull sample data from PostgreSQL table',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(postgresUrl);
 
-      const schema = await db.getAllSchemas();
-      const view = schema.find((t) => t.name === 'order_summary');
+        const sampleData = await db.getSampleData({
+          table: 'products',
+          schema: 'public',
+        });
 
-      // Views are returned as regular tables in the schema
-      expect(view).toBeDefined();
-      expect(view?.name).toBe('order_summary');
-    }, 15_000);
+        assert.ok(Array.isArray(sampleData));
+        assert.ok(sampleData.length > 0);
+        assert.ok(sampleData.length <= 10);
 
-    test('should handle multiple PostgreSQL schemas', async () => {
-      const db = DatabaseService.fromUrl(postgresUrl);
+        // Verify data structure
+        if (sampleData[0]) {
+          assert.ok('id' in sampleData[0]);
+          assert.ok('name' in sampleData[0]);
+          assert.ok('price' in sampleData[0]);
+        }
+      }
+    );
 
-      const schema = await db.getAllSchemas();
+    test.skip(
+      'should handle PostgreSQL views',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(postgresUrl);
 
-      // Check for both public and test_schema
-      const publicTables = schema.filter((t) => t.schema === 'public');
-      const testSchemaTables = schema.filter((t) => t.schema === 'test_schema');
+        const schema = await db.getAllSchemas();
+        const view = schema.find((t) => t.name === 'order_summary');
 
-      expect(publicTables.length).toBeGreaterThan(0);
-      expect(testSchemaTables.length).toBeGreaterThan(0);
+        // Views are returned as regular tables in the schema
+        assert.ok(view);
+        assert.equal(view?.name, 'order_summary');
+      }
+    );
 
-      // Verify test_schema.users exists
-      const usersTable = schema.find(
-        (t) => t.schema === 'test_schema' && t.name === 'users'
-      );
-      expect(usersTable).toBeDefined();
-    }, 15_000);
+    test(
+      'should handle multiple PostgreSQL schemas',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(postgresUrl);
 
-    test('should find shortest join path between two directly connected tables', async () => {
+        const schema = await db.getAllSchemas();
+
+        // Check for both public and test_schema
+        const publicTables = schema.filter((t) => t.schema === 'public');
+        const testSchemaTables = schema.filter(
+          (t) => t.schema === 'test_schema'
+        );
+
+        assert.ok(publicTables.length > 0);
+        assert.ok(testSchemaTables.length > 0);
+
+        // Verify test_schema.users exists
+        const usersTable = schema.find(
+          (t) => t.schema === 'test_schema' && t.name === 'users'
+        );
+        assert.ok(usersTable);
+      }
+    );
+
+    test(
+      'should find shortest join path between two directly connected tables',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(postgresUrl);
+
+        const tables: TableReference[] = [
+          { schema: 'public', table: 'orders' },
+          { schema: 'public', table: 'customers' },
+        ];
+
+        const result = await db.getTableJoins({ tables });
+        const path = result?.joinPath;
+
+        assert.ok(path);
+        assert.equal(path?.tables.length, 2);
+        assert.equal(path?.relations.length, 1);
+        assert.equal(path?.totalJoins, 1);
+
+        // Check the relation details
+        const relation = path?.relations[0];
+        assert.equal(relation?.from.table, 'orders');
+        assert.ok(relation?.from.columns.includes('customer_id'));
+        assert.equal(relation?.to.table, 'customers');
+        assert.ok(relation?.to.columns.includes('id'));
+      }
+    );
+
+    test(
+      'should find path with intermediate table',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(postgresUrl);
+
+        const tables: TableReference[] = [
+          { schema: 'public', table: 'orders' },
+          { schema: 'public', table: 'products' },
+        ];
+
+        const result = await db.getTableJoins({ tables });
+        const path = result?.joinPath;
+
+        assert.ok(path);
+        assert.ok(path?.tables.length > 2); // Should include order_items
+        assert.ok(path?.relations.length >= 2);
+
+        // Verify intermediate table is included
+        const tableNames = path?.tables.map((t: TableReference) => t.table);
+        assert.ok(tableNames.includes('order_items'));
+      }
+    );
+
+    test('should connect multiple tables', { timeout: 15_000 }, async () => {
       const db = DatabaseService.fromUrl(postgresUrl);
 
       const tables: TableReference[] = [
-        { schema: 'public', table: 'orders' },
         { schema: 'public', table: 'customers' },
-      ];
-
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
-
-      expect(path).not.toBeNull();
-      expect(path?.tables.length).toBe(2);
-      expect(path?.relations.length).toBe(1);
-      expect(path?.totalJoins).toBe(1);
-
-      // Check the relation details
-      const relation = path?.relations[0];
-      expect(relation?.from.table).toBe('orders');
-      expect(relation?.from.columns).toContain('customer_id');
-      expect(relation?.to.table).toBe('customers');
-      expect(relation?.to.columns).toContain('id');
-    }, 15_000);
-
-    test('should find path with intermediate table', async () => {
-      const db = DatabaseService.fromUrl(postgresUrl);
-
-      const tables: TableReference[] = [
         { schema: 'public', table: 'orders' },
         { schema: 'public', table: 'products' },
       ];
@@ -112,34 +159,13 @@ describe('docker integration tests', () => {
       const result = await db.getTableJoins({ tables });
       const path = result?.joinPath;
 
-      expect(path).not.toBeNull();
-      expect(path?.tables.length).toBeGreaterThan(2); // Should include order_items
-      expect(path?.relations.length).toBeGreaterThanOrEqual(2);
+      assert.ok(path);
+      assert.equal(path?.inputTablesCount, 3);
+      assert.ok(path?.totalTablesCount >= 3);
+      assert.ok(path?.relations.length >= 2);
+    });
 
-      // Verify intermediate table is included
-      const tableNames = path?.tables.map((t: TableReference) => t.table);
-      expect(tableNames).toContain('order_items');
-    }, 15_000);
-
-    test('should connect multiple tables', async () => {
-      const db = DatabaseService.fromUrl(postgresUrl);
-
-      const tables: TableReference[] = [
-        { schema: 'public', table: 'customers' },
-        { schema: 'public', table: 'orders' },
-        { schema: 'public', table: 'products' },
-      ];
-
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
-
-      expect(path).not.toBeNull();
-      expect(path?.inputTablesCount).toBe(3);
-      expect(path?.totalTablesCount).toBeGreaterThanOrEqual(3);
-      expect(path?.relations.length).toBeGreaterThanOrEqual(2);
-    }, 15_000);
-
-    test('should handle single table input', async () => {
+    test('should handle single table input', { timeout: 15_000 }, async () => {
       const db = DatabaseService.fromUrl(postgresUrl);
 
       const tables: TableReference[] = [
@@ -149,89 +175,104 @@ describe('docker integration tests', () => {
       const result = await db.getTableJoins({ tables });
       const path = result?.joinPath;
 
-      expect(path).not.toBeNull();
-      expect(path?.tables.length).toBe(1);
-      expect(path?.relations.length).toBe(0);
-      expect(path?.totalJoins).toBe(0);
-    }, 15_000);
+      assert.ok(path);
+      assert.equal(path?.tables.length, 1);
+      assert.equal(path?.relations.length, 0);
+      assert.equal(path?.totalJoins, 0);
+    });
 
-    test('should return null for empty input', async () => {
-      const db = DatabaseService.fromUrl(postgresUrl);
+    test(
+      'should return null for empty input',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(postgresUrl);
 
-      const tables: TableReference[] = [];
+        const tables: TableReference[] = [];
 
-      const result = await db.getTableJoins({ tables });
+        const result = await db.getTableJoins({ tables });
 
-      expect(result).toBeNull();
-    }, 15_000);
+        assert.equal(result, null);
+      }
+    );
 
-    test('should handle tables from different schemas', async () => {
-      const db = DatabaseService.fromUrl(postgresUrl);
+    test(
+      'should handle tables from different schemas',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(postgresUrl);
 
-      const tables: TableReference[] = [
-        { schema: 'public', table: 'orders' },
-        { schema: 'test_schema', table: 'users' },
-      ];
+        const tables: TableReference[] = [
+          { schema: 'public', table: 'orders' },
+          { schema: 'test_schema', table: 'users' },
+        ];
 
-      const result = await db.getTableJoins({ tables });
+        const result = await db.getTableJoins({ tables });
 
-      // These tables aren't connected, so should return null
-      expect(result).toBeNull();
-    }, 15_000);
+        // These tables aren't connected, so should return null
+        assert.equal(result, null);
+      }
+    );
   });
 
   describe('MySQL tests', () => {
-    test('should connect and pull schema from MySQL', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
+    test(
+      'should connect and pull schema from MySQL',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
 
-      const schema = await db.getAllSchemas();
-      expect(schema).not.toBeNull();
-      expect(schema.length).toBeGreaterThan(0);
+        const schema = await db.getAllSchemas();
+        assert.ok(schema);
+        assert.ok(schema.length > 0);
 
-      // Verify expected tables exist
-      const tableNames = schema.map((t) => t.name);
-      expect(tableNames).toContain('categories');
-      expect(tableNames).toContain('customers');
-      expect(tableNames).toContain('products');
-      expect(tableNames).toContain('orders');
-      expect(tableNames).toContain('order_items');
-      expect(tableNames).toContain('product_reviews');
-      expect(tableNames).toContain('page_views');
-    }, 15_000);
-
-    test('should pull sample data from MySQL table', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
-
-      const sampleData = await db.getSampleData({
-        table: 'customers',
-        schema: MYSQL_DB,
-      });
-
-      expect(sampleData).toBeInstanceOf(Array);
-      expect(sampleData.length).toBe(5); // We inserted 5 customers
-
-      // Verify data structure
-      if (sampleData[0]) {
-        expect(sampleData[0]).toHaveProperty('id');
-        expect(sampleData[0]).toHaveProperty('email');
-        expect(sampleData[0]).toHaveProperty('first_name');
-        expect(sampleData[0]).toHaveProperty('last_name');
+        // Verify expected tables exist
+        const tableNames = schema.map((t) => t.name);
+        assert.ok(tableNames.includes('categories'));
+        assert.ok(tableNames.includes('customers'));
+        assert.ok(tableNames.includes('products'));
+        assert.ok(tableNames.includes('orders'));
+        assert.ok(tableNames.includes('order_items'));
+        assert.ok(tableNames.includes('product_reviews'));
+        assert.ok(tableNames.includes('page_views'));
       }
-    }, 15_000);
+    );
 
-    // biome-ignore lint/suspicious/noSkippedTests: Views not implemented in seed data yet
-    test.skip('should handle MySQL views', async () => {
+    test(
+      'should pull sample data from MySQL table',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
+
+        const sampleData = await db.getSampleData({
+          table: 'customers',
+          schema: MYSQL_DB,
+        });
+
+        assert.ok(Array.isArray(sampleData));
+        assert.equal(sampleData.length, 5); // We inserted 5 customers
+
+        // Verify data structure
+        if (sampleData[0]) {
+          assert.ok('id' in sampleData[0]);
+          assert.ok('email' in sampleData[0]);
+          assert.ok('first_name' in sampleData[0]);
+          assert.ok('last_name' in sampleData[0]);
+        }
+      }
+    );
+
+    test.skip('should handle MySQL views', { timeout: 15_000 }, async () => {
       const db = DatabaseService.fromUrl(mysqlUrl);
 
       const schema = await db.getAllSchemas();
       const view = schema.find((t) => t.name === 'order_summary');
 
       // Views are returned as regular tables in the schema
-      expect(view).toBeDefined();
-      expect(view?.name).toBe('order_summary');
-    }, 15_000);
+      assert.ok(view);
+      assert.equal(view?.name, 'order_summary');
+    });
 
-    test('should handle empty MySQL table', async () => {
+    test('should handle empty MySQL table', { timeout: 15_000 }, async () => {
       const db = DatabaseService.fromUrl(mysqlUrl);
 
       // inventory_logs table is empty
@@ -240,217 +281,255 @@ describe('docker integration tests', () => {
         schema: MYSQL_DB,
       });
 
-      expect(sampleData).toBeInstanceOf(Array);
-      expect(sampleData.length).toBe(0);
-    }, 15_000);
+      assert.ok(Array.isArray(sampleData));
+      assert.equal(sampleData.length, 0);
+    });
 
-    test('should handle MySQL table with foreign keys', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
+    test(
+      'should handle MySQL table with foreign keys',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
 
-      const schema = await db.getAllSchemas();
-      const orderItemsTable = schema.find((t) => t.name === 'order_items');
+        const schema = await db.getAllSchemas();
+        const orderItemsTable = schema.find((t) => t.name === 'order_items');
 
-      expect(orderItemsTable).toBeDefined();
+        assert.ok(orderItemsTable);
 
-      // Check foreign key relationships
-      const foreignKeys = orderItemsTable?.foreignKeys || [];
-      expect(foreignKeys.length).toBeGreaterThan(0);
+        // Check foreign key relationships
+        const foreignKeys = orderItemsTable?.foreignKeys || [];
+        assert.ok(foreignKeys.length > 0);
 
-      // Should have foreign keys to orders and products
-      const orderFk = foreignKeys.find((fk) => fk.columns.includes('order_id'));
-      const productFk = foreignKeys.find((fk) =>
-        fk.columns.includes('product_id')
-      );
+        // Should have foreign keys to orders and products
+        const orderFk = foreignKeys.find((fk) =>
+          fk.columns.includes('order_id')
+        );
+        const productFk = foreignKeys.find((fk) =>
+          fk.columns.includes('product_id')
+        );
 
-      expect(orderFk).toBeDefined();
-      expect(productFk).toBeDefined();
-      expect(orderFk?.referencedTable).toBe('orders');
-      expect(productFk?.referencedTable).toBe('products');
-    }, 15_000);
-
-    test('should find shortest join path between MySQL tables', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
-
-      const tables: TableReference[] = [
-        { schema: MYSQL_DB, table: 'orders' },
-        { schema: MYSQL_DB, table: 'customers' },
-      ];
-
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
-
-      expect(path).not.toBeNull();
-      expect(path?.tables.length).toBe(2);
-      expect(path?.relations.length).toBe(1);
-      expect(path?.totalJoins).toBe(1);
-
-      // Check the relation details
-      const relation = path?.relations[0];
-      expect(relation?.from.table).toBe('orders');
-      expect(relation?.from.columns).toContain('customer_id');
-      expect(relation?.to.table).toBe('customers');
-      expect(relation?.to.columns).toContain('id');
-    }, 15_000);
-
-    test('should find path with intermediate table in MySQL', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
-
-      const tables: TableReference[] = [
-        { schema: MYSQL_DB, table: 'orders' },
-        { schema: MYSQL_DB, table: 'products' },
-      ];
-
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
-
-      expect(path).not.toBeNull();
-      expect(path?.tables.length).toBeGreaterThan(2); // Should include order_items
-      expect(path?.relations.length).toBeGreaterThanOrEqual(2);
-
-      // Verify intermediate table is included
-      const tableNames = path?.tables.map((t: TableReference) => t.table);
-      expect(tableNames).toContain('order_items');
-    }, 15_000);
-
-    test('should connect multiple MySQL tables', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
-
-      const tables: TableReference[] = [
-        { schema: MYSQL_DB, table: 'customers' },
-        { schema: MYSQL_DB, table: 'orders' },
-        { schema: MYSQL_DB, table: 'products' },
-        { schema: MYSQL_DB, table: 'categories' },
-      ];
-
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
-
-      expect(path).not.toBeNull();
-      expect(path?.inputTablesCount).toBe(4);
-      expect(path?.totalTablesCount).toBeGreaterThanOrEqual(4);
-      expect(path?.relations.length).toBeGreaterThanOrEqual(3);
-    }, 15_000);
-
-    test('should handle nullable foreign keys in MySQL', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
-
-      const tables: TableReference[] = [
-        { schema: MYSQL_DB, table: 'products' },
-        { schema: MYSQL_DB, table: 'categories' },
-      ];
-
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
-
-      expect(path).not.toBeNull();
-      expect(path?.relations.length).toBe(1);
-
-      // Check if nullable FK is detected
-      const relation = path?.relations[0];
-      if (
-        relation?.from.table === 'products' &&
-        relation?.from.columns.includes('category_id')
-      ) {
-        // category_id might be nullable in products table
-        expect(relation?.isNullable).toBeDefined();
+        assert.ok(orderFk);
+        assert.ok(productFk);
+        assert.equal(orderFk?.referencedTable, 'orders');
+        assert.equal(productFk?.referencedTable, 'products');
       }
-    }, 15_000);
+    );
 
-    test('should handle MySQL single table input', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
+    test(
+      'should find shortest join path between MySQL tables',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
 
-      const tables: TableReference[] = [
-        { schema: MYSQL_DB, table: 'customers' },
-      ];
+        const tables: TableReference[] = [
+          { schema: MYSQL_DB, table: 'orders' },
+          { schema: MYSQL_DB, table: 'customers' },
+        ];
 
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
+        const result = await db.getTableJoins({ tables });
+        const path = result?.joinPath;
 
-      expect(path).not.toBeNull();
-      expect(path?.tables.length).toBe(1);
-      expect(path?.relations.length).toBe(0);
-      expect(path?.totalJoins).toBe(0);
-    }, 15_000);
+        assert.ok(path);
+        assert.equal(path?.tables.length, 2);
+        assert.equal(path?.relations.length, 1);
+        assert.equal(path?.totalJoins, 1);
 
-    test('should return null for unconnected MySQL tables', async () => {
-      const db = DatabaseService.fromUrl(mysqlUrl);
-
-      const tables: TableReference[] = [
-        { schema: MYSQL_DB, table: 'inventory_logs' },
-        { schema: MYSQL_DB, table: 'page_views' },
-      ];
-
-      const result = await db.getTableJoins({ tables });
-
-      // If these tables aren't connected through FKs, should return null
-      // or find a very long path through multiple intermediate tables
-      if (result) {
-        const path = result.joinPath;
-        expect(path?.relations.length).toBeGreaterThan(2); // Long path
-      } else {
-        expect(result).toBeNull(); // No connection
+        // Check the relation details
+        const relation = path?.relations[0];
+        assert.equal(relation?.from.table, 'orders');
+        assert.ok(relation?.from.columns.includes('customer_id'));
+        assert.equal(relation?.to.table, 'customers');
+        assert.ok(relation?.to.columns.includes('id'));
       }
-    }, 15_000);
+    );
+
+    test(
+      'should find path with intermediate table in MySQL',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
+
+        const tables: TableReference[] = [
+          { schema: MYSQL_DB, table: 'orders' },
+          { schema: MYSQL_DB, table: 'products' },
+        ];
+
+        const result = await db.getTableJoins({ tables });
+        const path = result?.joinPath;
+
+        assert.ok(path);
+        assert.ok(path?.tables.length > 2); // Should include order_items
+        assert.ok(path?.relations.length >= 2);
+
+        // Verify intermediate table is included
+        const tableNames = path?.tables.map((t: TableReference) => t.table);
+        assert.ok(tableNames.includes('order_items'));
+      }
+    );
+
+    test(
+      'should connect multiple MySQL tables',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
+
+        const tables: TableReference[] = [
+          { schema: MYSQL_DB, table: 'customers' },
+          { schema: MYSQL_DB, table: 'orders' },
+          { schema: MYSQL_DB, table: 'products' },
+          { schema: MYSQL_DB, table: 'categories' },
+        ];
+
+        const result = await db.getTableJoins({ tables });
+        const path = result?.joinPath;
+
+        assert.ok(path);
+        assert.equal(path?.inputTablesCount, 4);
+        assert.ok(path?.totalTablesCount >= 4);
+        assert.ok(path?.relations.length >= 3);
+      }
+    );
+
+    test(
+      'should handle nullable foreign keys in MySQL',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
+
+        const tables: TableReference[] = [
+          { schema: MYSQL_DB, table: 'products' },
+          { schema: MYSQL_DB, table: 'categories' },
+        ];
+
+        const result = await db.getTableJoins({ tables });
+        const path = result?.joinPath;
+
+        assert.ok(path);
+        assert.equal(path?.relations.length, 1);
+
+        // Check if nullable FK is detected
+        const relation = path?.relations[0];
+        if (
+          relation?.from.table === 'products' &&
+          relation?.from.columns.includes('category_id')
+        ) {
+          // category_id might be nullable in products table
+          assert.ok(relation?.isNullable !== undefined);
+        }
+      }
+    );
+
+    test(
+      'should handle MySQL single table input',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
+
+        const tables: TableReference[] = [
+          { schema: MYSQL_DB, table: 'customers' },
+        ];
+
+        const result = await db.getTableJoins({ tables });
+        const path = result?.joinPath;
+
+        assert.ok(path);
+        assert.equal(path?.tables.length, 1);
+        assert.equal(path?.relations.length, 0);
+        assert.equal(path?.totalJoins, 0);
+      }
+    );
+
+    test(
+      'should return null for unconnected MySQL tables',
+      { timeout: 15_000 },
+      async () => {
+        const db = DatabaseService.fromUrl(mysqlUrl);
+
+        const tables: TableReference[] = [
+          { schema: MYSQL_DB, table: 'inventory_logs' },
+          { schema: MYSQL_DB, table: 'page_views' },
+        ];
+
+        const result = await db.getTableJoins({ tables });
+
+        // If these tables aren't connected through FKs, should return null
+        // or find a very long path through multiple intermediate tables
+        if (result) {
+          const path = result.joinPath;
+          assert.ok(path?.relations.length > 2); // Long path
+        } else {
+          assert.equal(result, null); // No connection
+        }
+      }
+    );
   });
 
   describe('Cross-database comparison', () => {
-    test('should have similar table structures in both databases', async () => {
-      const postgresDb = DatabaseService.fromUrl(postgresUrl);
-      const mysqlDb = DatabaseService.fromUrl(mysqlUrl);
+    test(
+      'should have similar table structures in both databases',
+      { timeout: 30_000 },
+      async () => {
+        const postgresDb = DatabaseService.fromUrl(postgresUrl);
+        const mysqlDb = DatabaseService.fromUrl(mysqlUrl);
 
-      const postgresSchema = await postgresDb.getAllSchemas();
-      const mysqlSchema = await mysqlDb.getAllSchemas();
+        const postgresSchema = await postgresDb.getAllSchemas();
+        const mysqlSchema = await mysqlDb.getAllSchemas();
 
-      // Find common tables
-      const commonTables = [
-        'categories',
-        'customers',
-        'products',
-        'orders',
-        'order_items',
-      ];
+        // Find common tables
+        const commonTables = [
+          'categories',
+          'customers',
+          'products',
+          'orders',
+          'order_items',
+        ];
 
-      for (const tableName of commonTables) {
-        const pgTable = postgresSchema.find(
-          (t) => t.name === tableName && t.schema === 'public'
-        );
-        const myTable = mysqlSchema.find((t) => t.name === tableName);
+        for (const tableName of commonTables) {
+          const pgTable = postgresSchema.find(
+            (t) => t.name === tableName && t.schema === 'public'
+          );
+          const myTable = mysqlSchema.find((t) => t.name === tableName);
 
-        expect(pgTable).toBeDefined();
-        expect(myTable).toBeDefined();
+          assert.ok(pgTable);
+          assert.ok(myTable);
 
-        // Both should have similar column counts (might differ slightly due to DB differences)
-        if (pgTable && myTable) {
-          expect(
-            Math.abs(pgTable.columns.length - myTable.columns.length)
-          ).toBeLessThanOrEqual(2);
+          // Both should have similar column counts (might differ slightly due to DB differences)
+          if (pgTable && myTable) {
+            assert.ok(
+              Math.abs(pgTable.columns.length - myTable.columns.length) <= 2
+            );
+          }
         }
       }
-    }, 30_000);
+    );
 
-    test('should retrieve similar sample data from both databases', async () => {
-      const postgresDb = DatabaseService.fromUrl(postgresUrl);
-      const mysqlDb = DatabaseService.fromUrl(mysqlUrl);
+    test(
+      'should retrieve similar sample data from both databases',
+      { timeout: 30_000 },
+      async () => {
+        const postgresDb = DatabaseService.fromUrl(postgresUrl);
+        const mysqlDb = DatabaseService.fromUrl(mysqlUrl);
 
-      const pgProducts = await postgresDb.getSampleData({
-        table: 'products',
-        schema: 'public',
-      });
+        const pgProducts = await postgresDb.getSampleData({
+          table: 'products',
+          schema: 'public',
+        });
 
-      const myProducts = await mysqlDb.getSampleData({
-        table: 'products',
-        schema: MYSQL_DB,
-      });
+        const myProducts = await mysqlDb.getSampleData({
+          table: 'products',
+          schema: MYSQL_DB,
+        });
 
-      // Both should return the same number of products
-      expect(pgProducts.length).toBe(10);
-      expect(myProducts.length).toBe(10);
+        // Both should return the same number of products
+        assert.equal(pgProducts.length, 10);
+        assert.equal(myProducts.length, 10);
 
-      // Verify first product has same name in both
-      if (pgProducts[0] && myProducts[0]) {
-        expect(pgProducts[0].name).toBe(myProducts[0].name);
-        expect(pgProducts[0].price).toBe(myProducts[0].price);
+        // Verify first product has same name in both
+        if (pgProducts[0] && myProducts[0]) {
+          assert.equal(pgProducts[0].name, myProducts[0].name);
+          assert.equal(pgProducts[0].price, myProducts[0].price);
+        }
       }
-    }, 30_000);
+    );
   });
 });

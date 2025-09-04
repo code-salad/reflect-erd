@@ -1,19 +1,18 @@
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
+import { env } from '../src/config';
 
 const $ = promisify(exec);
 
-// Database connection details matching db-compose.yml
+// Database connection details for Docker health checks
 const POSTGRES_USER = 'dbuser';
-const POSTGRES_PASSWORD = 'dbpassword';
 const POSTGRES_DB = 'reflect_erd';
 const MYSQL_USER = 'root';
 const MYSQL_PASSWORD = 'rootpassword';
-const MYSQL_DB = 'reflect_erd';
 
-// Export connection URLs for tests to use
-export const TEST_POSTGRES_URL = `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}`;
-export const TEST_MYSQL_URL = `mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@localhost:3306/${MYSQL_DB}`;
+// Export test database URLs from centralized configuration
+export const TEST_POSTGRES_URL = env.POSTGRES_URL;
+export const TEST_MYSQL_URL = env.MYSQL_URL;
 
 async function stopDockerCompose() {
   console.log('🧹 Stopping docker compose if running...');
@@ -128,15 +127,17 @@ export default async function globalSetup() {
 
 // Allow running this file directly for testing
 if (process.argv[1] === new URL(import.meta.url).pathname) {
-  const teardown = await globalSetup();
-  console.log('\n⏸️  Press Ctrl+C to stop and cleanup containers...\n');
+  (async () => {
+    const teardown = await globalSetup();
+    console.log('\n⏸️  Press Ctrl+C to stop and cleanup containers...\n');
 
-  // Handle Ctrl+C
-  process.on('SIGINT', async () => {
-    console.log('\n\n🛑 Received SIGINT, cleaning up...');
-    if (teardown) {
-      await teardown();
-    }
-    process.exit(0);
-  });
+    // Handle Ctrl+C
+    process.on('SIGINT', async () => {
+      console.log('\n\n🛑 Received SIGINT, cleaning up...');
+      if (teardown) {
+        await teardown();
+      }
+      process.exit(0);
+    });
+  })();
 }

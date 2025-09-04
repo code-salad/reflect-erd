@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import mysql from 'mysql2/promise';
 import postgres from 'postgres';
-import { env } from '../env';
+import { env } from '../src/config';
 
 async function seedPostgres() {
   console.log('🌱 Seeding PostgreSQL database...');

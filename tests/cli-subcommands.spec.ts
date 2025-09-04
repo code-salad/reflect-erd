@@ -1,6 +1,7 @@
+import { strict as assert } from 'node:assert/strict';
 import { exec } from 'node:child_process';
+import { describe, test } from 'node:test';
 import { promisify } from 'node:util';
-import { describe, expect, test } from 'vitest';
 
 const execAsync = promisify(exec);
 
@@ -39,6 +40,46 @@ const $ = (command: string) => {
   };
 };
 
+// Top-level regex patterns for performance
+const VSEQUEL_TOOL_PATTERN = /vsequel - Database ERD extraction tool/;
+const SUBCOMMANDS_PATTERN = /Subcommands:/;
+const SCHEMA_PATTERN = /schema/;
+const TABLE_PATTERN = /table/;
+const LIST_PATTERN = /list/;
+const SAMPLE_PATTERN = /sample/;
+const CONTEXT_PATTERN = /context/;
+const JOIN_PATTERN = /join/;
+const INFO_PATTERN = /info/;
+const COMMAND_REQUIRED_PATTERN = /Command is required/;
+const EXTRACT_FULL_SCHEMA_PATTERN = /Extract full database schema/;
+const OUTPUT_OPTION_PATTERN = /--output/;
+const JSON_PATTERN = /json/;
+const PLANTUML_PATTERN = /plantuml/;
+const FULL_PLANTUML_PATTERN = /full-plantuml/;
+const GET_SCHEMA_TABLE_PATTERN = /Get schema for a specific table/;
+const TABLE_OPTION_PATTERN = /--table/;
+const SCHEMA_OPTION_PATTERN = /--schema/;
+const WITH_SAMPLE_PATTERN = /--with-sample/;
+const LIST_TABLE_NAMES_PATTERN = /List all table names/;
+const SIMPLE_PATTERN = /simple/;
+const GET_SAMPLE_DATA_PATTERN = /Get sample data from a table/;
+const LIMIT_PATTERN = /--limit/;
+const GET_SCHEMA_SAMPLE_PATTERN = /Get schema and sample data/;
+const FIND_JOIN_PATH_PATTERN = /Find shortest join path/;
+const TABLES_OPTION_PATTERN = /--tables/;
+const SQL_PATTERN = /sql/;
+const SHOW_DATABASE_INFO_PATTERN = /Show database connection info/;
+const DB_OPTION_PATTERN = /--db/;
+const DATABASE_URL_REQUIRED_PATTERN = /Database URL is required/;
+const TABLE_REQUIRED_PATTERN = /--table is required/;
+const TABLES_REQUIRED_PATTERN = /--tables is required/;
+const UNKNOWN_COMMAND_PATTERN = /Unknown command 'unknown'/;
+const INVALID_OUTPUT_FORMAT_PATTERN = /Invalid output format 'invalid'/;
+const PUBLIC_SCHEMA_PATTERN = /public\./;
+const FROM_PATTERN = /FROM/;
+const JOIN_SQL_PATTERN = /JOIN/;
+const ON_PATTERN = /ON/;
+
 const CLI_PATH = './src/cli/index.ts';
 
 describe('CLI Subcommands', () => {
@@ -49,17 +90,17 @@ describe('CLI Subcommands', () => {
       const stdout = result.stdout.toString();
 
       // Error goes to stderr
-      expect(stderr).toContain('Command is required');
+      assert.match(stderr, COMMAND_REQUIRED_PATTERN);
       // Help goes to stdout
-      expect(stdout).toContain('vsequel - Database ERD extraction tool');
-      expect(stdout).toContain('Subcommands:');
-      expect(stdout).toContain('schema');
-      expect(stdout).toContain('table');
-      expect(stdout).toContain('list');
-      expect(stdout).toContain('sample');
-      expect(stdout).toContain('context');
-      expect(stdout).toContain('join');
-      expect(stdout).toContain('info');
+      assert.match(stdout, VSEQUEL_TOOL_PATTERN);
+      assert.match(stdout, SUBCOMMANDS_PATTERN);
+      assert.match(stdout, SCHEMA_PATTERN);
+      assert.match(stdout, TABLE_PATTERN);
+      assert.match(stdout, LIST_PATTERN);
+      assert.match(stdout, SAMPLE_PATTERN);
+      assert.match(stdout, CONTEXT_PATTERN);
+      assert.match(stdout, JOIN_PATTERN);
+      assert.match(stdout, INFO_PATTERN);
     });
 
     test('should show help for schema subcommand', async () => {
@@ -68,11 +109,11 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stdout.toString();
 
-      expect(output).toContain('vsequel schema - Extract full database schema');
-      expect(output).toContain('--output');
-      expect(output).toContain('json');
-      expect(output).toContain('plantuml');
-      expect(output).toContain('full-plantuml');
+      assert.match(output, EXTRACT_FULL_SCHEMA_PATTERN);
+      assert.match(output, OUTPUT_OPTION_PATTERN);
+      assert.match(output, JSON_PATTERN);
+      assert.match(output, PLANTUML_PATTERN);
+      assert.match(output, FULL_PLANTUML_PATTERN);
     });
 
     test('should show help for table subcommand', async () => {
@@ -81,12 +122,10 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stdout.toString();
 
-      expect(output).toContain(
-        'vsequel table - Get schema for a specific table'
-      );
-      expect(output).toContain('--table');
-      expect(output).toContain('--schema');
-      expect(output).toContain('--with-sample');
+      assert.match(output, GET_SCHEMA_TABLE_PATTERN);
+      assert.match(output, TABLE_OPTION_PATTERN);
+      assert.match(output, SCHEMA_OPTION_PATTERN);
+      assert.match(output, WITH_SAMPLE_PATTERN);
     });
 
     test('should show help for list subcommand', async () => {
@@ -95,10 +134,10 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stdout.toString();
 
-      expect(output).toContain('vsequel list - List all table names');
-      expect(output).toContain('--output');
-      expect(output).toContain('simple');
-      expect(output).toContain('json');
+      assert.match(output, LIST_TABLE_NAMES_PATTERN);
+      assert.match(output, OUTPUT_OPTION_PATTERN);
+      assert.match(output, SIMPLE_PATTERN);
+      assert.match(output, JSON_PATTERN);
     });
 
     test('should show help for sample subcommand', async () => {
@@ -107,10 +146,10 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stdout.toString();
 
-      expect(output).toContain('vsequel sample - Get sample data from a table');
-      expect(output).toContain('--table');
-      expect(output).toContain('--schema');
-      expect(output).toContain('--limit');
+      assert.match(output, GET_SAMPLE_DATA_PATTERN);
+      assert.match(output, TABLE_OPTION_PATTERN);
+      assert.match(output, SCHEMA_OPTION_PATTERN);
+      assert.match(output, LIMIT_PATTERN);
     });
 
     test('should show help for context subcommand', async () => {
@@ -119,9 +158,9 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stdout.toString();
 
-      expect(output).toContain('vsequel context - Get schema and sample data');
-      expect(output).toContain('--table');
-      expect(output).toContain('--schema');
+      assert.match(output, GET_SCHEMA_SAMPLE_PATTERN);
+      assert.match(output, TABLE_OPTION_PATTERN);
+      assert.match(output, SCHEMA_OPTION_PATTERN);
     });
 
     test('should show help for join subcommand', async () => {
@@ -130,10 +169,10 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stdout.toString();
 
-      expect(output).toContain('vsequel join - Find shortest join path');
-      expect(output).toContain('--tables');
-      expect(output).toContain('sql');
-      expect(output).toContain('json');
+      assert.match(output, FIND_JOIN_PATH_PATTERN);
+      assert.match(output, TABLES_OPTION_PATTERN);
+      assert.match(output, SQL_PATTERN);
+      assert.match(output, JSON_PATTERN);
     });
 
     test('should show help for info subcommand', async () => {
@@ -142,8 +181,8 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stdout.toString();
 
-      expect(output).toContain('vsequel info - Show database connection info');
-      expect(output).toContain('--db');
+      assert.match(output, SHOW_DATABASE_INFO_PATTERN);
+      assert.match(output, DB_OPTION_PATTERN);
     });
   });
 
@@ -152,16 +191,16 @@ describe('CLI Subcommands', () => {
       const result = await $(`npx tsx ${CLI_PATH} schema`).quiet().nothrow();
       const output = result.stderr.toString();
 
-      expect(result.exitCode).not.toBe(0);
-      expect(output).toContain('Database URL is required');
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, DATABASE_URL_REQUIRED_PATTERN);
     });
 
     test('should error when database URL is missing for list', async () => {
       const result = await $(`npx tsx ${CLI_PATH} list`).quiet().nothrow();
       const output = result.stderr.toString();
 
-      expect(result.exitCode).not.toBe(0);
-      expect(output).toContain('Database URL is required');
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, DATABASE_URL_REQUIRED_PATTERN);
     });
 
     test('should error when table is missing for table command', async () => {
@@ -172,8 +211,8 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stderr.toString();
 
-      expect(result.exitCode).not.toBe(0);
-      expect(output).toContain('--table is required');
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, TABLE_REQUIRED_PATTERN);
     });
 
     test('should error when table is missing for sample command', async () => {
@@ -184,8 +223,8 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stderr.toString();
 
-      expect(result.exitCode).not.toBe(0);
-      expect(output).toContain('--table is required');
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, TABLE_REQUIRED_PATTERN);
     });
 
     test('should error when table is missing for context command', async () => {
@@ -196,8 +235,8 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stderr.toString();
 
-      expect(result.exitCode).not.toBe(0);
-      expect(output).toContain('--table is required');
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, TABLE_REQUIRED_PATTERN);
     });
 
     test('should error when tables is missing for join command', async () => {
@@ -208,8 +247,8 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stderr.toString();
 
-      expect(result.exitCode).not.toBe(0);
-      expect(output).toContain('--tables is required');
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, TABLES_REQUIRED_PATTERN);
     });
 
     test('should error for unknown subcommand', async () => {
@@ -220,8 +259,8 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stderr.toString();
 
-      expect(result.exitCode).not.toBe(0);
-      expect(output).toContain("Unknown command 'unknown'");
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, UNKNOWN_COMMAND_PATTERN);
     });
   });
 
@@ -231,8 +270,8 @@ describe('CLI Subcommands', () => {
       const output = result.stdout.toString();
 
       // When no subcommand is provided with --help, it should show main help
-      expect(output).toContain('vsequel - Database ERD extraction tool');
-      expect(output).toContain('Subcommands:');
+      assert.match(output, VSEQUEL_TOOL_PATTERN);
+      assert.match(output, SUBCOMMANDS_PATTERN);
     });
 
     test('should require explicit command', async () => {
@@ -245,7 +284,7 @@ describe('CLI Subcommands', () => {
       const output = result.stderr.toString();
 
       // Should fail on missing command
-      expect(output).toContain('Command is required');
+      assert.match(output, COMMAND_REQUIRED_PATTERN);
     });
   });
 
@@ -258,8 +297,8 @@ describe('CLI Subcommands', () => {
         .nothrow();
       const output = result.stderr.toString();
 
-      expect(result.exitCode).not.toBe(0);
-      expect(output).toContain("Invalid output format 'invalid'");
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, INVALID_OUTPUT_FORMAT_PATTERN);
     });
   });
 });
@@ -276,8 +315,8 @@ describe('CLI Integration Tests with Mock Database', () => {
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      expect(output).toContain('public.');
-      expect(result.exitCode).toBe(0);
+      assert.match(output, PUBLIC_SCHEMA_PATTERN);
+      assert.equal(result.exitCode, 0);
     }
   });
 
@@ -292,9 +331,9 @@ describe('CLI Integration Tests with Mock Database', () => {
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
       const json = JSON.parse(output);
-      expect(json.name).toBe('customers');
-      expect(json.columns).toBeDefined();
-      expect(result.exitCode).toBe(0);
+      assert.equal(json.name, 'customers');
+      assert.ok(json.columns);
+      assert.equal(result.exitCode, 0);
     }
   });
 
@@ -309,8 +348,8 @@ describe('CLI Integration Tests with Mock Database', () => {
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
       const json = JSON.parse(output);
-      expect(Array.isArray(json)).toBe(true);
-      expect(result.exitCode).toBe(0);
+      assert.equal(Array.isArray(json), true);
+      assert.equal(result.exitCode, 0);
     }
   });
 
@@ -325,9 +364,9 @@ describe('CLI Integration Tests with Mock Database', () => {
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
       const json = JSON.parse(output);
-      expect(json.schema).toBeDefined();
-      expect(json.sampleData).toBeDefined();
-      expect(result.exitCode).toBe(0);
+      assert.ok(json.schema);
+      assert.ok(json.sampleData);
+      assert.equal(result.exitCode, 0);
     }
   });
 
@@ -342,9 +381,9 @@ describe('CLI Integration Tests with Mock Database', () => {
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
       const json = JSON.parse(output);
-      expect(json.tables).toBeDefined();
-      expect(json.relations).toBeDefined();
-      expect(result.exitCode).toBe(0);
+      assert.ok(json.tables);
+      assert.ok(json.relations);
+      assert.equal(result.exitCode, 0);
     }
   });
 
@@ -358,10 +397,10 @@ describe('CLI Integration Tests with Mock Database', () => {
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      expect(output).toContain('FROM');
-      expect(output).toContain('JOIN');
-      expect(output).toContain('ON');
-      expect(result.exitCode).toBe(0);
+      assert.match(output, FROM_PATTERN);
+      assert.match(output, JOIN_SQL_PATTERN);
+      assert.match(output, ON_PATTERN);
+      assert.equal(result.exitCode, 0);
     }
   });
 
@@ -374,10 +413,10 @@ describe('CLI Integration Tests with Mock Database', () => {
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
       const json = JSON.parse(output);
-      expect(json.provider).toBe('postgres');
-      expect(json.tableCount).toBeGreaterThan(0);
-      expect(json.schemas).toBeDefined();
-      expect(result.exitCode).toBe(0);
+      assert.equal(json.provider, 'postgres');
+      assert.ok(json.tableCount > 0);
+      assert.ok(json.schemas);
+      assert.equal(result.exitCode, 0);
     }
   });
 });

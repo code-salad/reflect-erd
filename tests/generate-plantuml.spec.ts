@@ -1,9 +1,16 @@
-import { describe, expect, test } from 'vitest';
-import { env } from '../env';
+import { strict as assert } from 'node:assert/strict';
+import { describe, test } from 'node:test';
+import { env } from '../src/config';
 import { DatabaseService } from '../src/services/database/index';
 
-// Regex for PlantUML relationship notation
+// Top-level regex patterns for performance
 const PLANTUML_RELATIONSHIP_REGEX = /\|\|--[o|]\{/;
+const STARTUML_PATTERN = /@startuml/;
+const ENDUML_PATTERN = /@enduml/;
+const ENTITY_PATTERN = /entity/;
+const CUSTOMERS_PATTERN = /customers/;
+const PRIMARY_KEY_PATTERN = /<<PK>>/;
+const QUOTE_PATTERN = /"table-with-dash"/;
 
 describe('generatePlantumlSchema', () => {
   const mysqlDbUrl = env.MYSQL_URL;
@@ -14,22 +21,22 @@ describe('generatePlantumlSchema', () => {
     const schema = await service.getAllSchemas();
     const plantuml = service.generatePlantumlSchema({ schema });
 
-    expect(plantuml).toBeDefined();
-    expect(plantuml.full).toBeDefined();
-    expect(plantuml.simplified).toBeDefined();
+    assert.ok(plantuml);
+    assert.ok(plantuml.full);
+    assert.ok(plantuml.simplified);
 
     // Check that the PlantUML contains expected elements
-    expect(plantuml.full).toContain('@startuml');
-    expect(plantuml.full).toContain('@enduml');
-    expect(plantuml.full).toContain('entity');
-    expect(plantuml.full).toContain('customers');
-    expect(plantuml.full).toContain('<<PK>>');
+    assert.match(plantuml.full, STARTUML_PATTERN);
+    assert.match(plantuml.full, ENDUML_PATTERN);
+    assert.match(plantuml.full, ENTITY_PATTERN);
+    assert.match(plantuml.full, CUSTOMERS_PATTERN);
+    assert.match(plantuml.full, PRIMARY_KEY_PATTERN);
 
     // Check simplified version
-    expect(plantuml.simplified).toContain('@startuml');
-    expect(plantuml.simplified).toContain('@enduml');
-    expect(plantuml.simplified).toContain('entity');
-    expect(plantuml.simplified).toContain('customers');
+    assert.match(plantuml.simplified, STARTUML_PATTERN);
+    assert.match(plantuml.simplified, ENDUML_PATTERN);
+    assert.match(plantuml.simplified, ENTITY_PATTERN);
+    assert.match(plantuml.simplified, CUSTOMERS_PATTERN);
   });
 
   test('should generate PlantUML for MySQL schema', async () => {
@@ -37,22 +44,22 @@ describe('generatePlantumlSchema', () => {
     const schema = await service.getAllSchemas();
     const plantuml = service.generatePlantumlSchema({ schema });
 
-    expect(plantuml).toBeDefined();
-    expect(plantuml.full).toBeDefined();
-    expect(plantuml.simplified).toBeDefined();
+    assert.ok(plantuml);
+    assert.ok(plantuml.full);
+    assert.ok(plantuml.simplified);
 
     // Check that the PlantUML contains expected elements
-    expect(plantuml.full).toContain('@startuml');
-    expect(plantuml.full).toContain('@enduml');
-    expect(plantuml.full).toContain('entity');
-    expect(plantuml.full).toContain('customers');
-    expect(plantuml.full).toContain('<<PK>>');
+    assert.match(plantuml.full, STARTUML_PATTERN);
+    assert.match(plantuml.full, ENDUML_PATTERN);
+    assert.match(plantuml.full, ENTITY_PATTERN);
+    assert.match(plantuml.full, CUSTOMERS_PATTERN);
+    assert.match(plantuml.full, PRIMARY_KEY_PATTERN);
 
     // Check simplified version
-    expect(plantuml.simplified).toContain('@startuml');
-    expect(plantuml.simplified).toContain('@enduml');
-    expect(plantuml.simplified).toContain('entity');
-    expect(plantuml.simplified).toContain('customers');
+    assert.match(plantuml.simplified, STARTUML_PATTERN);
+    assert.match(plantuml.simplified, ENDUML_PATTERN);
+    assert.match(plantuml.simplified, ENTITY_PATTERN);
+    assert.match(plantuml.simplified, CUSTOMERS_PATTERN);
   });
 
   test('should handle foreign key relationships', async () => {
@@ -61,7 +68,7 @@ describe('generatePlantumlSchema', () => {
     const plantuml = service.generatePlantumlSchema({ schema });
 
     // Check for relationship notation in PlantUML
-    expect(plantuml.full).toMatch(PLANTUML_RELATIONSHIP_REGEX);
+    assert.match(plantuml.full, PLANTUML_RELATIONSHIP_REGEX);
   });
 
   test('should escape special characters in table names', async () => {
@@ -83,6 +90,6 @@ describe('generatePlantumlSchema', () => {
     ];
 
     const plantuml = service.generatePlantumlSchema({ schema: mockSchema });
-    expect(plantuml.full).toContain('"table-with-dash"');
+    assert.match(plantuml.full, QUOTE_PATTERN);
   });
 });
