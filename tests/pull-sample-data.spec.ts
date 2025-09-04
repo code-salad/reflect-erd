@@ -1,5 +1,4 @@
 import { strict as assert } from 'node:assert/strict';
-import { writeFile } from 'node:fs/promises';
 import { describe, test } from 'node:test';
 import { env } from '../src/config';
 import { DatabaseService } from '../src/services/database';
@@ -146,10 +145,6 @@ describe('database pull sample data', () => {
 
       const results = await Promise.all(sampleDataPromises);
 
-      await writeFile(
-        '.data/postgres-sample-data.json',
-        JSON.stringify(results, null, 2)
-      );
       // Check all results
       for (const { sampleData } of results) {
         assert.ok(Array.isArray(sampleData));
@@ -179,10 +174,6 @@ describe('database pull sample data', () => {
       });
 
       const results = await Promise.all(sampleDataPromises);
-      await writeFile(
-        '.data/mysql-sample-data.json',
-        JSON.stringify(results, null, 2)
-      );
       // Check all results
       for (const { sampleData } of results) {
         assert.ok(Array.isArray(sampleData));
