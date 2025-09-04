@@ -13,6 +13,8 @@ jobs:
   run-tests:
     name: Run Tests
     runs-on: ubuntu-latest
+    env:
+      DOTENV_PRIVATE_KEY_CI: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -26,17 +28,15 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - run: curl -sfS https://dotenvx.sh/install.sh | sh
-        env:
-          DOTENV_PRIVATE_KEY_CI: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
       - name: Verify Docker and Docker Compose
         run: |
           docker --version
           docker compose version
       - name: Lint and Test
         run: |
-          dotenvx run -f .env.ci -- npm run lint
+          dotenvx run -- npm run lint
       - name: Run End-to-End Tests  
-        run: dotenvx run -f .env.ci -- npm run test:ee
+        run: dotenvx run -- npm run test:ee
 
   release:
     name: Semantic Release
