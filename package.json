@@ -25,7 +25,7 @@
     "build": "rm -rf dist && npx tsc",
     "prepublishOnly": "npm run build",
     "test": "npx tsx --test $(find tests -name '*.spec.ts')",
-    "test:ee": "docker compose -f tests/docker-compose.yml up -d --wait && npm run seed && npm test && docker compose -f tests/docker-compose.yml down",
+    "test:ee": "docker compose -f tests/docker-compose.yml up -d --wait && sleep 5 && npm run seed && npm test && docker compose -f tests/docker-compose.yml down",
     "test:docker": "docker compose -f tests/docker-compose.yml up -d --wait && npx tsx seeds/setup.ts && npx tsx --test tests/docker-integration.spec.ts && docker compose -f tests/docker-compose.yml down"
   },
   "license": "MIT",

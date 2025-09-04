@@ -18,8 +18,10 @@ services:
       - vsequel-network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 5s
-      retries: 10
+      interval: 2s
+      timeout: 10s
+      retries: 30
+      start_period: 10s
 
   # PostgreSQL Connection URL: postgresql://dbuser:dbpassword@localhost:5432/reflect_erd
   postgres:
@@ -38,9 +40,10 @@ services:
       - vsequel-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U dbuser -d reflect_erd"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
+      interval: 2s
+      timeout: 10s
+      retries: 30
+      start_period: 10s
 
 volumes:
   mysql_data:
