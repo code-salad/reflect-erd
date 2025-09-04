@@ -127,9 +127,6 @@ async function setup() {
   }
 }
 
-// Run setup if this file is executed directly
-if (import.meta.main) {
-  await setup();
-}
-
-export { setup, seedPostgres, seedMySQL };
+setup().finally(() => {
+  console.log('\n🚀 Database setup complete!');
+});
