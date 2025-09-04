@@ -34,9 +34,9 @@ jobs:
           docker compose version
       - name: Lint and Test
         run: |
-          dotenvx run -- npm run lint
+          dotenvx run -f .env.ci -- npm run lint
       - name: Run End-to-End Tests  
-        run: dotenvx run -- npm run test:ee
+        run: dotenvx run -f .env.ci -- npm run test:ee
 
   release:
     name: Semantic Release
