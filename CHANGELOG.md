@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/code-salad/vsequel/compare/v1.0.0...v2.0.0) (2025-09-05)
+
+
+### Features
+
+* database service join path would return all under 6 join path ([#1](https://github.com/code-salad/vsequel/issues/1)) ([d955366](https://github.com/code-salad/vsequel/commit/d9553667313e684a9154545eef8b6b7852c95d17))
+
+
+### BREAKING CHANGES
+
+* different interface for database service
+
 # 1.0.0 (2025-09-04)
 
 
