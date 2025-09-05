@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/code-salad/vsequel/compare/v2.0.0...v2.0.1) (2025-09-05)
+
+
+### Bug Fixes
+
+* empty join on cli ([#2](https://github.com/code-salad/vsequel/issues/2)) ([25dfbf7](https://github.com/code-salad/vsequel/commit/25dfbf717ead4720f0a08b245e873855a3f62237))
+
 # [2.0.0](https://github.com/code-salad/vsequel/compare/v1.0.0...v2.0.0) (2025-09-05)
 
 
