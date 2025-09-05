@@ -36,8 +36,8 @@ export interface DatabaseProvider {
     schema?: string;
     limit?: number;
   }): Promise<Record<string, unknown>[]>;
-  getTableJoins(params: { tables: TableReference[] }): Promise<{
+  generateJoinSQL(params: {
     joinPath: JoinPath;
-    sql: string;
-  } | null>;
+    tableSchemas: TableSchema[];
+  }): string;
 }

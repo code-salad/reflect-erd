@@ -106,8 +106,11 @@ describe('docker integration tests', () => {
           { schema: 'public', table: 'customers' },
         ];
 
-        const result = await db.getTableJoins({ tables });
-        const path = result?.joinPath;
+        const results = await db.getTableJoins({ tables });
+        assert.ok(results);
+        assert.ok(results.length > 0);
+
+        const path = results[0]?.joinPath;
 
         assert.ok(path);
         assert.equal(path?.tables.length, 2);
@@ -134,8 +137,11 @@ describe('docker integration tests', () => {
           { schema: 'public', table: 'products' },
         ];
 
-        const result = await db.getTableJoins({ tables });
-        const path = result?.joinPath;
+        const results = await db.getTableJoins({ tables });
+        assert.ok(results);
+        assert.ok(results.length > 0);
+
+        const path = results[0]?.joinPath;
 
         assert.ok(path);
         assert.ok(path?.tables.length > 2); // Should include order_items
@@ -156,8 +162,11 @@ describe('docker integration tests', () => {
         { schema: 'public', table: 'products' },
       ];
 
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
+      const results = await db.getTableJoins({ tables });
+      assert.ok(results);
+      assert.ok(results.length > 0);
+
+      const path = results[0]?.joinPath;
 
       assert.ok(path);
       assert.equal(path?.inputTablesCount, 3);
@@ -172,8 +181,11 @@ describe('docker integration tests', () => {
         { schema: 'public', table: 'customers' },
       ];
 
-      const result = await db.getTableJoins({ tables });
-      const path = result?.joinPath;
+      const results = await db.getTableJoins({ tables });
+      assert.ok(results);
+      assert.ok(results.length > 0);
+
+      const path = results[0]?.joinPath;
 
       assert.ok(path);
       assert.equal(path?.tables.length, 1);
@@ -326,8 +338,11 @@ describe('docker integration tests', () => {
           { schema: MYSQL_DB, table: 'customers' },
         ];
 
-        const result = await db.getTableJoins({ tables });
-        const path = result?.joinPath;
+        const results = await db.getTableJoins({ tables });
+        assert.ok(results);
+        assert.ok(results.length > 0);
+
+        const path = results[0]?.joinPath;
 
         assert.ok(path);
         assert.equal(path?.tables.length, 2);
@@ -354,8 +369,11 @@ describe('docker integration tests', () => {
           { schema: MYSQL_DB, table: 'products' },
         ];
 
-        const result = await db.getTableJoins({ tables });
-        const path = result?.joinPath;
+        const results = await db.getTableJoins({ tables });
+        assert.ok(results);
+        assert.ok(results.length > 0);
+
+        const path = results[0]?.joinPath;
 
         assert.ok(path);
         assert.ok(path?.tables.length > 2); // Should include order_items
@@ -380,8 +398,11 @@ describe('docker integration tests', () => {
           { schema: MYSQL_DB, table: 'categories' },
         ];
 
-        const result = await db.getTableJoins({ tables });
-        const path = result?.joinPath;
+        const results = await db.getTableJoins({ tables });
+        assert.ok(results);
+        assert.ok(results.length > 0);
+
+        const path = results[0]?.joinPath;
 
         assert.ok(path);
         assert.equal(path?.inputTablesCount, 4);
@@ -401,8 +422,11 @@ describe('docker integration tests', () => {
           { schema: MYSQL_DB, table: 'categories' },
         ];
 
-        const result = await db.getTableJoins({ tables });
-        const path = result?.joinPath;
+        const results = await db.getTableJoins({ tables });
+        assert.ok(results);
+        assert.ok(results.length > 0);
+
+        const path = results[0]?.joinPath;
 
         assert.ok(path);
         assert.equal(path?.relations.length, 1);
@@ -429,8 +453,11 @@ describe('docker integration tests', () => {
           { schema: MYSQL_DB, table: 'customers' },
         ];
 
-        const result = await db.getTableJoins({ tables });
-        const path = result?.joinPath;
+        const results = await db.getTableJoins({ tables });
+        assert.ok(results);
+        assert.ok(results.length > 0);
+
+        const path = results[0]?.joinPath;
 
         assert.ok(path);
         assert.equal(path?.tables.length, 1);
