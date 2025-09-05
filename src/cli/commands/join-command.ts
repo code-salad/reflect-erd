@@ -25,21 +25,27 @@ export const joinCommand = async ({
       return { schema: 'public', table: parts[0] };
     }) as TableReference[];
 
-    const result = await databaseService.getTableJoins({
+    const results = await databaseService.getTableJoins({
       tables: tableList,
     });
 
-    if (!result) {
+    if (!results || results.length === 0) {
       console.error('No join path found between the specified tables');
       process.exit(1);
     }
 
     if (output === 'sql') {
-      // Output the generated SQL
-      console.log(result.sql);
+      // Output the generated SQL for the shortest path (first result)
+      console.log(results[0]?.sql || '');
     } else {
-      // JSON output
-      console.log(JSON.stringify(result.joinPath, null, 2));
+      // JSON output - show all possible paths
+      console.log(
+        JSON.stringify(
+          results.map((r) => r.joinPath),
+          null,
+          2
+        )
+      );
     }
   } catch (error) {
     console.error('Error:', (error as Error).message);

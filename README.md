@@ -24,7 +24,7 @@ A CLI tool and TypeScript library for extracting database schemas and generating
 - 🗄️ **Multi-Database Support** - Works with PostgreSQL, MySQL, and MariaDB
 - 📊 **ERD Generation** - Create PlantUML diagrams from your database schema
 - 🔍 **Schema Extraction** - Export complete database schemas as JSON
-- 🔗 **Join Path Finding** - Automatically find the shortest path to join multiple tables
+- 🔗 **Join Path Finding** - Find all possible paths to join multiple tables, sorted by efficiency
 - 📝 **Sample Data** - Retrieve sample data from tables for documentation
 - 🚀 **Performance** - Parallel operations for fetching schema and data
 - 📦 **TypeScript First** - Full TypeScript support with detailed type definitions
@@ -39,7 +39,7 @@ npx vsequel schema --db postgresql://localhost/mydb > erd.puml
 # List all tables
 npx vsequel list --db postgresql://localhost/mydb
 
-# Find how to join tables
+# Find all ways to join tables
 npx vsequel join --db postgresql://localhost/mydb --tables orders,customers,products
 
 # Get table details with sample data
@@ -173,13 +173,13 @@ vsequel context --db postgresql://localhost/mydb --table users
 
 ### Join Command
 
-Find the shortest path to join multiple tables and generate complete SQL queries:
+Find all possible paths to join multiple tables and generate complete SQL queries:
 
 ````bash
-# Generate complete SQL query with all columns
+# Generate complete SQL query for shortest path
 vsequel join --db postgresql://localhost/mydb --tables orders,customers --output sql
 
-# Output:
+# Output: (shortest path SQL)
 # SELECT
 #   "public"."orders"."id",
 #   "public"."orders"."customer_id",
@@ -190,8 +190,24 @@ vsequel join --db postgresql://localhost/mydb --tables orders,customers --output
 # FROM "public"."orders"
 # JOIN "public"."customers" ON "public"."orders"."customer_id" = "public"."customers"."id"
 
-# Get detailed path information as JSON
+# Get all possible join paths as JSON
 vsequel join --db postgresql://localhost/mydb --tables orders,customers,products --output json
+
+# Output: Array of all possible join paths, sorted by efficiency
+# [
+#   {
+#     "tables": [...],
+#     "relations": [...],
+#     "totalJoins": 2,
+#     ...
+#   },
+#   {
+#     "tables": [...],
+#     "relations": [...], 
+#     "totalJoins": 3,
+#     ...
+#   }
+# ]
 
 # Using schema-qualified table names
 vsequel join --db postgresql://localhost/mydb --tables public.orders,public.customers
@@ -265,19 +281,23 @@ npx vsequel sample --db postgresql://localhost/mydb --table users
 #### Generate SQL joins for reporting
 
 ```bash
-# Generate complete SQL query
+# Generate shortest path SQL query
 npx vsequel join --db postgresql://localhost/mydb \
   --tables orders,customers,products --output sql > query.sql
 
 # The generated query includes:
 # - SELECT with all columns from all tables
-# - Proper JOIN clauses based on foreign keys
+# - Optimal JOIN clauses based on shortest path
 # - Database-specific syntax (PostgreSQL or MySQL)
 
 # Use the generated SQL directly
 psql mydb < query.sql
 
-# Or copy to clipboard (macOS)
+# Get all possible paths for analysis
+npx vsequel join --db postgresql://localhost/mydb \
+  --tables orders,customers,products --output json > join-paths.json
+
+# Or copy shortest path SQL to clipboard (macOS)
 npx vsequel join --db postgresql://localhost/mydb \
   --tables orders,customers --output sql | pbcopy
 ```
@@ -324,8 +344,8 @@ const context = await db.getTableContext({
 console.log(context.schema); // Table schema
 console.log(context.sampleData); // Sample rows
 
-// Find shortest join path and generate SQL
-const result = await db.getTableJoins({
+// Find all possible join paths and generate SQL
+const results = await db.getTableJoins({
   tables: [
     { schema: "public", table: "orders" },
     { schema: "public", table: "customers" },
@@ -333,22 +353,29 @@ const result = await db.getTableJoins({
   ],
 });
 
-if (result) {
-  // Get the generated SQL query
-  console.log(result.sql);
+if (results && results.length > 0) {
+  console.log(`Found ${results.length} possible join path(s)`);
+  
+  // Get the shortest path (first result)
+  const shortestResult = results[0];
+  console.log("Shortest path SQL:");
+  console.log(shortestResult.sql);
   // Output: Complete SELECT statement with all columns and JOIN clauses
 
   // Access the join path details
-  const joinPath = result.joinPath[0];
+  const joinPath = shortestResult.joinPath;
   console.log(`Connected ${joinPath.inputTablesCount} tables`);
   console.log(`Total tables in path: ${joinPath.totalTablesCount}`);
   console.log(`Joins needed: ${joinPath.totalJoins}`);
 
-  // Use relations for custom SQL building if needed
-  joinPath.relations.forEach((rel) => {
-    console.log(
-      `JOIN ${rel.to.table} ON ${rel.from.table}.${rel.from.columns[0]} = ${rel.to.table}.${rel.to.columns[0]}`
-    );
+  // Show all possible paths
+  results.forEach((result, index) => {
+    console.log(`\nPath ${index + 1} (${result.joinPath.totalJoins} joins):`);
+    result.joinPath.relations.forEach((rel) => {
+      console.log(
+        `  JOIN ${rel.to.table} ON ${rel.from.table}.${rel.from.columns[0]} = ${rel.to.table}.${rel.to.columns[0]}`
+      );
+    });
   });
 }
 
@@ -436,26 +463,38 @@ Retrieves sample data from a specific table (maximum 10 rows).
 
 Retrieves both schema and sample data for a table in parallel for better performance.
 
-#### `getTableJoins(params: { tables: TableReference[] }): Promise<{ joinPath: JoinPath[]; sql: string } | null>`
+#### `getTableJoins(params: { tables: TableReference[] }): Promise<{ joinPath: JoinPath; sql: string }[] | null>`
 
-Finds the shortest path to join multiple tables and generates a complete SQL query. Returns:
+Finds **all possible paths** to join multiple tables and generates complete SQL queries for each. Returns an array of results sorted by efficiency (shortest paths first), where each result contains:
 
 - `sql`: Complete SELECT statement with all columns explicitly listed and proper JOIN clauses
-- `joinPath`: Array containing the join path details with:
+- `joinPath`: Object containing the join path details with:
   - `tables`: All tables in the join path (input + intermediate)
   - `relations`: Join relations with column mappings
   - `inputTablesCount`: Number of input tables
   - `totalTablesCount`: Total tables including intermediates
   - `totalJoins`: Number of joins needed
 
-The generated SQL:
+**Key Features:**
+
+- **Multiple Paths**: Returns all possible ways to connect the specified tables
+- **Sorted Results**: Results are ordered by join complexity (fewest joins first)
+- **Path Exploration**: Limited to maximum depth of 6 joins to prevent excessive computation
+- **Deduplication**: Removes duplicate paths that use the same tables and relationships
+
+The generated SQL for each path:
 
 - Lists all columns explicitly from all joined tables
 - Uses simple `JOIN` keyword for all joins
 - Properly quotes identifiers (double quotes for PostgreSQL, backticks for MySQL)
 - Includes fully qualified table names with schema prefixes
 
-Returns `null` if tables cannot be connected.
+Returns `null` if tables cannot be connected through any path.
+
+**Example Use Cases:**
+- Compare different join strategies for query optimization
+- Explore alternative relationships in complex schemas
+- Debug connection issues by seeing all possible paths
 
 #### `generatePlantumlSchema(params: { schema: TableSchema[] }): { full: string; simplified: string }`
 
