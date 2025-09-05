@@ -5,12 +5,14 @@ export interface JoinCommandOptions {
   db: string;
   tables: string;
   output?: 'json' | 'sql';
+  maxDepth?: number;
 }
 
 export const joinCommand = async ({
   db,
   tables,
   output = 'json',
+  maxDepth = 6,
 }: JoinCommandOptions): Promise<void> => {
   try {
     const databaseService = DatabaseService.fromUrl(db);
@@ -27,6 +29,7 @@ export const joinCommand = async ({
 
     const results = await databaseService.getTableJoins({
       tables: tableList,
+      maxDepth,
     });
 
     if (!results || results.length === 0) {

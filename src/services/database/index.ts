@@ -6,7 +6,7 @@ import type {
   TableReference,
 } from '../database-provider/types';
 import { generatePlantumlSchema } from '../plantuml/generator';
-import type { TableSchema } from './types';
+import type { ForeignKey, TableSchema } from './types';
 
 // Re-export types for external use
 export type {
@@ -125,80 +125,277 @@ export class DatabaseService {
   }: {
     allSchemas: TableSchema[];
   }) => {
-    const graph = new Map<string, Set<string>>();
-    const relationDetails = new Map<string, JoinRelation[]>();
-    const tableKey = (schema: string, table: string) => `${schema}.${table}`;
+    try {
+      const graph = new Map<string, Set<string>>();
+      const relationDetails = new Map<string, JoinRelation[]>();
+      const tableKey = (schema: string, table: string) => `${schema}.${table}`;
 
-    for (const tableSchema of allSchemas) {
-      const fromKey = tableKey(tableSchema.schema, tableSchema.name);
+      this.validateSchemas(allSchemas);
 
-      if (!graph.has(fromKey)) {
-        graph.set(fromKey, new Set());
+      for (const tableSchema of allSchemas) {
+        this.processTableSchema(tableSchema, graph, relationDetails, tableKey);
       }
 
-      for (const fk of tableSchema.foreignKeys) {
-        const toKey = tableKey(fk.referencedSchema, fk.referencedTable);
+      return { graph, relationDetails, tableKey };
+    } catch (error) {
+      console.error('Error building relationship graph:', error);
+      throw error;
+    }
+  };
 
-        // Add bidirectional edges
-        graph.get(fromKey)?.add(toKey);
-        if (!graph.has(toKey)) {
-          graph.set(toKey, new Set());
-        }
-        graph.get(toKey)?.add(fromKey);
+  private validateSchemas = (allSchemas: TableSchema[]) => {
+    if (!(allSchemas && Array.isArray(allSchemas))) {
+      throw new Error('Invalid schemas: must be a non-empty array');
+    }
+  };
 
-        // Store relation details
-        const relationKey = `${fromKey}->${toKey}`;
-        const reverseRelationKey = `${toKey}->${fromKey}`;
-
-        // Check if FK columns are nullable
-        const fkColumns = tableSchema.columns.filter((col) =>
-          fk.columns.includes(col.name)
-        );
-        const isNullable = fkColumns.some((col) => col.isNullable);
-
-        const relation: JoinRelation = {
-          from: {
-            schema: tableSchema.schema,
-            table: tableSchema.name,
-            columns: fk.columns,
-          },
-          to: {
-            schema: fk.referencedSchema,
-            table: fk.referencedTable,
-            columns: fk.referencedColumns,
-          },
-          isNullable,
-        };
-
-        // Store both directions
-        if (!relationDetails.has(relationKey)) {
-          relationDetails.set(relationKey, []);
-        }
-        relationDetails.get(relationKey)?.push(relation);
-
-        // Store reverse relation
-        const reverseRelation: JoinRelation = {
-          from: {
-            schema: fk.referencedSchema,
-            table: fk.referencedTable,
-            columns: fk.referencedColumns,
-          },
-          to: {
-            schema: tableSchema.schema,
-            table: tableSchema.name,
-            columns: fk.columns,
-          },
-          isNullable: false, // Reverse direction is typically not nullable
-        };
-
-        if (!relationDetails.has(reverseRelationKey)) {
-          relationDetails.set(reverseRelationKey, []);
-        }
-        relationDetails.get(reverseRelationKey)?.push(reverseRelation);
-      }
+  private processTableSchema = (
+    tableSchema: TableSchema,
+    graph: Map<string, Set<string>>,
+    relationDetails: Map<string, JoinRelation[]>,
+    tableKey: (schema: string, table: string) => string
+  ) => {
+    if (!(tableSchema?.schema && tableSchema.name)) {
+      console.warn('Skipping invalid table schema:', tableSchema);
+      return;
     }
 
-    return { graph, relationDetails, tableKey };
+    const fromKey = tableKey(tableSchema.schema, tableSchema.name);
+    if (!graph.has(fromKey)) {
+      graph.set(fromKey, new Set());
+    }
+
+    if (!tableSchema.foreignKeys || tableSchema.foreignKeys.length === 0) {
+      return;
+    }
+
+    for (const fk of tableSchema.foreignKeys) {
+      this.processForeignKey(
+        tableSchema,
+        fk,
+        fromKey,
+        graph,
+        relationDetails,
+        tableKey
+      );
+    }
+  };
+
+  private processForeignKey = (
+    tableSchema: TableSchema,
+    fk: ForeignKey,
+    fromKey: string,
+    graph: Map<string, Set<string>>,
+    relationDetails: Map<string, JoinRelation[]>,
+    tableKey: (schema: string, table: string) => string
+  ) => {
+    try {
+      if (!this.isValidForeignKey(fk)) {
+        console.warn('Skipping invalid foreign key:', fk);
+        return;
+      }
+
+      const toKey = tableKey(fk.referencedSchema, fk.referencedTable);
+      this.addBidirectionalEdge(fromKey, toKey, graph);
+
+      const isNullable = this.checkColumnsNullable(tableSchema, fk);
+      this.storeRelationDetails(
+        tableSchema,
+        fk,
+        fromKey,
+        toKey,
+        isNullable,
+        relationDetails
+      );
+    } catch (error) {
+      console.error(
+        `Error processing foreign key for table ${tableSchema.schema}.${tableSchema.name}:`,
+        error
+      );
+    }
+  };
+
+  private isValidForeignKey = (fk: ForeignKey): boolean => {
+    return !!(
+      fk.referencedSchema &&
+      fk.referencedTable &&
+      fk.columns &&
+      fk.referencedColumns
+    );
+  };
+
+  private addBidirectionalEdge = (
+    fromKey: string,
+    toKey: string,
+    graph: Map<string, Set<string>>
+  ) => {
+    graph.get(fromKey)?.add(toKey);
+    if (!graph.has(toKey)) {
+      graph.set(toKey, new Set());
+    }
+    graph.get(toKey)?.add(fromKey);
+  };
+
+  private checkColumnsNullable = (
+    tableSchema: TableSchema,
+    fk: ForeignKey
+  ): boolean => {
+    try {
+      const fkColumns =
+        tableSchema.columns?.filter((col) => fk.columns.includes(col.name)) ||
+        [];
+      return fkColumns.some((col) => col.isNullable);
+    } catch (error) {
+      console.warn('Error checking nullable columns:', error);
+      return false;
+    }
+  };
+
+  private storeRelationDetails = (
+    tableSchema: TableSchema,
+    fk: ForeignKey,
+    fromKey: string,
+    toKey: string,
+    isNullable: boolean,
+    relationDetails: Map<string, JoinRelation[]>
+  ) => {
+    const relationKey = `${fromKey}->${toKey}`;
+    const reverseRelationKey = `${toKey}->${fromKey}`;
+
+    const relation: JoinRelation = {
+      from: {
+        schema: tableSchema.schema,
+        table: tableSchema.name,
+        columns: [...fk.columns],
+      },
+      to: {
+        schema: fk.referencedSchema,
+        table: fk.referencedTable,
+        columns: [...fk.referencedColumns],
+      },
+      isNullable,
+    };
+
+    const reverseRelation: JoinRelation = {
+      from: {
+        schema: fk.referencedSchema,
+        table: fk.referencedTable,
+        columns: [...fk.referencedColumns],
+      },
+      to: {
+        schema: tableSchema.schema,
+        table: tableSchema.name,
+        columns: [...fk.columns],
+      },
+      isNullable: false,
+    };
+
+    if (!relationDetails.has(relationKey)) {
+      relationDetails.set(relationKey, []);
+    }
+    relationDetails.get(relationKey)?.push(relation);
+
+    if (!relationDetails.has(reverseRelationKey)) {
+      relationDetails.set(reverseRelationKey, []);
+    }
+    relationDetails.get(reverseRelationKey)?.push(reverseRelation);
+  };
+
+  private shouldTerminatePathSearch = (
+    startTime: number,
+    allValidPaths: Array<{
+      pathTables: Set<string>;
+      usedRelations: JoinRelation[];
+    }>,
+    maxTime: number,
+    maxPaths: number
+  ): boolean => {
+    if (Date.now() - startTime > maxTime) {
+      console.warn(
+        'Join path computation timeout reached, returning partial results'
+      );
+      return true;
+    }
+    return allValidPaths.length >= maxPaths;
+  };
+
+  private addValidPath = (
+    currentPath: Set<string>,
+    currentRelations: JoinRelation[],
+    seenPathSignatures: Set<string>,
+    allValidPaths: Array<{
+      pathTables: Set<string>;
+      usedRelations: JoinRelation[];
+    }>
+  ) => {
+    const pathSig = this.createPathSignature(currentPath, currentRelations);
+    if (!seenPathSignatures.has(pathSig)) {
+      seenPathSignatures.add(pathSig);
+      allValidPaths.push({
+        pathTables: new Set(currentPath),
+        usedRelations: [...currentRelations],
+      });
+    }
+  };
+
+  private processNextTableConnection = (
+    nextTable: string,
+    restOfTables: string[],
+    currentConnected: Set<string>,
+    currentPath: Set<string>,
+    currentRelations: JoinRelation[],
+    depth: number,
+    graph: Map<string, Set<string>>,
+    relationDetails: Map<string, JoinRelation[]>,
+    maxDepth: number,
+    inputTableKeys: string[],
+    maxPaths: number,
+    findAllConnections: (
+      connected: Set<string>,
+      remaining: string[],
+      path: Set<string>,
+      relations: JoinRelation[],
+      pathDepth: number
+    ) => void,
+    allValidPaths: Array<{
+      pathTables: Set<string>;
+      usedRelations: JoinRelation[];
+    }>
+  ) => {
+    const pathsToTarget = this.findAllPathsFromSetToTarget({
+      connectedTables: currentConnected,
+      targetTable: nextTable,
+      graph,
+      relationDetails,
+      maxDepth: maxDepth - depth,
+      visited: currentPath,
+    });
+
+    const limitedPaths = pathsToTarget.slice(
+      0,
+      Math.max(1, maxPaths / inputTableKeys.length)
+    );
+
+    for (const pathResult of limitedPaths) {
+      if (allValidPaths.length >= maxPaths) {
+        break;
+      }
+
+      const newConnected = new Set([
+        ...currentConnected,
+        ...pathResult.pathTables,
+      ]);
+      const newPath = new Set([...currentPath, ...pathResult.pathTables]);
+      const newRelations = [...currentRelations, ...pathResult.usedRelations];
+
+      findAllConnections(
+        newConnected,
+        restOfTables,
+        newPath,
+        newRelations,
+        depth + pathResult.usedRelations.length
+      );
+    }
   };
 
   private findAllPathsBetweenTables = ({
@@ -217,6 +414,14 @@ export class DatabaseService {
       usedRelations: JoinRelation[];
     }> = [];
 
+    // Early termination limits to prevent excessive computation
+    const MAX_PATHS = 50; // Limit total number of paths to explore
+    const MAX_COMPUTATION_TIME = 30_000; // 30 seconds timeout
+    const startTime = Date.now();
+
+    // Early deduplication using path signatures
+    const seenPathSignatures = new Set<string>();
+
     // For multiple tables, find all ways to connect them
     const findAllConnections = (
       currentConnected: Set<string>,
@@ -225,53 +430,51 @@ export class DatabaseService {
       currentRelations: JoinRelation[],
       depth: number
     ) => {
+      if (
+        this.shouldTerminatePathSearch(
+          startTime,
+          allValidPaths,
+          MAX_COMPUTATION_TIME,
+          MAX_PATHS
+        )
+      ) {
+        return;
+      }
+
       if (remainingTables.length === 0) {
-        // All input tables connected, this is a valid path
-        allValidPaths.push({
-          pathTables: new Set(currentPath),
-          usedRelations: [...currentRelations],
-        });
+        this.addValidPath(
+          currentPath,
+          currentRelations,
+          seenPathSignatures,
+          allValidPaths
+        );
         return;
       }
 
       if (depth >= maxDepth) {
-        return; // Prevent infinite exploration
+        return;
       }
 
-      // Try to connect the next remaining table
       const nextTable = remainingTables[0];
       if (!nextTable) {
         return;
       }
 
-      const restOfTables = remainingTables.slice(1);
-
-      // Find all possible paths from any connected table to this target
-      const pathsToTarget = this.findAllPathsFromSetToTarget({
-        connectedTables: currentConnected,
-        targetTable: nextTable,
+      this.processNextTableConnection(
+        nextTable,
+        remainingTables.slice(1),
+        currentConnected,
+        currentPath,
+        currentRelations,
+        depth,
         graph,
         relationDetails,
-        maxDepth: maxDepth - depth,
-        visited: currentPath,
-      });
-
-      for (const pathResult of pathsToTarget) {
-        const newConnected = new Set([
-          ...currentConnected,
-          ...pathResult.pathTables,
-        ]);
-        const newPath = new Set([...currentPath, ...pathResult.pathTables]);
-        const newRelations = [...currentRelations, ...pathResult.usedRelations];
-
-        findAllConnections(
-          newConnected,
-          restOfTables,
-          newPath,
-          newRelations,
-          depth + pathResult.usedRelations.length
-        );
-      }
+        maxDepth,
+        inputTableKeys,
+        MAX_PATHS,
+        findAllConnections,
+        allValidPaths
+      );
     };
 
     // Start with first table
@@ -288,10 +491,10 @@ export class DatabaseService {
       0
     );
 
-    // Remove duplicate paths (same tables, same relations)
-    const uniquePaths = this.deduplicatePaths(allValidPaths);
-
-    return uniquePaths;
+    // Sort by efficiency (fewer joins first)
+    return allValidPaths.sort(
+      (a, b) => a.usedRelations.length - b.usedRelations.length
+    );
   };
 
   private findAllPathsFromSetToTarget = ({
@@ -385,7 +588,7 @@ export class DatabaseService {
     depth: number;
     allPaths: Array<{ pathTables: Set<string>; usedRelations: JoinRelation[] }>;
   }) => {
-    if (depth > maxDepth) {
+    if (this.shouldStopDfsSearch(depth, maxDepth, allPaths)) {
       return;
     }
 
@@ -394,31 +597,142 @@ export class DatabaseService {
       return;
     }
 
-    if (current === target && currentPath.length > 1) {
-      // Found a path, extract relations
-      const pathTables = new Set(currentPath);
-      const relations = this.extractRelationsFromPath(currentPath);
-      allPaths.push({ pathTables, usedRelations: relations });
+    if (this.isTargetReached(current, target, currentPath)) {
+      this.addFoundPath(currentPath, allPaths);
       return;
     }
 
+    this.exploreDfsNeighbors({
+      current,
+      target,
+      graph,
+      currentPath,
+      currentVisited,
+      visited,
+      maxDepth,
+      depth,
+      allPaths,
+    });
+  };
+
+  private shouldStopDfsSearch = (
+    depth: number,
+    maxDepth: number,
+    allPaths: Array<{ pathTables: Set<string>; usedRelations: JoinRelation[] }>
+  ): boolean => {
+    return depth > maxDepth || allPaths.length >= 20;
+  };
+
+  private isTargetReached = (
+    current: string,
+    target: string,
+    currentPath: string[]
+  ): boolean => {
+    return current === target && currentPath.length > 1;
+  };
+
+  private addFoundPath = (
+    currentPath: string[],
+    allPaths: Array<{ pathTables: Set<string>; usedRelations: JoinRelation[] }>
+  ) => {
+    const pathTables = new Set(currentPath);
+    const relations = this.extractRelationsFromPath(currentPath);
+    allPaths.push({ pathTables, usedRelations: relations });
+  };
+
+  private exploreDfsNeighbors = ({
+    current,
+    target,
+    graph,
+    currentPath,
+    currentVisited,
+    visited,
+    maxDepth,
+    depth,
+    allPaths,
+  }: {
+    current: string;
+    target: string;
+    graph: Map<string, Set<string>>;
+    currentPath: string[];
+    currentVisited: Set<string>;
+    visited: Set<string>;
+    maxDepth: number;
+    depth: number;
+    allPaths: Array<{ pathTables: Set<string>; usedRelations: JoinRelation[] }>;
+  }) => {
     const neighbors = graph.get(current) || new Set();
-    for (const neighbor of neighbors) {
-      if (!(currentVisited.has(neighbor) || visited.has(neighbor))) {
-        const newPath = [...currentPath, neighbor];
-        const newVisited = new Set([...currentVisited, neighbor]);
-        this.dfsPathSearch({
-          currentPath: newPath,
-          currentVisited: newVisited,
-          target,
-          graph,
+    const sortedNeighbors = this.sortNeighborsByTarget(neighbors, target);
+
+    for (const neighbor of sortedNeighbors) {
+      if (
+        this.shouldSkipNeighbor(
+          neighbor,
+          currentVisited,
           visited,
+          currentPath,
+          depth,
           maxDepth,
-          depth: depth + 1,
-          allPaths,
-        });
+          graph,
+          target
+        )
+      ) {
+        continue;
+      }
+
+      const newPath = [...currentPath, neighbor];
+      const newVisited = new Set([...currentVisited, neighbor]);
+
+      this.dfsPathSearch({
+        currentPath: newPath,
+        currentVisited: newVisited,
+        target,
+        graph,
+        visited,
+        maxDepth,
+        depth: depth + 1,
+        allPaths,
+      });
+    }
+  };
+
+  private sortNeighborsByTarget = (
+    neighbors: Set<string>,
+    target: string
+  ): string[] => {
+    return Array.from(neighbors).sort((a, b) => {
+      if (a === target) {
+        return -1;
+      }
+      if (b === target) {
+        return 1;
+      }
+      return 0;
+    });
+  };
+
+  private shouldSkipNeighbor = (
+    neighbor: string,
+    currentVisited: Set<string>,
+    visited: Set<string>,
+    currentPath: string[],
+    depth: number,
+    maxDepth: number,
+    graph: Map<string, Set<string>>,
+    target: string
+  ): boolean => {
+    if (currentVisited.has(neighbor) || visited.has(neighbor)) {
+      return true;
+    }
+
+    if (currentPath.length > 1 && depth > maxDepth / 2) {
+      const hasDirectConnection = graph.get(neighbor)?.has(target);
+      if (!hasDirectConnection && neighbor !== target) {
+        return true;
       }
     }
+
+    return false;
   };
 
   private extractRelationsFromPath = (path: string[]): JoinRelation[] => {
@@ -439,40 +753,97 @@ export class DatabaseService {
     return relations;
   };
 
-  private deduplicatePaths = (
-    paths: Array<{ pathTables: Set<string>; usedRelations: JoinRelation[] }>
-  ): Array<{ pathTables: Set<string>; usedRelations: JoinRelation[] }> => {
-    const seen = new Set<string>();
-    const unique: Array<{
-      pathTables: Set<string>;
-      usedRelations: JoinRelation[];
-    }> = [];
+  private createPathSignature = (
+    pathTables: Set<string>,
+    relations: JoinRelation[]
+  ): string => {
+    const tablesSig = Array.from(pathTables).sort().join(',');
+    const relationsSig = relations
+      .map(
+        (r) =>
+          `${r.from.schema}.${r.from.table}:${r.from.columns.join(',')}→${r.to.schema}.${r.to.table}:${r.to.columns.join(',')}`
+      )
+      .sort()
+      .join('|');
+    return `${tablesSig}::${relationsSig}`;
+  };
 
-    for (const path of paths) {
-      // Create signature from tables and relations
-      const tablesSig = Array.from(path.pathTables).sort().join(',');
-      const relationsSig = path.usedRelations
-        .map(
-          (r) =>
-            `${r.from.schema}.${r.from.table}:${r.from.columns.join(',')}→${r.to.schema}.${r.to.table}:${r.to.columns.join(',')}`
-        )
-        .sort()
-        .join('|');
-      const signature = `${tablesSig}::${relationsSig}`;
+  private processJoinPath = async (
+    joinPath: JoinPath
+  ): Promise<{ joinPath: JoinPath; sql: string }> => {
+    try {
+      this.validateJoinPath(joinPath);
+      const tableSchemas = await this.fetchTableSchemas(joinPath);
+      this.validateTableSchemas(tableSchemas, joinPath);
+      const sql = this.generateSqlForPath(joinPath, tableSchemas);
 
-      if (!seen.has(signature)) {
-        seen.add(signature);
-        unique.push(path);
+      return { joinPath, sql };
+    } catch (error) {
+      console.error('Error processing join path:', error);
+      throw error;
+    }
+  };
+
+  private validateJoinPath = (joinPath: JoinPath) => {
+    if (!joinPath.tables || joinPath.tables.length === 0) {
+      throw new Error('Invalid join path: empty tables array');
+    }
+  };
+
+  private fetchTableSchemas = async (joinPath: JoinPath) => {
+    return await Promise.all(
+      joinPath.tables.map(async (table) => {
+        try {
+          return await this.getSchema({
+            table: table.table,
+            schema: table.schema,
+          });
+        } catch (error) {
+          throw new Error(
+            `Failed to get schema for table ${table.schema ? `${table.schema}.` : ''}${table.table}: ${(error as Error).message}`
+          );
+        }
+      })
+    );
+  };
+
+  private validateTableSchemas = (
+    tableSchemas: TableSchema[],
+    joinPath: JoinPath
+  ) => {
+    for (let i = 0; i < tableSchemas.length; i++) {
+      const schema = tableSchemas[i];
+      if (!schema?.columns || schema.columns.length === 0) {
+        const table = joinPath.tables[i];
+        throw new Error(
+          `Invalid schema for table ${table?.schema ? `${table.schema}.` : ''}${table?.table}: no columns found`
+        );
       }
     }
+  };
 
-    return unique;
+  private generateSqlForPath = (
+    joinPath: JoinPath,
+    tableSchemas: TableSchema[]
+  ): string => {
+    const sql = this.provider.generateJoinSQL({
+      joinPath,
+      tableSchemas,
+    });
+
+    if (!sql || sql.trim().length === 0) {
+      throw new Error('Failed to generate SQL: empty query result');
+    }
+
+    return sql;
   };
 
   private findAllJoinPaths = async ({
     tables,
+    maxDepth = 6,
   }: {
     tables: TableReference[];
+    maxDepth?: number;
   }): Promise<JoinPath[]> => {
     if (tables.length === 0) {
       return [];
@@ -501,7 +872,7 @@ export class DatabaseService {
       inputTableKeys,
       graph,
       relationDetails,
-      maxDepth: 6, // Limit maximum join depth
+      maxDepth, // Use the passed maxDepth parameter
     });
 
     // Convert results to output format
@@ -529,8 +900,10 @@ export class DatabaseService {
 
   getTableJoins = async ({
     tables,
+    maxDepth = 6,
   }: {
     tables: TableReference[];
+    maxDepth?: number;
   }): Promise<
     | {
         joinPath: JoinPath;
@@ -538,29 +911,51 @@ export class DatabaseService {
       }[]
     | null
   > => {
-    const joinPaths = await this.findAllJoinPaths({ tables });
+    try {
+      // Input validation
+      if (!(tables && Array.isArray(tables))) {
+        throw new Error('Invalid input: tables must be a non-empty array');
+      }
 
-    if (!joinPaths || joinPaths.length === 0) {
-      return null;
+      if (tables.length === 0) {
+        return null;
+      }
+
+      // Validate table references
+      for (const table of tables) {
+        if (!table || typeof table.table !== 'string' || !table.table.trim()) {
+          throw new Error(
+            'Invalid table reference: table name is required and must be a non-empty string'
+          );
+        }
+        if (
+          table.schema &&
+          (typeof table.schema !== 'string' || !table.schema.trim())
+        ) {
+          throw new Error(
+            'Invalid table reference: schema must be a non-empty string if provided'
+          );
+        }
+      }
+
+      const joinPaths = await this.findAllJoinPaths({ tables, maxDepth });
+
+      if (!joinPaths || joinPaths.length === 0) {
+        return null;
+      }
+
+      // Generate SQL for each join path using provider-specific SQL generation
+      const results = await Promise.all(
+        joinPaths.map(async (joinPath) => this.processJoinPath(joinPath))
+      );
+
+      return results;
+    } catch (error) {
+      console.error('Error in getTableJoins:', error);
+      throw error;
+    } finally {
+      // Clean up memory by clearing relationDetails
+      this.relationDetails = undefined;
     }
-
-    // Generate SQL for each join path using provider-specific SQL generation
-    const results = await Promise.all(
-      joinPaths.map(async (joinPath) => {
-        // Fetch schemas for all tables to get column names
-        const tableSchemas = await Promise.all(
-          joinPath.tables.map((table) =>
-            this.getSchema({ table: table.table, schema: table.schema })
-          )
-        );
-
-        return {
-          joinPath,
-          sql: this.provider.generateJoinSQL({ joinPath, tableSchemas }),
-        };
-      })
-    );
-
-    return results;
   };
 }
