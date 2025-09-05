@@ -481,8 +481,8 @@ describe('docker integration tests', () => {
 
         // If these tables aren't connected through FKs, should return null
         // or find a very long path through multiple intermediate tables
-        if (result) {
-          const path = result.joinPath;
+        if (result && result.length > 0) {
+          const path = result[0]?.joinPath;
           assert.ok(path?.relations.length > 2); // Long path
         } else {
           assert.equal(result, null); // No connection

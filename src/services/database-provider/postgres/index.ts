@@ -311,7 +311,22 @@ export class PostgresProvider implements DatabaseProvider {
     schemas: TableSchema[];
   }): string[] => {
     const columns: string[] = [];
+    const columnNameCounts = new Map<string, number>();
 
+    // First pass: count column name occurrences to identify conflicts
+    tables.forEach((table, index) => {
+      const schema = schemas[index];
+      if (!(table && schema?.columns)) {
+        return;
+      }
+
+      for (const column of schema.columns) {
+        const count = columnNameCounts.get(column.name) || 0;
+        columnNameCounts.set(column.name, count + 1);
+      }
+    });
+
+    // Second pass: build SELECT clause with aliases where needed
     tables.forEach((table, index) => {
       const schema = schemas[index];
       if (!(table && schema?.columns)) {
@@ -320,7 +335,15 @@ export class PostgresProvider implements DatabaseProvider {
 
       const tableAlias = this.buildTableIdentifier(table);
       for (const column of schema.columns) {
-        columns.push(`${tableAlias}."${column.name}"`);
+        const hasConflict = (columnNameCounts.get(column.name) || 0) > 1;
+        if (hasConflict) {
+          // Use table-prefixed alias for conflicting columns
+          const alias = `${table.schema ? `${table.schema}_` : ''}${table.table}_${column.name}`;
+          columns.push(`${tableAlias}."${column.name}" AS "${alias}"`);
+        } else {
+          // No conflict, use simple column reference
+          columns.push(`${tableAlias}."${column.name}"`);
+        }
       }
     });
 
@@ -328,12 +351,39 @@ export class PostgresProvider implements DatabaseProvider {
   };
 
   private buildJoinCondition = (relation: JoinRelation): string => {
+    // Validate column arrays have same length and are not empty
+    if (!(relation.from.columns && relation.to.columns)) {
+      throw new Error(
+        `Invalid join relation: missing columns in relation from ${relation.from.table} to ${relation.to.table}`
+      );
+    }
+
+    if (
+      relation.from.columns.length === 0 ||
+      relation.to.columns.length === 0
+    ) {
+      throw new Error(
+        `Invalid join relation: empty column arrays in relation from ${relation.from.table} to ${relation.to.table}`
+      );
+    }
+
+    if (relation.from.columns.length !== relation.to.columns.length) {
+      throw new Error(
+        `Invalid join relation: column count mismatch between ${relation.from.table} (${relation.from.columns.length}) and ${relation.to.table} (${relation.to.columns.length})`
+      );
+    }
+
     const fromTable = this.buildTableIdentifier(relation.from);
     const toTable = this.buildTableIdentifier(relation.to);
 
     return relation.from.columns
       .map((fromCol, idx) => {
         const toCol = relation.to.columns[idx];
+        if (!(fromCol && toCol)) {
+          throw new Error(
+            `Invalid join relation: null/undefined column in relation from ${relation.from.table} to ${relation.to.table}`
+          );
+        }
         return `${fromTable}."${fromCol}" = ${toTable}."${toCol}"`;
       })
       .join(' AND ');
