@@ -9,6 +9,8 @@ import {
   joinHelp,
   listCommand,
   listHelp,
+  safeQueryCommand,
+  safeQueryHelp,
   sampleCommand,
   sampleHelp,
   schemaCommand,
@@ -24,13 +26,14 @@ Usage:
   vsequel <command> [options]
 
 Subcommands:
-  schema   Extract full database schema
-  table    Get schema for a specific table
-  list     List all table names
-  sample   Get sample data from a table
-  context  Get schema and sample data for a table
-  join     Find shortest join path between tables
-  info     Show database connection info
+  schema      Extract full database schema
+  table       Get schema for a specific table
+  list        List all table names
+  sample      Get sample data from a table
+  context     Get schema and sample data for a table
+  join        Find shortest join path between tables
+  safe-query  Execute SQL query safely in read-only transaction
+  info        Show database connection info
 
 Global Options:
   --db <url>  Database connection URL (required for most commands)
@@ -103,6 +106,9 @@ const showCommandHelp = (command: string): void => {
       break;
     case 'join':
       joinHelp();
+      break;
+    case 'safe-query':
+      safeQueryHelp();
       break;
     case 'info':
       infoHelp();
@@ -249,6 +255,13 @@ const main = async (): Promise<void> => {
         tables,
         output: output as 'json' | 'sql' | undefined,
       });
+      break;
+    }
+
+    case 'safe-query': {
+      requireDb(db, safeQueryHelp);
+      const sql = requireArg(parsedArgs.sql as string, 'sql', safeQueryHelp);
+      await safeQueryCommand({ db, sql });
       break;
     }
 

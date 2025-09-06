@@ -21,7 +21,7 @@ export class PostgresProvider implements DatabaseProvider {
   }
 
   async getAllTableNames(): Promise<Array<{ schema: string; table: string }>> {
-    const sql = postgres(this.databaseUrl);
+    const sql = postgres(this.databaseUrl, { max: 1 });
     try {
       const tables = await sql<
         {
@@ -34,7 +34,7 @@ export class PostgresProvider implements DatabaseProvider {
           c.relname as table_name
         from pg_class c
         join pg_namespace n on n.oid = c.relnamespace
-        where c.relkind in ('r', 'p')
+        where c.relkind in ('r', 'p', 'v')
           and n.nspname not in (
             'pg_catalog',
             'information_schema',
@@ -62,7 +62,7 @@ export class PostgresProvider implements DatabaseProvider {
     table: string;
     schema?: string;
   }): Promise<TableSchema> {
-    const sql = postgres(this.databaseUrl);
+    const sql = postgres(this.databaseUrl, { max: 1 });
     try {
       // Parse schema from URL parameters (e.g., ?schema=myschema or ?search_path=myschema)
       const urlParts = new URL(this.databaseUrl);
@@ -276,10 +276,10 @@ export class PostgresProvider implements DatabaseProvider {
 
   async getSampleData(params: {
     table: string;
+    limit: number;
     schema?: string;
-    limit?: number;
   }): Promise<Record<string, unknown>[]> {
-    const sql = postgres(this.databaseUrl);
+    const sql = postgres(this.databaseUrl, { max: 1 });
     try {
       // Parse schema from URL parameters (e.g., ?schema=myschema or ?search_path=myschema)
       const urlParts = new URL(this.databaseUrl);
@@ -287,7 +287,7 @@ export class PostgresProvider implements DatabaseProvider {
 
       // Use explicit schema param or schema from URL or default to 'public'
       const schemaToUse = params.schema || urlSchema || 'public';
-      const limitToUse = params.limit ?? 10;
+      const limitToUse = params.limit;
 
       const result = await sql.unsafe<Record<string, unknown>[]>(
         `SELECT * FROM "${schemaToUse}"."${params.table}" LIMIT ${limitToUse}`
@@ -422,5 +422,40 @@ export class PostgresProvider implements DatabaseProvider {
     }
 
     return `${selectClause}\n${fromClause}\n${joinStatements.join('\n')};`;
+  };
+
+  query = async (sql: string): Promise<Record<string, unknown>[]> => {
+    const connection = postgres(this.databaseUrl, { max: 1 });
+    try {
+      const result = await connection.unsafe<Record<string, unknown>[]>(sql);
+      return result;
+    } finally {
+      await connection.end();
+    }
+  };
+
+  safeQuery = async (sql: string): Promise<Record<string, unknown>[]> => {
+    const connection = postgres(this.databaseUrl, { max: 1 });
+    let result: Record<string, unknown>[] = [];
+
+    try {
+      // Use postgres built-in transaction method that auto-rollbacks on error
+      await connection.begin(async (transaction) => {
+        result = await transaction.unsafe<Record<string, unknown>[]>(sql);
+        // Intentionally throw to trigger rollback
+        throw new Error('ROLLBACK_INTENTIONAL');
+      });
+    } catch (error) {
+      if (error instanceof Error && error.message === 'ROLLBACK_INTENTIONAL') {
+        // This was our intentional rollback, return the result
+        return result;
+      }
+      // Re-throw actual errors
+      throw error;
+    } finally {
+      await connection.end();
+    }
+
+    return result;
   };
 }

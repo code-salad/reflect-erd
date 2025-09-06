@@ -83,7 +83,7 @@ export class MySQLProvider implements DatabaseProvider {
           TABLE_NAME as table_name
         FROM information_schema.TABLES
         WHERE TABLE_SCHEMA = ?
-          AND TABLE_TYPE = 'BASE TABLE'
+          AND TABLE_TYPE IN ('BASE TABLE', 'VIEW')
         ORDER BY TABLE_NAME
       `,
         [dbName]
@@ -126,7 +126,7 @@ export class MySQLProvider implements DatabaseProvider {
         FROM information_schema.TABLES
         WHERE TABLE_SCHEMA = ?
           AND TABLE_NAME = ?
-          AND TABLE_TYPE = 'BASE TABLE'
+          AND TABLE_TYPE IN ('BASE TABLE', 'VIEW')
       `,
         [schemaToUse, params.table]
       );
@@ -302,8 +302,8 @@ export class MySQLProvider implements DatabaseProvider {
 
   async getSampleData(params: {
     table: string;
+    limit: number;
     schema?: string;
-    limit?: number;
   }): Promise<Record<string, unknown>[]> {
     const connection = await mysql.createConnection(this.databaseUrl);
 
@@ -314,7 +314,7 @@ export class MySQLProvider implements DatabaseProvider {
 
       // Use explicit schema param or default schema from URL
       const schemaToUse = params.schema || defaultSchema || null;
-      const limitToUse = params.limit ?? 10;
+      const limitToUse = params.limit;
 
       let query: string;
       let queryParams: string[];
@@ -460,5 +460,50 @@ export class MySQLProvider implements DatabaseProvider {
     }
 
     return `${selectClause}\n${fromClause}\n${joinStatements.join('\n')};`;
+  };
+
+  query = async (sql: string): Promise<Record<string, unknown>[]> => {
+    const mysqlLib = await import('mysql2/promise');
+    const connection = await mysqlLib.createConnection(this.databaseUrl);
+    try {
+      const [rows] = await connection.execute(sql);
+      return rows as Record<string, unknown>[];
+    } finally {
+      await connection.end();
+    }
+  };
+
+  safeQuery = async (sql: string): Promise<Record<string, unknown>[]> => {
+    const mysqlLib = await import('mysql2/promise');
+    const connection = await mysqlLib.createConnection(this.databaseUrl);
+
+    try {
+      // Start transaction
+      await connection.query('BEGIN');
+
+      // Execute the query
+      const [rows] = await connection.query(sql);
+
+      // Rollback the transaction
+      await connection.query('ROLLBACK');
+
+      // For MySQL, INSERT/UPDATE/DELETE operations return result metadata, not rows
+      // We should return empty array for consistency with PostgreSQL behavior
+      if (Array.isArray(rows)) {
+        return rows as Record<string, unknown>[];
+      }
+      // For INSERT/UPDATE/DELETE operations, return empty array
+      return [];
+    } catch (error) {
+      // Ensure rollback on error
+      try {
+        await connection.query('ROLLBACK');
+      } catch (rollbackError) {
+        console.error('Error during rollback:', rollbackError);
+      }
+      throw error;
+    } finally {
+      await connection.end();
+    }
   };
 }

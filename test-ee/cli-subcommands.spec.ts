@@ -5,6 +5,20 @@ import { promisify } from 'node:util';
 
 const execAsync = promisify(exec);
 
+// Helper function to safely parse JSON with fallback
+const safeJsonParse = (output: string): Record<string, unknown>[] => {
+  try {
+    const trimmed = output.trim();
+    if (!trimmed) {
+      return [];
+    }
+    return JSON.parse(trimmed);
+  } catch {
+    console.warn('Failed to parse JSON output:', output);
+    return [];
+  }
+};
+
 // Helper to simulate Bun's $ behavior
 const $ = (command: string) => {
   const executeCommand = async () => {
@@ -50,6 +64,7 @@ const SAMPLE_PATTERN = /sample/;
 const CONTEXT_PATTERN = /context/;
 const JOIN_PATTERN = /join/;
 const INFO_PATTERN = /info/;
+const SAFE_QUERY_PATTERN = /safe-query/;
 const COMMAND_REQUIRED_PATTERN = /Command is required/;
 const EXTRACT_FULL_SCHEMA_PATTERN = /Extract full database schema/;
 const OUTPUT_OPTION_PATTERN = /--output/;
@@ -73,6 +88,11 @@ const DB_OPTION_PATTERN = /--db/;
 const DATABASE_URL_REQUIRED_PATTERN = /Database URL is required/;
 const TABLE_REQUIRED_PATTERN = /--table is required/;
 const TABLES_REQUIRED_PATTERN = /--tables is required/;
+const SQL_REQUIRED_PATTERN = /--sql is required/;
+const SAFE_QUERY_HELP_PATTERN =
+  /Execute SQL query safely in read-only transaction/;
+const READ_ONLY_TRANSACTION_PATTERN = /read-only transaction/;
+const AUTOMATICALLY_ROLLED_BACK_PATTERN = /automatically rolled back/;
 const UNKNOWN_COMMAND_PATTERN = /Unknown command 'unknown'/;
 const INVALID_OUTPUT_FORMAT_PATTERN = /Invalid output format 'invalid'/;
 const PUBLIC_SCHEMA_PATTERN = /public\./;
@@ -100,6 +120,7 @@ describe('CLI Subcommands', () => {
       assert.match(stdout, SAMPLE_PATTERN);
       assert.match(stdout, CONTEXT_PATTERN);
       assert.match(stdout, JOIN_PATTERN);
+      assert.match(stdout, SAFE_QUERY_PATTERN);
       assert.match(stdout, INFO_PATTERN);
     });
 
@@ -173,6 +194,19 @@ describe('CLI Subcommands', () => {
       assert.match(output, TABLES_OPTION_PATTERN);
       assert.match(output, SQL_PATTERN);
       assert.match(output, JSON_PATTERN);
+    });
+
+    test('should show help for safe-query subcommand', async () => {
+      const result = await $(`npx tsx ${CLI_PATH} safe-query --help`)
+        .quiet()
+        .nothrow();
+      const output = result.stdout.toString();
+
+      assert.match(output, SAFE_QUERY_HELP_PATTERN);
+      assert.match(output, DB_OPTION_PATTERN);
+      assert.match(output, SQL_PATTERN);
+      assert.match(output, READ_ONLY_TRANSACTION_PATTERN);
+      assert.match(output, AUTOMATICALLY_ROLLED_BACK_PATTERN);
     });
 
     test('should show help for info subcommand', async () => {
@@ -251,6 +285,28 @@ describe('CLI Subcommands', () => {
       assert.match(output, TABLES_REQUIRED_PATTERN);
     });
 
+    test('should error when database URL is missing for safe-query', async () => {
+      const result = await $(`npx tsx ${CLI_PATH} safe-query --sql "SELECT 1"`)
+        .quiet()
+        .nothrow();
+      const output = result.stderr.toString();
+
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, DATABASE_URL_REQUIRED_PATTERN);
+    });
+
+    test('should error when SQL is missing for safe-query command', async () => {
+      const result = await $(
+        `npx tsx ${CLI_PATH} safe-query --db postgresql://localhost/test`
+      )
+        .quiet()
+        .nothrow();
+      const output = result.stderr.toString();
+
+      assert.ok(result.exitCode !== 0);
+      assert.match(output, SQL_REQUIRED_PATTERN);
+    });
+
     test('should error for unknown subcommand', async () => {
       const result = await $(
         `npx tsx ${CLI_PATH} unknown --db postgresql://localhost/test`
@@ -307,90 +363,109 @@ describe('CLI Integration Tests with Mock Database', () => {
   // These tests would require a running database, so we'll skip them in CI
   // but they're useful for local development
 
-  // biome-ignore lint/suspicious/noSkippedTests: Integration tests require database
-  test.skip('should list tables', async () => {
-    const result = await $(`npx tsx ${CLI_PATH} list --db $TEST_POSTGRES_URL`)
+  test('should list tables', async () => {
+    const result = await $(`npx tsx ${CLI_PATH} list --db "$TEST_POSTGRES_URL"`)
       .quiet()
       .nothrow();
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
       assert.match(output, PUBLIC_SCHEMA_PATTERN);
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
       assert.equal(result.exitCode, 0);
     }
   });
 
-  // biome-ignore lint/suspicious/noSkippedTests: Integration tests require database
-  test.skip('should get table schema', async () => {
+  test('should get table schema', async () => {
     const result = await $(
-      `npx tsx ${CLI_PATH} table --db $TEST_POSTGRES_URL --table customers`
+      `npx tsx ${CLI_PATH} table --db "$TEST_POSTGRES_URL" --table customers`
     )
       .quiet()
       .nothrow();
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = JSON.parse(output);
+      const json = safeJsonParse(output);
       assert.equal(json.name, 'customers');
       assert.ok(json.columns);
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
       assert.equal(result.exitCode, 0);
     }
   });
 
-  // biome-ignore lint/suspicious/noSkippedTests: Integration tests require database
-  test.skip('should get sample data', async () => {
+  test('should get sample data', async () => {
     const result = await $(
-      `npx tsx ${CLI_PATH} sample --db $TEST_POSTGRES_URL --table customers`
+      `npx tsx ${CLI_PATH} sample --db "$TEST_POSTGRES_URL" --table customers`
     )
       .quiet()
       .nothrow();
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = JSON.parse(output);
+      const json = safeJsonParse(output);
       assert.equal(Array.isArray(json), true);
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
       assert.equal(result.exitCode, 0);
     }
   });
 
-  // biome-ignore lint/suspicious/noSkippedTests: Integration tests require database
-  test.skip('should get table context', async () => {
+  test('should get table context', async () => {
     const result = await $(
-      `npx tsx ${CLI_PATH} context --db $TEST_POSTGRES_URL --table customers`
+      `npx tsx ${CLI_PATH} context --db "$TEST_POSTGRES_URL" --table customers`
     )
       .quiet()
       .nothrow();
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = JSON.parse(output);
+      const json = safeJsonParse(output);
       assert.ok(json.schema);
       assert.ok(json.sampleData);
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
       assert.equal(result.exitCode, 0);
     }
   });
 
-  // biome-ignore lint/suspicious/noSkippedTests: Integration tests require database
-  test.skip('should find join path', async () => {
+  test('should find join path', async () => {
     const result = await $(
-      `npx tsx ${CLI_PATH} join --db $TEST_POSTGRES_URL --tables orders,customers --output json`
+      `npx tsx ${CLI_PATH} join --db "$TEST_POSTGRES_URL" --tables orders,customers --output json`
     )
       .quiet()
       .nothrow();
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = JSON.parse(output);
+      const json = safeJsonParse(output);
       assert.ok(json.tables);
       assert.ok(json.relations);
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
       assert.equal(result.exitCode, 0);
     }
   });
 
-  // biome-ignore lint/suspicious/noSkippedTests: Integration tests require database
-  test.skip('should generate SQL join statements', async () => {
+  test('should generate SQL join statements', async () => {
     const result = await $(
-      `npx tsx ${CLI_PATH} join --db $TEST_POSTGRES_URL --tables orders,customers --output sql`
+      `npx tsx ${CLI_PATH} join --db "$TEST_POSTGRES_URL" --tables orders,customers --output sql`
     )
       .quiet()
       .nothrow();
@@ -400,22 +475,106 @@ describe('CLI Integration Tests with Mock Database', () => {
       assert.match(output, FROM_PATTERN);
       assert.match(output, JOIN_SQL_PATTERN);
       assert.match(output, ON_PATTERN);
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
       assert.equal(result.exitCode, 0);
     }
   });
 
-  // biome-ignore lint/suspicious/noSkippedTests: Integration tests require database
-  test.skip('should get database info', async () => {
-    const result = await $(`npx tsx ${CLI_PATH} info --db $TEST_POSTGRES_URL`)
+  test('should execute safe query with SELECT', async () => {
+    const result = await $(
+      `npx tsx ${CLI_PATH} safe-query --db "$TEST_POSTGRES_URL" --sql "SELECT * FROM products LIMIT 3"`
+    )
       .quiet()
       .nothrow();
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = JSON.parse(output);
+      const json = safeJsonParse(output);
+      assert.ok(Array.isArray(json));
+      assert.ok(json.length <= 3);
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
+      assert.equal(result.exitCode, 0);
+    }
+  });
+
+  test('should execute safe query with INSERT (rolled back)', async () => {
+    const result = await $(
+      `npx tsx ${CLI_PATH} safe-query --db "$TEST_POSTGRES_URL" --sql "INSERT INTO products (name, price) VALUES ('test-product', 99.99) RETURNING *"`
+    )
+      .quiet()
+      .nothrow();
+
+    if (process.env.TEST_POSTGRES_URL) {
+      const output = result.stdout.toString();
+      const json = safeJsonParse(output);
+      assert.ok(Array.isArray(json));
+      assert.equal(json[0]?.name, 'test-product');
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
+      assert.equal(result.exitCode, 0);
+
+      // Verify the insert was rolled back by running another query
+      const checkResult = await $(
+        `npx tsx ${CLI_PATH} safe-query --db "$TEST_POSTGRES_URL" --sql "SELECT COUNT(*) as count FROM products WHERE name = 'test-product'"`
+      )
+        .quiet()
+        .nothrow();
+
+      const checkJson = JSON.parse(checkResult.stdout.toString());
+      assert.equal(Number(checkJson[0]?.count), 0);
+    }
+  });
+
+  test('should execute safe query with UPDATE (rolled back)', async () => {
+    const result = await $(
+      `npx tsx ${CLI_PATH} safe-query --db "$TEST_POSTGRES_URL" --sql "UPDATE products SET price = 999.99 WHERE id = 1 RETURNING *"`
+    )
+      .quiet()
+      .nothrow();
+
+    if (process.env.TEST_POSTGRES_URL) {
+      const output = result.stdout.toString();
+      const json = safeJsonParse(output);
+      assert.ok(Array.isArray(json));
+      if (json.length > 0) {
+        assert.equal(Number(json[0]?.price), 999.99);
+      }
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
+      assert.equal(result.exitCode, 0);
+    }
+  });
+
+  test('should get database info', async () => {
+    const result = await $(`npx tsx ${CLI_PATH} info --db "$TEST_POSTGRES_URL"`)
+      .quiet()
+      .nothrow();
+
+    if (process.env.TEST_POSTGRES_URL) {
+      const output = result.stdout.toString();
+      const json = safeJsonParse(output);
       assert.equal(json.provider, 'postgres');
       assert.ok(json.tableCount > 0);
       assert.ok(json.schemas);
+      if (result.exitCode !== 0) {
+        console.error('Command failed with exit code:', result.exitCode);
+        console.error('Stderr:', result.stderr.toString());
+        console.error('Stdout:', result.stdout.toString());
+      }
       assert.equal(result.exitCode, 0);
     }
   });

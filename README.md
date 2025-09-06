@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 
+![Code Salad](docs/salad.png)
+
 A CLI tool and TypeScript library for extracting database schemas and generating ERD diagrams from PostgreSQL and MySQL databases.
 
 ## Table of Contents
@@ -11,6 +13,7 @@ A CLI tool and TypeScript library for extracting database schemas and generating
 - [Features](#features)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [CLI Usage](#cli-usage)
   - [Subcommands](#subcommands)
   - [Examples](#examples)
@@ -25,6 +28,7 @@ A CLI tool and TypeScript library for extracting database schemas and generating
 - 📊 **ERD Generation** - Create PlantUML diagrams from your database schema
 - 🔍 **Schema Extraction** - Export complete database schemas as JSON
 - 🔗 **Join Path Finding** - Find all possible paths to join multiple tables, sorted by efficiency
+- 🛡️ **Safe Query Execution** - Test SQL queries safely with automatic rollback
 - 📝 **Sample Data** - Retrieve sample data from tables for documentation
 - 🚀 **Performance** - Parallel operations for fetching schema and data
 - 📦 **TypeScript First** - Full TypeScript support with detailed type definitions
@@ -41,6 +45,9 @@ npx vsequel list --db postgresql://localhost/mydb
 
 # Find all ways to join tables
 npx vsequel join --db postgresql://localhost/mydb --tables orders,customers,products
+
+# Execute SQL queries safely (automatically rolled back)
+npx vsequel safe-query --db postgresql://localhost/mydb --sql "SELECT * FROM users LIMIT 10"
 
 # Get table details with sample data
 npx vsequel context --db postgresql://localhost/mydb --table users
@@ -89,6 +96,21 @@ yarn add vsequel
 pnpm add vsequel
 ```
 
+## Documentation
+
+For comprehensive documentation and examples:
+
+- **[📖 Library Guide](docs/library-guide.md)** - Complete TypeScript library documentation with examples
+- **[💻 CLI Guide](docs/cli-guide.md)** - Detailed command-line interface documentation with practical examples
+
+The documentation covers:
+- Installation and setup
+- All CLI commands with examples
+- Complete library API reference
+- Type definitions and interfaces
+- Best practices and troubleshooting
+- Real-world usage scenarios
+
 ## CLI Usage
 
 ### Subcommands
@@ -107,6 +129,7 @@ Available subcommands:
 - `sample` - Get sample data from a table
 - `context` - Get schema and sample data for a table
 - `join` - Find shortest join path between tables
+- `safe-query` - Execute SQL queries safely in read-only transactions
 - `info` - Show database connection info
 
 ### Schema Command (Default)
@@ -212,6 +235,42 @@ vsequel join --db postgresql://localhost/mydb --tables orders,customers,products
 # Using schema-qualified table names
 vsequel join --db postgresql://localhost/mydb --tables public.orders,public.customers
 
+### Safe-Query Command
+
+Execute SQL queries safely in read-only transactions that automatically rollback:
+
+```bash
+# Execute a SELECT query (results returned as JSON)
+vsequel safe-query --db postgresql://localhost/mydb --sql "SELECT * FROM users LIMIT 5"
+
+# Test INSERT statements without modifying data
+vsequel safe-query --db postgresql://localhost/mydb --sql "INSERT INTO users (name, email) VALUES ('Test', 'test@example.com')"
+
+# Test UPDATE statements safely
+vsequel safe-query --db mysql://localhost/mydb --sql "UPDATE products SET price = price * 1.1 WHERE category = 'electronics'"
+
+# Test complex queries with joins
+vsequel safe-query --db postgresql://localhost/mydb --sql "
+  SELECT u.name, COUNT(o.id) as order_count 
+  FROM users u 
+  LEFT JOIN orders o ON u.id = o.user_id 
+  GROUP BY u.id, u.name
+"
+```
+
+**Key Features:**
+- **Zero Risk**: All operations are automatically rolled back - no data is permanently modified
+- **Full SQL Support**: Execute any SQL statement including INSERT, UPDATE, DELETE
+- **JSON Output**: Results returned as structured JSON for easy parsing
+- **Error Handling**: Gracefully handles SQL syntax errors and database issues
+- **Cross-Database**: Works identically with both PostgreSQL and MySQL
+
+Perfect for:
+- Testing queries before running them in production
+- Exploring data without risk of modification
+- Learning SQL without fear of breaking anything
+- Validating complex queries and their results
+
 ### Info Command
 
 Get database connection information:
@@ -255,6 +314,11 @@ vsequel info --db postgresql://localhost/mydb
 
 - `--table <name>` - Table name (required)
 - `--schema <name>` - Schema name (optional)
+
+#### Safe-Query Options
+
+- `--sql <query>` - SQL query to execute (required)
+- `--db <url>` - Database connection URL (required)
 
 ### Examples
 
@@ -302,6 +366,26 @@ npx vsequel join --db postgresql://localhost/mydb \
   --tables orders,customers --output sql | pbcopy
 ```
 
+#### Safe query testing
+
+```bash
+# Test a complex query safely before running in production
+npx vsequel safe-query --db $DB_URL \
+  --sql "SELECT users.*, COUNT(orders.id) as order_count FROM users LEFT JOIN orders ON users.id = orders.user_id GROUP BY users.id"
+
+# Safely test data modifications (automatically rolled back)
+npx vsequel safe-query --db $DB_URL \
+  --sql "UPDATE products SET price = price * 1.1 WHERE category = 'electronics'"
+
+# Validate INSERT statements without actually inserting
+npx vsequel safe-query --db $DB_URL \
+  --sql "INSERT INTO users (name, email) VALUES ('Test User', 'test@example.com')"
+
+# Test delete operations safely
+npx vsequel safe-query --db $DB_URL \
+  --sql "DELETE FROM temp_data WHERE created_at < NOW() - INTERVAL '30 days'"
+```
+
 #### Pipeline operations
 
 ```bash
@@ -344,6 +428,23 @@ const context = await db.getTableContext({
 console.log(context.schema); // Table schema
 console.log(context.sampleData); // Sample rows
 
+// Execute SQL queries safely (automatically rolled back)
+const selectResult = await db.safeQuery({
+  sql: "SELECT * FROM users WHERE age > 18 LIMIT 10"
+});
+console.log(selectResult); // Array of user records
+
+// Test INSERT/UPDATE/DELETE without modifying data
+const insertResult = await db.safeQuery({
+  sql: "INSERT INTO users (name, email) VALUES ('Test User', 'test@example.com')"
+});
+console.log(insertResult); // Empty array for MySQL, or inserted record for PostgreSQL
+
+const updateResult = await db.safeQuery({
+  sql: "UPDATE products SET price = price * 1.1 WHERE category = 'electronics'"
+});
+// All changes are automatically rolled back - no permanent modifications
+
 // Find all possible join paths and generate SQL
 const results = await db.getTableJoins({
   tables: [
@@ -379,10 +480,15 @@ if (results && results.length > 0) {
   });
 }
 
-// Generate PlantUML diagrams
+// Generate PlantUML diagrams (method 1 - using schema data)
 const diagrams = db.generatePlantumlSchema({ schema: schemas });
 console.log(diagrams.full); // Full detailed PlantUML
 console.log(diagrams.simplified); // Simplified PlantUML
+
+// Generate PlantUML diagrams (method 2 - direct from database)
+const fullPlantuml = await db.getPlantuml({ type: 'full' });
+const simplePlantuml = await db.getPlantuml({ type: 'simple' });
+const defaultPlantuml = await db.getPlantuml(); // defaults to 'full'
 ```
 
 ## Output Formats
@@ -499,6 +605,35 @@ Returns `null` if tables cannot be connected through any path.
 #### `generatePlantumlSchema(params: { schema: TableSchema[] }): { full: string; simplified: string }`
 
 Generates PlantUML ERD diagrams from the database schema. Returns both a full detailed version and a simplified version.
+
+#### `getPlantuml(params?: { type?: 'full' | 'simple' }): Promise<string>`
+
+Generates PlantUML ERD diagrams directly from the database. This is a convenient method that combines `getAllSchemas()` and `generatePlantumlSchema()`.
+
+**Parameters:**
+- `type`: Optional. Specifies whether to return 'full' (detailed) or 'simple' (simplified) PlantUML. Defaults to 'full'.
+
+**Returns:** Promise that resolves to a PlantUML string.
+
+#### `safeQuery(params: { sql: string }): Promise<Record<string, unknown>[]>`
+
+Executes SQL queries safely in a read-only transaction that is automatically rolled back. This allows you to:
+
+- Test INSERT, UPDATE, DELETE operations without modifying data
+- Execute complex SELECT queries with confidence
+- Validate SQL syntax and logic before running in production
+- Explore database changes safely
+
+**Parameters:**
+- `sql`: The SQL query to execute
+
+**Returns:** Array of result records for SELECT queries, or empty array/metadata for modification queries
+
+**Key Features:**
+- **Automatic Rollback**: All transactions are rolled back regardless of success or failure
+- **Cross-Database Support**: Works identically with PostgreSQL and MySQL
+- **Error Handling**: Provides clear error messages for invalid SQL
+- **Zero Risk**: No permanent changes are ever made to the database
 
 #### `getProvider(): 'postgres' | 'mysql'`
 

@@ -78,7 +78,7 @@ export class DatabaseService {
   getSampleData = async ({
     table,
     schema,
-    limit,
+    limit = 10,
   }: {
     table: string;
     schema?: string;
@@ -957,5 +957,19 @@ export class DatabaseService {
       // Clean up memory by clearing relationDetails
       this.relationDetails = undefined;
     }
+  };
+
+  getPlantuml = async ({
+    type = 'full',
+  }: {
+    type?: 'full' | 'simple';
+  } = {}): Promise<string> => {
+    const schemas = await this.getAllSchemas();
+    const plantumlResult = this.generatePlantumlSchema({ schema: schemas });
+    return type === 'simple' ? plantumlResult.simplified : plantumlResult.full;
+  };
+
+  safeQuery = async (params: { sql: string }) => {
+    return await this.provider.safeQuery(params.sql);
   };
 }

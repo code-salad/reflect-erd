@@ -40,4 +40,6 @@ export interface DatabaseProvider {
     joinPath: JoinPath;
     tableSchemas: TableSchema[];
   }): string;
+  query(sql: string): Promise<Record<string, unknown>[]>;
+  safeQuery(sql: string): Promise<Record<string, unknown>[]>;
 }
