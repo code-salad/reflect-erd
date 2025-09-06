@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/code-salad/vsequel/compare/v2.1.0...v3.0.0) (2025-09-06)
+
+
+### Features
+
+* deprecated duplicated method, reorganize cli, add short options and flags ([#4](https://github.com/code-salad/vsequel/issues/4)) ([c4ebd9a](https://github.com/code-salad/vsequel/commit/c4ebd9af787316ea78064e6f1cdd03b62d78c543))
+
+
+### BREAKING CHANGES
+
+* deprecated method, reorganiza cli interface
+
 # [2.1.0](https://github.com/code-salad/vsequel/compare/v2.0.1...v2.1.0) (2025-09-06)
 
 
