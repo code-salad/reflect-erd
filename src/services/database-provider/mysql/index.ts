@@ -461,4 +461,43 @@ export class MySQLProvider implements DatabaseProvider {
 
     return `${selectClause}\n${fromClause}\n${joinStatements.join('\n')};`;
   };
+
+  query = async (sql: string): Promise<Record<string, unknown>[]> => {
+    const mysqlLib = await import('mysql2/promise');
+    const connection = await mysqlLib.createConnection(this.databaseUrl);
+    try {
+      const [rows] = await connection.execute(sql);
+      return rows as Record<string, unknown>[];
+    } finally {
+      await connection.end();
+    }
+  };
+
+  safeQuery = async (sql: string): Promise<Record<string, unknown>[]> => {
+    const mysqlLib = await import('mysql2/promise');
+    const connection = await mysqlLib.createConnection(this.databaseUrl);
+
+    try {
+      // Start transaction
+      await connection.query('BEGIN');
+
+      // Execute the query
+      const [rows] = await connection.query(sql);
+
+      // Rollback the transaction
+      await connection.query('ROLLBACK');
+
+      return rows as Record<string, unknown>[];
+    } catch (error) {
+      // Ensure rollback on error
+      try {
+        await connection.query('ROLLBACK');
+      } catch (rollbackError) {
+        console.error('Error during rollback:', rollbackError);
+      }
+      throw error;
+    } finally {
+      await connection.end();
+    }
+  };
 }

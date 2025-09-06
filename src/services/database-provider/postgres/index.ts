@@ -423,4 +423,39 @@ export class PostgresProvider implements DatabaseProvider {
 
     return `${selectClause}\n${fromClause}\n${joinStatements.join('\n')};`;
   };
+
+  query = async (sql: string): Promise<Record<string, unknown>[]> => {
+    const connection = postgres(this.databaseUrl);
+    try {
+      const result = await connection.unsafe<Record<string, unknown>[]>(sql);
+      return result;
+    } finally {
+      await connection.end();
+    }
+  };
+
+  safeQuery = async (sql: string): Promise<Record<string, unknown>[]> => {
+    const connection = postgres(this.databaseUrl);
+    let result: Record<string, unknown>[] = [];
+
+    try {
+      // Use postgres built-in transaction method that auto-rollbacks on error
+      await connection.begin(async (transaction) => {
+        result = await transaction.unsafe<Record<string, unknown>[]>(sql);
+        // Intentionally throw to trigger rollback
+        throw new Error('ROLLBACK_INTENTIONAL');
+      });
+    } catch (error) {
+      if (error instanceof Error && error.message === 'ROLLBACK_INTENTIONAL') {
+        // This was our intentional rollback, return the result
+        return result;
+      }
+      // Re-throw actual errors
+      throw error;
+    } finally {
+      await connection.end();
+    }
+
+    return result;
+  };
 }

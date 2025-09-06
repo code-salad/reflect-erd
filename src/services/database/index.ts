@@ -958,4 +958,8 @@ export class DatabaseService {
       this.relationDetails = undefined;
     }
   };
+
+  safeQuery = async (params: { sql: string }) => {
+    return await this.provider.safeQuery(params.sql);
+  };
 }
