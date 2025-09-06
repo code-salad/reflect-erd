@@ -1,12 +1,15 @@
 # vsequel
 
-[![npm version](https://badge.fury.io/js/vsequel.svg)](https://www.npmjs.com/package/vsequel)
+[![npm version](https://img.shields.io/npm/v/vsequel.svg?color=blue)](https://www.npmjs.com/package/vsequel)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
+[![npm downloads](https://img.shields.io/npm/dm/vsequel.svg?color=blue)](https://www.npmjs.com/package/vsequel)
+[![npm total downloads](https://img.shields.io/npm/dt/vsequel.svg?color=blue)](https://www.npmjs.com/package/vsequel)
 
 ![Code Salad](docs/salad.png)
 
 A CLI tool and TypeScript library for extracting database schemas and generating ERD diagrams from PostgreSQL and MySQL databases.
+
 
 ## Table of Contents
 
@@ -20,7 +23,7 @@ A CLI tool and TypeScript library for extracting database schemas and generating
 - [Library Usage](#library-usage)
 - [API Reference](#api-reference)
 - [Development](#development)
-- [Changelog](#changelog)
+- [Changelog](CHANGELOG.md)
 
 ## Features
 
@@ -735,18 +738,11 @@ npm run lint
 npm run format
 ```
 
-## Changelog
+## 📈 Download Statistics
 
-### Version 0.1.2
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://npm.chart.dev/embed/vsequel?blackAsPrimary=false&primary=amber&gray=gray&theme=dark" frameborder="0" allow="clipboard-write;" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="NPM Chart"></iframe></div>
 
-- **Complete SQL Generation**: Generate ready-to-use SELECT queries with all columns and proper JOINs
-- **Join Path Finding**: Automatically discover how to join multiple tables
-- **Database-Specific Syntax**: Proper identifier quoting for PostgreSQL and MySQL
-- **Explicit Column Selection**: All columns from joined tables are explicitly listed
-- **Command-based CLI**: Modular CLI with specialized commands for different tasks
-- **Better Performance**: Parallel data fetching with `getTableContext`
-- **Sample Data Limits**: Control the number of sample rows returned
-- **TypeScript Support**: Full TypeScript types for all exports
+View detailed download statistics and trends over time on [npm.chart.dev](https://npm.chart.dev/vsequel).
 
 ## License
 
