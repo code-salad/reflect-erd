@@ -41,7 +41,10 @@ A CLI tool and TypeScript library for extracting database schemas and generating
 
 ```bash
 # Generate an ERD diagram
-npx vsequel schema --db postgresql://localhost/mydb > erd.puml
+npx vsequel plantuml --db postgresql://localhost/mydb > erd.puml
+
+# Extract database schema as JSON
+npx vsequel schema --db postgresql://localhost/mydb > schema.json
 
 # List all tables
 npx vsequel list --db postgresql://localhost/mydb
@@ -63,7 +66,10 @@ npx vsequel context --db postgresql://localhost/mydb --table users
 You can use this tool directly without installation:
 
 ```bash
-# Using npx (recommended)
+# Using npx (recommended) - generate PlantUML diagram
+npx vsequel plantuml --db <database-url>
+
+# Extract schema as JSON
 npx vsequel schema --db <database-url>
 ```
 
@@ -126,7 +132,8 @@ vsequel [subcommand] --db <database-url> [options]
 
 Available subcommands:
 
-- `schema` - Extract full database schema (default)
+- `schema` - Extract full database schema as JSON
+- `plantuml` - Generate PlantUML diagram from database schema
 - `table` - Get schema for a specific table
 - `list` - List all table names
 - `sample` - Get sample data from a table
@@ -135,22 +142,34 @@ Available subcommands:
 - `safe-query` - Execute SQL queries safely in read-only transactions
 - `info` - Show database connection info
 
-### Schema Command (Default)
+### Schema Command
 
-Extract the complete database schema:
+Extract the complete database schema as JSON:
 
 ```bash
-# Default output (full PlantUML)
+# Extract full schema as JSON
 vsequel schema --db postgresql://localhost/mydb
 
-# Or explicitly use schema subcommand
-vsequel schema --db postgresql://localhost/mydb
+# Save schema to file
+vsequel schema --db postgresql://localhost/mydb > schema.json
 
-# Output as JSON
-vsequel schema --db postgresql://localhost/mydb --output json
+# Process with jq
+vsequel schema --db postgresql://localhost/mydb | jq '.[] | .name'
+```
 
-# Simple PlantUML (relationships only)
-vsequel schema --db postgresql://localhost/mydb --output plantuml
+### PlantUML Command
+
+Generate PlantUML diagrams from database schema:
+
+```bash
+# Generate full detailed PlantUML diagram
+vsequel plantuml --db postgresql://localhost/mydb
+
+# Generate simplified PlantUML (relationships only)
+vsequel plantuml --db postgresql://localhost/mydb --simple
+
+# Save diagram to file
+vsequel plantuml --db postgresql://localhost/mydb > diagram.puml
 ```
 
 ### Table Command
@@ -293,7 +312,12 @@ vsequel info --db postgresql://localhost/mydb
 
 #### Schema Options
 
-- `-o, --output <type>` - Output format: `json`, `plantuml`, `full-plantuml` (default)
+- `-d, --db <url>` - Database connection URL (required)
+
+#### PlantUML Options
+
+- `-d, --db <url>` - Database connection URL (required)
+- `-s, --simple` - Generate simplified PlantUML diagram focusing only on relationships (default: false)
 
 #### Table Options
 
@@ -328,8 +352,12 @@ vsequel info --db postgresql://localhost/mydb
 #### Generate complete ERD diagram
 
 ```bash
-npx vsequel schema --db postgresql://localhost/mydb > diagram.puml
+# Generate PlantUML diagram
+npx vsequel plantuml --db postgresql://localhost/mydb > diagram.puml
 plantuml diagram.puml  # Generate PNG/SVG
+
+# Generate simplified diagram for overview
+npx vsequel plantuml --db postgresql://localhost/mydb --simple > simple-diagram.puml
 ```
 
 #### Explore database structure
@@ -337,6 +365,9 @@ plantuml diagram.puml  # Generate PNG/SVG
 ```bash
 # List all tables
 npx vsequel list --db postgresql://localhost/mydb
+
+# Get complete schema as JSON
+npx vsequel schema --db postgresql://localhost/mydb > schema.json
 
 # Get details for specific table
 npx vsequel table --db postgresql://localhost/mydb --table users
@@ -395,6 +426,10 @@ npx vsequel safe-query --db $DB_URL \
 # List tables and get schema for each
 npx vsequel list --db $DB_URL | \
   xargs -I {} npx vsequel table --db $DB_URL --table {}
+
+# Generate both JSON schema and PlantUML diagram
+npx vsequel schema --db $DB_URL > schema.json && \
+npx vsequel plantuml --db $DB_URL > diagram.puml
 ```
 
 ## Library Usage
@@ -484,7 +519,7 @@ if (results && results.length > 0) {
 }
 
 // Generate PlantUML diagrams (method 1 - using schema data)
-const diagrams = db.generatePlantumlSchema({ schema: schemas });
+const diagrams = generatePlantumlSchema({ schema: schemas });
 console.log(diagrams.full); // Full detailed PlantUML
 console.log(diagrams.simplified); // Simplified PlantUML
 
@@ -605,13 +640,9 @@ Returns `null` if tables cannot be connected through any path.
 - Explore alternative relationships in complex schemas
 - Debug connection issues by seeing all possible paths
 
-#### `generatePlantumlSchema(params: { schema: TableSchema[] }): { full: string; simplified: string }`
-
-Generates PlantUML ERD diagrams from the database schema. Returns both a full detailed version and a simplified version.
-
 #### `getPlantuml(params?: { type?: 'full' | 'simple' }): Promise<string>`
 
-Generates PlantUML ERD diagrams directly from the database. This is a convenient method that combines `getAllSchemas()` and `generatePlantumlSchema()`.
+Generates PlantUML ERD diagrams directly from the database. This is a convenient method that combines `getAllSchemas()` and the `generatePlantumlSchema()` function.
 
 **Parameters:**
 - `type`: Optional. Specifies whether to return 'full' (detailed) or 'simple' (simplified) PlantUML. Defaults to 'full'.

@@ -2,6 +2,7 @@ import { strict as assert } from 'node:assert/strict';
 import { describe, test } from 'node:test';
 import { env } from '../src/config';
 import { DatabaseService } from '../src/services/database/index';
+import { generatePlantumlSchema } from '../src/services/plantuml/generator';
 
 // Top-level regex patterns for performance
 const PLANTUML_RELATIONSHIP_REGEX = /\|\|--[o|]\{/;
@@ -19,7 +20,7 @@ describe('generatePlantumlSchema', () => {
   test('should generate PlantUML for PostgreSQL schema', async () => {
     const service = DatabaseService.fromUrl(postgresDbUrl);
     const schema = await service.getAllSchemas();
-    const plantuml = service.generatePlantumlSchema({ schema });
+    const plantuml = generatePlantumlSchema({ schema });
 
     assert.ok(plantuml);
     assert.ok(plantuml.full);
@@ -42,7 +43,7 @@ describe('generatePlantumlSchema', () => {
   test('should generate PlantUML for MySQL schema', async () => {
     const service = DatabaseService.fromUrl(mysqlDbUrl);
     const schema = await service.getAllSchemas();
-    const plantuml = service.generatePlantumlSchema({ schema });
+    const plantuml = generatePlantumlSchema({ schema });
 
     assert.ok(plantuml);
     assert.ok(plantuml.full);
@@ -65,7 +66,7 @@ describe('generatePlantumlSchema', () => {
   test('should handle foreign key relationships', async () => {
     const service = DatabaseService.fromUrl(postgresDbUrl);
     const schema = await service.getAllSchemas();
-    const plantuml = service.generatePlantumlSchema({ schema });
+    const plantuml = generatePlantumlSchema({ schema });
 
     // Check for relationship notation in PlantUML
     assert.match(plantuml.full, PLANTUML_RELATIONSHIP_REGEX);
@@ -89,7 +90,7 @@ describe('generatePlantumlSchema', () => {
       },
     ];
 
-    const plantuml = service.generatePlantumlSchema({ schema: mockSchema });
+    const plantuml = generatePlantumlSchema({ schema: mockSchema });
     assert.match(plantuml.full, QUOTE_PATTERN);
   });
 

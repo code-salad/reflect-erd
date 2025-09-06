@@ -6,7 +6,7 @@ import { promisify } from 'node:util';
 const execAsync = promisify(exec);
 
 // Helper function to safely parse JSON with fallback
-const safeJsonParse = (output: string): Record<string, unknown>[] => {
+const safeJsonParse = (output: string): unknown => {
   try {
     const trimmed = output.trim();
     if (!trimmed) {
@@ -55,8 +55,8 @@ const $ = (command: string) => {
 };
 
 // Top-level regex patterns for performance
-const VSEQUEL_TOOL_PATTERN = /vsequel - Database ERD extraction tool/;
-const SUBCOMMANDS_PATTERN = /Subcommands:/;
+const VSEQUEL_TOOL_PATTERN = /Database ERD extraction tool/;
+const SUBCOMMANDS_PATTERN = /where.*<subcommand>.*can be one of:/;
 const SCHEMA_PATTERN = /schema/;
 const TABLE_PATTERN = /table/;
 const LIST_PATTERN = /list/;
@@ -65,36 +65,38 @@ const CONTEXT_PATTERN = /context/;
 const JOIN_PATTERN = /join/;
 const INFO_PATTERN = /info/;
 const SAFE_QUERY_PATTERN = /safe-query/;
-const COMMAND_REQUIRED_PATTERN = /Command is required/;
-const EXTRACT_FULL_SCHEMA_PATTERN = /Extract full database schema/;
-const OUTPUT_OPTION_PATTERN = /--output/;
+const SUBCOMMAND_REQUIRED_PATTERN = /No value provided for subcommand/;
+const EXTRACT_FULL_SCHEMA_PATTERN = /Extract complete database schema/;
+const OUTPUT_OPTION_PATTERN = /--output, -o/;
 const JSON_PATTERN = /json/;
-const PLANTUML_PATTERN = /plantuml/;
-const FULL_PLANTUML_PATTERN = /full-plantuml/;
-const GET_SCHEMA_TABLE_PATTERN = /Get schema for a specific table/;
-const TABLE_OPTION_PATTERN = /--table/;
-const SCHEMA_OPTION_PATTERN = /--schema/;
+const _PLANTUML_PATTERN = /plantuml/;
+const GET_SCHEMA_TABLE_PATTERN =
+  /Get detailed schema information for a specific table/;
+const TABLE_OPTION_PATTERN = /--table, -t/;
+const SCHEMA_OPTION_PATTERN = /--schema, -s/;
 const WITH_SAMPLE_PATTERN = /--with-sample/;
-const LIST_TABLE_NAMES_PATTERN = /List all table names/;
+const LIST_TABLE_NAMES_PATTERN = /List all tables available in the database/;
 const SIMPLE_PATTERN = /simple/;
-const GET_SAMPLE_DATA_PATTERN = /Get sample data from a table/;
-const LIMIT_PATTERN = /--limit/;
-const GET_SCHEMA_SAMPLE_PATTERN = /Get schema and sample data/;
-const FIND_JOIN_PATH_PATTERN = /Find shortest join path/;
-const TABLES_OPTION_PATTERN = /--tables/;
+const GET_SAMPLE_DATA_PATTERN =
+  /Extract sample data rows from a specific table/;
+const LIMIT_PATTERN = /--limit, -l/;
+const GET_SCHEMA_SAMPLE_PATTERN =
+  /Get comprehensive table context including schema definition and sample data/;
+const FIND_JOIN_PATH_PATTERN =
+  /Discover optimal join paths between multiple database tables/;
+const TABLES_OPTION_PATTERN = /--tables, -t/;
 const SQL_PATTERN = /sql/;
-const SHOW_DATABASE_INFO_PATTERN = /Show database connection info/;
-const DB_OPTION_PATTERN = /--db/;
-const DATABASE_URL_REQUIRED_PATTERN = /Database URL is required/;
-const TABLE_REQUIRED_PATTERN = /--table is required/;
-const TABLES_REQUIRED_PATTERN = /--tables is required/;
-const SQL_REQUIRED_PATTERN = /--sql is required/;
+const SHOW_DATABASE_INFO_PATTERN =
+  /Display comprehensive database connection and structure information/;
+const DB_OPTION_PATTERN = /--db, -d/;
+const DATABASE_URL_REQUIRED_PATTERN = /No value provided for --db/;
+const TABLE_REQUIRED_PATTERN = /No value provided for --table/;
+const TABLES_REQUIRED_PATTERN = /No value provided for --tables/;
+const SQL_REQUIRED_PATTERN = /No value provided for --sql/;
 const SAFE_QUERY_HELP_PATTERN =
-  /Execute SQL query safely in read-only transaction/;
-const READ_ONLY_TRANSACTION_PATTERN = /read-only transaction/;
-const AUTOMATICALLY_ROLLED_BACK_PATTERN = /automatically rolled back/;
-const UNKNOWN_COMMAND_PATTERN = /Unknown command 'unknown'/;
-const INVALID_OUTPUT_FORMAT_PATTERN = /Invalid output format 'invalid'/;
+  /Execute SQL queries safely in read-only transactions with automatic rollback/;
+const UNKNOWN_COMMAND_PATTERN = /Not a valid subcommand name/;
+const UNKNOWN_ARGUMENTS_PATTERN = /Unknown arguments/;
 const PUBLIC_SCHEMA_PATTERN = /public\./;
 const FROM_PATTERN = /FROM/;
 const JOIN_SQL_PATTERN = /JOIN/;
@@ -106,11 +108,8 @@ describe('CLI Subcommands', () => {
   describe('help command', () => {
     test('should show main help when no arguments provided', async () => {
       const result = await $(`npx tsx ${CLI_PATH}`).quiet().nothrow();
-      const stderr = result.stderr.toString();
       const stdout = result.stdout.toString();
 
-      // Error goes to stderr
-      assert.match(stderr, COMMAND_REQUIRED_PATTERN);
       // Help goes to stdout
       assert.match(stdout, VSEQUEL_TOOL_PATTERN);
       assert.match(stdout, SUBCOMMANDS_PATTERN);
@@ -131,10 +130,8 @@ describe('CLI Subcommands', () => {
       const output = result.stdout.toString();
 
       assert.match(output, EXTRACT_FULL_SCHEMA_PATTERN);
-      assert.match(output, OUTPUT_OPTION_PATTERN);
+      assert.match(output, DB_OPTION_PATTERN);
       assert.match(output, JSON_PATTERN);
-      assert.match(output, PLANTUML_PATTERN);
-      assert.match(output, FULL_PLANTUML_PATTERN);
     });
 
     test('should show help for table subcommand', async () => {
@@ -205,8 +202,6 @@ describe('CLI Subcommands', () => {
       assert.match(output, SAFE_QUERY_HELP_PATTERN);
       assert.match(output, DB_OPTION_PATTERN);
       assert.match(output, SQL_PATTERN);
-      assert.match(output, READ_ONLY_TRANSACTION_PATTERN);
-      assert.match(output, AUTOMATICALLY_ROLLED_BACK_PATTERN);
     });
 
     test('should show help for info subcommand', async () => {
@@ -340,7 +335,7 @@ describe('CLI Subcommands', () => {
       const output = result.stderr.toString();
 
       // Should fail on missing command
-      assert.match(output, COMMAND_REQUIRED_PATTERN);
+      assert.match(output, SUBCOMMAND_REQUIRED_PATTERN);
     });
   });
 
@@ -354,7 +349,7 @@ describe('CLI Subcommands', () => {
       const output = result.stderr.toString();
 
       assert.ok(result.exitCode !== 0);
-      assert.match(output, INVALID_OUTPUT_FORMAT_PATTERN);
+      assert.match(output, UNKNOWN_ARGUMENTS_PATTERN);
     });
   });
 });
@@ -389,7 +384,7 @@ describe('CLI Integration Tests with Mock Database', () => {
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = safeJsonParse(output);
+      const json = safeJsonParse(output) as Record<string, unknown>;
       assert.equal(json.name, 'customers');
       assert.ok(json.columns);
       if (result.exitCode !== 0) {
@@ -430,7 +425,7 @@ describe('CLI Integration Tests with Mock Database', () => {
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = safeJsonParse(output);
+      const json = safeJsonParse(output) as Record<string, unknown>;
       assert.ok(json.schema);
       assert.ok(json.sampleData);
       if (result.exitCode !== 0) {
@@ -451,7 +446,7 @@ describe('CLI Integration Tests with Mock Database', () => {
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = safeJsonParse(output);
+      const json = safeJsonParse(output) as Record<string, unknown>;
       assert.ok(json.tables);
       assert.ok(json.relations);
       if (result.exitCode !== 0) {
@@ -566,9 +561,9 @@ describe('CLI Integration Tests with Mock Database', () => {
 
     if (process.env.TEST_POSTGRES_URL) {
       const output = result.stdout.toString();
-      const json = safeJsonParse(output);
+      const json = safeJsonParse(output) as Record<string, unknown>;
       assert.equal(json.provider, 'postgres');
-      assert.ok(json.tableCount > 0);
+      assert.ok(typeof json.tableCount === 'number' && json.tableCount > 0);
       assert.ok(json.schemas);
       if (result.exitCode !== 0) {
         console.error('Command failed with exit code:', result.exitCode);

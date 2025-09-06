@@ -1,8 +1,9 @@
-export { contextCommand, contextHelp } from './context-command';
-export { infoCommand, infoHelp } from './info-command';
-export { joinCommand, joinHelp } from './join-command';
-export { listCommand, listHelp } from './list-command';
-export { safeQueryCommand, safeQueryHelp } from './safe-query-command';
-export { sampleCommand, sampleHelp } from './sample-command';
-export { schemaCommand, schemaHelp } from './schema-command';
-export { tableCommand, tableHelp } from './table-command';
+export { contextCommand } from './context';
+export { infoCommand } from './info';
+export { joinCommand } from './join';
+export { listCommand } from './list';
+export { plantumlCommand } from './plantuml';
+export { safeQueryCommand } from './safe-query';
+export { sampleCommand } from './sample';
+export { schemaCommand } from './schema';
+export { tableCommand } from './table';
