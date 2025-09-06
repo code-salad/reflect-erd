@@ -21,7 +21,7 @@ export class PostgresProvider implements DatabaseProvider {
   }
 
   async getAllTableNames(): Promise<Array<{ schema: string; table: string }>> {
-    const sql = postgres(this.databaseUrl);
+    const sql = postgres(this.databaseUrl, { max: 1 });
     try {
       const tables = await sql<
         {
@@ -62,7 +62,7 @@ export class PostgresProvider implements DatabaseProvider {
     table: string;
     schema?: string;
   }): Promise<TableSchema> {
-    const sql = postgres(this.databaseUrl);
+    const sql = postgres(this.databaseUrl, { max: 1 });
     try {
       // Parse schema from URL parameters (e.g., ?schema=myschema or ?search_path=myschema)
       const urlParts = new URL(this.databaseUrl);
@@ -279,7 +279,7 @@ export class PostgresProvider implements DatabaseProvider {
     schema?: string;
     limit?: number;
   }): Promise<Record<string, unknown>[]> {
-    const sql = postgres(this.databaseUrl);
+    const sql = postgres(this.databaseUrl, { max: 1 });
     try {
       // Parse schema from URL parameters (e.g., ?schema=myschema or ?search_path=myschema)
       const urlParts = new URL(this.databaseUrl);
@@ -425,7 +425,7 @@ export class PostgresProvider implements DatabaseProvider {
   };
 
   query = async (sql: string): Promise<Record<string, unknown>[]> => {
-    const connection = postgres(this.databaseUrl);
+    const connection = postgres(this.databaseUrl, { max: 1 });
     try {
       const result = await connection.unsafe<Record<string, unknown>[]>(sql);
       return result;
@@ -435,7 +435,7 @@ export class PostgresProvider implements DatabaseProvider {
   };
 
   safeQuery = async (sql: string): Promise<Record<string, unknown>[]> => {
-    const connection = postgres(this.databaseUrl);
+    const connection = postgres(this.databaseUrl, { max: 1 });
     let result: Record<string, unknown>[] = [];
 
     try {
