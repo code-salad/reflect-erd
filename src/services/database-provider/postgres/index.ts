@@ -34,7 +34,7 @@ export class PostgresProvider implements DatabaseProvider {
           c.relname as table_name
         from pg_class c
         join pg_namespace n on n.oid = c.relnamespace
-        where c.relkind in ('r', 'p')
+        where c.relkind in ('r', 'p', 'v')
           and n.nspname not in (
             'pg_catalog',
             'information_schema',

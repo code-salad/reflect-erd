@@ -83,7 +83,7 @@ export class MySQLProvider implements DatabaseProvider {
           TABLE_NAME as table_name
         FROM information_schema.TABLES
         WHERE TABLE_SCHEMA = ?
-          AND TABLE_TYPE = 'BASE TABLE'
+          AND TABLE_TYPE IN ('BASE TABLE', 'VIEW')
         ORDER BY TABLE_NAME
       `,
         [dbName]
@@ -126,7 +126,7 @@ export class MySQLProvider implements DatabaseProvider {
         FROM information_schema.TABLES
         WHERE TABLE_SCHEMA = ?
           AND TABLE_NAME = ?
-          AND TABLE_TYPE = 'BASE TABLE'
+          AND TABLE_TYPE IN ('BASE TABLE', 'VIEW')
       `,
         [schemaToUse, params.table]
       );
@@ -487,7 +487,13 @@ export class MySQLProvider implements DatabaseProvider {
       // Rollback the transaction
       await connection.query('ROLLBACK');
 
-      return rows as Record<string, unknown>[];
+      // For MySQL, INSERT/UPDATE/DELETE operations return result metadata, not rows
+      // We should return empty array for consistency with PostgreSQL behavior
+      if (Array.isArray(rows)) {
+        return rows as Record<string, unknown>[];
+      }
+      // For INSERT/UPDATE/DELETE operations, return empty array
+      return [];
     } catch (error) {
       // Ensure rollback on error
       try {
