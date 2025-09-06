@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/code-salad/vsequel/compare/v2.0.1...v2.1.0) (2025-09-06)
+
+
+### Features
+
+* add safequery and direct plantuml generation from database service ([#3](https://github.com/code-salad/vsequel/issues/3)) ([40415f8](https://github.com/code-salad/vsequel/commit/40415f8c7d78ab5c6d16e38cb4fb49577118347f))
+
 ## [2.0.1](https://github.com/code-salad/vsequel/compare/v2.0.0...v2.0.1) (2025-09-05)
 
 
