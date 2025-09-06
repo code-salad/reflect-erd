@@ -145,7 +145,8 @@ INSERT INTO order_items (order_id, product_id, quantity, unit_price, discount_pe
 (5, 4, 1, 49.99, 0);
 
 -- Create a view for order summaries
-CREATE OR REPLACE VIEW order_summary AS
+DROP VIEW IF EXISTS order_summary;
+CREATE VIEW order_summary AS
 SELECT 
     o.id as order_id,
     c.email as customer_email,

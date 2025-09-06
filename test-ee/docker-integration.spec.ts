@@ -55,20 +55,16 @@ describe('docker integration tests', () => {
       }
     );
 
-    test.skip(
-      'should handle PostgreSQL views',
-      { timeout: 15_000 },
-      async () => {
-        const db = DatabaseService.fromUrl(postgresUrl);
+    test('should handle PostgreSQL views', { timeout: 15_000 }, async () => {
+      const db = DatabaseService.fromUrl(postgresUrl);
 
-        const schema = await db.getAllSchemas();
-        const view = schema.find((t) => t.name === 'order_summary');
+      const schema = await db.getAllSchemas();
+      const view = schema.find((t) => t.name === 'order_summary');
 
-        // Views are returned as regular tables in the schema
-        assert.ok(view);
-        assert.equal(view?.name, 'order_summary');
-      }
-    );
+      // Views are returned as regular tables in the schema
+      assert.ok(view);
+      assert.equal(view?.name, 'order_summary');
+    });
 
     test(
       'should handle multiple PostgreSQL schemas',
@@ -273,7 +269,7 @@ describe('docker integration tests', () => {
       }
     );
 
-    test.skip('should handle MySQL views', { timeout: 15_000 }, async () => {
+    test('should handle MySQL views', { timeout: 15_000 }, async () => {
       const db = DatabaseService.fromUrl(mysqlUrl);
 
       const schema = await db.getAllSchemas();

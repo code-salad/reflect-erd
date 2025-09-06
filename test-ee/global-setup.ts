@@ -18,7 +18,7 @@ async function stopDockerCompose() {
   console.log('🧹 Stopping docker compose if running...');
   try {
     await $(
-      'docker compose -f tests/docker-compose.yml down 2>/dev/null || true'
+      'docker compose -f test-ee/docker-compose.yml down 2>/dev/null || true'
     );
     console.log('  ✅ Stopped docker compose');
   } catch {
@@ -29,7 +29,7 @@ async function stopDockerCompose() {
 async function startDockerCompose() {
   console.log('🚀 Starting databases with docker compose...');
 
-  await $('docker compose -f tests/docker-compose.yml up -d');
+  await $('docker compose -f test-ee/docker-compose.yml up -d');
 
   // Wait for PostgreSQL to be ready
   console.log('  ⏳ Waiting for PostgreSQL to be ready...');
@@ -105,7 +105,7 @@ export default async function globalSetup() {
 
       try {
         console.log('🛑 Stopping docker compose...');
-        await $('docker compose -f tests/docker-compose.yml down');
+        await $('docker compose -f test-ee/docker-compose.yml down');
         console.log('  ✅ Docker compose stopped');
 
         console.log(`\n${'='.repeat(60)}`);

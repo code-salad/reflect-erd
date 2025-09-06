@@ -13,7 +13,9 @@ export const safeQueryCommand = async ({
     const databaseService = DatabaseService.fromUrl(db);
     const result = await databaseService.safeQuery({ sql });
 
-    console.log(JSON.stringify(result, null, 2));
+    // Ensure we always output valid JSON, even for empty results
+    const output = result || [];
+    console.log(JSON.stringify(output, null, 2));
   } catch (error) {
     console.error('Error:', (error as Error).message);
     process.exit(1);
