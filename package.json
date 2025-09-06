@@ -45,6 +45,7 @@
     "access": "public"
   },
   "dependencies": {
+    "cmd-ts": "^0.14.1",
     "mysql2": "^3.14.3",
     "postgres": "^3.4.7"
   },

@@ -9,6 +9,7 @@ VSequel provides a comprehensive command-line interface for database schema anal
 - [Global Options](#global-options)
 - [Commands](#commands)
   - [schema](#schema-command)
+  - [plantuml](#plantuml-command)
   - [table](#table-command)
   - [list](#list-command)
   - [sample](#sample-command)
@@ -52,7 +53,10 @@ bun add -g vsequel
 
 ```bash
 # Generate ERD diagram
-npx vsequel schema --db postgresql://localhost/mydb > schema.puml
+npx vsequel plantuml --db postgresql://localhost/mydb > schema.puml
+
+# Extract schema as JSON
+npx vsequel schema --db postgresql://localhost/mydb > schema.json
 
 # List all tables
 npx vsequel list --db postgresql://localhost/mydb
@@ -90,41 +94,76 @@ mysql2://user:password@host:port/database
 
 ### schema Command
 
-Extract complete database schema and generate ERD diagrams.
+Extract complete database schema as JSON format for programmatic use.
 
 **Usage:**
 ```bash
-vsequel schema --db <database-url> [options]
-vsequel --db <database-url> [options]  # schema is default
+vsequel schema --db <database-url>
 ```
 
 **Options:**
-- `-o, --output <type>` - Output format:
-  - `full-plantuml` (default) - Complete PlantUML with all details
-  - `plantuml` - Simplified PlantUML (relationships only)
-  - `json` - Raw schema data as JSON
+- `-d, --db <url>` - Database connection URL (required)
 
 **Examples:**
 
 ```bash
-# Generate complete ERD diagram
+# Extract complete schema as JSON
 npx vsequel schema --db postgresql://localhost/mydb
 
-# Simplified diagram for presentations
-npx vsequel schema --db postgresql://localhost/mydb --output plantuml
+# Save schema to file
+npx vsequel schema --db postgresql://localhost/mydb > schema.json
 
-# Raw schema data for processing
-npx vsequel schema --db postgresql://localhost/mydb --output json
+# Process with jq
+npx vsequel schema --db postgresql://localhost/mydb | jq '.[] | .name'
 
-# Save to file and generate PNG
-npx vsequel schema --db postgresql://localhost/mydb > schema.puml
-plantuml schema.puml
+# Count tables
+npx vsequel schema --db postgresql://localhost/mydb | jq 'length'
+
+# Find tables with foreign keys
+npx vsequel schema --db postgresql://localhost/mydb | jq '.[] | select(.foreignKeys | length > 0) | .name'
 ```
 
 **Output Features:**
-- **Full PlantUML**: Tables, columns, data types, constraints, relationships
-- **Simplified PlantUML**: Table names and relationships only
-- **JSON**: Complete schema metadata for programmatic use
+- **Complete JSON Schema**: Tables, columns, data types, constraints, relationships
+- **Programmatic Access**: Perfect for automation and processing
+- **Rich Metadata**: Includes indexes, primary keys, foreign keys, and comments
+
+### plantuml Command
+
+Generate PlantUML diagrams from database schema for visualization and documentation.
+
+**Usage:**
+```bash
+vsequel plantuml --db <database-url> [options]
+```
+
+**Options:**
+- `-d, --db <url>` - Database connection URL (required)
+- `-s, --simple` - Generate simplified PlantUML diagram focusing only on relationships (default: false)
+
+**Examples:**
+
+```bash
+# Generate detailed PlantUML diagram
+npx vsequel plantuml --db postgresql://localhost/mydb
+
+# Generate simplified diagram for presentations
+npx vsequel plantuml --db postgresql://localhost/mydb --simple
+
+# Save diagram to file and generate PNG
+npx vsequel plantuml --db postgresql://localhost/mydb > schema.puml
+plantuml schema.puml
+
+# Generate both detailed and simple diagrams
+npx vsequel plantuml --db postgresql://localhost/mydb > detailed.puml
+npx vsequel plantuml --db postgresql://localhost/mydb --simple > simple.puml
+```
+
+**Output Features:**
+- **Detailed PlantUML** (default): Tables with columns, data types, constraints, relationships
+- **Simplified PlantUML** (`--simple`): Table names and relationships only
+- **Ready for Processing**: Compatible with PlantUML tools for PNG/SVG generation
+- **Documentation Ready**: Perfect for technical documentation and presentations
 
 ### table Command
 
@@ -518,13 +557,13 @@ OUTPUT_DIR="docs/database"
 mkdir -p "$OUTPUT_DIR"
 
 # Generate complete ERD
-npx vsequel schema --db "$DB_URL" > "$OUTPUT_DIR/full-schema.puml"
+npx vsequel plantuml --db "$DB_URL" > "$OUTPUT_DIR/full-schema.puml"
 
 # Generate simplified ERD
-npx vsequel schema --db "$DB_URL" --output plantuml > "$OUTPUT_DIR/simple-schema.puml"
+npx vsequel plantuml --db "$DB_URL" --simple > "$OUTPUT_DIR/simple-schema.puml"
 
 # Export raw schema
-npx vsequel schema --db "$DB_URL" --output json > "$OUTPUT_DIR/schema.json"
+npx vsequel schema --db "$DB_URL" > "$OUTPUT_DIR/schema.json"
 
 # List all tables
 npx vsequel list --db "$DB_URL" > "$OUTPUT_DIR/tables.txt"
@@ -611,7 +650,7 @@ npx vsequel safe-query --db "$DB_URL" --sql "
 "
 
 # Check for missing indexes on foreign keys
-npx vsequel schema --db "$DB_URL" --output json | \
+npx vsequel schema --db "$DB_URL" | \
   jq -r '.[] | select(.foreignKeys | length > 0) | .name'
 ```
 
@@ -636,7 +675,7 @@ npx vsequel schema --db "postgresql://user:$DB_PASS@localhost:5432/mydb"
 npx vsequel sample --db "$DB_URL" --table large_table --limit 3
 
 # Use simplified PlantUML for large schemas
-npx vsequel schema --db "$DB_URL" --output plantuml
+npx vsequel plantuml --db "$DB_URL" --simple
 
 # Control join complexity
 npx vsequel join --db "$DB_URL" --tables table1,table2,table3
@@ -655,7 +694,7 @@ echo "$TABLES" | while read -r table; do
 done
 
 # Generate reports
-npx vsequel schema --db "$DB_URL" --output json | \
+npx vsequel schema --db "$DB_URL" | \
   jq '.[] | {name: .name, columns: .columns | length, foreignKeys: .foreignKeys | length}'
 ```
 

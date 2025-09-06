@@ -21,14 +21,12 @@ const safeJsonParse = (output: string): Record<string, unknown>[] => {
 };
 
 // Regex constants for performance
-const SAFE_QUERY_HELP_REGEX = /safe-query - Execute SQL query safely/;
-const DB_URL_REGEX = /--db <url>/;
-const SQL_QUERY_REGEX = /--sql <query>/;
-const READ_ONLY_TRANSACTION_REGEX = /read-only transaction/;
-const AUTOMATICALLY_ROLLED_BACK_REGEX = /automatically rolled back/;
-const NO_DATA_MODIFIED_REGEX = /no data will be permanently modified/;
-const DATABASE_URL_REQUIRED_REGEX = /Database URL is required/;
-const SQL_REQUIRED_REGEX = /--sql is required/;
+const SAFE_QUERY_HELP_REGEX =
+  /Execute SQL queries safely in read-only transactions with automatic rollback/;
+const DB_URL_REGEX = /--db, -d <str>/;
+const SQL_QUERY_REGEX = /--sql, -s <str>/;
+const DATABASE_URL_REQUIRED_REGEX = /No value provided for --db/;
+const SQL_REQUIRED_REGEX = /No value provided for --sql/;
 const ERROR_REGEX = /Error:/;
 const LAPTOP_REGEX = /Laptop/i;
 
@@ -83,9 +81,6 @@ describe('CLI safe-query command', () => {
       assert.match(output, SAFE_QUERY_HELP_REGEX);
       assert.match(output, DB_URL_REGEX);
       assert.match(output, SQL_QUERY_REGEX);
-      assert.match(output, READ_ONLY_TRANSACTION_REGEX);
-      assert.match(output, AUTOMATICALLY_ROLLED_BACK_REGEX);
-      assert.match(output, NO_DATA_MODIFIED_REGEX);
     });
 
     test('should require database URL', async () => {

@@ -87,17 +87,6 @@ export class DatabaseService {
     return await this.provider.getSampleData({ table, schema, limit });
   };
 
-  generatePlantumlSchema = ({
-    schema,
-  }: {
-    schema: TableSchema[];
-  }): {
-    full: string;
-    simplified: string;
-  } => {
-    return generatePlantumlSchema({ schema });
-  };
-
   getProvider = (): 'postgres' | 'mysql' => {
     return this.providerName;
   };
@@ -965,7 +954,7 @@ export class DatabaseService {
     type?: 'full' | 'simple';
   } = {}): Promise<string> => {
     const schemas = await this.getAllSchemas();
-    const plantumlResult = this.generatePlantumlSchema({ schema: schemas });
+    const plantumlResult = generatePlantumlSchema({ schema: schemas });
     return type === 'simple' ? plantumlResult.simplified : plantumlResult.full;
   };
 

@@ -46,9 +46,13 @@ const db = DatabaseService.fromUrl(
 // Get all schemas
 const schemas = await db.getAllSchemas();
 
-// Generate PlantUML diagram
-const diagrams = db.generatePlantumlSchema({ schema: schemas });
+// Generate PlantUML diagram (method 1 - using helper function)
+const diagrams = generatePlantumlSchema({ schema: schemas });
 console.log(diagrams.full);
+
+// Generate PlantUML diagram (method 2 - using database service)
+const plantuml = await db.getPlantuml({ type: 'full' });
+console.log(plantuml);
 
 // Execute safe queries
 const results = await db.safeQuery({
@@ -293,11 +297,29 @@ joinResults?.forEach((result, index) => {
 
 Generate ERD diagrams in PlantUML format for documentation and visualization.
 
-### Basic Usage
+### Using DatabaseService.getPlantuml() (Recommended)
+
+```typescript
+// Generate detailed PlantUML diagram
+const fullPlantuml = await db.getPlantuml({ type: 'full' });
+console.log(fullPlantuml);
+// Includes: tables, columns, data types, constraints, relationships
+
+// Generate simplified PlantUML diagram
+const simplePlantuml = await db.getPlantuml({ type: 'simple' });
+console.log(simplePlantuml);
+// Includes: tables and relationships only
+
+// Default is 'full' if no type specified
+const defaultPlantuml = await db.getPlantuml();
+console.log(defaultPlantuml);
+```
+
+### Using Helper Function (Alternative)
 
 ```typescript
 const schemas = await db.getAllSchemas();
-const diagrams = db.generatePlantumlSchema({ schema: schemas });
+const diagrams = generatePlantumlSchema({ schema: schemas });
 
 // Full detailed diagram
 console.log(diagrams.full);
@@ -313,10 +335,17 @@ console.log(diagrams.simplified);
 ```typescript
 import { writeFileSync } from 'fs';
 
-const schemas = await db.getAllSchemas();
-const diagrams = db.generatePlantumlSchema({ schema: schemas });
+// Method 1: Using DatabaseService.getPlantuml()
+const fullDiagram = await db.getPlantuml({ type: 'full' });
+const simpleDiagram = await db.getPlantuml({ type: 'simple' });
 
-// Save full diagram
+writeFileSync('database-schema-full.puml', fullDiagram);
+writeFileSync('database-schema-simple.puml', simpleDiagram);
+
+// Method 2: Using helper function
+const schemas = await db.getAllSchemas();
+const diagrams = generatePlantumlSchema({ schema: schemas });
+
 writeFileSync('database-schema.puml', diagrams.full);
 
 // Generate PNG with PlantUML

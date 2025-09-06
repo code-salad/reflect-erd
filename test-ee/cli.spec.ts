@@ -47,13 +47,13 @@ const PLANTUML_RELATIONSHIP_PATTERN = /\w+\s+\|\|--o\{|\w+\s+\|\|--o\{/;
 const COLUMN_TYPE_PATTERN = /\w+\s*:\s*\w+/;
 const PLANTUML_RELATIONSHIP_FULL_PATTERN = /\w+\s+\|\|--\|?\{/;
 const SUCCESS_MESSAGE_PATTERN = /Successfully extracted \d+ tables/;
-const VSEQUEL_TOOL_PATTERN = /vsequel - Database ERD extraction tool/;
-const SUBCOMMANDS_PATTERN = /Subcommands:/;
+const VSEQUEL_TOOL_PATTERN = /Database ERD extraction tool/;
+const SUBCOMMANDS_PATTERN = /where.*<subcommand>.*can be one of:/;
 const SCHEMA_PATTERN = /schema/;
 const TABLE_PATTERN = /table/;
 const LIST_PATTERN = /list/;
-const COMMAND_REQUIRED_PATTERN = /Command is required/;
-const INVALID_OUTPUT_FORMAT_PATTERN = /Invalid output format 'invalid'/;
+const _COMMAND_REQUIRED_PATTERN = /No value provided for subcommand/;
+const UNKNOWN_ARGUMENTS_PATTERN = /Unknown arguments/;
 const STARTUML_PATTERN = /@startuml/;
 const ENDUML_PATTERN = /@enduml/;
 const ENTITY_PATTERN = /entity/;
@@ -84,9 +84,9 @@ describe('CLI tests', () => {
   test('should show help when no command is provided', async () => {
     const result = await $(`npx tsx ${cliPath}`).quiet().nothrow();
 
-    assert.equal(result.exitCode, 1);
-    assert.match(result.stderr.toString(), COMMAND_REQUIRED_PATTERN);
+    assert.equal(result.exitCode, 0); // Help is shown with exit 0
     assert.match(result.stdout.toString(), VSEQUEL_TOOL_PATTERN);
+    assert.match(result.stdout.toString(), SUBCOMMANDS_PATTERN);
   });
 
   test('should validate output format', async () => {
@@ -97,13 +97,11 @@ describe('CLI tests', () => {
       .nothrow();
 
     assert.equal(result.exitCode, 1);
-    assert.match(result.stderr.toString(), INVALID_OUTPUT_FORMAT_PATTERN);
+    assert.match(result.stderr.toString(), UNKNOWN_ARGUMENTS_PATTERN);
   });
 
   test('should output JSON format', { timeout: 15_000 }, async () => {
-    const result = await $(
-      `npx tsx ${cliPath} schema --db ${postgresUrl} --output json`
-    )
+    const result = await $(`npx tsx ${cliPath} schema --db ${postgresUrl}`)
       .quiet()
       .nothrow();
 
@@ -134,7 +132,7 @@ describe('CLI tests', () => {
     { timeout: 15_000 },
     async () => {
       const result = await $(
-        `npx tsx ${cliPath} schema --db ${postgresUrl} --output plantuml`
+        `npx tsx ${cliPath} plantuml --db ${postgresUrl} --simple`
       )
         .quiet()
         .nothrow();
@@ -160,9 +158,7 @@ describe('CLI tests', () => {
     'should output full PlantUML format (default)',
     { timeout: 15_000 },
     async () => {
-      const result = await $(
-        `npx tsx ${cliPath} schema --db ${postgresUrl} --output full-plantuml`
-      )
+      const result = await $(`npx tsx ${cliPath} plantuml --db ${postgresUrl}`)
         .quiet()
         .nothrow();
 
@@ -189,16 +185,16 @@ describe('CLI tests', () => {
   );
 
   test(
-    'should use full-plantuml as default output format',
+    'should use full plantuml as default output format',
     { timeout: 15_000 },
     async () => {
       const resultDefault = await $(
-        `npx tsx ${cliPath} schema --db ${postgresUrl}`
+        `npx tsx ${cliPath} plantuml --db ${postgresUrl}`
       )
         .quiet()
         .nothrow();
       const resultFull = await $(
-        `npx tsx ${cliPath} schema --db ${postgresUrl} --output full-plantuml`
+        `npx tsx ${cliPath} plantuml --db ${postgresUrl}`
       )
         .quiet()
         .nothrow();
@@ -219,9 +215,7 @@ describe('CLI tests', () => {
     { timeout: 10_000 },
     async () => {
       const badUrl = 'postgresql://baduser:badpass@localhost:54321/nonexistent';
-      const result = await $(
-        `npx tsx ${cliPath} schema --db ${badUrl} --output json`
-      )
+      const result = await $(`npx tsx ${cliPath} schema --db ${badUrl}`)
         .quiet()
         .nothrow();
 
@@ -234,9 +228,7 @@ describe('CLI tests', () => {
     'should report success message to stderr',
     { timeout: 15_000 },
     async () => {
-      const result = await $(
-        `npx tsx ${cliPath} schema --db ${postgresUrl} --output json`
-      )
+      const result = await $(`npx tsx ${cliPath} schema --db ${postgresUrl}`)
         .quiet()
         .nothrow();
 
