@@ -13,34 +13,30 @@ export const schemaCommand = async ({
     console.error('Extracting database schema...');
 
     const databaseService = DatabaseService.fromUrl(db);
-    const schemas = await databaseService.getAllSchemas();
-
-    console.error(`Successfully extracted ${schemas.length} tables`);
 
     switch (output) {
       case 'json': {
+        const schemas = await databaseService.getAllSchemas();
+        console.error(`Successfully extracted ${schemas.length} tables`);
         console.log(JSON.stringify(schemas, null, 2));
         break;
       }
       case 'plantuml': {
-        const result = databaseService.generatePlantumlSchema({
-          schema: schemas,
-        });
-        console.log(result.simplified);
+        const result = await databaseService.getPlantuml({ type: 'simple' });
+        console.error('Successfully generated simplified PlantUML schema');
+        console.log(result);
         break;
       }
       case 'full-plantuml': {
-        const result = databaseService.generatePlantumlSchema({
-          schema: schemas,
-        });
-        console.log(result.full);
+        const result = await databaseService.getPlantuml({ type: 'full' });
+        console.error('Successfully generated full PlantUML schema');
+        console.log(result);
         break;
       }
       default: {
-        const result = databaseService.generatePlantumlSchema({
-          schema: schemas,
-        });
-        console.log(result.full);
+        const result = await databaseService.getPlantuml({ type: 'full' });
+        console.error('Successfully generated full PlantUML schema');
+        console.log(result);
         break;
       }
     }

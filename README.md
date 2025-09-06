@@ -480,10 +480,15 @@ if (results && results.length > 0) {
   });
 }
 
-// Generate PlantUML diagrams
+// Generate PlantUML diagrams (method 1 - using schema data)
 const diagrams = db.generatePlantumlSchema({ schema: schemas });
 console.log(diagrams.full); // Full detailed PlantUML
 console.log(diagrams.simplified); // Simplified PlantUML
+
+// Generate PlantUML diagrams (method 2 - direct from database)
+const fullPlantuml = await db.getPlantuml({ type: 'full' });
+const simplePlantuml = await db.getPlantuml({ type: 'simple' });
+const defaultPlantuml = await db.getPlantuml(); // defaults to 'full'
 ```
 
 ## Output Formats
@@ -600,6 +605,15 @@ Returns `null` if tables cannot be connected through any path.
 #### `generatePlantumlSchema(params: { schema: TableSchema[] }): { full: string; simplified: string }`
 
 Generates PlantUML ERD diagrams from the database schema. Returns both a full detailed version and a simplified version.
+
+#### `getPlantuml(params?: { type?: 'full' | 'simple' }): Promise<string>`
+
+Generates PlantUML ERD diagrams directly from the database. This is a convenient method that combines `getAllSchemas()` and `generatePlantumlSchema()`.
+
+**Parameters:**
+- `type`: Optional. Specifies whether to return 'full' (detailed) or 'simple' (simplified) PlantUML. Defaults to 'full'.
+
+**Returns:** Promise that resolves to a PlantUML string.
 
 #### `safeQuery(params: { sql: string }): Promise<Record<string, unknown>[]>`
 
