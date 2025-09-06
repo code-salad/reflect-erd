@@ -13,6 +13,7 @@ A CLI tool and TypeScript library for extracting database schemas and generating
 - [Features](#features)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [CLI Usage](#cli-usage)
   - [Subcommands](#subcommands)
   - [Examples](#examples)
@@ -94,6 +95,21 @@ yarn add vsequel
 # Using pnpm
 pnpm add vsequel
 ```
+
+## Documentation
+
+For comprehensive documentation and examples:
+
+- **[📖 Library Guide](docs/library-guide.md)** - Complete TypeScript library documentation with examples
+- **[💻 CLI Guide](docs/cli-guide.md)** - Detailed command-line interface documentation with practical examples
+
+The documentation covers:
+- Installation and setup
+- All CLI commands with examples
+- Complete library API reference
+- Type definitions and interfaces
+- Best practices and troubleshooting
+- Real-world usage scenarios
 
 ## CLI Usage
 
