@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 
+![Code Salad](docs/salad.png)
+
 A CLI tool and TypeScript library for extracting database schemas and generating ERD diagrams from PostgreSQL and MySQL databases.
 
 ## Table of Contents
