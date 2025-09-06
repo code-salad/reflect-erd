@@ -220,7 +220,7 @@ vsequel context --db postgresql://localhost/mydb --table users
 
 Find all possible paths to join multiple tables and generate complete SQL queries:
 
-````bash
+```bash
 # Generate complete SQL query for shortest path
 vsequel join --db postgresql://localhost/mydb --tables orders,customers --output sql
 
@@ -278,6 +278,7 @@ vsequel safe-query --db postgresql://localhost/mydb --sql "
   LEFT JOIN orders o ON u.id = o.user_id 
   GROUP BY u.id, u.name
 "
+
 ```
 
 **Key Features:**
@@ -768,12 +769,6 @@ npm run lint
 # Run formatting
 npm run format
 ```
-
-## 📈 Download Statistics
-
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://npm.chart.dev/embed/vsequel?blackAsPrimary=false&primary=amber&gray=gray&theme=dark" frameborder="0" allow="clipboard-write;" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="NPM Chart"></iframe></div>
-
-View detailed download statistics and trends over time on [npm.chart.dev](https://npm.chart.dev/vsequel).
 
 ## License
 
